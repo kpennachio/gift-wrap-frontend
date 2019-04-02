@@ -1,14 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
+import Event from './Event'
 
-const EventContainer = (props) => {
 
-  console.log("event container", props.users);
+
+const EventContainer = ({events}) => {
+
+  console.log(events);
+
+  const renderAllEvents = () => {
+    if (events) {
+      return events.map(event => <Event event={event}/>)
+    }
+  }
+
   return (
     <div>
-      Event Container Test
-      {props.test}
+      <h2>all events</h2>
+      {renderAllEvents()}
     </div>
   );
 
@@ -16,8 +26,7 @@ const EventContainer = (props) => {
 
 function mapStateToProps(state) {
   return {
-    test: state.test,
-    users: state.users
+    events: state.currentUser.events
   }
 }
 

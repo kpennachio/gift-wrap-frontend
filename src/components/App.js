@@ -3,7 +3,7 @@ import '../App.css';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux'
 
-import EventContainer from './EventContainer'
+import EventPage from './EventPage'
 
 
 
@@ -15,6 +15,7 @@ class App extends Component {
     .then(resp => resp.json())
     .then(users => {
       this.props.getUsers(users)
+      this.props.getCurrentUser(users[0])
     })
   }
 
@@ -22,7 +23,7 @@ class App extends Component {
     return (
       <div className="App">
         <Switch>
-          <Route path="/events" component={(props) => <EventContainer {...props} />}/>
+          <Route path="/events" component={(props) => <EventPage {...props} />}/>
         </Switch>
       </div>
     );
@@ -31,7 +32,8 @@ class App extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getUsers: (users) => dispatch({type: "GET_USERS", payload: users})
+    getUsers: (users) => dispatch({type: "GET_USERS", payload: users}),
+    getCurrentUser: (user) => dispatch({type: "GET_CURRENT_USER", payload: user})
   }
 }
 

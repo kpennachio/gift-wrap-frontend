@@ -1,16 +1,16 @@
 
 
 let defaultState = {
-  test: "something",
-  users: []
+  users: [],
+  currentUser: {}
 }
 
 function reducer(state = defaultState, action) {
   switch (action.type) {
-    case "TEST":
-      return { ...state }
     case "GET_USERS":
       return { ...state, users: action.payload}
+    case "GET_CURRENT_USER":
+      return { ...state, currentUser: action.payload}
     default:
       return state
   }
