@@ -5,13 +5,23 @@ import Event from './Event'
 
 
 
-const EventContainer = ({events}) => {
+const EventContainer = (props) => {
+  const { events } = props
 
-  console.log(events);
+  console.log("event container props", props);
+
+
+  const orderEvents = () => {
+    if (events) {
+      return events.sort((a, b) => {
+        return new Date(a.date) - new Date(b.date)
+      })
+    }
+  }
 
   const renderAllEvents = () => {
     if (events) {
-      return events.map(event => <Event event={event}/>)
+      return orderEvents().map(event => <Event event={event}/>)
     }
   }
 

@@ -11,7 +11,7 @@ const Event = ({event}) => {
   return (
     <div>
       <h3>{event.title}</h3>
-      <p>{event.date}</p>
+      <p>{event.dateFormatted}</p>
 
     </div>
   );

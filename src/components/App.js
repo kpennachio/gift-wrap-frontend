@@ -3,7 +3,7 @@ import '../App.css';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux'
 
-import EventPage from './EventPage'
+import Checklist from './Checklist'
 
 
 
@@ -23,7 +23,7 @@ class App extends Component {
     return (
       <div className="App">
         <Switch>
-          <Route path="/events" component={(props) => <EventPage {...props} />}/>
+          <Route path="/checklist" component={ Checklist }/>
         </Switch>
       </div>
     );

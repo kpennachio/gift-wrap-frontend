@@ -4,9 +4,9 @@ import { connect } from 'react-redux'
 import EventContainer from './EventContainer'
 
 
-const EventPage = (props) => {
+const Checklist = (props) => {
 
-  console.log("event container", props.currentUser);
+  console.log("event page", props);
   return (
     <div>
       <h1>My Events</h1>
@@ -22,4 +22,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(EventPage);
+export default connect(mapStateToProps)(Checklist);
