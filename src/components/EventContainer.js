@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 import Event from './Event'
+import EventForm from './EventForm'
+
 
 
 
@@ -27,6 +29,8 @@ const EventContainer = (props) => {
 
   return (
     <div>
+
+      <EventForm />
       <h2>all events</h2>
       {renderAllEvents()}
     </div>

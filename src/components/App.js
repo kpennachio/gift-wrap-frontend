@@ -4,6 +4,8 @@ import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux'
 
 import Checklist from './Checklist'
+import SideNav from './SideNav'
+import Header from './Header'
 
 
 
@@ -21,9 +23,12 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div>
+        <Header/>
+        <SideNav/>
         <Switch>
           <Route path="/checklist" component={ Checklist }/>
+          <Route path="/dashboard" component={ Dashboard }/>
         </Switch>
       </div>
     );

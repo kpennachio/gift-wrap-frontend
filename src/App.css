@@ -31,3 +31,30 @@
     transform: rotate(360deg);
   }
 }
+
+
+@keyframes moveLeft {
+  0% {
+    margin-left: 0px;
+  }
+  100% {
+    margin-left: 200px;
+  }
+}
+
+.card-test {
+  /* border: solid;
+  margin-left: 200px;
+  animation: moveLeft;
+  animation-duration: 5s; */
+}
+
+.menu-wrapper {
+  position: relative;
+  margin-bottom: 14px;
+}
+
+.ui.secondary.vertical.menu.vertical-menu {
+  height: 100%;
+  background-color: yellow;
+}
