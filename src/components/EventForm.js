@@ -20,7 +20,8 @@ class EventForm extends Component {
     people: [],
     showingNewPersonInput: false,
     newPersonName: "",
-    formattedDate: ""
+    formattedDate: "",
+    currentPeople: []
   }
 
   handleChange = (e) => {
@@ -50,6 +51,17 @@ class EventForm extends Component {
     this.setState({showingNewPersonInput: true})
     e.target.innerText = ""
   }
+
+
+// dropdown test below
+  handlePersonAddition = (e, { value }) => {
+    this.props.addNewPersonName(value)
+  }
+
+  handlePersonChange = (e, { value }) => {
+    this.setState({ currentPeople: value })
+  }
+
 
   handleSubmit = (e) => {
     e.preventDefault()
@@ -81,7 +93,7 @@ class EventForm extends Component {
   }
 
   render() {
-    console.log(this.props.currentUser);
+    console.log(this.state.currentPeople);
     return(
       <div>
         <h2>Add Event</h2>
@@ -101,6 +113,23 @@ class EventForm extends Component {
                 options={this.dropdownOptions()}
                 onChange={this.handleDropdown}
               />
+
+
+              //testing dropdown multiple allow additions below
+
+              <Form.Field control={Input} label='Who are you getting a gift for?'
+                control={Dropdown}
+                options={this.dropdownOptions() ? this.dropdownOptions() : []}
+                placeholder='Select people...'
+                search
+                selection
+                fluid
+                multiple
+                allowAdditions
+                onAddItem={this.handlePersonAddition}
+                onChange={this.handlePersonChange}
+              />
+
               <Form.Group
                 style={{ display: (this.state.showingNewPersonInput ? 'block' : 'none') }}>
               <Form.Field control={Input} label='Add a New Person' placeholder='Name' />
@@ -131,7 +160,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return  {
-    addNewEvent: (event) => dispatch({type: "ADD_NEW_EVENT", payload: event})
+    addNewEvent: (event) => dispatch({type: "ADD_NEW_EVENT", payload: event}),
+    addNewPersonName: (person) => dispatch({type: "ADD_NEW_PERSON_NAME", payload: person})
   }
 }
 

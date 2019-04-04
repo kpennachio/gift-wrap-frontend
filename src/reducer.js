@@ -13,6 +13,8 @@ function reducer(state = defaultState, action) {
       return { ...state, currentUser: action.payload}
     case "ADD_NEW_EVENT":
       return { ...state, currentUser: { ...state.currentUser, events: [...state.currentUser.events, action.payload]}}
+    case "ADD_NEW_PERSON_NAME":
+      return {...state, currentUser: { ...state.currentUser, people: [...state.currentUser.people, {name: action.payload}]}}
     default:
       return state
   }
