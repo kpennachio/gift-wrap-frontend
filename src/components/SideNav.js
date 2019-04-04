@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Menu } from 'semantic-ui-react'
+import { Sidebar, Menu } from 'semantic-ui-react'
 
 
 
@@ -14,7 +14,7 @@ export default class SideNav extends Component {
     console.log(activeItem);
     return (
       <div className="menu-wrapper">
-      <Menu secondary vertical className="vertical-menu">
+      <Sidebar as={Menu} vertical visible width="thin" className="vertical-menu" >
         <Menu.Item
           name="Dashboard"
           active={activeItem === 'Dashboard'}
@@ -30,7 +30,7 @@ export default class SideNav extends Component {
           active={activeItem === 'Budgeter'}
           onClick={this.handleItemClick}
         />
-        </Menu>
+        </Sidebar>
       </div>
     )
   }

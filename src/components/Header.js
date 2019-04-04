@@ -14,7 +14,7 @@ export default class Header extends Component {
     console.log(activeItem);
     return (
       <div className="header">
-      <Menu secondary>
+      <Menu fixed="top" inverted>
         <Menu.Item
           name="giftWrap"
           context="Gift Wrap"

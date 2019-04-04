@@ -1,11 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import '../App.css';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux'
+import { Grid, Container } from 'semantic-ui-react'
 
 import Checklist from './Checklist'
 import SideNav from './SideNav'
 import Header from './Header'
+import Dashboard from './Dashboard'
+
 
 
 
@@ -23,14 +26,21 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <Header/>
-        <SideNav/>
-        <Switch>
-          <Route path="/checklist" component={ Checklist }/>
-          <Route path="/dashboard" component={ Dashboard }/>
-        </Switch>
-      </div>
+      <Fragment >
+
+        <Header />
+        <div className="gift-planner-wrapper">
+          <div className="side-nav">
+            <SideNav/>
+          </div>
+          <div className="planner-content">
+            <Switch>
+              <Route path="/checklist" component={ Checklist }/>
+              <Route path="/dashboard" component={ Dashboard }/>
+            </Switch>
+          </div>
+        </div>
+      </Fragment >
     );
   }
 }
@@ -46,3 +56,25 @@ export default connect(null, mapDispatchToProps)(App);
 
 
 // <Route path="/event/:id" component={(props) => <UserContainer {...props}/>}/>
+
+
+// return (
+//   <Fragment >
+//   <Container>
+//     <Header />
+//   </Container>
+//   <Container >
+//     <Grid columns="two">
+//       <Grid.Column width={2}>
+//         <SideNav/>
+//       </Grid.Column>
+//       <Grid.Column >
+//         <Switch>
+//           <Route path="/checklist" component={ Checklist }/>
+//           <Route path="/dashboard" component={ Dashboard }/>
+//         </Switch>
+//       </Grid.Column>
+//     </Grid>
+//   </ Container>
+//   </Fragment >
+// );

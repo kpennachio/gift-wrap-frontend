@@ -50,11 +50,36 @@
 }
 
 .menu-wrapper {
-  position: relative;
-  margin-bottom: 14px;
+  /* position: relative;
+  margin-bottom: 14px; */
 }
 
 .ui.secondary.vertical.menu.vertical-menu {
-  height: 100%;
-  background-color: yellow;
+  /* height: 100%;
+  background-color: yellow; */
+}
+
+.ui.vertical.ui.left.visible.sidebar.menu.vertical-menu {
+  margin-top: 40px !important;
+
+}
+
+.gift-planner-wrapper {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.side-nav {
+  /* background-color: yellow;
+  padding-top: 40px;
+  width: 100%;
+  text-align: center; */
+  padding-top: 40px;
+}
+
+.planner-content {
+  padding-top: 40px;
+  padding-left: 30%;
+  text-align: center;
 }
