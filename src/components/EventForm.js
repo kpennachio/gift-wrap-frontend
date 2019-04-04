@@ -17,9 +17,9 @@ class EventForm extends Component {
     day: "",
     notes: "",
     registry_link: "",
-    people: [],
-    showingNewPersonInput: false,
-    newPersonName: "",
+    // people: [],
+    // showingNewPersonInput: false,
+    // newPersonName: "",
     formattedDate: "",
     currentPeople: []
   }
@@ -35,14 +35,19 @@ class EventForm extends Component {
     })
   }
 
-  handleDropdown = (e) => {
-    console.log(e.target.value);
-  }
-
+  // handleDropdown = (e) => {
+  //   console.log(e.target.value);
+  // }
+  //
   dropdownOptions = () => {
     if (this.props.people) {
       return this.props.people.map(person => {
-        return {key: person.id, text: person.name, value: person.id}
+        if (person.id) {
+          return {key: person.id, text: person.name, value: person.id}
+        }
+        else {
+          return {key: person.name, text: person.name, value: person.name}
+        }
       })
     }
   }
@@ -105,20 +110,6 @@ class EventForm extends Component {
 
               <Form.Field control={Input} label='Who are you getting a gift for?'
                 control={Dropdown}
-                placeholder='Select people...'
-                fluid
-                multiple
-                search
-                selection
-                options={this.dropdownOptions()}
-                onChange={this.handleDropdown}
-              />
-
-
-              //testing dropdown multiple allow additions below
-
-              <Form.Field control={Input} label='Who are you getting a gift for?'
-                control={Dropdown}
                 options={this.dropdownOptions() ? this.dropdownOptions() : []}
                 placeholder='Select people...'
                 search
@@ -130,12 +121,6 @@ class EventForm extends Component {
                 onChange={this.handlePersonChange}
               />
 
-              <Form.Group
-                style={{ display: (this.state.showingNewPersonInput ? 'block' : 'none') }}>
-              <Form.Field control={Input} label='Add a New Person' placeholder='Name' />
-              </Form.Group>
-
-              <p onClick={this.showInput}>Click to add a new person</p><br/>
 
 
               <Form.Field control={Input} label='Registry Link' name="registry_link" placeholder='Registry Link (optional)' onChange={this.handleChange}/>
@@ -166,3 +151,23 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventForm);
+
+//
+// <Form.Field control={Input} label='Who are you getting a gift for?'
+//   control={Dropdown}
+//   placeholder='Select people...'
+//   fluid
+//   multiple
+//   search
+//   selection
+//   options={this.dropdownOptions()}
+//   onChange={this.handleDropdown}
+// />
+
+
+// <Form.Group
+//   style={{ display: (this.state.showingNewPersonInput ? 'block' : 'none') }}>
+// <Form.Field control={Input} label='Add a New Person' placeholder='Name' />
+// </Form.Group>
+//
+// <p onClick={this.showInput}>Click to add a new person</p><br/>
