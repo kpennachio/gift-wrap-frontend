@@ -11,10 +11,9 @@ export default class Header extends Component {
 
   render() {
     const { activeItem } = this.state
-    console.log(activeItem);
     return (
       <div className="header">
-      <Menu fixed="top" inverted>
+      <Menu fixed="top" inverted size="massive">
         <Menu.Item
           name="giftWrap"
           context="Gift Wrap"

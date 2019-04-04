@@ -6,7 +6,6 @@ import EventContainer from './EventContainer'
 
 const Checklist = (props) => {
 
-  console.log("event page", props);
   return (
     <div>
       <h1>My Events</h1>

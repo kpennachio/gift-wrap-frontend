@@ -60,7 +60,8 @@
 }
 
 .ui.vertical.ui.left.visible.sidebar.menu.vertical-menu {
-  margin-top: 40px !important;
+  margin-top: 51.42px !important;
+  box-shadow: none;
 
 }
 
@@ -70,16 +71,10 @@
   flex-wrap: nowrap;
 }
 
-.side-nav {
-  /* background-color: yellow;
-  padding-top: 40px;
-  width: 100%;
-  text-align: center; */
-  padding-top: 40px;
-}
+
 
 .planner-content {
-  padding-top: 40px;
+  padding-top: 90px;
   padding-left: 30%;
   text-align: center;
 }

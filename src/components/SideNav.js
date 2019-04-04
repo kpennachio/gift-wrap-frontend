@@ -11,7 +11,6 @@ export default class SideNav extends Component {
 
   render() {
     const { activeItem } = this.state
-    console.log(activeItem);
     return (
       <div className="menu-wrapper">
       <Sidebar as={Menu} vertical visible width="thin" className="vertical-menu" >

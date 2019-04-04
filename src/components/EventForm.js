@@ -11,7 +11,7 @@ class EventForm extends Component {
 
   state = {
     event: "",
-    date: "",
+    day: "",
     notes: "",
     registry_link: "",
     people: [],
@@ -32,11 +32,12 @@ class EventForm extends Component {
   }
 
   dropdownOptions = () => {
-    console.log("event form", this.props.people);
-    const people = [{id:1, name:"allie"}, {id:2, name:"mom"}]
-    return people.map(person => {
-      return {key: person.id, text: person.name, value: person.id}
-    })
+    if (this.props.people) {
+      return this.props.people.map(person => {
+        console.log(person.id);
+        return {key: person.id, text: person.name, value: person.id}
+      })
+    }
   }
 
   showInput = (e) => {
@@ -44,21 +45,24 @@ class EventForm extends Component {
     e.target.innerText = ""
   }
 
-
+  handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(this.state)
+  }
 
   render() {
     return(
       <div>
         <h2>Add Event</h2>
-          <Form>
+          <Form onSubmit={this.handleSubmit}>
 
-              <Form.Field control={Input} label='Event' placeholder='Event' onChange={this.handleChange}/>
+              <Form.Field control={Input} name="event" label='Event' placeholder='Event' onChange={this.handleChange}/>
 
               <Form.Field label='Date' control={DayPickerInput} onDayChange={this.handleDayChange}/>
 
-              <Form.Field control={Input} label='Who gets a gift?'
+              <Form.Field control={Input} label='Who are you getting a gift for?'
                 control={Dropdown}
-                placeholder='Choose Person...'
+                placeholder='Select people...'
                 fluid
                 multiple
                 search
@@ -71,16 +75,16 @@ class EventForm extends Component {
               <Form.Field control={Input} label='Add a New Person' placeholder='Name' />
               </Form.Group>
 
-              <p onClick={this.showInput}>Add a new person?</p><br/>
+              <p onClick={this.showInput}>Click to add a new person</p><br/>
 
 
-              <Form.Field control={Input} label='Registry Link' placeholder='Registry Link (optional)' onChange={this.handleChange}/>
+              <Form.Field control={Input} label='Registry Link' name="registry_link" placeholder='Registry Link (optional)' onChange={this.handleChange}/>
 
 
-              <Form.Field control={TextArea} label='Notes' placeholder='Notes
+              <Form.Field control={TextArea} label='Notes' name="notes" placeholder='Notes
               (optional)' onChange={this.handleChange}/>
 
-            <Form.Field control={Button}>Add Event</Form.Field>
+            <Button type='submit'>Add Event</Button>
           </Form>
       </div>
     )
