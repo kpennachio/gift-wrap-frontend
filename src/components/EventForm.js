@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import DayPickerInput from 'react-day-picker/DayPickerInput';
+import MomentLocaleUtils, { formatDate, parseDate } from 'react-day-picker/moment';
+import 'moment/locale/it';
+
 import 'react-day-picker/lib/style.css';
 import { Button, Form, Input, Dropdown, TextArea } from 'semantic-ui-react'
 
@@ -16,7 +19,8 @@ class EventForm extends Component {
     registry_link: "",
     people: [],
     showingNewPersonInput: false,
-    newPersonName: ""
+    newPersonName: "",
+    formattedDate: ""
   }
 
   handleChange = (e) => {
@@ -24,7 +28,10 @@ class EventForm extends Component {
   }
 
   handleDayChange = (day) => {
-    this.setState({day})
+    this.setState({
+      day: day.toLocaleDateString().split("/").join("-"),
+      formattedDate: day.toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
+    })
   }
 
   handleDropdown = (e) => {
@@ -68,12 +75,13 @@ class EventForm extends Component {
     })
     .then(resp => resp.json())
     .then(event => {
+      event.dateFormatted = this.state.formattedDate
       this.props.addNewEvent(event)
-      
     })
   }
 
   render() {
+    console.log(this.props.currentUser);
     return(
       <div>
         <h2>Add Event</h2>
@@ -81,7 +89,7 @@ class EventForm extends Component {
 
               <Form.Field control={Input} name="event" label='Event' placeholder='Event' onChange={this.handleChange}/>
 
-              <Form.Field label='Date' control={DayPickerInput} onDayChange={this.handleDayChange}/>
+              <Form.Field label='Date' control={DayPickerInput} onDayChange={this.handleDayChange} formatDate={formatDate} parseDate={parseDate} placeholder={`${formatDate(new Date())}`}/>
 
               <Form.Field control={Input} label='Who are you getting a gift for?'
                 control={Dropdown}

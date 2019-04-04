@@ -12,7 +12,7 @@ function reducer(state = defaultState, action) {
     case "GET_CURRENT_USER":
       return { ...state, currentUser: action.payload}
     case "ADD_NEW_EVENT":
-      return { ...state, }
+      return { ...state, currentUser: { ...state.currentUser, events: [...state.currentUser.events, action.payload]}}
     default:
       return state
   }
