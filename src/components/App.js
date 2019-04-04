@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import '../App.css';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux'
-import { Grid, Container } from 'semantic-ui-react'
 
 import Checklist from './Checklist'
 import SideNav from './SideNav'
@@ -16,11 +15,10 @@ class App extends Component {
 
 
   componentDidMount() {
-    fetch('http://localhost:3000/api/v1/users')
+    fetch('http://localhost:3000/api/v1/users/5')
     .then(resp => resp.json())
-    .then(users => {
-      this.props.getUsers(users)
-      this.props.getCurrentUser(users[0])
+    .then(user => {
+      this.props.getCurrentUser(user)
     })
   }
 

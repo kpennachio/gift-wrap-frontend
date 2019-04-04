@@ -10,7 +10,7 @@ const Event = ({event}) => {
 
 
   return (
-    <div class="card-test">
+    <div className="card-test">
     <Card>
       <h3>{event.title}</h3>
       <p>{event.dateFormatted}</p>

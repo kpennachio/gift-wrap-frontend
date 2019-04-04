@@ -10,7 +10,6 @@ import EventForm from './EventForm'
 const EventContainer = (props) => {
   const { events } = props
 
-  console.log("event container props", props);
 
 
   const orderEvents = () => {
@@ -23,7 +22,7 @@ const EventContainer = (props) => {
 
   const renderAllEvents = () => {
     if (events) {
-      return orderEvents().map(event => <Event event={event}/>)
+      return orderEvents().map(event => <Event key={event.id} event={event}/>)
     }
   }
 

@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
-import { Button, Checkbox, Form, Input, Dropdown, Select, TextArea } from 'semantic-ui-react'
+import { Button, Form, Input, Dropdown, TextArea } from 'semantic-ui-react'
 
 
 
-export default class EventForm extends Component {
+class EventForm extends Component {
 
   state = {
     event: "",
@@ -30,6 +32,7 @@ export default class EventForm extends Component {
   }
 
   dropdownOptions = () => {
+    console.log("event form", this.props.people);
     const people = [{id:1, name:"allie"}, {id:2, name:"mom"}]
     return people.map(person => {
       return {key: person.id, text: person.name, value: person.id}
@@ -84,15 +87,11 @@ export default class EventForm extends Component {
   }
 }
 
-// datalist
-// list='people' placeholder='Choose Person...' />
-//   <datalist id='people'>
-//     {this.datalistOptions()}
-//   </datalist>
+function mapStateToProps(state) {
+  return {
+    currentUser: state.currentUser,
+    people: state.currentUser.people
+  }
+}
 
-// datalistOptions = () => {
-//   const people = ["allie", "mom", "dad", "kevin"]
-//   return people.map(person => {
-//     return <option value={person} />
-//   })
-// }
+export default connect(mapStateToProps)(EventForm);
