@@ -34,7 +34,6 @@ class EventForm extends Component {
   dropdownOptions = () => {
     if (this.props.people) {
       return this.props.people.map(person => {
-        console.log(person.id);
         return {key: person.id, text: person.name, value: person.id}
       })
     }
@@ -48,6 +47,30 @@ class EventForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     console.log(this.state)
+    this.addNewEvent()
+  }
+
+  addNewEvent = () => {
+    let data = {
+      user_id: this.props.currentUser.id,
+      title: this.state.event,
+      date: this.state.day,
+      registry_link: this.state.registry_link,
+      notes: this.state.notes
+    }
+    fetch('http://localhost:3000/api/v1/events', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+    .then(resp => resp.json())
+    .then(event => {
+      this.props.addNewEvent(event)
+      
+    })
   }
 
   render() {
@@ -98,4 +121,10 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(EventForm);
+function mapDispatchToProps(dispatch) {
+  return  {
+    addNewEvent: (event) => dispatch({type: "ADD_NEW_EVENT", payload: event})
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EventForm);

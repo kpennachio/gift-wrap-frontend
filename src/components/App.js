@@ -15,7 +15,7 @@ class App extends Component {
 
 
   componentDidMount() {
-    fetch('http://localhost:3000/api/v1/users/5')
+    fetch('http://localhost:3000/api/v1/users/6')
     .then(resp => resp.json())
     .then(user => {
       this.props.getCurrentUser(user)
