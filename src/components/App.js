@@ -7,6 +7,9 @@ import Checklist from './Checklist'
 import SideNav from './SideNav'
 import Header from './Header'
 import Dashboard from './Dashboard'
+import PeoplePage from './PeoplePage'
+import GiftPage from './GiftPage'
+import Budgeter from './Budgeter'
 
 
 
@@ -35,6 +38,9 @@ class App extends Component {
             <Switch>
               <Route path="/checklist" component={ Checklist }/>
               <Route path="/dashboard" component={ Dashboard }/>
+              <Route path="/budgeter" component={ Budgeter }/>
+              <Route path="/my-people" component={ PeoplePage }/>
+              <Route path="/my-gifts" component={ GiftPage }/>
             </Switch>
           </div>
         </div>

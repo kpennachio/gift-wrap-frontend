@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Menu } from 'semantic-ui-react'
+import { NavLink } from 'react-router-dom'
 
 
 
@@ -20,6 +21,7 @@ export default class Header extends Component {
           onClick={this.handleItemClick}
         />
         <Menu.Item
+          as={NavLink} to='./dashboard'
           name="planningTools"
           context="Planning Tools"
           active={activeItem === 'planningTools'}
