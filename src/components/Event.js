@@ -17,6 +17,7 @@ const Event = ({event, people}) => {
     <Card>
       <h3>{event.title}</h3>
       <p>{event.dateFormatted}</p>
+      {renderPeople()}
     </Card>
 
     </div>

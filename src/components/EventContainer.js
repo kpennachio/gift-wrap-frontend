@@ -26,7 +26,7 @@ const EventContainer = (props) => {
     }
   }
 
-
+  console.log(events);
   return (
     <div>
 

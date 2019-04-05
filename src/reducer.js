@@ -34,7 +34,11 @@ function reducer(state = defaultState, action) {
       let person = state.people.find(person => person.id === action.payload.person_id)
       event.people = [ ...event.people, person ]
       person.events = [ ...person.events, event ]
-      return { ...state, events: [ ...state.events, event], people: [ ...state.people, person]}
+
+      let otherEvents = state.events.filter(event => event.id !== action.payload.event_id)
+      let otherPeople = state.people.filter(person => person.id !== action.payload.person_id)
+
+      return { ...state, events: [ ...otherEvents, event], people: [ ...otherPeople, person]}
     default:
       return state
   }

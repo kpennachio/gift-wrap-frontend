@@ -88,6 +88,7 @@ class EventForm extends Component {
     .then(event => {
       console.log("event", event);
       event.dateFormatted = this.state.dateFormatted
+      event.people = []
       this.props.addNewEvent(event)
       this.addNewPeople(event.id)
     })
@@ -119,6 +120,7 @@ class EventForm extends Component {
     })
     .then(resp => resp.json())
     .then(person => {
+      person.events = []
       this.props.addNewPerson(person)
       this.addNewPersonGiftEvent(person.id, eventId)
     })
@@ -141,8 +143,7 @@ class EventForm extends Component {
     })
     .then(resp => resp.json())
     .then(pge => {
-      console.log(pge);
-      // this.props.addNewPersonGiftEvent(pge)
+      this.props.addNewPersonGiftEvent(pge)
     })
   }
 
@@ -158,7 +159,8 @@ class EventForm extends Component {
 
               <Form.Field label='Date' control={DayPickerInput} onDayChange={this.handleDayChange} formatDate={formatDate} parseDate={parseDate} placeholder={`${formatDate(new Date())}`}/>
 
-              <Form.Field control={Input} label='Who are you getting a gift for?'
+              <Form.Field
+                label='Who are you getting a gift for?'
                 control={Dropdown}
                 options={this.dropdownOptions() ? this.dropdownOptions() : []}
                 placeholder='Select people...'
