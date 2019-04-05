@@ -45,6 +45,3 @@ function reducer(state = defaultState, action) {
 }
 
 export default reducer
-
-
-// Issue: add new person name is adding another object to current users people and when add new person happens there will be duplicate names

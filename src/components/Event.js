@@ -13,14 +13,13 @@ const Event = ({event, people}) => {
   }
 
   return (
-    <div className="card-test">
+
     <Card>
       <h3>{event.title}</h3>
       <p>{event.dateFormatted}</p>
       {renderPeople()}
     </Card>
 
-    </div>
   );
 
 }
