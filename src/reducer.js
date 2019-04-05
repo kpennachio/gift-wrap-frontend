@@ -21,7 +21,7 @@ function reducer(state = defaultState, action) {
     case "SET_GIFTS":
       return { ...state, gifts: action.payload }
     case "ADD_NEW_EVENT":
-      return { ...state, currentUser: { ...state.currentUser, events: [...state.currentUser.events, action.payload]}}
+      return { ...state, events: [ ...state.events, action.payload ]}
     case "ADD_NEW_PERSON_NAME":
       return { ...state, people: [ ...state.people, {id: null, name: action.payload} ] }
     case "REMOVE_NEW_PERSON_NAMES":
