@@ -6,19 +6,15 @@ import { Card } from 'semantic-ui-react'
 
 
 
-const Gift = ({gift}) => {
+const EventDetail = ({event}) => {
 
-
+  console.log("reached EventDetail");
 
   return (
-
-    <Card>
-      <h3>{gift.name}</h3>
-      <img src={gift.image} alt={gift.name}/>
-
-    </Card>
-
-
+    <div>
+      <h3>{event.title}</h3>
+      <p>{event.dateFormatted}</p>
+    </div>
   );
 
 }
@@ -29,4 +25,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(Gift);
+export default connect(mapStateToProps)(EventDetail);

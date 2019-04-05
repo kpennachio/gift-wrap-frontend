@@ -6,15 +6,14 @@ import { Card } from 'semantic-ui-react'
 
 
 
-const Gift = ({gift}) => {
+const Person = ({person}) => {
 
 
 
   return (
 
     <Card>
-      <h3>{gift.name}</h3>
-      <img src={gift.image} alt={gift.name}/>
+      <h3>{person.name}</h3>
 
     </Card>
 
@@ -29,4 +28,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(Gift);
+export default connect(mapStateToProps)(Person);

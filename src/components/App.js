@@ -10,6 +10,7 @@ import Dashboard from './Dashboard'
 import PeoplePage from './PeoplePage'
 import GiftPage from './GiftPage'
 import Budgeter from './Budgeter'
+import ChecklistDetail from './ChecklistDetail'
 
 
 
@@ -39,6 +40,7 @@ class App extends Component {
           </div>
           <div className="planner-content">
             <Switch>
+              <Route path="/checklist/:id" render={ (props) => <ChecklistDetail {...props} /> } />
               <Route path="/checklist" component={ Checklist }/>
               <Route path="/dashboard" component={ Dashboard }/>
               <Route path="/budgeter" component={ Budgeter }/>
