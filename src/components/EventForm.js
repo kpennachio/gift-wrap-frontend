@@ -17,9 +17,6 @@ class EventForm extends Component {
     day: "",
     notes: "",
     registry_link: "",
-    // people: [],
-    // showingNewPersonInput: false,
-    // newPersonName: "",
     formattedDate: "",
     currentPeople: []
   }
@@ -35,10 +32,7 @@ class EventForm extends Component {
     })
   }
 
-  // handleDropdown = (e) => {
-  //   console.log(e.target.value);
-  // }
-  //
+
   dropdownOptions = () => {
     if (this.props.people) {
       return this.props.people.map(person => {
@@ -57,8 +51,6 @@ class EventForm extends Component {
     e.target.innerText = ""
   }
 
-
-// dropdown test below
   handlePersonAddition = (e, { value }) => {
     this.props.addNewPersonName(value)
   }
@@ -70,8 +62,8 @@ class EventForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    console.log(this.state)
     this.addNewEvent()
+    this.addNewPeople()
   }
 
   addNewEvent = () => {
@@ -97,8 +89,32 @@ class EventForm extends Component {
     })
   }
 
+
+  addNewPeople = () => {
+    let newNames = this.state.currentPeople.filter(name => typeof name === "string")
+    console.log("newPeople", newNames);
+    newNames.forEach(name => this.addNewPerson(name))
+  }
+
+  addNewPerson = (personName) => {
+    let data = {
+      user_id: this.props.currentUser.id,
+      name: personName
+    }
+
+    fetch('http://localhost:3000/api/v1/people', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+    .then(resp => resp.json())
+    .then(console.log)
+  }
+
   render() {
-    console.log(this.state.currentPeople);
     return(
       <div>
         <h2>Add Event</h2>
@@ -120,8 +136,6 @@ class EventForm extends Component {
                 onAddItem={this.handlePersonAddition}
                 onChange={this.handlePersonChange}
               />
-
-
 
               <Form.Field control={Input} label='Registry Link' name="registry_link" placeholder='Registry Link (optional)' onChange={this.handleChange}/>
 
