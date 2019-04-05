@@ -7,8 +7,6 @@ import { Card } from 'semantic-ui-react'
 
 
 const Event = ({event}) => {
-
-
   return (
     <div className="card-test">
     <Card>

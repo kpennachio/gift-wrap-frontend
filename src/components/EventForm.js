@@ -17,7 +17,7 @@ class EventForm extends Component {
     day: "",
     notes: "",
     registry_link: "",
-    formattedDate: "",
+    dateFormatted: "",
     currentPeople: []
   }
 
@@ -28,7 +28,7 @@ class EventForm extends Component {
   handleDayChange = (day) => {
     this.setState({
       day: day.toLocaleDateString().split("/").join("-"),
-      formattedDate: day.toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
+      dateFormatted: day.toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
     })
   }
 
@@ -61,6 +61,7 @@ class EventForm extends Component {
 
 
   handleSubmit = (e) => {
+    console.log(this.state.title)
     e.preventDefault()
     this.addNewEvent()
     this.addNewPeople()
@@ -72,6 +73,7 @@ class EventForm extends Component {
       user_id: this.props.currentUser.id,
       title: this.state.event,
       date: this.state.day,
+      dateFormatted: this.state.dateFormatted,
       registry_link: this.state.registry_link,
       notes: this.state.notes
     }
@@ -85,7 +87,7 @@ class EventForm extends Component {
     })
     .then(resp => resp.json())
     .then(event => {
-      event.dateFormatted = this.state.formattedDate
+      event.dateFormatted = this.state.dateFormatted
       this.props.addNewEvent(event)
     })
   }
@@ -122,7 +124,7 @@ class EventForm extends Component {
         <h2>Add Event</h2>
           <Form onSubmit={this.handleSubmit}>
 
-              <Form.Field control={Input} name="event" label='Event' placeholder='Event' onChange={this.handleChange}/>
+              <Form.Field control={Input} name="event" label='Event' placeholder='Event' onChange={this.handleChange} />
 
               <Form.Field label='Date' control={DayPickerInput} onDayChange={this.handleDayChange} formatDate={formatDate} parseDate={parseDate} placeholder={`${formatDate(new Date())}`}/>
 
