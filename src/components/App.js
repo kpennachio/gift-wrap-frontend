@@ -22,6 +22,9 @@ class App extends Component {
     .then(resp => resp.json())
     .then(user => {
       this.props.getCurrentUser(user)
+      this.props.setEvents(user.events)
+      this.props.setPeople(user.people)
+      this.props.setGifts(user.gifts)
     })
   }
 
@@ -52,7 +55,10 @@ class App extends Component {
 function mapDispatchToProps(dispatch) {
   return {
     getUsers: (users) => dispatch({type: "GET_USERS", payload: users}),
-    getCurrentUser: (user) => dispatch({type: "GET_CURRENT_USER", payload: user})
+    getCurrentUser: (user) => dispatch({type: "GET_CURRENT_USER", payload: user}),
+    setEvents: (events) => dispatch({type: "SET_EVENTS", payload: events}),
+    setPeople: (people) => dispatch({type: "SET_PEOPLE", payload: people}),
+    setGifts: (gifts) => dispatch({type: "SET_GIFTS", payload: gifts})
   }
 }
 

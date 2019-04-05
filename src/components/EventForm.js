@@ -36,7 +36,7 @@ class EventForm extends Component {
   dropdownOptions = () => {
     if (this.props.people) {
       return this.props.people.map(person => {
-        if (person.id) {
+        if (person.id !== null) {
           return {key: person.id, text: person.name, value: person.id}
         }
         else {
@@ -64,6 +64,7 @@ class EventForm extends Component {
     e.preventDefault()
     this.addNewEvent()
     this.addNewPeople()
+    this.props.removeNewPersonNames()
   }
 
   addNewEvent = () => {
@@ -92,7 +93,6 @@ class EventForm extends Component {
 
   addNewPeople = () => {
     let newNames = this.state.currentPeople.filter(name => typeof name === "string")
-    console.log("newPeople", newNames);
     newNames.forEach(name => this.addNewPerson(name))
   }
 
@@ -111,7 +111,9 @@ class EventForm extends Component {
       body: JSON.stringify(data)
     })
     .then(resp => resp.json())
-    .then(console.log)
+    .then(person => {
+      this.props.addNewPerson(person)
+    })
   }
 
   render() {
@@ -153,14 +155,16 @@ class EventForm extends Component {
 function mapStateToProps(state) {
   return {
     currentUser: state.currentUser,
-    people: state.currentUser.people
+    people: state.people
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return  {
     addNewEvent: (event) => dispatch({type: "ADD_NEW_EVENT", payload: event}),
-    addNewPersonName: (person) => dispatch({type: "ADD_NEW_PERSON_NAME", payload: person})
+    addNewPersonName: (personName) => dispatch({type: "ADD_NEW_PERSON_NAME", payload: personName}),
+    removeNewPersonNames: () => dispatch({type: "REMOVE_NEW_PERSON_NAMES"}),
+    addNewPerson: (person) => dispatch({type: "ADD_NEW_PERSON", payload: person})
   }
 }
 
