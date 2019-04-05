@@ -29,6 +29,12 @@ function reducer(state = defaultState, action) {
       return { ...state, people: people }
     case "ADD_NEW_PERSON":
       return { ...state, people: [ ...state.people, action.payload] }
+    case "ADD_NEW_PERSON_GIFT_EVENT":
+      let event = state.events.find(event => event.id === action.payload.event_id)
+      let person = state.people.find(person => person.id === action.payload.person_id)
+      event.people = [ ...event.people, person ]
+      person.events = [ ...person.events, event ]
+      return { ...state, events: [ ...state.events, event], people: [ ...state.people, person]}
     default:
       return state
   }

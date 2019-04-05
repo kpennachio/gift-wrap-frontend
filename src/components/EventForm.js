@@ -26,10 +26,12 @@ class EventForm extends Component {
   }
 
   handleDayChange = (day) => {
-    this.setState({
-      day: day.toLocaleDateString().split("/").join("-"),
-      dateFormatted: day.toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
-    })
+    if (day) {
+      this.setState({
+        day: day.toLocaleDateString().split("/").join("-"),
+        dateFormatted: day.toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
+      })
+    }
   }
 
 
@@ -61,10 +63,8 @@ class EventForm extends Component {
 
 
   handleSubmit = (e) => {
-    console.log(this.state.title)
     e.preventDefault()
     this.addNewEvent()
-    this.addNewPeople()
     this.props.removeNewPersonNames()
   }
 
@@ -73,7 +73,6 @@ class EventForm extends Component {
       user_id: this.props.currentUser.id,
       title: this.state.event,
       date: this.state.day,
-      dateFormatted: this.state.dateFormatted,
       registry_link: this.state.registry_link,
       notes: this.state.notes
     }
@@ -87,18 +86,24 @@ class EventForm extends Component {
     })
     .then(resp => resp.json())
     .then(event => {
+      console.log("event", event);
       event.dateFormatted = this.state.dateFormatted
       this.props.addNewEvent(event)
+      this.addNewPeople(event.id)
     })
   }
 
 
-  addNewPeople = () => {
+  addNewPeople = (eventId) => {
+    let existingPeopleIds = this.state.currentPeople.filter(id => typeof id === "number")
+    existingPeopleIds.forEach(personId => this.addNewPersonGiftEvent(personId, eventId))
+
     let newNames = this.state.currentPeople.filter(name => typeof name === "string")
-    newNames.forEach(name => this.addNewPerson(name))
+    newNames.forEach(name => this.addNewPerson(name, eventId))
   }
 
-  addNewPerson = (personName) => {
+
+  addNewPerson = (personName, eventId) => {
     let data = {
       user_id: this.props.currentUser.id,
       name: personName
@@ -115,8 +120,33 @@ class EventForm extends Component {
     .then(resp => resp.json())
     .then(person => {
       this.props.addNewPerson(person)
+      this.addNewPersonGiftEvent(person.id, eventId)
     })
   }
+
+  addNewPersonGiftEvent = (person_id, event_id) => {
+    console.log("add new pge", person_id, event_id);
+    let data = {
+      person_id: person_id,
+      event_id: event_id,
+    }
+
+    fetch('http://localhost:3000/api/v1/person_gift_events', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+    .then(resp => resp.json())
+    .then(pge => {
+      console.log(pge);
+      // this.props.addNewPersonGiftEvent(pge)
+    })
+  }
+
+
 
   render() {
     return(
@@ -166,7 +196,8 @@ function mapDispatchToProps(dispatch) {
     addNewEvent: (event) => dispatch({type: "ADD_NEW_EVENT", payload: event}),
     addNewPersonName: (personName) => dispatch({type: "ADD_NEW_PERSON_NAME", payload: personName}),
     removeNewPersonNames: () => dispatch({type: "REMOVE_NEW_PERSON_NAMES"}),
-    addNewPerson: (person) => dispatch({type: "ADD_NEW_PERSON", payload: person})
+    addNewPerson: (person) => dispatch({type: "ADD_NEW_PERSON", payload: person}),
+    addNewPersonGiftEvent: (pge) => {dispatch({type: "ADD_NEW_PERSON_GIFT_EVENT", payload: {event_id: pge.event_id, person_id: pge.person_id} } )}
   }
 }
 

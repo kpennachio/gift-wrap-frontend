@@ -22,9 +22,10 @@ const EventContainer = (props) => {
 
   const renderAllEvents = () => {
     if (events) {
-      return orderEvents().map(event => <Event key={event.id} event={event}/>)
+      return orderEvents().map(event => <Event key={event.id} event={event} people={event.people}/>)
     }
   }
+
 
   return (
     <div>
