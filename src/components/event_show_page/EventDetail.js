@@ -19,10 +19,28 @@ class EventDetail extends Component {
     this.setState({selectedPerson: person})
   }
 
-  renderAllGifts = () => {
-    return this.props.gifts.map(gift => {
-      return <EventGiftCard key={gift.id} gift={gift} status="all" selectedPerson={this.state.selectedPerson}/>
+  otherGifts = () => {
+    let person = this.props.people.find(person => {
+      return person.id === this.state.selectedPerson.id
     })
+    if (person) {
+      let selectedGifts = person.gift_ideas.concat(this.props.event.gift_ideas)
+      console.log(selectedGifts);
+      return this.props.gifts.filter(gift => {
+        return selectedGifts.every(sg => {
+          return sg.id !== gift.id
+        })
+      })
+    }
+  }
+
+  renderOtherGifts = () => {
+    let otherGifts = this.otherGifts()
+    if (otherGifts) {
+      return otherGifts.map(gift => {
+        return <EventGiftCard key={gift.id} gift={gift} status="other" selectedPerson={this.state.selectedPerson}/>
+      })
+    }
   }
 
   missingGifts = () => {
@@ -35,6 +53,18 @@ class EventDetail extends Component {
     return this.props.event.person_gift_events.map(pge => {
       return <EventPersonCard key={pge.person.id} pge={pge} person={pge.person} selectedPerson={this.state.selectedPerson} changeSelectedPerson={this.changeSelectedPerson}/>
     })
+  }
+
+  renderPersonGiftIdeas = () => {
+    let person = this.props.people.find(person => {
+      return person.id === this.state.selectedPerson.id
+    })
+    if (person) {
+
+      return person.gift_ideas.map(gift => {
+        return <EventGiftCard key={gift.id} gift={gift} status="saved_person" selectedPerson={this.state.selectedPerson}/>
+      })
+    }
   }
 
 
@@ -51,10 +81,13 @@ class EventDetail extends Component {
 
         <h2>Saved Event Gift Ideas</h2>
 
+        <h2>{`Saved Gift Ideas for ${this.state.selectedPerson.name}`}</h2>
+        {this.renderPersonGiftIdeas()}
 
 
-        <h2>See all gifts</h2>
-        {this.renderAllGifts()}
+
+        <h2>See other gifts</h2>
+        {this.renderOtherGifts()}
       </div>
     );
   }
@@ -64,7 +97,8 @@ class EventDetail extends Component {
 function mapStateToProps(state) {
   return {
     currentUser: state.currentUser,
-    gifts: state.gifts
+    gifts: state.gifts,
+    people: state.people
 
   }
 }

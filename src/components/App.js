@@ -10,7 +10,7 @@ import Dashboard from './Dashboard'
 import PeoplePage from './PeoplePage'
 import GiftPage from './GiftPage'
 import Budgeter from './Budgeter'
-import ChecklistDetail from './ChecklistDetail'
+import ChecklistDetail from './event_show_page/ChecklistDetail'
 
 
 
