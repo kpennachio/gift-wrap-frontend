@@ -201,7 +201,7 @@ function mapDispatchToProps(dispatch) {
     addNewPersonName: (personName) => dispatch({type: "ADD_NEW_PERSON_NAME", payload: personName}),
     removeNewPersonNames: () => dispatch({type: "REMOVE_NEW_PERSON_NAMES"}),
     addNewPerson: (person) => dispatch({type: "ADD_NEW_PERSON", payload: person}),
-    addNewPersonGiftEvent: (pge) => {dispatch({type: "ADD_NEW_PERSON_GIFT_EVENT", payload: {event_id: pge.event_id, person_id: pge.person_id} } )}
+    addNewPersonGiftEvent: (pge) => {dispatch({type: "ADD_NEW_PERSON_GIFT_EVENT", payload: {event_id: pge.event_id, person_id: pge.person_id, id: pge.id} } )}
   }
 }
 
