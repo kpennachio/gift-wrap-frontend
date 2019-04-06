@@ -27,7 +27,7 @@ const EventContainer = (props) => {
   }
 
   return (
-    <div>
+    <div >
 
       <EventForm />
       <h2>all events</h2>
