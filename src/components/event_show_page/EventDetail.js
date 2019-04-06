@@ -5,6 +5,7 @@ import { Card } from 'semantic-ui-react'
 
 import EventPersonCard from './EventPersonCard'
 import EventGiftCard from './EventGiftCard'
+import OtherGift from './OtherGift'
 
 
 
@@ -43,7 +44,7 @@ class EventDetail extends Component {
     let otherGifts = this.otherGifts()
     if (otherGifts) {
       return otherGifts.map(gift => {
-        return <EventGiftCard key={gift.id} gift={gift} status="other" selectedPerson={this.state.selectedPerson}/>
+        return <OtherGift key={gift.id} gift={gift} selectedPerson={this.state.selectedPerson}/>
       })
     }
   }
