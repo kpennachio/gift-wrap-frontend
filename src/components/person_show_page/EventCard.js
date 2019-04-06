@@ -10,7 +10,6 @@ const EventCard = ({event, person, pge}) => {
 
 
   const renderGift = () => {
-    console.log(pge);
     if (pge.gift === null) {
       return <p>{`Find a gift for ${person.name}`}</p>
     }

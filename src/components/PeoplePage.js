@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 import PersonCard from './PersonCard'
+import PersonForm from './PersonForm'
 
 
 
@@ -18,6 +19,7 @@ const PeoplePage = (props) => {
     <div>
       <h1>My People Page</h1>
       {renderAllPeople()}
+      <PersonForm />
     </div>
   );
 
