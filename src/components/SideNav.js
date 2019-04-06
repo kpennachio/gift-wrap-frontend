@@ -19,32 +19,32 @@ export default class SideNav extends Component {
       <div className="menu-wrapper">
       <Sidebar as={Menu} vertical visible width="thin" className="vertical-menu" >
         <Menu.Item
-          as={NavLink} to='./dashboard'
+          as={NavLink} to='/dashboard'
           name="Dashboard"
           active={activeItem === 'Dashboard'}
           onClick={this.handleItemClick}
         />
         <Menu.Item
-          as={NavLink} to='./checklist'
+          as={NavLink} to='/checklist'
           name="Checklist"
           active={activeItem === 'Checklist'}
           onClick={this.handleItemClick}
         />
         <Menu.Item
           name="Budgeter"
-          as={NavLink} to='./budgeter'
+          as={NavLink} to='/budgeter'
           active={activeItem === 'Budgeter'}
           onClick={this.handleItemClick}
         />
         <Menu.Item
           name="People"
-          as={NavLink} to='./my-people'
+          as={NavLink} to='/my-people'
           active={activeItem === 'People'}
           onClick={this.handleItemClick}
         />
         <Menu.Item
           name="Gifts"
-          as={NavLink} to='./my-gifts'
+          as={NavLink} to='/my-gifts'
           active={activeItem === 'Gifts'}
           onClick={this.handleItemClick}
         />

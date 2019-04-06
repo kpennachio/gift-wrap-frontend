@@ -89,6 +89,7 @@ class EventForm extends Component {
       console.log("event", event);
       event.dateFormatted = this.state.dateFormatted
       event.person_gift_events = []
+      event.gift_ideas = []
       this.props.addNewEvent(event)
       this.addNewPeople(event.id)
     })
@@ -121,6 +122,7 @@ class EventForm extends Component {
     .then(resp => resp.json())
     .then(person => {
       person.person_gift_events = []
+      person.gift_ideas = []
       this.props.addNewPerson(person)
       this.addNewPersonGiftEvent(person.id, eventId)
     })

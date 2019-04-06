@@ -6,7 +6,7 @@ import { Card, Button } from 'semantic-ui-react'
 
 
 
-const EventGiftCard = ({gift, status, selectedPerson}) => {
+const EventGiftCard = ({gift, status, selectedPerson, addNewPersonGiftIdea}) => {
 
 
   const saveIdea = () => {
@@ -15,19 +15,19 @@ const EventGiftCard = ({gift, status, selectedPerson}) => {
       person_id: selectedPerson.id,
       gift_idea_id: gift.id
     }
-    console.log(data);
-    // fetch("http://localhost:3000/api/v1/person_gift_ideas", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     "Accept": "application/json"
-    //   },
-    //   body: JSON.stringify(data)
-    // })
-    // .then(resp => resp.json())
-    // .then(pgi => {
-    //   console.log(pgi);
-    // })
+    fetch("http://localhost:3000/api/v1/person_gift_ideas", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+    .then(resp => resp.json())
+    .then(pgi => {
+      console.log(pgi);
+      addNewPersonGiftIdea(pgi)
+    })
   }
 
   const unSaveIdea = () => {
@@ -49,7 +49,6 @@ const EventGiftCard = ({gift, status, selectedPerson}) => {
       return(
         <Fragment>
         <div onClick={unSaveIdea}>❤️</div>
-        <Button>Move to saved event ideas</Button>
         <Button>{`Select this gift for ${selectedPerson.name}`}</Button>
         </Fragment>
       )
@@ -71,4 +70,11 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(EventGiftCard);
+function mapDispatchToProps(dispatch) {
+  return {
+    addNewPersonGiftIdea: (pgi) => {dispatch({type: "ADD_NEW_PERSON_GIFT_IDEA", payload: {person_id: pgi.person_id, pgi: pgi} } )}
+
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EventGiftCard);

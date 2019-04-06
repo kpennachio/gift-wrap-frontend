@@ -40,6 +40,13 @@ function reducer(state = defaultState, action) {
       let otherPeople = state.people.filter(person => person.id !== action.payload.person_id)
 
       return { ...state, events: [ ...otherEvents, event], people: [ ...otherPeople, person]}
+    case "ADD_NEW_PERSON_GIFT_IDEA":
+      person = state.people.find(person => person.id === action.payload.person_id)
+      person.gift_ideas = [ ...person.gift_ideas, action.payload.pgi]
+
+      otherPeople = state.people.filter(person => person.id !== action.payload.person_id)
+
+      return { ...state, people: [ ...otherPeople, person]}
     default:
       return state
   }

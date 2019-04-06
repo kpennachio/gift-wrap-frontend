@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 import { Card, Grid } from 'semantic-ui-react'
+import { NavLink } from 'react-router-dom'
 
 
 
@@ -14,7 +15,11 @@ const Event = ({event, pge}) => {
 
   return (
 
-    <Card fluid className="event">
+    <Card
+      fluid
+      className="event"
+      as={NavLink} to={`checklist/${event.id}`}
+    >
       <Card.Header>
         <Grid>
           <Grid.Column width={5}><p>{event.dateFormatted}</p></Grid.Column>
