@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import { Card } from 'semantic-ui-react'
 
 import EventPersonCard from './EventPersonCard'
-import EventGiftCard from './EventGiftCard'
 import OtherGift from './OtherGift'
+import PersonSavedGift from './PersonSavedGift'
 
 
 
@@ -69,7 +69,7 @@ class EventDetail extends Component {
       return person.person_gift_ideas.map(person_gift_idea => {
         let gift = this.props.gifts.find(gift => gift.id === person_gift_idea.gift_idea_id)
         if (gift) {
-          return <EventGiftCard key={gift.id} id={person_gift_idea.id} gift={gift} status="saved_person" selectedPerson={this.state.selectedPerson}/>
+          return <PersonSavedGift key={gift.id} id={person_gift_idea.id} gift={gift} selectedPerson={this.state.selectedPerson}/>
         }
       })
     }
