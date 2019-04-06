@@ -24,8 +24,13 @@ class EventDetail extends Component {
       return person.id === this.state.selectedPerson.id
     })
     if (person) {
-      let selectedGifts = person.gift_ideas.concat(this.props.event.gift_ideas)
-      console.log(selectedGifts);
+      let person_gift_ideas = person.person_gift_ideas.map(pgi => pgi.gift_idea_id)
+      let event_gift_ideas = this.props.event.event_gift_ideas.map(egi => egi.gift_idea_id)
+      let selectedGiftIds = person_gift_ideas.concat(event_gift_ideas)
+
+      let selectedGifts = selectedGiftIds.map(id => {
+        return this.props.gifts.find(gift => gift.id === id)
+      })
       return this.props.gifts.filter(gift => {
         return selectedGifts.every(sg => {
           return sg.id !== gift.id
@@ -60,9 +65,11 @@ class EventDetail extends Component {
       return person.id === this.state.selectedPerson.id
     })
     if (person) {
-
-      return person.gift_ideas.map(gift => {
-        return <EventGiftCard key={gift.id} gift={gift} status="saved_person" selectedPerson={this.state.selectedPerson}/>
+      return person.person_gift_ideas.map(person_gift_idea => {
+        let gift = this.props.gifts.find(gift => gift.id === person_gift_idea.gift_idea_id)
+        if (gift) {
+          return <EventGiftCard key={gift.id} id={person_gift_idea.id} gift={gift} status="saved_person" selectedPerson={this.state.selectedPerson}/>
+        }
       })
     }
   }

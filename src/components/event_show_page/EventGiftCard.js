@@ -6,11 +6,10 @@ import { Card, Button } from 'semantic-ui-react'
 
 
 
-const EventGiftCard = ({gift, status, selectedPerson, addNewPersonGiftIdea}) => {
+const EventGiftCard = ({id, gift, status, selectedPerson, addNewPersonGiftIdea, deletePersonGiftIdea}) => {
 
 
   const saveIdea = () => {
-    console.log("save idea");
     let data = {
       person_id: selectedPerson.id,
       gift_idea_id: gift.id
@@ -25,13 +24,15 @@ const EventGiftCard = ({gift, status, selectedPerson, addNewPersonGiftIdea}) => 
     })
     .then(resp => resp.json())
     .then(pgi => {
-      console.log(pgi);
       addNewPersonGiftIdea(pgi)
     })
   }
 
   const unSaveIdea = () => {
-    console.log("unsave");
+    fetch(`http://localhost:3000/api/v1/person_gift_ideas/${id}`, {method: "DELETE"})
+    .then(resp => {
+      deletePersonGiftIdea(id, selectedPerson.id)
+    })
   }
 
 
@@ -72,7 +73,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    addNewPersonGiftIdea: (pgi) => {dispatch({type: "ADD_NEW_PERSON_GIFT_IDEA", payload: {person_id: pgi.person_id, pgi: pgi} } )}
+    addNewPersonGiftIdea: (pgi) => {dispatch({type: "ADD_NEW_PERSON_GIFT_IDEA", payload: {person_id: pgi.person_id, pgi: pgi} } )},
+    deletePersonGiftIdea: (pgi_id, person_id) => {dispatch({type: "DELETE_PERSON_GIFT_IDEA", payload: {person_id: person_id, pgi_id: pgi_id} } )}
 
   }
 }
