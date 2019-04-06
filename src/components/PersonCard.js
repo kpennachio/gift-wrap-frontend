@@ -6,7 +6,7 @@ import { Card } from 'semantic-ui-react'
 
 
 
-const Person = ({person}) => {
+const PersonCard = ({person}) => {
 
 
 
@@ -28,4 +28,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(Person);
+export default connect(mapStateToProps)(PersonCard);

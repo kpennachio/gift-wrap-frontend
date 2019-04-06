@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import Person from './Person'
+import PersonCard from './PersonCard'
 
 
 
@@ -10,7 +10,7 @@ const PeoplePage = (props) => {
 
   const renderAllPeople = () => {
     return props.people.map(person => {
-      return <Person key={person.id} person={person} />
+      return <PersonCard key={person.id} person={person} />
     })
   }
 
