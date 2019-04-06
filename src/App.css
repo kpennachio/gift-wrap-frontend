@@ -77,6 +77,22 @@
   margin-top: 20px;
 }
 
+.person {
+  background-color: white;
+  display: inline-block;
+  border-style: solid;
+  border-color: white;
+  width: 200px;
+  height: 200px;
+  padding: 2%;
+  margin-right: 2%;
+  margin-top: 2%;
+}
+
+.selected-person {
+  border-color: blue;
+}
+
 
 
 .planner-content {

@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import { Card } from 'semantic-ui-react'
+// import { Card } from 'semantic-ui-react'
 
 
 
 
-const EventPersonCard = ({person, pge}) => {
+const EventPersonCard = ({person, pge, selectedPerson}) => {
 
   const displayGift = () => {
     if (pge.gift === null) {
@@ -17,11 +17,20 @@ const EventPersonCard = ({person, pge}) => {
     }
   }
 
+  const className = () => {
+    if (selectedPerson.id === person.id) {
+      return "person selected-person"
+    }
+    else {
+      return "person"
+    }
+  }
+
   return (
-    <Card>
+    <div className={className()}>
       <h3>{person.name}</h3>
       {displayGift()}
-    </Card>
+    </div>
   );
 
 }

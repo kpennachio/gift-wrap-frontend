@@ -4,18 +4,24 @@ import { connect } from 'react-redux'
 import { Card } from 'semantic-ui-react'
 
 import EventPersonCard from './EventPersonCard'
+import EventGiftCard from './EventGiftCard'
 
 
 
 
 class EventDetail extends Component {
 
-
-
   state = {
-    peopleMissingGifts: []
+    selectedPerson: this.props.event.person_gift_events[0].person
   }
 
+
+
+  renderAllGifts = () => {
+    return this.props.gifts.map(gift => {
+      return <EventGiftCard key={gift.id} gift={gift} status="all" selectedPerson={this.state.selectedPerson}/>
+    })
+  }
 
   missingGifts = () => {
     return this.props.event.person_gift_events.some(pge => {
@@ -25,7 +31,7 @@ class EventDetail extends Component {
 
   people = () => {
     return this.props.event.person_gift_events.map(pge => {
-      return <EventPersonCard key={pge.person.id} pge={pge} person={pge.person} />
+      return <EventPersonCard key={pge.person.id} pge={pge} person={pge.person} selectedPerson={this.state.selectedPerson}/>
     })
   }
 
@@ -37,14 +43,16 @@ class EventDetail extends Component {
         <p>{this.props.event.dateFormatted}</p>
         <p>{this.props.event.notes ? `Notes: ${this.props.event.notes}` : "Add notes"}</p>
         {this.missingGifts() ? "Missing Gifts!" : "Gifts Complete!"}
+        <div>
         {this.people()}
+        </div>
 
         <h2>Saved Event Gift Ideas</h2>
 
-        
+
 
         <h2>See all gifts</h2>
-
+        {this.renderAllGifts()}
       </div>
     );
   }
@@ -53,7 +61,9 @@ class EventDetail extends Component {
 
 function mapStateToProps(state) {
   return {
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
+    gifts: state.gifts
+
   }
 }
 
