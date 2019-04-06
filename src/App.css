@@ -66,15 +66,16 @@
 }
 
 .gift-planner-wrapper {
-  width: 100%;
+  /* width: 100%;
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: nowrap; */
 }
 
 
 
 .planner-content {
   padding-top: 90px;
-  padding-left: 30%;
+  padding-left: 15%;
+  padding-right: 10%;
   text-align: center;
 }

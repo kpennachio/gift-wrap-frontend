@@ -16,7 +16,6 @@ const ChecklistDetail = (props) => {
 
   return (
     <div>
-      <h1>My Event</h1>
       {returnEvent()}
     </div>
   );

@@ -34,7 +34,6 @@ class App extends Component {
       <Fragment >
 
         <Header />
-        <div className="gift-planner-wrapper">
           <div className="side-nav">
             <SideNav/>
           </div>
@@ -48,7 +47,6 @@ class App extends Component {
               <Route path="/my-gifts" component={ GiftPage }/>
             </Switch>
           </div>
-        </div>
       </Fragment >
     );
   }
