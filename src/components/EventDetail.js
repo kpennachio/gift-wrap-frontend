@@ -15,7 +15,9 @@ class EventDetail extends Component {
     selectedPerson: this.props.event.person_gift_events[0].person
   }
 
-
+  changeSelectedPerson = (person) => {
+    this.setState({selectedPerson: person})
+  }
 
   renderAllGifts = () => {
     return this.props.gifts.map(gift => {
@@ -31,7 +33,7 @@ class EventDetail extends Component {
 
   people = () => {
     return this.props.event.person_gift_events.map(pge => {
-      return <EventPersonCard key={pge.person.id} pge={pge} person={pge.person} selectedPerson={this.state.selectedPerson}/>
+      return <EventPersonCard key={pge.person.id} pge={pge} person={pge.person} selectedPerson={this.state.selectedPerson} changeSelectedPerson={this.changeSelectedPerson}/>
     })
   }
 

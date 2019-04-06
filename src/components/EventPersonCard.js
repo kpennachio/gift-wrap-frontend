@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 
 
 
-const EventPersonCard = ({person, pge, selectedPerson}) => {
+const EventPersonCard = ({person, pge, selectedPerson, changeSelectedPerson}) => {
 
   const displayGift = () => {
     if (pge.gift === null) {
@@ -27,7 +27,7 @@ const EventPersonCard = ({person, pge, selectedPerson}) => {
   }
 
   return (
-    <div className={className()}>
+    <div className={className()} onClick={() => changeSelectedPerson(person)}>
       <h3>{person.name}</h3>
       {displayGift()}
     </div>
