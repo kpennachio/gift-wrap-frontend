@@ -6,10 +6,10 @@ import { Card, Grid } from 'semantic-ui-react'
 
 
 
-const Event = ({event, people}) => {
+const Event = ({event, pge}) => {
 
   const renderPeople = () => {
-    return people.map(person => <p>{person.name}</p>)
+    return pge.map(pge => <p>{pge.person.name}</p>)
   }
 
   return (
