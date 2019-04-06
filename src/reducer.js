@@ -55,6 +55,20 @@ function reducer(state = defaultState, action) {
       person.person_gift_ideas = otherPersonGiftIdeas
 
       return { ...state, people: [ ...otherPeople, person]}
+    case "ADD_NEW_EVENT_GIFT_IDEA":
+      event = state.events.find(event => event.id === action.payload.event_id)
+      event.event_gift_ideas = [ ...event.event_gift_ideas, action.payload.egi]
+      otherEvents = state.events.filter(event => event.id !== action.payload.event_id)
+
+      return { ...state, events: [ ...otherEvents, event]}
+    case "DELETE_EVENT_GIFT_IDEA":
+      event = state.events.find(event => event.id === action.payload.event_id)
+      otherEvents = state.events.filter(event => event.id !== action.payload.event_id)
+
+      let otherEventGiftIdeas = event.event_gift_ideas.filter(egi => egi.id !== action.payload.egi_id)
+      event.event_gift_ideas = otherEventGiftIdeas
+
+      return { ...state, events: [ ...otherEvents, event]}
     default:
       return state
   }

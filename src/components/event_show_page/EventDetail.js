@@ -6,6 +6,7 @@ import { Card } from 'semantic-ui-react'
 import EventPersonCard from './EventPersonCard'
 import OtherGift from './OtherGift'
 import PersonSavedGift from './PersonSavedGift'
+import EventSavedGift from './EventSavedGift'
 
 
 
@@ -44,7 +45,7 @@ class EventDetail extends Component {
     let otherGifts = this.otherGifts()
     if (otherGifts) {
       return otherGifts.map(gift => {
-        return <OtherGift key={gift.id} gift={gift} selectedPerson={this.state.selectedPerson}/>
+        return <OtherGift key={gift.id} gift={gift} event={this.props.event} selectedPerson={this.state.selectedPerson}/>
       })
     }
   }
@@ -75,6 +76,21 @@ class EventDetail extends Component {
     }
   }
 
+  renderEventGiftIdeas = () => {
+    let event = this.props.events.find(e => e.id === this.props.event.id)
+
+    if (event) {
+      return event.event_gift_ideas.map(event_gift_idea => {
+        let gift = this.props.gifts.find(gift => gift.id === event_gift_idea.gift_idea_id)
+        if (gift) {
+          return <EventSavedGift key={gift.id} id={event_gift_idea.id} gift={gift} event={event} selectedPerson={this.state.selectedPerson}/>
+        }
+      })
+    }
+
+
+  }
+
 
   render() {
     return (
@@ -88,7 +104,7 @@ class EventDetail extends Component {
         </div>
 
         <h2>Saved Event Gift Ideas</h2>
-
+        {this.renderEventGiftIdeas()}
         <h2>{`Saved Gift Ideas for ${this.state.selectedPerson.name}`}</h2>
         {this.renderPersonGiftIdeas()}
 
@@ -106,7 +122,8 @@ function mapStateToProps(state) {
   return {
     currentUser: state.currentUser,
     gifts: state.gifts,
-    people: state.people
+    people: state.people,
+    events: state.events
 
   }
 }

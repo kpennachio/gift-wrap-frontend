@@ -26,11 +26,6 @@ const PersonSavedGift = ({id, gift, selectedPerson, deletePersonGiftIdea}) => {
 
 }
 
-function mapStateToProps(state) {
-  return {
-    currentUser: state.currentUser
-  }
-}
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -39,4 +34,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PersonSavedGift);
+export default connect(null, mapDispatchToProps)(PersonSavedGift);
