@@ -15,11 +15,15 @@ import EventSavedGift from './EventSavedGift'
 class EventDetail extends Component {
 
   state = {
-    selectedPerson: this.props.event.person_gift_events[0].person
+    selectedPerson: this.props.event.person_gift_events[0].person,
+    personGiftEvent: this.props.event.person_gift_events[0]
   }
 
-  changeSelectedPerson = (person) => {
-    this.setState({selectedPerson: person})
+  changeSelectedPerson = (person, pge) => {
+    this.setState({
+      selectedPerson: person,
+      personGiftEvent: pge
+    })
   }
 
   otherGifts = () => {
@@ -27,13 +31,16 @@ class EventDetail extends Component {
       return person.id === this.state.selectedPerson.id
     })
     if (person) {
+      let pgeSelected = person.person_gift_events.filter(pge => pge.gift !== null)
+      let giftIds = pgeSelected.map(pge => pge.gift.id)
       let person_gift_ideas = person.person_gift_ideas.map(pgi => pgi.gift_idea_id)
       let event_gift_ideas = this.props.event.event_gift_ideas.map(egi => egi.gift_idea_id)
-      let selectedGiftIds = person_gift_ideas.concat(event_gift_ideas)
+      let selectedGiftIds = person_gift_ideas.concat(event_gift_ideas).concat(giftIds)
 
       let selectedGifts = selectedGiftIds.map(id => {
         return this.props.gifts.find(gift => gift.id === id)
       })
+
       return this.props.gifts.filter(gift => {
         return selectedGifts.every(sg => {
           return sg.id !== gift.id
@@ -44,9 +51,10 @@ class EventDetail extends Component {
 
   renderOtherGifts = () => {
     let otherGifts = this.otherGifts()
+
     if (otherGifts) {
       return otherGifts.map(gift => {
-        return <OtherGift key={uuid()} gift={gift} event={this.props.event} selectedPerson={this.state.selectedPerson}/>
+        return <OtherGift key={uuid()} gift={gift} event={this.props.event} selectedPerson={this.state.selectedPerson} pge={this.state.personGiftEvent}/>
       })
     }
   }
@@ -63,6 +71,17 @@ class EventDetail extends Component {
     })
   }
 
+  pgeId = () => {
+    let id
+    if (this.state.personGiftEvent.gift) {
+      id = this.state.personGiftEvent.gift.id
+    }
+    else {
+      id = null
+    }
+    return id
+  }
+
   renderPersonGiftIdeas = () => {
     let person = this.props.people.find(person => {
       return person.id === this.state.selectedPerson.id
@@ -70,8 +89,8 @@ class EventDetail extends Component {
     if (person) {
       return person.person_gift_ideas.map(person_gift_idea => {
         let gift = this.props.gifts.find(gift => gift.id === person_gift_idea.gift_idea_id)
-        if (gift) {
-          return <PersonSavedGift key={uuid()} id={person_gift_idea.id} gift={gift} selectedPerson={this.state.selectedPerson}/>
+        if (gift && gift.id !== this.pgeId()) {
+          return <PersonSavedGift key={uuid()} id={person_gift_idea.id} gift={gift} selectedPerson={this.state.selectedPerson} pge={this.state.personGiftEvent}/>
         }
       })
     }
@@ -83,8 +102,8 @@ class EventDetail extends Component {
     if (event) {
       return event.event_gift_ideas.map(event_gift_idea => {
         let gift = this.props.gifts.find(gift => gift.id === event_gift_idea.gift_idea_id)
-        if (gift) {
-          return <EventSavedGift key={uuid()} id={event_gift_idea.id} gift={gift} event={event} selectedPerson={this.state.selectedPerson}/>
+        if (gift && gift.id !== this.pgeId()) {
+          return <EventSavedGift key={uuid()} id={event_gift_idea.id} gift={gift} event={event} selectedPerson={this.state.selectedPerson} pge={this.state.personGiftEvent}/>
         }
       })
     }

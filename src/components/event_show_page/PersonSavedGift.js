@@ -6,7 +6,7 @@ import { Card, Button } from 'semantic-ui-react'
 
 
 
-const PersonSavedGift = ({id, gift, selectedPerson, deletePersonGiftIdea}) => {
+const PersonSavedGift = ({id, gift, pge, selectedPerson, deletePersonGiftIdea}) => {
 
 
   const unSaveIdea = () => {
@@ -16,11 +16,29 @@ const PersonSavedGift = ({id, gift, selectedPerson, deletePersonGiftIdea}) => {
     })
   }
 
+  const selectGift = () => {
+    let data = {
+      gift_id: gift.id
+    }
+    fetch(`http://localhost:3000/api/v1/person_gift_events/${pge.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+    .then(resp => resp.json())
+    .then(pge => {
+      console.log(pge);
+    })
+  }
+
   return (
     <Card>
       <h3>{gift.name}</h3>
       <div onClick={unSaveIdea}>heart</div>
-      <Button>{`Select this gift for ${selectedPerson.name}`}</Button>
+      <Button onClick={selectGift}>{`Select this gift for ${selectedPerson.name}`}</Button>
     </Card>
   );
 

@@ -129,7 +129,6 @@ class EventForm extends Component {
   }
 
   addNewPersonGiftEvent = (person_id, event_id) => {
-    console.log("add new pge", person_id, event_id);
     let data = {
       person_id: person_id,
       event_id: event_id,

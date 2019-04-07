@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import uuid from 'uuid'
 
 import { Card, Grid } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
