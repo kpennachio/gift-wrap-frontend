@@ -3,11 +3,13 @@ import { connect } from 'react-redux'
 
 import { Card, Button } from 'semantic-ui-react'
 
+import { resetState } from '../../resetState'
 
 
 
-const PersonSavedGift = ({id, gift, pge, selectedPerson, deletePersonGiftIdea}) => {
+const PersonSavedGift = (props) => {
 
+  const {id, gift, pge, selectedPerson, deletePersonGiftIdea, editPersonGiftEvent, people, gifts, currentUser} = props
 
   const unSaveIdea = () => {
     fetch(`http://localhost:3000/api/v1/person_gift_ideas/${id}`, {method: "DELETE"})
@@ -30,7 +32,11 @@ const PersonSavedGift = ({id, gift, pge, selectedPerson, deletePersonGiftIdea}) 
     })
     .then(resp => resp.json())
     .then(pge => {
-      console.log(pge);
+      pge.person = people.find(person => person.id === pge.person_id)
+      pge.gift = gifts.find(gift => gift.id === pge.gift_id)
+
+      editPersonGiftEvent(pge)
+      resetState(currentUser.id)
     })
   }
 
@@ -44,12 +50,20 @@ const PersonSavedGift = ({id, gift, pge, selectedPerson, deletePersonGiftIdea}) 
 
 }
 
-
-function mapDispatchToProps(dispatch) {
+function mapStateToProps(state) {
   return {
-    deletePersonGiftIdea: (pgi_id, person_id) => {dispatch({type: "DELETE_PERSON_GIFT_IDEA", payload: {person_id: person_id, pgi_id: pgi_id} } )}
-
+    currentUser: state.currentUser,
+    people: state.people,
+    gifts: state.gifts
   }
 }
 
-export default connect(null, mapDispatchToProps)(PersonSavedGift);
+
+function mapDispatchToProps(dispatch) {
+  return {
+    deletePersonGiftIdea: (pgi_id, person_id) => {dispatch({type: "DELETE_PERSON_GIFT_IDEA", payload: {person_id: person_id, pgi_id: pgi_id} } )},
+    editPersonGiftEvent: (pge) => {dispatch({type: "EDIT_PERSON_GIFT_EVENT", payload: {event_id: pge.event_id, pge: pge}})}
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PersonSavedGift);

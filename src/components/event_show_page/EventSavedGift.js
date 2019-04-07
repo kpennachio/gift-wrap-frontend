@@ -3,11 +3,13 @@ import { connect } from 'react-redux'
 
 import { Card, Button } from 'semantic-ui-react'
 
+import { resetState } from '../../resetState'
 
 
 
-const EventSavedGift = ({id, gift, event, selectedPerson, deleteEventGiftIdea}) => {
+const EventSavedGift = (props) => {
 
+  const {id, gift, event, selectedPerson, deleteEventGiftIdea, currentUser, people, gifts, editPersonGiftEvent, pge} = props
 
   const unSaveIdea = () => {
     fetch(`http://localhost:3000/api/v1/event_gift_ideas/${id}`, {method: "DELETE"})
@@ -16,23 +18,53 @@ const EventSavedGift = ({id, gift, event, selectedPerson, deleteEventGiftIdea}) 
     })
   }
 
+  const selectGift = () => {
+    let data = {
+      gift_id: gift.id
+    }
+    fetch(`http://localhost:3000/api/v1/person_gift_events/${pge.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+    .then(resp => resp.json())
+    .then(pge => {
+      pge.person = people.find(person => person.id === pge.person_id)
+      pge.gift = gifts.find(gift => gift.id === pge.gift_id)
+
+      editPersonGiftEvent(pge)
+      resetState(currentUser.id)
+    })
+  }
+
   return (
     <Card>
       <h3>{gift.name}</h3>
       <div onClick={unSaveIdea}>heart</div>
-      <Button>{`Select this gift for ${selectedPerson.name}`}</Button>
+      <Button onClick={selectGift}>{`Select this gift for ${selectedPerson.name}`}</Button>
     </Card>
   );
 
 }
 
+function mapStateToProps(state) {
+  return {
+    currentUser: state.currentUser,
+    people: state.people,
+    gifts: state.gifts
+  }
+}
 
 
 function mapDispatchToProps(dispatch) {
   return {
-    deleteEventGiftIdea: (egi_id, event_id) => {dispatch({type: "DELETE_EVENT_GIFT_IDEA", payload: {event_id: event_id, egi_id: egi_id} } )}
+    deleteEventGiftIdea: (egi_id, event_id) => {dispatch({type: "DELETE_EVENT_GIFT_IDEA", payload: {event_id: event_id, egi_id: egi_id} } )},
+    editPersonGiftEvent: (pge) => {dispatch({type: "EDIT_PERSON_GIFT_EVENT", payload: {event_id: pge.event_id, pge: pge}})}
 
   }
 }
 
-export default connect(null, mapDispatchToProps)(EventSavedGift);
+export default connect(mapStateToProps, mapDispatchToProps)(EventSavedGift);
