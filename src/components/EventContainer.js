@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import uuid from 'uuid'
 
 import Event from './Event'
 import EventForm from './EventForm'
@@ -22,7 +23,7 @@ const EventContainer = (props) => {
 
   const renderAllEvents = () => {
     if (events) {
-      return orderEvents().map(event => <Event key={event.id} event={event} pge={event.person_gift_events}/>)
+      return orderEvents().map(event => <Event key={uuid()} event={event} pge={event.person_gift_events}/>)
     }
   }
 

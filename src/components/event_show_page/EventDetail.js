@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import uuid from 'uuid'
 
 // import { Card } from 'semantic-ui-react'
 
@@ -45,7 +46,7 @@ class EventDetail extends Component {
     let otherGifts = this.otherGifts()
     if (otherGifts) {
       return otherGifts.map(gift => {
-        return <OtherGift key={gift.id} gift={gift} event={this.props.event} selectedPerson={this.state.selectedPerson}/>
+        return <OtherGift key={uuid()} gift={gift} event={this.props.event} selectedPerson={this.state.selectedPerson}/>
       })
     }
   }
@@ -58,7 +59,7 @@ class EventDetail extends Component {
 
   people = () => {
     return this.props.event.person_gift_events.map(pge => {
-      return <EventPersonCard key={pge.person.id} pge={pge} person={pge.person} selectedPerson={this.state.selectedPerson} changeSelectedPerson={this.changeSelectedPerson}/>
+      return <EventPersonCard key={uuid()} pge={pge} person={pge.person} selectedPerson={this.state.selectedPerson} changeSelectedPerson={this.changeSelectedPerson}/>
     })
   }
 
@@ -70,7 +71,7 @@ class EventDetail extends Component {
       return person.person_gift_ideas.map(person_gift_idea => {
         let gift = this.props.gifts.find(gift => gift.id === person_gift_idea.gift_idea_id)
         if (gift) {
-          return <PersonSavedGift key={gift.id} id={person_gift_idea.id} gift={gift} selectedPerson={this.state.selectedPerson}/>
+          return <PersonSavedGift key={uuid()} id={person_gift_idea.id} gift={gift} selectedPerson={this.state.selectedPerson}/>
         }
       })
     }
@@ -83,7 +84,7 @@ class EventDetail extends Component {
       return event.event_gift_ideas.map(event_gift_idea => {
         let gift = this.props.gifts.find(gift => gift.id === event_gift_idea.gift_idea_id)
         if (gift) {
-          return <EventSavedGift key={gift.id} id={event_gift_idea.id} gift={gift} event={event} selectedPerson={this.state.selectedPerson}/>
+          return <EventSavedGift key={uuid()} id={event_gift_idea.id} gift={gift} event={event} selectedPerson={this.state.selectedPerson}/>
         }
       })
     }

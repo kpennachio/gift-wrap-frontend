@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import uuid from 'uuid'
 
 import PersonSavedGift from '../person_show_page/PersonSavedGift'
 import EventCard from './EventCard'
@@ -13,13 +14,13 @@ import { resetState } from '../../resetState'
 
 const PersonDetail = (props) => {
 
-  const { person, gifts, setEvents, setPeople, setGifts, people, history, deletePerson, currentUser } = props
+  const { person, gifts, history, deletePerson, currentUser } = props
 
   const renderPersonGiftIdeas = () => {
       return person.person_gift_ideas.map(person_gift_idea => {
         let gift = gifts.find(gift => gift.id === person_gift_idea.gift_idea_id)
         if (gift) {
-          return <PersonSavedGift key={gift.id} id={person_gift_idea.id} gift={gift} selectedPerson={person}/>
+          return <PersonSavedGift key={uuid()} id={person_gift_idea.id} gift={gift} selectedPerson={person}/>
         }
       })
   }
@@ -27,14 +28,14 @@ const PersonDetail = (props) => {
   const renderGiftsNeeded = () => {
     let pges = person.person_gift_events.filter(pge => pge.gift === null)
     return pges.map(pge => {
-      return <EventCard key={pge.id} event={pge.event} person={person} pge={pge}/>
+      return <EventCard key={uuid()} event={pge.event} person={person} pge={pge}/>
     })
   }
 
   const renderPastGifts = () => {
     let pges = person.person_gift_events.filter(pge => pge.gift !== null)
     return pges.map(pge => {
-      return <EventCard key={pge.id} event={pge.event} person={person} pge={pge}/>
+      return <EventCard key={uuid()} event={pge.event} person={person} pge={pge}/>
     })
   }
 
@@ -51,16 +52,6 @@ const PersonDetail = (props) => {
     })
   }
 
-  // const resetState = () => {
-  //   fetch(`http://localhost:3000/api/v1/users/${props.user_id}`)
-  //   .then(resp => resp.json())
-  //   .then(user => {
-  //     setEvents(user.events)
-  //     setPeople(user.people)
-  //     setGifts(user.gifts)
-  //
-  //   })
-  // }
 
   return (
     <div>
@@ -91,9 +82,6 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    setEvents: (events) => dispatch({type: "SET_EVENTS", payload: events}),
-    setPeople: (people) => dispatch({type: "SET_PEOPLE", payload: people}),
-    setGifts: (gifts) => dispatch({type: "SET_GIFTS", payload: gifts}),
     deletePerson: (personId) => dispatch({type: "DELETE_PERSON", payload: personId})
   }
 }
