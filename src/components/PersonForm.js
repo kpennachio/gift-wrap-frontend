@@ -54,7 +54,7 @@ class PersonForm extends Component {
         <h2>Add a new person</h2>
         <Form onSubmit={this.handleSubmit}>
           <Form.Field control={Input} value={this.state.name} name="name" label='Name' placeholder='Name' onChange={this.handleChange} />
-          <Form.Field control={TextArea} value={this.state.notes} name="notes" label='Notes' placeholder='Notes' onChange={this.handleChange} />
+          <Form.Field control={TextArea} value={this.state.notes} name="notes" label='Notes' placeholder='Notes (optional)' onChange={this.handleChange} />
           <Button type='submit'>Add Person</Button>
         </Form>
       </div>

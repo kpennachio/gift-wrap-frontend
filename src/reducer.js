@@ -76,6 +76,9 @@ function reducer(state = defaultState, action) {
       event.event_gift_ideas = otherEventGiftIdeas
 
       return { ...state, events: [ ...otherEvents, event]}
+    case "DELETE_PERSON":
+      let newPeople = state.people.filter(person => person.id !== action.payload)
+      return { ...state, people: newPeople }
     default:
       return state
   }

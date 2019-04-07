@@ -7,11 +7,13 @@ import EditPersonForm from './EditPersonForm'
 
 import { Button } from 'semantic-ui-react'
 
+import { resetState } from '../../resetState'
+
 
 
 const PersonDetail = (props) => {
 
-  const { person, gifts, setEvents, setPeople, setGifts, people, history } = props
+  const { person, gifts, setEvents, setPeople, setGifts, people, history, deletePerson, currentUser } = props
 
   const renderPersonGiftIdeas = () => {
       return person.person_gift_ideas.map(person_gift_idea => {
@@ -42,22 +44,23 @@ const PersonDetail = (props) => {
       method: "DELETE"
     })
     .then(resp => {
-      resetState()
+      resetState(currentUser.id)
       history.push(`/my-people`)
-    })
-  }
-
-  const resetState = () => {
-    fetch(`http://localhost:3000/api/v1/users/${props.user_id}`)
-    .then(resp => resp.json())
-    .then(user => {
-      setEvents(user.events)
-      setPeople(user.people)
-      setGifts(user.gifts)
-      console.log(props.people);
+      deletePerson(person.id)
 
     })
   }
+
+  // const resetState = () => {
+  //   fetch(`http://localhost:3000/api/v1/users/${props.user_id}`)
+  //   .then(resp => resp.json())
+  //   .then(user => {
+  //     setEvents(user.events)
+  //     setPeople(user.people)
+  //     setGifts(user.gifts)
+  //
+  //   })
+  // }
 
   return (
     <div>
@@ -90,7 +93,8 @@ function mapDispatchToProps(dispatch) {
   return {
     setEvents: (events) => dispatch({type: "SET_EVENTS", payload: events}),
     setPeople: (people) => dispatch({type: "SET_PEOPLE", payload: people}),
-    setGifts: (gifts) => dispatch({type: "SET_GIFTS", payload: gifts})
+    setGifts: (gifts) => dispatch({type: "SET_GIFTS", payload: gifts}),
+    deletePerson: (personId) => dispatch({type: "DELETE_PERSON", payload: personId})
   }
 }
 
