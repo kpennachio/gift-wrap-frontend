@@ -15,8 +15,16 @@ import EventSavedGift from './EventSavedGift'
 class EventDetail extends Component {
 
   state = {
-    selectedPerson: this.props.event.person_gift_events[0].person,
-    personGiftEvent: this.props.event.person_gift_events[0]
+    selectedPerson: {},
+    personGiftEvent: {}
+  }
+
+  componentDidMount() {
+    let pge = this.props.event.person_gift_events.sort(pge => pge.id)
+    this.setState({
+      selectedPerson: pge[0].person,
+      personGiftEvent: pge[0]
+    })
   }
 
   changeSelectedPerson = (person, pge) => {
@@ -66,7 +74,8 @@ class EventDetail extends Component {
   }
 
   people = () => {
-    return this.props.event.person_gift_events.map(pge => {
+    let pge = this.props.event.person_gift_events.sort((a, b) => a.id - b.id)
+    return pge.map(pge => {
       return <EventPersonCard key={uuid()} pge={pge} person={pge.person} selectedPerson={this.state.selectedPerson} changeSelectedPerson={this.changeSelectedPerson}/>
     })
   }
