@@ -48,10 +48,7 @@ class EventForm extends Component {
     }
   }
 
-  showInput = (e) => {
-    this.setState({showingNewPersonInput: true})
-    e.target.innerText = ""
-  }
+  
 
   handlePersonAddition = (e, { value }) => {
     this.props.addNewPersonName(value)

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 import Gift from './Gift'
+import GiftForm from './GiftForm'
 
 
 
@@ -16,7 +17,9 @@ const GiftPage = (props) => {
   return (
     <div>
       <h1>My Gift Page</h1>
+      <GiftForm />
       {renderAllGifts()}
+
     </div>
   );
 
