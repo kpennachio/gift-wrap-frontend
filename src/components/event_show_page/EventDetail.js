@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
-import { Card } from 'semantic-ui-react'
+// import { Card } from 'semantic-ui-react'
 
 import EventPersonCard from './EventPersonCard'
 import OtherGift from './OtherGift'

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import PersonSavedGift from '../person_show_page/PersonSavedGift'
 import EventCard from './EventCard'
+import EditPersonForm from './EditPersonForm'
 
 
 
@@ -21,14 +22,14 @@ const PersonDetail = ({person, gifts}) => {
   const renderGiftsNeeded = () => {
     let pges = person.person_gift_events.filter(pge => pge.gift === null)
     return pges.map(pge => {
-      return <EventCard event={pge.event} person={person} pge={pge}/>
+      return <EventCard key={pge.id} event={pge.event} person={person} pge={pge}/>
     })
   }
 
   const renderPastGifts = () => {
     let pges = person.person_gift_events.filter(pge => pge.gift !== null)
     return pges.map(pge => {
-      return <EventCard event={pge.event} person={person} pge={pge}/>
+      return <EventCard key={pge.id} event={pge.event} person={person} pge={pge}/>
     })
   }
 
@@ -43,6 +44,7 @@ const PersonDetail = ({person, gifts}) => {
       {renderPersonGiftIdeas()}
       <h2>Gift History</h2>
       {renderPastGifts()}
+      <EditPersonForm person={person}/>
     </div>
   );
 

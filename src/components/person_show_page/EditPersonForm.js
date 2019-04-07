@@ -5,11 +5,11 @@ import { Button, Form, Input, TextArea } from 'semantic-ui-react'
 
 
 
-class PersonForm extends Component {
+class EditPersonForm extends Component {
 
   state = {
-    name: "",
-    notes: ""
+    name: this.props.person.name,
+    notes: this.props.person.notes
   }
 
   handleChange = (e) => {
@@ -19,20 +19,15 @@ class PersonForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     this.createNewPerson()
-    this.setState({
-      name: "",
-      notes: ""
-    })
   }
 
   createNewPerson = () => {
     let data = {
-      user_id: this.props.currentUser.id,
       name: this.state.name,
       notes: this.state.notes
     }
-    fetch('http://localhost:3000/api/v1/people', {
-      method: "POST",
+    fetch(`http://localhost:3000/api/v1/people/${this.props.person.id}`, {
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json"
@@ -41,21 +36,18 @@ class PersonForm extends Component {
     })
     .then(resp => resp.json())
     .then(person => {
-      console.log(person);
-      person.person_gift_events = []
-      person.person_gift_ideas = []
-      this.props.addNewPerson(person)
+      this.props.editPerson(person)
     })
   }
 
   render() {
     return(
       <div>
-        <h2>Add a new person</h2>
+        <h2>Edit Person</h2>
         <Form onSubmit={this.handleSubmit}>
           <Form.Field control={Input} value={this.state.name} name="name" label='Name' placeholder='Name' onChange={this.handleChange} />
           <Form.Field control={TextArea} value={this.state.notes} name="notes" label='Notes' placeholder='Notes' onChange={this.handleChange} />
-          <Button type='submit'>Add Person</Button>
+          <Button type='submit'>Edit Person</Button>
         </Form>
       </div>
     )
@@ -71,7 +63,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return  {
-    addNewPerson: (person) => dispatch({type: "ADD_NEW_PERSON", payload: person}),
+    editPerson: (person) => dispatch({type: "EDIT_PERSON", payload: person}),
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(PersonForm);
+export default connect(mapStateToProps, mapDispatchToProps)(EditPersonForm);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import { Card, Button } from 'semantic-ui-react'
+import { Card } from 'semantic-ui-react'
 
 
 
@@ -19,7 +19,7 @@ const PersonSavedGift = ({id, gift, selectedPerson, deletePersonGiftIdea}) => {
   return (
     <Card>
       <h3>{gift.name}</h3>
-      <div onClick={unSaveIdea}>❤️</div>
+      <div onClick={unSaveIdea}>heart</div>
     </Card>
   );
 

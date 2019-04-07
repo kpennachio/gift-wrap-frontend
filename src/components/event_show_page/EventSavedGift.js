@@ -19,7 +19,7 @@ const EventSavedGift = ({id, gift, event, selectedPerson, deleteEventGiftIdea}) 
   return (
     <Card>
       <h3>{gift.name}</h3>
-      <div onClick={unSaveIdea}>❤️</div>
+      <div onClick={unSaveIdea}>heart</div>
       <Button>{`Select this gift for ${selectedPerson.name}`}</Button>
     </Card>
   );

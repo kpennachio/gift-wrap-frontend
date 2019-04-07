@@ -13,7 +13,7 @@ const EventPersonCard = ({person, pge, selectedPerson, changeSelectedPerson}) =>
       return <p>Find a gift for {person.name}!</p>
     }
     else {
-      return <img src={pge.gift.image} />
+      return <img src={pge.gift.image} alt={pge.gift.name}/>
     }
   }
 
