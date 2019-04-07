@@ -2,6 +2,7 @@
 
 let defaultState = {
   users: [],
+  user_id: 1,
   currentUser: {},
   events: [],
   people: [],

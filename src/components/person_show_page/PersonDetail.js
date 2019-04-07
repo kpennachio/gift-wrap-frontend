@@ -5,10 +5,13 @@ import PersonSavedGift from '../person_show_page/PersonSavedGift'
 import EventCard from './EventCard'
 import EditPersonForm from './EditPersonForm'
 
+import { Button } from 'semantic-ui-react'
 
 
 
-const PersonDetail = ({person, gifts}) => {
+const PersonDetail = (props) => {
+
+  const { person, gifts, setEvents, setPeople, setGifts, people, history } = props
 
   const renderPersonGiftIdeas = () => {
       return person.person_gift_ideas.map(person_gift_idea => {
@@ -33,6 +36,29 @@ const PersonDetail = ({person, gifts}) => {
     })
   }
 
+  const handleDeletePerson = () => {
+    console.log("deleting");
+    fetch(`http://localhost:3000/api/v1/people/${person.id}`, {
+      method: "DELETE"
+    })
+    .then(resp => {
+      resetState()
+      history.push(`/my-people`)
+    })
+  }
+
+  const resetState = () => {
+    fetch(`http://localhost:3000/api/v1/users/${props.user_id}`)
+    .then(resp => resp.json())
+    .then(user => {
+      setEvents(user.events)
+      setPeople(user.people)
+      setGifts(user.gifts)
+      console.log(props.people);
+
+    })
+  }
+
   return (
     <div>
       <h1>{person.name}</h1>
@@ -45,6 +71,7 @@ const PersonDetail = ({person, gifts}) => {
       <h2>Gift History</h2>
       {renderPastGifts()}
       <EditPersonForm person={person}/>
+      <Button onClick={handleDeletePerson}>Delete Person</Button>
     </div>
   );
 
@@ -54,8 +81,17 @@ function mapStateToProps(state) {
   return {
     currentUser: state.currentUser,
     people: state.people,
-    gifts: state.gifts
+    gifts: state.gifts,
+    user_id: state.user_id
   }
 }
 
-export default connect(mapStateToProps)(PersonDetail);
+function mapDispatchToProps(dispatch) {
+  return {
+    setEvents: (events) => dispatch({type: "SET_EVENTS", payload: events}),
+    setPeople: (people) => dispatch({type: "SET_PEOPLE", payload: people}),
+    setGifts: (gifts) => dispatch({type: "SET_GIFTS", payload: gifts})
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PersonDetail);

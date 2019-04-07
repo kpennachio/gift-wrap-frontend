@@ -20,7 +20,7 @@ class App extends Component {
 
 
   componentDidMount() {
-    fetch('http://localhost:3000/api/v1/users/1')
+    fetch(`http://localhost:3000/api/v1/users/${this.props.user_id}`)
     .then(resp => resp.json())
     .then(user => {
       this.props.getCurrentUser(user)
@@ -54,6 +54,12 @@ class App extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    user_id: state.user_id
+  }
+}
+
 function mapDispatchToProps(dispatch) {
   return {
     getUsers: (users) => dispatch({type: "GET_USERS", payload: users}),
@@ -64,29 +70,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(null, mapDispatchToProps)(App);
-
-
-// <Route path="/event/:id" component={(props) => <UserContainer {...props}/>}/>
-
-
-// return (
-//   <Fragment >
-//   <Container>
-//     <Header />
-//   </Container>
-//   <Container >
-//     <Grid columns="two">
-//       <Grid.Column width={2}>
-//         <SideNav/>
-//       </Grid.Column>
-//       <Grid.Column >
-//         <Switch>
-//           <Route path="/checklist" component={ Checklist }/>
-//           <Route path="/dashboard" component={ Dashboard }/>
-//         </Switch>
-//       </Grid.Column>
-//     </Grid>
-//   </ Container>
-//   </Fragment >
-// );
+export default connect(mapStateToProps, mapDispatchToProps)(App);
