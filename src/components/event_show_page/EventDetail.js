@@ -80,7 +80,7 @@ class EventDetail extends Component {
   people = () => {
     let pge = this.props.event.person_gift_events.sort((a, b) => a.id - b.id)
     return pge.map(pge => {
-      return <EventPersonCard key={uuid()} pge={pge} person={pge.person} selectedPerson={this.state.selectedPerson} changeSelectedPerson={this.changeSelectedPerson}/>
+      return <EventPersonCard key={uuid()} pge={pge} person={pge.person} selectedPerson={this.state.selectedPerson} changeSelectedPerson={this.changeSelectedPerson} changePersonGiftEvent={this.changePersonGiftEvent}/>
     })
   }
 

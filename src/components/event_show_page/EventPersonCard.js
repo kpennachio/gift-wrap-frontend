@@ -3,11 +3,13 @@ import { connect } from 'react-redux'
 
 import { Button } from 'semantic-ui-react'
 
+import { resetState } from '../../resetState'
 
 
 
-const EventPersonCard = ({person, pge, selectedPerson, changeSelectedPerson}) => {
+const EventPersonCard = (props) => {
 
+  const {person, pge, selectedPerson, changeSelectedPerson, changePersonGiftEvent, people, gifts, editPersonGiftEvent, currentUser} = props
 
   const removeGift = () => {
     let data = {
@@ -24,6 +26,11 @@ const EventPersonCard = ({person, pge, selectedPerson, changeSelectedPerson}) =>
     .then(resp => resp.json())
     .then(pge => {
       console.log(pge);
+      pge.person = people.find(person => person.id === pge.person_id)
+      pge.gift = null
+      changePersonGiftEvent(pge)
+      editPersonGiftEvent(pge)
+      resetState(currentUser.id)
     })
   }
 
@@ -32,6 +39,7 @@ const EventPersonCard = ({person, pge, selectedPerson, changeSelectedPerson}) =>
       return <p>Find a gift for {person.name}!</p>
     }
     else {
+      console.log(pge);
       return (
         <div>
           <img src={pge.gift.image} alt={pge.gift.name}/>
@@ -61,8 +69,16 @@ const EventPersonCard = ({person, pge, selectedPerson, changeSelectedPerson}) =>
 
 function mapStateToProps(state) {
   return {
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
+    people: state.people,
+    gifts: state.gifts
   }
 }
 
-export default connect(mapStateToProps)(EventPersonCard);
+function mapDispatchToProps(dispatch) {
+  return {
+    editPersonGiftEvent: (pge) => {dispatch({type: "EDIT_PERSON_GIFT_EVENT", payload: {event_id: pge.event_id, pge: pge}})}
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EventPersonCard);
