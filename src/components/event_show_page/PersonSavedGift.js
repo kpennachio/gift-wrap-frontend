@@ -9,7 +9,7 @@ import { resetState } from '../../resetState'
 
 const PersonSavedGift = (props) => {
 
-  const {id, gift, pge, selectedPerson, deletePersonGiftIdea, editPersonGiftEvent, people, gifts, currentUser} = props
+  const {id, gift, pge, selectedPerson, deletePersonGiftIdea, editPersonGiftEvent, people, gifts, currentUser, changePersonGiftEvent} = props
 
   const unSaveIdea = () => {
     fetch(`http://localhost:3000/api/v1/person_gift_ideas/${id}`, {method: "DELETE"})
@@ -34,7 +34,7 @@ const PersonSavedGift = (props) => {
     .then(pge => {
       pge.person = people.find(person => person.id === pge.person_id)
       pge.gift = gifts.find(gift => gift.id === pge.gift_id)
-
+      changePersonGiftEvent(pge)
       editPersonGiftEvent(pge)
       resetState(currentUser.id)
     })
