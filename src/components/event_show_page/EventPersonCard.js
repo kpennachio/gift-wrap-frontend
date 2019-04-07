@@ -39,7 +39,6 @@ const EventPersonCard = (props) => {
       return <p>Find a gift for {person.name}!</p>
     }
     else {
-      console.log(pge);
       return (
         <div>
           <img src={pge.gift.image} alt={pge.gift.name}/>
