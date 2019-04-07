@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import uuid from 'uuid'
 
 import EditGiftForm from './EditGiftForm'
+import GiftHistoryCard from './GiftHistoryCard'
 
 import { Button } from 'semantic-ui-react'
-
 
 import { resetState } from '../../resetState'
 
@@ -31,13 +31,17 @@ const GiftDetail = (props) => {
   //   })
   // }
   //
-  // const renderPastGifts = () => {
-  //   let pges = gift.gift_gift_events.filter(pge => pge.gift !== null)
-  //   return pges.map(pge => {
-  //     return <EventCard key={uuid()} event={pge.event} gift={gift} pge={pge}/>
-  //   })
-  // }
-  //
+  const renderGiftHistory = () => {
+    if (gift.person_gift_events.length > 0){
+      return gift.person_gift_events.map(pge => {
+        return <GiftHistoryCard key={uuid()} event={pge.event} person={pge.person} gift={gift} pge={pge}/>
+      })
+    }
+    else {
+      return "You have not given this gift before!"
+    }
+  }
+
   const handleDeleteGift = () => {
     console.log("deleting");
     // fetch(`http://localhost:3000/api/v1/gifts/${gift.id}`, {
@@ -62,6 +66,7 @@ const GiftDetail = (props) => {
       <p>Notes:</p>
       <p>{gift.notes !== null ? gift.notes : "Add notes..."}</p>
       <h2>Gift History</h2>
+      {renderGiftHistory()}
       <h2>Save to Person</h2>
       <h2>Save to Event</h2>
       <EditGiftForm gift={gift}/>
