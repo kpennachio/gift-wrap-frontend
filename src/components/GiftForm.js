@@ -74,6 +74,7 @@ class GiftForm extends Component {
     .then(resp => resp.json())
     .then(gift => {
       console.log(gift);
+      this.props.addGift(gift)
     })
   }
 
@@ -109,13 +110,12 @@ class GiftForm extends Component {
 function mapStateToProps(state) {
   return {
     currentUser: state.currentUser,
-    people: state.people
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return  {
-
+    addGift: (gift) => dispatch({type: "ADD_GIFT", payload: gift}),
   }
 }
 
