@@ -3,10 +3,14 @@ import { connect } from 'react-redux'
 
 import { Card, Button } from 'semantic-ui-react'
 
+import { resetState } from '../../resetState'
 
 
 
-const OtherGift = ({gift, event, selectedPerson, addNewPersonGiftIdea, addNewEventGiftIdea, pge}) => {
+
+const OtherGift = (props) => {
+
+  const {gift, event, selectedPerson, addNewPersonGiftIdea, addNewEventGiftIdea, pge, editPersonGiftEvent, people, gifts, currentUser} = props
 
 
   const saveIdeaPerson = () => {
@@ -43,7 +47,6 @@ const OtherGift = ({gift, event, selectedPerson, addNewPersonGiftIdea, addNewEve
     })
     .then(resp => resp.json())
     .then(egi => {
-      console.log(egi);
       addNewEventGiftIdea(egi)
     })
   }
@@ -52,6 +55,7 @@ const OtherGift = ({gift, event, selectedPerson, addNewPersonGiftIdea, addNewEve
     let data = {
       gift_id: gift.id
     }
+
     fetch(`http://localhost:3000/api/v1/person_gift_events/${pge.id}`, {
       method: "PATCH",
       headers: {
@@ -62,7 +66,11 @@ const OtherGift = ({gift, event, selectedPerson, addNewPersonGiftIdea, addNewEve
     })
     .then(resp => resp.json())
     .then(pge => {
-      console.log(pge);
+      pge.person = people.find(person => person.id === pge.person_id)
+      pge.gift = gifts.find(gift => gift.id === pge.gift_id)
+
+      editPersonGiftEvent(pge)
+      resetState(currentUser.id)
     })
   }
 
@@ -79,14 +87,17 @@ const OtherGift = ({gift, event, selectedPerson, addNewPersonGiftIdea, addNewEve
 
 function mapStateToProps(state) {
   return {
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
+    people: state.people,
+    gifts: state.gifts
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     addNewPersonGiftIdea: (pgi) => {dispatch({type: "ADD_NEW_PERSON_GIFT_IDEA", payload: {person_id: pgi.person_id, pgi: pgi} } )},
-    addNewEventGiftIdea: (egi) => {dispatch({type: "ADD_NEW_EVENT_GIFT_IDEA", payload: {event_id: egi.event_id, egi: egi}})}
+    addNewEventGiftIdea: (egi) => {dispatch({type: "ADD_NEW_EVENT_GIFT_IDEA", payload: {event_id: egi.event_id, egi: egi}})},
+    editPersonGiftEvent: (pge) => {dispatch({type: "EDIT_PERSON_GIFT_EVENT", payload: {event_id: pge.event_id, pge: pge}})}
 
   }
 }

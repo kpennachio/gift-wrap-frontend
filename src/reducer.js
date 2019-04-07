@@ -47,6 +47,16 @@ function reducer(state = defaultState, action) {
       otherPeople = state.people.filter(person => person.id !== action.payload.person_id)
 
       return { ...state, events: [ ...otherEvents, event], people: [ ...otherPeople, person]}
+    case "EDIT_PERSON_GIFT_EVENT":
+      event = state.events.find(event => event.id === action.payload.event_id)
+      otherEvents = state.events.filter(event => event.id !== action.payload.event_id)
+      event.person_gift_events = event.person_gift_events.map(p => {
+        if (p.id === action.payload.pge.id) {
+          p = action.payload.pge
+        }
+        return p
+      })
+      return { ...state, events: [ ...otherEvents, event]}
     case "ADD_NEW_PERSON_GIFT_IDEA":
       person = state.people.find(person => person.id === action.payload.person_id)
       person.person_gift_ideas = [ ...person.person_gift_ideas, action.payload.pgi]
