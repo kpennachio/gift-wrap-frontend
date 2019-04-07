@@ -12,6 +12,7 @@ import GiftPage from './GiftPage'
 import Budgeter from './Budgeter'
 import ChecklistDetail from './event_show_page/ChecklistDetail'
 import Person from './person_show_page/Person'
+import Gift from './gift_show_page/Gift'
 
 
 
@@ -46,6 +47,7 @@ class App extends Component {
               <Route path="/budgeter" component={ Budgeter }/>
               <Route path="/my-people/:id" render={ (props) => <Person {...props }/> } />
               <Route path="/my-people" component={ PeoplePage }/>
+              <Route path="/my-gifts/:id" render={ (props) => <Gift {...props}/> }/>
               <Route path="/my-gifts" component={ GiftPage }/>
             </Switch>
           </div>

@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import uuid from 'uuid'
 
-import Gift from './Gift'
+import GiftCard from './GiftCard'
 import GiftForm from './GiftForm'
 
 
@@ -10,7 +11,7 @@ const GiftPage = (props) => {
 
   const renderAllGifts = () => {
     return props.gifts.map(gift => {
-      return <Gift key={gift.id} gift={gift} />
+      return <GiftCard key={uuid()} gift={gift} />
     })
   }
 

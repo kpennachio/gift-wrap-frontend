@@ -5,11 +5,11 @@ import { Button, Form, Input, TextArea } from 'semantic-ui-react'
 
 
 
-class EditPersonForm extends Component {
+class EditGiftForm extends Component {
 
   state = {
-    name: this.props.person.name,
-    notes: this.props.person.notes
+    name: this.props.gift.name,
+    notes: this.props.gift.notes
   }
 
   handleChange = (e) => {
@@ -18,36 +18,36 @@ class EditPersonForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.editPerson()
+    this.editGift()
   }
 
-  editPerson = () => {
+  editGift = () => {
     let data = {
       name: this.state.name,
       notes: this.state.notes
     }
-    fetch(`http://localhost:3000/api/v1/people/${this.props.person.id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify(data)
-    })
-    .then(resp => resp.json())
-    .then(person => {
-      this.props.editPerson(person)
-    })
+    // fetch(`http://localhost:3000/api/v1/people/${this.props.gift.id}`, {
+    //   method: "PATCH",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     "Accept": "application/json"
+    //   },
+    //   body: JSON.stringify(data)
+    // })
+    // .then(resp => resp.json())
+    // .then(gift => {
+    //   this.props.editGift(gift)
+    // })
   }
 
   render() {
     return(
       <div>
-        <h2>Edit Person</h2>
+        <h2>Edit Gift</h2>
         <Form onSubmit={this.handleSubmit}>
           <Form.Field control={Input} value={this.state.name} name="name" label='Name' placeholder='Name' onChange={this.handleChange} />
           <Form.Field control={TextArea} value={this.state.notes} name="notes" label='Notes' placeholder='Notes' onChange={this.handleChange} />
-          <Button type='submit'>Edit Person</Button>
+          <Button type='submit'>Edit Gift</Button>
         </Form>
       </div>
     )
@@ -63,7 +63,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return  {
-    editPerson: (person) => dispatch({type: "EDIT_PERSON", payload: person}),
+    editGift: (gift) => dispatch({type: "EDIT_GIFT", payload: gift}),
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(EditPersonForm);
+export default connect(mapStateToProps, mapDispatchToProps)(EditGiftForm);
