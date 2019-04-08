@@ -22,12 +22,16 @@ class Budgeter extends Component {
     return d.getFullYear()
   }
 
+  changeYear = (year) => {
+    this.setState({year})
+  }
+
   render() {
     return (
       <div>
       <h1>Your Gift Budget</h1>
-      <BudgetContainer year={this.state.year}/>
-      <BudgetEventContainer/>
+      <BudgetContainer year={this.state.year} changeYear={this.changeYear}/>
+      <BudgetEventContainer year={this.state.year}/>
       </div>
     );
   }

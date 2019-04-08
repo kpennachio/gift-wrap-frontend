@@ -1,12 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
+import Budget from './Budget'
+
 import CircularProgressbar from 'react-circular-progressbar';
 
+import { Icon } from 'semantic-ui-react'
 
-const BudgetContainer = ({events, year}) => {
+
+const BudgetContainer = ({events, year, changeYear}) => {
 
   const allocatedBudget = () => {
+
       let subtotal = events.map(event => {
           if (event.person_gift_events.length > 1) {
             return event.person_gift_events.reduce((sum, pge) => sum.price_max + pge.price_max)
@@ -22,10 +27,20 @@ const BudgetContainer = ({events, year}) => {
       else return 0
   }
 
+  const yearBack = () => {
+    changeYear(--year)
+  }
+
+  const yearForward = () => {
+    changeYear(++year)
+  }
+
   const percentage = 80
   return (
     <div>
+      <Icon onClick={yearBack} name='caret left' />
       <h2>{year}</h2>
+      <Icon onClick={yearForward} name='caret right' />
       <div className="budget-circle-container">
         <div className="budget-main-circle">
           <CircularProgressbar
@@ -33,6 +48,7 @@ const BudgetContainer = ({events, year}) => {
             text={`${percentage}%`}
           />
           <p>Budget</p>
+          <Budget year={year}/>
         </div>
         <div className="budget-spend-circle">
           <CircularProgressbar

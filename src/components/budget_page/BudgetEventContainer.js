@@ -9,12 +9,13 @@ import { Card, Grid, Accordion } from 'semantic-ui-react'
 
 
 const BudgetEventContainer = (props) => {
-  const { events } = props
+  const { events, year } = props
 
 
   const orderEvents = () => {
     if (events) {
-      return events.sort((a, b) => {
+      let selectedEvents = events.filter(event => event.year === year)
+      return selectedEvents.sort((a, b) => {
         return new Date(a.dateFormatted) - new Date(b.dateFormatted)
       })
     }
@@ -22,6 +23,7 @@ const BudgetEventContainer = (props) => {
 
   const renderAllEvents = () => {
     if (events) {
+
       return orderEvents().map(event => <BudgetEvent key={uuid()} event={event} pges={event.person_gift_events}/>)
     }
   }
