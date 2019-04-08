@@ -25,7 +25,6 @@ const EventPersonCard = (props) => {
     })
     .then(resp => resp.json())
     .then(pge => {
-      console.log(pge);
       pge.person = people.find(person => person.id === pge.person_id)
       pge.gift = null
       changePersonGiftEvent(pge)
