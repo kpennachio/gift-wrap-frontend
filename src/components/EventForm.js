@@ -48,7 +48,7 @@ class EventForm extends Component {
     }
   }
 
-  
+
 
   handlePersonAddition = (e, { value }) => {
     this.props.addNewPersonName(value)
@@ -129,6 +129,8 @@ class EventForm extends Component {
     let data = {
       person_id: person_id,
       event_id: event_id,
+      price_max: 0,
+      gift_actual_cost: 0
     }
 
     fetch('http://localhost:3000/api/v1/person_gift_events', {

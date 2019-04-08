@@ -8,7 +8,7 @@ import { resetState } from '../../resetState'
 
 
 
-class BudgetEvent extends Component {
+class PersonBudget extends Component {
 
   state = {
     edit: false,
@@ -21,7 +21,9 @@ class BudgetEvent extends Component {
     this.setState({edit: true})
   }
 
-  handleSubmit = () => {
+  handleSubmit = (e) => {
+    e.stopPropagation()
+
     let data = {
       price_max: parseInt(this.state.price_max)
     }
@@ -48,17 +50,20 @@ class BudgetEvent extends Component {
 
 
   renderBudget = () => {
-    console.log(this.state.price_max);
     if (this.state.edit) {
       return (
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Input value={this.state.price_max} onChange={this.handleChange}/>
-        </Form>
+        <div className="border-line">
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Input size="mini" value={this.state.price_max} onChange={this.handleChange}/>
+          </Form>
+        </div>
       )
     }
     else {
       return(
-        <p>${this.props.pge.price_max}</p>
+        <div className="border-line">
+          <p>${this.props.pge.price_max}</p>
+        </div>
       )
     }
   }
@@ -89,4 +94,4 @@ function mapDispatchToProps(dispatch) {
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(BudgetEvent);
+export default connect(mapStateToProps, mapDispatchToProps)(PersonBudget);

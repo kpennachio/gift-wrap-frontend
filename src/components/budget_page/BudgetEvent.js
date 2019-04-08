@@ -93,7 +93,7 @@ class BudgetEvent extends Component {
         <Grid>
           <Grid.Column width={4}></Grid.Column>
 
-          <Grid.Column width={2}><Link to={`/checklist/${this.props.event.id}`}>see event</Link></Grid.Column>
+          <Grid.Column width={6}><Link to={`/checklist/${this.props.event.id}`}>select/edit gifts</Link></Grid.Column>
         </Grid>
       </Accordion.Content>
       </Fragment>

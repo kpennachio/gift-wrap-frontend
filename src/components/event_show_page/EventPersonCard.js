@@ -13,7 +13,8 @@ const EventPersonCard = (props) => {
 
   const removeGift = () => {
     let data = {
-      gift_id: null
+      gift_id: null,
+      gift_actual_cost: 0
     }
     fetch(`http://localhost:3000/api/v1/person_gift_events/${pge.id}`, {
       method: "PATCH",

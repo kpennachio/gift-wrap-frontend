@@ -21,7 +21,8 @@ const PersonSavedGift = (props) => {
 
   const selectGift = () => {
     let data = {
-      gift_id: gift.id
+      gift_id: gift.id,
+      gift_actual_cost: gift.list_price
     }
     fetch(`http://localhost:3000/api/v1/person_gift_events/${pge.id}`, {
       method: "PATCH",
