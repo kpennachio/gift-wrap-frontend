@@ -7,7 +7,7 @@ import GiftHistoryCard from './GiftHistoryCard'
 import PersonSaveForm from './PersonSaveForm'
 import EventSaveForm from './EventSaveForm'
 
-import { Button, Dropdown } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 
 import { resetState } from '../../resetState'
 
@@ -15,24 +15,9 @@ import { resetState } from '../../resetState'
 
 const GiftDetail = (props) => {
 
-  const { gift, history, currentUser, people, deleteGift } = props
+  const { gift, history, currentUser, deleteGift } = props
 
-  // const renderPersonGiftIdeas = () => {
-  //     return gift.person_gift_ideas.map(person_gift_idea => {
-  //       let gift = gifts.find(gift => gift.id === person_gift_idea.gift_idea_id)
-  //       if (gift) {
-  //         return <PersonSavedGift key={uuid()} id={person_gift_idea.id} gift={gift} selectedGift={gift}/>
-  //       }
-  //     })
-  // }
-  //
-  // const renderGiftsNeeded = () => {
-  //   let pges = gift.person_gift_events.filter(pge => pge.gift === null)
-  //   return pges.map(pge => {
-  //     return <EventCard key={uuid()} event={pge.event} gift={gift} pge={pge}/>
-  //   })
-  // }
-  //
+
   const renderGiftHistory = () => {
     if (gift.person_gift_events.length > 0){
       return gift.person_gift_events.map(pge => {
@@ -56,8 +41,6 @@ const GiftDetail = (props) => {
 
     })
   }
-
-
 
 
   return (
