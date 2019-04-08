@@ -108,11 +108,25 @@
   border-color: black;
 }
 
-.budget-main-circle {
-  width: 100px;
+.budget-circle-container {
+  margin-top: 50px;
 }
 
-/*
+.budget-main-circle {
+  width: 175px;
+  display: inline-block;
+  margin-left: 50px;
+
+}
+
+.budget-spend-circle {
+  width: 125px;
+  display: inline-block;
+  margin-left: 100px;
+
+}
+
+/*############################################################################S
  * react-circular-progressbar styles
  *
  * All of the styles in this file are optional and configurable!

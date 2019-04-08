@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
 import BudgetContainer from './budget_page/BudgetContainer'
@@ -6,15 +6,31 @@ import BudgetEventContainer from './budget_page/BudgetEventContainer'
 
 
 
-const Budgeter = (props) => {
+class Budgeter extends Component {
 
-  return (
-    <div>
+  state = {
+    year: ""
+  }
+
+  componentDidMount() {
+    let year = this.currentYear()
+    this.setState({year})
+  }
+
+  currentYear = () => {
+    let d = new Date()
+    return d.getFullYear()
+  }
+
+  render() {
+    return (
+      <div>
       <h1>Your Gift Budget</h1>
-      <BudgetContainer />
+      <BudgetContainer year={this.state.year}/>
       <BudgetEventContainer/>
-    </div>
-  );
+      </div>
+    );
+  }
 
 }
 
@@ -24,4 +40,10 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(Budgeter);
+function mapDispatchToProps(dispatch) {
+  return {
+    setBudgets: (budgets) => dispatch({type: "SET_BUDGETS", payload: budgets}),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Budgeter);

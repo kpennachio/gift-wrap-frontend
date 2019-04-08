@@ -1,8 +1,7 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component} from 'react';
 import { connect } from 'react-redux'
-import uuid from 'uuid'
 
-import { Grid, Accordion, Icon, Form } from 'semantic-ui-react'
+import { Grid, Form } from 'semantic-ui-react'
 
 import { resetState } from '../../resetState'
 

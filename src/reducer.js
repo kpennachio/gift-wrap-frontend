@@ -6,7 +6,9 @@ let defaultState = {
   currentUser: {},
   events: [],
   people: [],
-  gifts: []
+  gifts: [],
+  budgets: [],
+  url: "http://localhost:3000/api/v1"
 }
 
 function reducer(state = defaultState, action) {
@@ -21,6 +23,8 @@ function reducer(state = defaultState, action) {
       return { ...state, people: action.payload }
     case "SET_GIFTS":
       return { ...state, gifts: action.payload }
+    case "SET_BUDGETS":
+      return { ...state, budgets: action.payload }
     case "ADD_NEW_EVENT":
       return { ...state, events: [ ...state.events, action.payload ]}
     case "ADD_NEW_PERSON_NAME":

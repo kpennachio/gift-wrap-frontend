@@ -21,13 +21,14 @@ class App extends Component {
 
 
   componentDidMount() {
-    fetch(`http://localhost:3000/api/v1/users/${this.props.user_id}`)
+    fetch(`${this.props.url}/users/${this.props.user_id}`)
     .then(resp => resp.json())
     .then(user => {
       this.props.getCurrentUser(user)
       this.props.setEvents(user.events)
       this.props.setPeople(user.people)
       this.props.setGifts(user.gifts)
+      this.props.setBudgets(user.budgets)
     })
   }
 
@@ -58,7 +59,8 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    user_id: state.user_id
+    user_id: state.user_id,
+    url: state.url
   }
 }
 
@@ -68,7 +70,8 @@ function mapDispatchToProps(dispatch) {
     getCurrentUser: (user) => dispatch({type: "GET_CURRENT_USER", payload: user}),
     setEvents: (events) => dispatch({type: "SET_EVENTS", payload: events}),
     setPeople: (people) => dispatch({type: "SET_PEOPLE", payload: people}),
-    setGifts: (gifts) => dispatch({type: "SET_GIFTS", payload: gifts})
+    setGifts: (gifts) => dispatch({type: "SET_GIFTS", payload: gifts}),
+    setBudgets: (budgets) => dispatch({type: "SET_BUDGETS", payload: budgets})
   }
 }
 
