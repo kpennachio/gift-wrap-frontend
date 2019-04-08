@@ -4,6 +4,7 @@ import uuid from 'uuid'
 
 import { Grid, Accordion, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
+import PersonBudget from './PersonBudget'
 
 
 
@@ -29,7 +30,7 @@ class BudgetEvent extends Component {
         <Grid>
         <Grid.Column width={4}></Grid.Column>
         <Grid.Column width={5}><p>{pge.person.name}</p></Grid.Column>
-        <Grid.Column width={2} onClick={this.changeBudget}><p>${pge.price_max}</p></Grid.Column>
+        <PersonBudget pge={pge}/>
         <Grid.Column width={2}><p>${parseInt(pge.gift_actual_cost)}</p></Grid.Column>
         </Grid>
       )
@@ -48,9 +49,7 @@ class BudgetEvent extends Component {
     )
   }
 
-  personBudget = () => {
-    
-  }
+
 
   changeBudget = () => {
 

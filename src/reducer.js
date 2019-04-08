@@ -51,8 +51,8 @@ function reducer(state = defaultState, action) {
       event = state.events.find(event => event.id === action.payload.event_id)
       otherEvents = state.events.filter(event => event.id !== action.payload.event_id)
       event.person_gift_events = event.person_gift_events.map(p => {
-        if (p.id === action.payload.pge.id) {
-          p = action.payload.pge
+        if (p.id === action.payload.id) {
+          p = action.payload
         }
         return p
       })
