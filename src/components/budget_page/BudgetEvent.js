@@ -10,7 +10,10 @@ import { Link } from 'react-router-dom'
 
 class BudgetEvent extends Component {
 
-  state = { activeIndex: 0 }
+  state = {
+    activeIndex: 0,
+
+  }
 
   handleClick = (e, titleProps) => {
     const { index } = titleProps
@@ -26,8 +29,8 @@ class BudgetEvent extends Component {
         <Grid>
         <Grid.Column width={4}></Grid.Column>
         <Grid.Column width={5}><p>{pge.person.name}</p></Grid.Column>
-        <Grid.Column width={2}><p>${pge.price_max}</p></Grid.Column>
-        <Grid.Column width={2}><p>${this.personSpending()}</p></Grid.Column>
+        <Grid.Column width={2} onClick={this.changeBudget}><p>${pge.price_max}</p></Grid.Column>
+        <Grid.Column width={2}><p>${parseInt(pge.gift_actual_cost)}</p></Grid.Column>
         </Grid>
       )
     })
@@ -45,12 +48,25 @@ class BudgetEvent extends Component {
     )
   }
 
-  personSpending = () => {
+  personBudget = () => {
     
   }
 
+  changeBudget = () => {
+
+  }
+
   eventSpending = () => {
-    return 0
+    if (this.props.pges.length > 1) {
+      let total = this.props.pges.reduce((sum, pge) => {
+        return parseInt(sum.gift_actual_cost) + parseInt(pge.gift_actual_cost)
+      })
+      return total
+    }
+    else if (this.props.pges.length === 1){
+      return parseInt(this.props.pges[0].gift_actual_cost)
+    }
+    else return 0
   }
 
   eventBudget = () => {
