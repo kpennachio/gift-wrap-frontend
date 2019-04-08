@@ -64,6 +64,14 @@ function reducer(state = defaultState, action) {
       otherPeople = state.people.filter(person => person.id !== action.payload.person_id)
 
       return { ...state, people: [ ...otherPeople, person]}
+    case "ADD_NEW_PERSON_GIFT_IDEA_FROM_GIFT":
+      let gift = state.gifts.find(gift => gift.id === action.payload.gift_idea_id)
+
+      gift.person_gift_ideas = [ ...gift.person_gift_ideas, action.payload ]
+
+      let otherGifts = state.gifts.filter(gift => gift.id !== action.payload.gift_idea_id)
+
+      return { ...state, gifts: [ ...otherGifts, gift]}
     case "DELETE_PERSON_GIFT_IDEA":
       person = state.people.find(person => person.id === action.payload.person_id)
       otherPeople = state.people.filter(person => person.id !== action.payload.person_id)
@@ -72,6 +80,14 @@ function reducer(state = defaultState, action) {
       person.person_gift_ideas = otherPersonGiftIdeas
 
       return { ...state, people: [ ...otherPeople, person]}
+    case "DELETE_PERSON_GIFT_IDEA_FROM_GIFT":
+      gift = state.gifts.find(gift => gift.id === action.payload.gift_idea_id)
+
+      gift.person_gift_ideas = gift.person_gift_ideas.filter(pgi => pgi.id !== action.payload.id)
+
+      otherGifts = state.gifts.filter(gift => gift.id !== action.payload.gift_idea_id)
+
+      return { ...state, gifts: [ ...otherGifts, gift]}
     case "ADD_NEW_EVENT_GIFT_IDEA":
       event = state.events.find(event => event.id === action.payload.event_id)
       event.event_gift_ideas = [ ...event.event_gift_ideas, action.payload.egi]

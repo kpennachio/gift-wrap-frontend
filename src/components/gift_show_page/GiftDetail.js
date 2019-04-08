@@ -4,8 +4,9 @@ import uuid from 'uuid'
 
 import EditGiftForm from './EditGiftForm'
 import GiftHistoryCard from './GiftHistoryCard'
+import PersonSaveForm from './PersonSaveForm'
 
-import { Button } from 'semantic-ui-react'
+import { Button, Dropdown } from 'semantic-ui-react'
 
 import { resetState } from '../../resetState'
 
@@ -13,7 +14,7 @@ import { resetState } from '../../resetState'
 
 const GiftDetail = (props) => {
 
-  const { gift, history, currentUser } = props
+  const { gift, history, currentUser, people } = props
 
   // const renderPersonGiftIdeas = () => {
   //     return gift.person_gift_ideas.map(person_gift_idea => {
@@ -56,6 +57,8 @@ const GiftDetail = (props) => {
   }
 
 
+
+
   return (
     <div>
       <h1>{gift.name}</h1>
@@ -68,6 +71,7 @@ const GiftDetail = (props) => {
       <h2>Gift History</h2>
       {renderGiftHistory()}
       <h2>Save to Person</h2>
+      <PersonSaveForm gift={gift}/>
       <h2>Save to Event</h2>
       <EditGiftForm gift={gift}/>
       <Button onClick={handleDeleteGift}>Delete Gift</Button>
