@@ -90,6 +90,11 @@ class BudgetEvent extends Component {
       </Accordion.Title>
       <Accordion.Content active={this.state.activeIndex === this.props.event.id}>
         {this.renderPeople()}
+        <Grid>
+          <Grid.Column width={4}></Grid.Column>
+
+          <Grid.Column width={2}><Link to={`/checklist/${this.props.event.id}`}>see event</Link></Grid.Column>
+        </Grid>
       </Accordion.Content>
       </Fragment>
 

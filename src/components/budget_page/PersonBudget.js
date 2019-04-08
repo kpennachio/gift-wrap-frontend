@@ -4,6 +4,7 @@ import uuid from 'uuid'
 
 import { Grid, Accordion, Icon, Form } from 'semantic-ui-react'
 
+import { resetState } from '../../resetState'
 
 
 
@@ -35,6 +36,7 @@ class BudgetEvent extends Component {
     .then(resp => resp.json())
     .then(pge => {
       pge.person = this.props.pge.person
+      resetState(this.props.currentUser.id)
       this.props.editPersonGiftEvent(pge)
       this.setState({edit: false})
     })
