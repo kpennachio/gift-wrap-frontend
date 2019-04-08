@@ -3,16 +3,18 @@ import { connect } from 'react-redux'
 
 import { Card } from 'semantic-ui-react'
 
+import { resetState } from '../../resetState'
 
 
 
-const PersonSavedGift = ({id, gift, selectedPerson, deletePersonGiftIdea}) => {
+const PersonSavedGift = ({id, gift, selectedPerson, deletePersonGiftIdea, currentUser}) => {
 
 
   const unSaveIdea = () => {
     fetch(`http://localhost:3000/api/v1/person_gift_ideas/${id}`, {method: "DELETE"})
     .then(resp => {
       deletePersonGiftIdea(id, selectedPerson.id)
+      resetState(currentUser.id)
     })
   }
 
@@ -25,6 +27,11 @@ const PersonSavedGift = ({id, gift, selectedPerson, deletePersonGiftIdea}) => {
 
 }
 
+function mapStateToProps(state) {
+  return {
+    currentUser: state.currentUser
+  }
+}
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -33,4 +40,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(null, mapDispatchToProps)(PersonSavedGift);
+export default connect(mapStateToProps, mapDispatchToProps)(PersonSavedGift);
