@@ -107,6 +107,10 @@ function reducer(state = defaultState, action) {
       return { ...state, people: newPeople }
     case "ADD_GIFT":
       return { ...state, gifts: [ ...state.gifts, action.payload ]}
+    case "DELETE_GIFT":
+      let gifts = state.gifts.filter(gift => gift.id !== action.payload)
+
+      return { ...state, gifts: gifts }
     default:
       return state
   }

@@ -9,7 +9,7 @@ import { resetState } from '../../resetState'
 
 const EventPersonCard = (props) => {
 
-  const {person, pge, selectedPerson, changeSelectedPerson, changePersonGiftEvent, people, gifts, editPersonGiftEvent, currentUser} = props
+  const {person, pge, selectedPerson, changeSelectedPerson, changePersonGiftEvent, people, editPersonGiftEvent, currentUser} = props
 
   const removeGift = () => {
     let data = {

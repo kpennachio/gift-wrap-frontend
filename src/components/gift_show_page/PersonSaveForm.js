@@ -78,8 +78,6 @@ class PersonSaveForm extends Component {
   }
 
   render() {
-    console.log(this.props.gift);
-
     return (
       <div>
       {this.renderSavedPeople()}

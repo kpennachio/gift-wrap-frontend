@@ -15,6 +15,7 @@ const PersonSavedGift = (props) => {
     fetch(`http://localhost:3000/api/v1/person_gift_ideas/${id}`, {method: "DELETE"})
     .then(resp => {
       deletePersonGiftIdea(id, selectedPerson.id)
+      resetState(currentUser.id)
     })
   }
 

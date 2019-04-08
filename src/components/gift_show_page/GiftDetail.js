@@ -5,6 +5,7 @@ import uuid from 'uuid'
 import EditGiftForm from './EditGiftForm'
 import GiftHistoryCard from './GiftHistoryCard'
 import PersonSaveForm from './PersonSaveForm'
+import EventSaveForm from './EventSaveForm'
 
 import { Button, Dropdown } from 'semantic-ui-react'
 
@@ -14,7 +15,7 @@ import { resetState } from '../../resetState'
 
 const GiftDetail = (props) => {
 
-  const { gift, history, currentUser, people } = props
+  const { gift, history, currentUser, people, deleteGift } = props
 
   // const renderPersonGiftIdeas = () => {
   //     return gift.person_gift_ideas.map(person_gift_idea => {
@@ -45,15 +46,15 @@ const GiftDetail = (props) => {
 
   const handleDeleteGift = () => {
     console.log("deleting");
-    // fetch(`http://localhost:3000/api/v1/gifts/${gift.id}`, {
-    //   method: "DELETE"
-    // })
-    // .then(resp => {
-    //   resetState(currentUser.id)
-    //   history.push(`/my-gifts`)
-    //   deleteGift(gift.id)
-    //
-    // })
+    fetch(`http://localhost:3000/api/v1/gifts/${gift.id}`, {
+      method: "DELETE"
+    })
+    .then(resp => {
+      resetState(currentUser.id)
+      history.push(`/my-gifts`)
+      deleteGift(gift.id)
+
+    })
   }
 
 
@@ -73,6 +74,7 @@ const GiftDetail = (props) => {
       <h2>Save to Person</h2>
       <PersonSaveForm gift={gift}/>
       <h2>Save to Event</h2>
+      <EventSaveForm gift={gift}/>
       <EditGiftForm gift={gift}/>
       <Button onClick={handleDeleteGift}>Delete Gift</Button>
     </div>
