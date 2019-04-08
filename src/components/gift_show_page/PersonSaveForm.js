@@ -14,7 +14,12 @@ class PersonSaveForm extends Component {
   }
 
   personOptions = () => {
-    return this.props.people.map(person => {
+    let people = this.props.people.filter(person => {
+      return this.props.gift.person_gift_ideas.every(pgi => {
+        return pgi.person_id !== person.id
+      })
+    })
+    return people.map(person => {
       return {key: person.id, text: person.name, value: person.id}
     })
   }
