@@ -46,9 +46,7 @@ class Budget extends Component {
 
   editBudget = () => {
     let data = {
-      user_id: this.props.currentUser.id,
-      budget: this.state.budget,
-      year: this.props.year
+      budget: this.state.budget
     }
     console.log(data);
     fetch(`${this.props.url}/budgets/${this.state.budgetId}`, {
@@ -62,7 +60,8 @@ class Budget extends Component {
     .then(resp => resp.json())
     .then(budget => {
       this.setState({budget: budget.budget})
-
+      this.props.setBudget(budget)
+      this.closeModal()
     })
   }
 
@@ -164,7 +163,10 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    addBudget: (budget) => dispatch({type: "ADD_BUDGET", payload: budget})
+    addBudget: (budget) => dispatch({type: "ADD_BUDGET", payload: budget}),
+    editBudget: (budget) => dispatch({type: "EDIT_BUDGET", payload: budget}),
+    setBudget: (budget) => dispatch({type: "SET_BUDGET", payload: budget})
+
   }
 
 }
