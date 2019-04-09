@@ -1,13 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
+import NextEvent from './dashboard/NextEvent'
 
 
 const Dashboard = (props) => {
 
   return (
-    <div>
+    <div >
       <h1>My Dashboard</h1>
+      <NextEvent />
     </div>
   );
 

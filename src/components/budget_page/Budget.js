@@ -144,7 +144,7 @@ class Budget extends Component {
         <Modal.Content>
           <p>Set your max gift budget here:</p>
           <Form onSubmit={this.handleSubmit}>
-            <Input value={this.state.budget} onChange={this.handleChange}/>
+            <Input type="number" value={this.state.budget} onChange={this.handleChange}/>
             <Input type="submit"/>
           </Form>
         </Modal.Content>

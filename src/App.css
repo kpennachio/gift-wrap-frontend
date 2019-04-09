@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background-color: rgb(249, 249, 249);
+
 }
 
 .App-logo {
@@ -116,6 +118,12 @@ img {
   display: inline-block;
 }
 
+
+/* ########################## DASHBOARD ################################## */
+#checklist-container {
+  background-color: white;
+  width: 400px;
+}
 
 /* ##########################   BUDGET PAGE   ############################ */
 
