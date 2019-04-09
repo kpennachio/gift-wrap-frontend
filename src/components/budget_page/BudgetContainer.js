@@ -8,7 +8,7 @@ import CircularProgressbar from 'react-circular-progressbar';
 import { Icon } from 'semantic-ui-react'
 
 
-const BudgetContainer = ({events, year, changeYear, budget}) => {
+const BudgetContainer = ({events, year, changeYear, budget, budgets, setBudget}) => {
 
   const allocatedBudget = () => {
     let selectedEvents = events.filter(event => event.year === year)
@@ -29,10 +29,27 @@ const BudgetContainer = ({events, year, changeYear, budget}) => {
 
   const yearBack = () => {
     changeYear(--year)
+    changeBudget()
   }
 
   const yearForward = () => {
     changeYear(++year)
+    changeBudget()
+  }
+
+  const changeBudget = () => {
+    console.log("year", year);
+    console.log("budgets", budgets);
+    let budgetObj = budgets.find(budget => budget.year === year)
+
+    if (budgetObj) {
+      console.log("setting budget");
+      setBudget(budgetObj)
+      return budgetObj
+    }
+    else {
+      setBudget({})
+    }
   }
 
   const percentage = () => {
@@ -41,8 +58,8 @@ const BudgetContainer = ({events, year, changeYear, budget}) => {
     }
     else return 0
   }
-  console.log(allocatedBudget());
-  console.log(budget);
+
+  console.log("budget", changeBudget());
 
   return (
     <div>
@@ -55,7 +72,6 @@ const BudgetContainer = ({events, year, changeYear, budget}) => {
             percentage={percentage()}
             text={`${percentage()}%`}
           />
-          <p>Budget</p>
           <div>
             <p>{`Total Budgeted $${allocatedBudget()}`}</p>
           </div>
@@ -66,7 +82,7 @@ const BudgetContainer = ({events, year, changeYear, budget}) => {
             percentage={percentage}
             text={`${percentage}%`}
           />
-          <p>Spend</p>
+          <p>Total Paid</p>
 
         </div>
       </div>
@@ -79,8 +95,16 @@ function mapStateToProps(state) {
   return {
     currentUser: state.currentUser,
     events: state.events,
+    budgets: state.budgets,
     budget: state.budget.budget
   }
 }
 
-export default connect(mapStateToProps)(BudgetContainer);
+function mapDispatchToProps(dispatch) {
+  return {
+    setBudget: (budget) => dispatch({type: "SET_BUDGET", payload: budget})
+
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BudgetContainer);
