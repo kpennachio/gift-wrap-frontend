@@ -1,16 +1,15 @@
 import React, { Component} from 'react';
 import { connect } from 'react-redux'
 
-import { Grid, Form, Button, Icon, Modal, Header, Input } from 'semantic-ui-react'
+import { Grid, Form, Button } from 'semantic-ui-react'
 
 import { resetState } from '../../resetState'
 
-import BudgetForm from './BudgetForm'
 
 
 
-class Budget extends Component {
-s
+class BudgetForm extends Component {
+
   state = {
     edit: false,
     budgetObj: "",
@@ -61,30 +60,9 @@ s
     }
   }
 
-  showBudgetForm = () => {
 
-  }
 
-  findBudget = () => {
-    if (this.props.budgets) {
-      let budgetObj = this.props.budgets.find(budget => budget.year === this.props.year)
-      if (budgetObj) {
-        return (
-          <div onClick={this.showBudgetForm}>
-            <p>{`Max $${parseInt(budgetObj.budget)}`}</p>
-            <Icon name="pencil" />
-          </div>
-        )
-      }
-      else {
-        return (
-          <div onClick={this.showBudgetForm}>
-            <p>Add Max Budget</p>
-          </div>
-        )
-      }
-    }
-  }
+  
 
 
   showAddBudget = (e) => {
@@ -97,15 +75,6 @@ s
   render() {
     return (
       <div>
-      {this.findBudget()}
-      <Modal trigger={this.findBudget()} >
-        <Header content={`Your ${this.props.year} Gift Budget`} />
-        <Modal.Content>
-          <p>Set your max gift budget here:</p>
-          <Input value={this.state.budget} onChange={this.handleChange}/>
-          <Input type="submit" />
-        </Modal.Content>
-      </Modal>
       </div>
     );
 
@@ -141,4 +110,4 @@ function mapDispatchToProps(dispatch) {
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Budget);
+export default connect(mapStateToProps, mapDispatchToProps)(BudgetForm);

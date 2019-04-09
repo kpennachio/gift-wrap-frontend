@@ -48,7 +48,10 @@ const BudgetContainer = ({events, year, changeYear}) => {
             text={`${percentage}%`}
           />
           <p>Budget</p>
-          <Budget year={year}/>
+          <div>
+            <p>{`Total Budgeted $${allocatedBudget()}`}</p>
+          </div>
+          <Budget year={year} />
         </div>
         <div className="budget-spend-circle">
           <CircularProgressbar

@@ -16,8 +16,10 @@ const GiftCard = ({gift}) => {
     <Card
       as={Link} to={`my-gifts/${gift.id}`}
     >
-      <h3>{gift.name}</h3>
+      <Card.Header>{gift.name}</Card.Header>
+      <Card.Content>
       <Image src={gift.image} alt={gift.name}/>
+      </Card.Content>
 
     </Card>
 
