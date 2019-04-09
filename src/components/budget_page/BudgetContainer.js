@@ -38,9 +38,9 @@ const BudgetContainer = ({events, year, changeYear}) => {
   const percentage = 80
   return (
     <div>
-      <Icon onClick={yearBack} name='caret left' />
-      <h2>{year}</h2>
-      <Icon onClick={yearForward} name='caret right' />
+      <Icon className="year-arrow" onClick={yearBack} name='caret left' />
+      <h2 className="year-arrow">{year}</h2>
+      <Icon className="year-arrow" onClick={yearForward} name='caret right' />
       <div className="budget-circle-container">
         <div className="budget-main-circle">
           <CircularProgressbar

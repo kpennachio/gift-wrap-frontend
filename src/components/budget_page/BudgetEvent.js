@@ -27,7 +27,7 @@ class BudgetEvent extends Component {
   renderPeople = () => {
     return this.props.pges.map(pge => {
       return(
-        <Grid>
+        <Grid key={uuid()}>
         <Grid.Column width={4}></Grid.Column>
         <Grid.Column width={5}><p>{pge.person.name}</p></Grid.Column>
         <PersonBudget pge={pge}/>

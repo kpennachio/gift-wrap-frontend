@@ -116,6 +116,9 @@ img {
   display: inline-block;
 }
 
+
+/* ##########################   BUDGET PAGE   ############################ */
+
 .planner-content {
   padding-top: 90px;
   padding-left: 15%;
@@ -129,7 +132,11 @@ img {
   border-color: black;
 }
 
-
+.year-arrow {
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px;
+}
 
 .budget-circle-container {
   margin-top: 50px;
@@ -149,6 +156,7 @@ img {
 
 }
 
+/* #######  BUDGET PAGE CIRCLE PROGRESS BARS   ############################ */
 /*############################################################################S
  * react-circular-progressbar styles
  *

@@ -39,7 +39,7 @@ class PersonBudget extends Component {
       pge.person = this.props.pge.person
       resetState(this.props.currentUser.id)
       this.props.editPersonGiftEvent(pge)
-      this.setState({edit: false})
+      // this.setState({edit: false})
     })
   }
 
