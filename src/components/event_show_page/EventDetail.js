@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import uuid from 'uuid'
 
-// import { Card } from 'semantic-ui-react'
+import { Card } from 'semantic-ui-react'
 
 import EventPersonCard from './EventPersonCard'
 import OtherGift from './OtherGift'
@@ -133,9 +133,9 @@ class EventDetail extends Component {
         <p>{this.props.event.dateFormatted}</p>
         <p>{this.props.event.notes ? `Notes: ${this.props.event.notes}` : "Add notes"}</p>
         {this.missingGifts() ? "Missing Gifts!" : "Gifts Complete!"}
-        <div>
+        <Card.Group>
         {this.people()}
-        </div>
+        </Card.Group>
 
         <h2>Saved Event Gift Ideas</h2>
         {this.renderEventGiftIdeas()}
@@ -145,7 +145,9 @@ class EventDetail extends Component {
 
 
         <h2>See other gifts</h2>
-        {this.renderOtherGifts()}
+        <Card.Group>
+          {this.renderOtherGifts()}
+        </Card.Group>
       </div>
     );
   }

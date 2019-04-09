@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import { Card } from 'semantic-ui-react'
+import { Card, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 
@@ -17,7 +17,7 @@ const GiftCard = ({gift}) => {
       as={Link} to={`my-gifts/${gift.id}`}
     >
       <h3>{gift.name}</h3>
-      <img src={gift.image} alt={gift.name}/>
+      <Image src={gift.image} alt={gift.name}/>
 
     </Card>
 

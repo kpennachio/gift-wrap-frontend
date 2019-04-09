@@ -40,9 +40,11 @@ const EventPersonCard = (props) => {
     }
     else {
       return (
-        <div>
-          <img src={pge.gift.image} alt={pge.gift.name}/>
-          <Button onClick={removeGift}>X</Button>
+        <div id="event-person-card">
+          <div className="gift-image">
+            <img src={pge.gift.image} alt={pge.gift.name}/>
+          </div>
+          <Button id="remove-gift" onClick={removeGift}>X</Button>
         </div>
       )
     }

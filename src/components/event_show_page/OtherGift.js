@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import { Card, Button } from 'semantic-ui-react'
+import { Card, Button, Image } from 'semantic-ui-react'
 
 import { resetState } from '../../resetState'
 
@@ -77,10 +77,13 @@ const OtherGift = (props) => {
 
   return (
     <Card>
-      <h3>{gift.name}</h3>
-      <Button onClick={saveIdeaEvent}>Save idea for event</Button>
-      <Button onClick={saveIdeaPerson}>{`Save idea for ${selectedPerson.name}`}</Button>
-      <Button onClick={selectGift}>{`Select this gift for ${selectedPerson.name}`}</Button>
+      <Card.Header>{gift.name}</Card.Header>
+      <Card.Content>
+      <Image src={gift.image} alt={gift.name}/>
+      </Card.Content>
+        <Button onClick={saveIdeaEvent}>Save idea for event</Button>
+        <Button onClick={saveIdeaPerson}>{`Save idea for ${selectedPerson.name}`}</Button>
+        <Button onClick={selectGift}>{`Select this gift for ${selectedPerson.name}`}</Button>
     </Card>
   );
 

@@ -93,7 +93,28 @@
   border-color: blue;
 }
 
+#event-person-card {
+  /* display: inline-block; */
+}
 
+#remove-gift {
+  display: inline-block;
+}
+
+
+.gift-image {
+  height: 100px;
+  width: 100px;
+  overflow: hidden;
+  display: inline-block;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  display: inline-block;
+}
 
 .planner-content {
   padding-top: 90px;
@@ -107,6 +128,8 @@
   border-width: thin;
   border-color: black;
 }
+
+
 
 .budget-circle-container {
   margin-top: 50px;
