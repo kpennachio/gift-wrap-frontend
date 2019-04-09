@@ -10,31 +10,49 @@ import BudgetForm from './BudgetForm'
 
 
 class Budget extends Component {
-s
+
   state = {
     edit: false,
     budgetObj: "",
     budgetId: "",
-    budget: "",
-    formStyle: "none",
-    buttonStyle: "block"
+    budget: this.props.budget.budget,
+    showModal: false
   }
-  //
-  //
-  //
-  // changeBudget = () => {
-  //   this.setState({edit: true})
-  // }
-  //
+
+
+
   addNewBudget = () => {
 
     let data = {
       user_id: this.props.currentUser.id,
-      budget: parseInt(this.state.budget),
+      budget: parseInt(this.props.budget.budget),
       year: this.props.year
     }
-    fetch(`${this.props.url}/budgets`, {
-      method: "POST",
+    console.log(data);
+    // fetch(`${this.props.url}/budgets`, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     "Accept": "application/json"
+    //   },
+    //   body: JSON.stringify(data)
+    // })
+    // .then(resp => resp.json())
+    // .then(budget => {
+    //   this.setState({budgetId: budget.id})
+    //   console.log(budget);
+    // })
+  }
+
+  editBudget = () => {
+    let data = {
+      user_id: this.props.currentUser.id,
+      budget: this.state.budget,
+      year: this.props.year
+    }
+    console.log(data);
+    fetch(`${this.props.url}/budgets/${this.state.budgetId}`, {
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json"
@@ -43,7 +61,7 @@ s
     })
     .then(resp => resp.json())
     .then(budget => {
-      this.setState({budgetId: budget.id})
+      this.setState({budget: budget.budget})
       console.log(budget);
     })
   }
@@ -53,57 +71,72 @@ s
   }
 
   handleSubmit = () => {
-    if (this.state.budgetId !== ""){
+    if (this.state.budgetId === ""){
+      console.log("add budget");
       this.addNewBudget()
     }
     else {
       console.log("edit budget");
+      console.log(this.state.budgetId);
+      console.log(this.state.budget);
+      this.editBudget()
     }
   }
 
-  showBudgetForm = () => {
 
-  }
+  // this.setState({budget: parseInt(budgetObj.budget)})
 
   findBudget = () => {
-    if (this.props.budgets) {
-      let budgetObj = this.props.budgets.find(budget => budget.year === this.props.year)
-      if (budgetObj) {
+    if (this.props.budget) {
+      // let budgetObj = this.props.budgets.find(budget => budget.year === this.props.year)
+
+      if (this.props.budget.budget) {
+
         return (
-          <div onClick={this.showBudgetForm}>
-            <p>{`Max $${parseInt(budgetObj.budget)}`}</p>
-            <Icon name="pencil" />
+          <div onClick={(e) => this.setId(e, this.props.budget)}>
+            <p>{`Max $${parseInt(this.props.budget.budget)}`}</p>
+            <Icon name="pencil"/>
           </div>
         )
       }
       else {
         return (
-          <div onClick={this.showBudgetForm}>
+          <div onClick={this.clearId}>
             <p>Add Max Budget</p>
+            <Icon name="pencil"/>
           </div>
         )
       }
     }
   }
 
+  setId = (e, budgetObj) => {
+    console.log("set");
+    this.setState({budgetId: budgetObj.id, budget: budgetObj.budget})
+  }
 
-  showAddBudget = (e) => {
-    this.setState({formStyle: "block"})
-    this.setState({buttonStyle: "none"})
+  clearId = (e) => {
+    console.log("clear");
+    this.setState({budgetId: ""})
+  }
+
+  closeModal = () => {
+    this.setState({ showModal: false })
   }
 
 
-
   render() {
+
     return (
       <div>
-      {this.findBudget()}
-      <Modal trigger={this.findBudget()} >
+      <Modal onClose={this.closeModal} open={showModal} trigger={<Button>{this.findBudget()}</Button>} >
         <Header content={`Your ${this.props.year} Gift Budget`} />
         <Modal.Content>
           <p>Set your max gift budget here:</p>
-          <Input value={this.state.budget} onChange={this.handleChange}/>
-          <Input type="submit" />
+          <Form onSubmit={this.handleSubmit}>
+            <Input value={this.state.budget} onChange={this.handleChange}/>
+            <Input type="submit"/>
+          </Form>
         </Modal.Content>
       </Modal>
       </div>
@@ -113,24 +146,14 @@ s
 
 }
 
-// <div>
-//
-//
-//
-//     <Button onClick={this.showAddBudget} style={{display: this.state.buttonStyle}}>Add a budget</Button>
-//     <div id="add-budget" style={{display: this.state.formStyle}}>
-//     <p>Add a budget</p>
-//     <Form onSubmit={this.handleSubmit}>
-//       <Form.Input size="mini" value={this.state.budget} onChange={this.handleChange}/>
-//     </Form>
-//   </div>
-// </div>
+
 
 function mapStateToProps(state) {
   return {
     currentUser: state.currentUser,
     budgets: state.budgets,
-    url: state.url
+    url: state.url,
+    budget: state.budget
   }
 }
 

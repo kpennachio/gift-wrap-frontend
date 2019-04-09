@@ -29,6 +29,10 @@ class App extends Component {
       this.props.setPeople(user.people)
       this.props.setGifts(user.gifts)
       this.props.setBudgets(user.budgets)
+      let budget = user.budgets.find(budget => budget.year === 2019)
+      if (budget) {
+        this.props.setBudget(budget)
+      }
     })
   }
 
@@ -71,7 +75,8 @@ function mapDispatchToProps(dispatch) {
     setEvents: (events) => dispatch({type: "SET_EVENTS", payload: events}),
     setPeople: (people) => dispatch({type: "SET_PEOPLE", payload: people}),
     setGifts: (gifts) => dispatch({type: "SET_GIFTS", payload: gifts}),
-    setBudgets: (budgets) => dispatch({type: "SET_BUDGETS", payload: budgets})
+    setBudgets: (budgets) => dispatch({type: "SET_BUDGETS", payload: budgets}),
+    setBudget: (budget) => dispatch({type: "SET_BUDGET", payload: budget})
   }
 }
 

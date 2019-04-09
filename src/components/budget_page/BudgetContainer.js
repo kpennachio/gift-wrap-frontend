@@ -11,8 +11,8 @@ import { Icon } from 'semantic-ui-react'
 const BudgetContainer = ({events, year, changeYear}) => {
 
   const allocatedBudget = () => {
-
-      let subtotal = events.map(event => {
+    let selectedEvents = events.filter(event => event.year === year)
+      let subtotal = selectedEvents.map(event => {
           if (event.person_gift_events.length > 1) {
             return event.person_gift_events.reduce((sum, pge) => sum.price_max + pge.price_max)
           }
