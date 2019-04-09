@@ -29,7 +29,7 @@ class Budgeter extends Component {
   render() {
     return (
       <div>
-      <h1>Your Gift Budget</h1>
+      <h1>My Gift Budget</h1>
       <BudgetContainer year={this.state.year} changeYear={this.changeYear}/>
       <BudgetEventContainer year={this.state.year}/>
       </div>

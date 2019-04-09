@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 import Budget from './Budget'
+import Paid from './Paid'
 
 import CircularProgressbar from 'react-circular-progressbar';
 
@@ -26,6 +27,24 @@ const BudgetContainer = ({events, year, changeYear, budget, budgets, setBudget})
       }
       else return 0
   }
+
+  const amountPaid = () => {
+    let selectedEvents = events.filter(event => event.year === year)
+      let subtotal = selectedEvents.map(event => {
+          if (event.person_gift_events.length > 1) {
+            return event.person_gift_events.reduce((sum, pge) => parseInt(sum.gift_actual_cost) + parseInt(pge.gift_actual_cost))
+          }
+          else if (event.person_gift_events.length === 1) {
+            return parseInt(event.person_gift_events[0].gift_actual_cost)
+          }
+          else return 0
+        })
+      if (subtotal.length > 0) {
+        return subtotal.reduce((sum, price) => sum + price)
+      }
+      else return 0
+  }
+
 
   const yearBack = () => {
     changeYear(--year)
@@ -52,7 +71,11 @@ const BudgetContainer = ({events, year, changeYear, budget, budgets, setBudget})
     }
   }
 
-  const percentage = () => {
+  const paidPercentage = () => {
+    return Math.round((amountPaid()/allocatedBudget()) * 100)
+  }
+
+  const budgetPercentage = () => {
     if (budget) {
       return (allocatedBudget()/budget) * 100
     }
@@ -69,8 +92,8 @@ const BudgetContainer = ({events, year, changeYear, budget, budgets, setBudget})
       <div className="budget-circle-container">
         <div className="budget-main-circle">
           <CircularProgressbar
-            percentage={percentage()}
-            text={`${percentage()}%`}
+            percentage={budgetPercentage()}
+            text={`${budgetPercentage()}%`}
           />
           <div>
             <p>{`Total Budgeted $${allocatedBudget()}`}</p>
@@ -79,11 +102,10 @@ const BudgetContainer = ({events, year, changeYear, budget, budgets, setBudget})
         </div>
         <div className="budget-spend-circle">
           <CircularProgressbar
-            percentage={percentage}
-            text={`${percentage}%`}
+            percentage={paidPercentage()}
+            text={`${paidPercentage()}%`}
           />
-          <p>Total Paid</p>
-
+          <p>{`Total Spent $${amountPaid()}`}</p>
         </div>
       </div>
     </div>
