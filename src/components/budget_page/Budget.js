@@ -15,7 +15,7 @@ class Budget extends Component {
     edit: false,
     budgetObj: "",
     budgetId: "",
-    budget: this.props.budget.budget,
+    budget: "",
     showModal: false
   }
 
@@ -25,23 +25,24 @@ class Budget extends Component {
 
     let data = {
       user_id: this.props.currentUser.id,
-      budget: parseInt(this.props.budget.budget),
+      budget: this.state.budget,
       year: this.props.year
     }
     console.log(data);
-    // fetch(`${this.props.url}/budgets`, {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     "Accept": "application/json"
-    //   },
-    //   body: JSON.stringify(data)
-    // })
-    // .then(resp => resp.json())
-    // .then(budget => {
-    //   this.setState({budgetId: budget.id})
-    //   console.log(budget);
-    // })
+    fetch(`${this.props.url}/budgets`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+    .then(resp => resp.json())
+    .then(budget => {
+      console.log(budget);
+      this.props.setBudget(budget)
+      this.closeModal()
+    })
   }
 
   editBudget = () => {
@@ -59,25 +60,21 @@ class Budget extends Component {
     })
     .then(resp => resp.json())
     .then(budget => {
-      this.setState({budget: budget.budget})
       this.props.setBudget(budget)
       this.closeModal()
     })
   }
 
   handleChange = (e) => {
+    console.log(e.target.value);
     this.setState({budget: e.target.value})
   }
 
   handleSubmit = () => {
     if (this.state.budgetId === ""){
-      console.log("add budget");
       this.addNewBudget()
     }
     else {
-      console.log("edit budget");
-      console.log(this.state.budgetId);
-      console.log(this.state.budget);
       this.editBudget()
     }
   }
@@ -90,8 +87,17 @@ class Budget extends Component {
       if (this.props.budget.budget) {
 
         return (
-          <div onClick={(e) => this.setId(e, this.props.budget)}>
+          <div onClick={(e) => this.setId(e, this.props.budget.id, this.props.budget.budget)}>
             <p>{`Max $${parseInt(this.props.budget.budget)}`}</p>
+            <Icon name="pencil"/>
+          </div>
+        )
+      }
+      else if (this.props.budget.budget === null) {
+        console.log("null budget");
+        return (
+          <div onClick={(e) => this.setId(e, this.props.budget.id, "")}>
+            <p>Add Max Budget</p>
             <Icon name="pencil"/>
           </div>
         )
@@ -107,9 +113,9 @@ class Budget extends Component {
     }
   }
 
-  setId = (e, budgetObj) => {
+  setId = (e, id, budget) => {
     console.log("set");
-    this.setState({budgetId: budgetObj.id, budget: budgetObj.budget})
+    this.setState({budgetId: id, budget: budget})
   }
 
   clearId = (e) => {

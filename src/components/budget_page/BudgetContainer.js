@@ -8,7 +8,7 @@ import CircularProgressbar from 'react-circular-progressbar';
 import { Icon } from 'semantic-ui-react'
 
 
-const BudgetContainer = ({events, year, changeYear}) => {
+const BudgetContainer = ({events, year, changeYear, budget}) => {
 
   const allocatedBudget = () => {
     let selectedEvents = events.filter(event => event.year === year)
@@ -35,7 +35,15 @@ const BudgetContainer = ({events, year, changeYear}) => {
     changeYear(++year)
   }
 
-  const percentage = 80
+  const percentage = () => {
+    if (budget) {
+      return (allocatedBudget()/budget) * 100
+    }
+    else return 0
+  }
+  console.log(allocatedBudget());
+  console.log(budget);
+
   return (
     <div>
       <Icon className="year-arrow" onClick={yearBack} name='caret left' />
@@ -44,8 +52,8 @@ const BudgetContainer = ({events, year, changeYear}) => {
       <div className="budget-circle-container">
         <div className="budget-main-circle">
           <CircularProgressbar
-            percentage={percentage}
-            text={`${percentage}%`}
+            percentage={percentage()}
+            text={`${percentage()}%`}
           />
           <p>Budget</p>
           <div>
@@ -70,7 +78,8 @@ const BudgetContainer = ({events, year, changeYear}) => {
 function mapStateToProps(state) {
   return {
     currentUser: state.currentUser,
-    events: state.events
+    events: state.events,
+    budget: state.budget.budget
   }
 }
 
