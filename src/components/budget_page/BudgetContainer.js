@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 import Budget from './Budget'
-import Paid from './Paid'
 
 import CircularProgressbar from 'react-circular-progressbar';
 
@@ -57,12 +56,8 @@ const BudgetContainer = ({events, year, changeYear, budget, budgets, setBudget})
   }
 
   const changeBudget = () => {
-    console.log("year", year);
-    console.log("budgets", budgets);
     let budgetObj = budgets.find(budget => budget.year === year)
-
     if (budgetObj) {
-      console.log("setting budget");
       setBudget(budgetObj)
       return budgetObj
     }
@@ -72,17 +67,26 @@ const BudgetContainer = ({events, year, changeYear, budget, budgets, setBudget})
   }
 
   const paidPercentage = () => {
-    return Math.round((amountPaid()/allocatedBudget()) * 100)
+    if (amountPaid() === 0) {
+      return 0
+    }
+    else {
+      return Math.round((amountPaid()/allocatedBudget()) * 100)
+    }
   }
 
   const budgetPercentage = () => {
     if (budget) {
-      return (allocatedBudget()/budget) * 100
+      if (parseInt(budget) === 0) {
+        return 0
+      }
+      else {
+        return (allocatedBudget()/budget) * 100
+      }
     }
     else return 0
   }
 
-  console.log("budget", changeBudget());
 
   return (
     <div>
