@@ -62,7 +62,7 @@ class Budget extends Component {
     .then(resp => resp.json())
     .then(budget => {
       this.setState({budget: budget.budget})
-      console.log(budget);
+
     })
   }
 
@@ -84,11 +84,9 @@ class Budget extends Component {
   }
 
 
-  // this.setState({budget: parseInt(budgetObj.budget)})
 
   findBudget = () => {
     if (this.props.budget) {
-      // let budgetObj = this.props.budgets.find(budget => budget.year === this.props.year)
 
       if (this.props.budget.budget) {
 
@@ -124,12 +122,19 @@ class Budget extends Component {
     this.setState({ showModal: false })
   }
 
+  openModal = () => {
+    this.setState({ showModal: true })
+  }
+
 
   render() {
 
     return (
       <div>
-      <Modal onClose={this.closeModal} open={showModal} trigger={<Button>{this.findBudget()}</Button>} >
+      <Modal
+        onClose={this.closeModal}
+        open={this.state.showModal}
+        trigger={<Button onClick={() => this.setState({ showModal: true })}>{this.findBudget()}</Button>} >
         <Header content={`Your ${this.props.year} Gift Budget`} />
         <Modal.Content>
           <p>Set your max gift budget here:</p>
