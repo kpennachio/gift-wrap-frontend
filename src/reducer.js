@@ -9,7 +9,8 @@ let defaultState = {
   gifts: [],
   budgets: [],
   url: "http://localhost:3000/api/v1",
-  budget: {}
+  budget: {},
+  year: ""
 }
 
 function reducer(state = defaultState, action) {
@@ -28,6 +29,8 @@ function reducer(state = defaultState, action) {
       return { ...state, budgets: action.payload }
     case "SET_BUDGET":
       return { ...state, budget: action.payload }
+    case "SET_YEAR":
+      return { ...state, year: action.payload }
     // case "ADD_BUDGET":
     //   return { ...state, budgets: [...state.budgets, action.payload]}
     // case "EDIT_BUDGET":

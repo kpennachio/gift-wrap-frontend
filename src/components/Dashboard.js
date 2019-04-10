@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 import NextEvent from './dashboard/NextEvent'
+import BudgetStatus from './dashboard/BudgetStatus'
 
 
 const Dashboard = (props) => {
@@ -9,7 +10,10 @@ const Dashboard = (props) => {
   return (
     <div >
       <h1>My Dashboard</h1>
-      <NextEvent />
+      <div className="inline">
+        <NextEvent />
+        <BudgetStatus />
+      </div>
     </div>
   );
 

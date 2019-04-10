@@ -24,6 +24,9 @@ class App extends Component {
 
 
   componentDidMount() {
+    let year = new Date().getFullYear()
+    this.props.setYear(year)
+
     fetch(`${this.props.url}/users/${this.props.user_id}`)
     .then(resp => resp.json())
     .then(user => {
@@ -38,6 +41,8 @@ class App extends Component {
       }
     })
   }
+
+
 
   render() {
     return (
@@ -82,7 +87,8 @@ function mapDispatchToProps(dispatch) {
     setPeople: (people) => dispatch({type: "SET_PEOPLE", payload: people}),
     setGifts: (gifts) => dispatch({type: "SET_GIFTS", payload: gifts}),
     setBudgets: (budgets) => dispatch({type: "SET_BUDGETS", payload: budgets}),
-    setBudget: (budget) => dispatch({type: "SET_BUDGET", payload: budget})
+    setBudget: (budget) => dispatch({type: "SET_BUDGET", payload: budget}),
+    setYear: (year) => dispatch({type: "SET_YEAR", payload: year})
   }
 }
 
