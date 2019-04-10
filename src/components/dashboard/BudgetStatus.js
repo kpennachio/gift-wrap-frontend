@@ -1,14 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import uuid from 'uuid'
 import { Link } from 'react-router-dom'
 
-
-import { Button, Icon, Grid } from 'semantic-ui-react'
 import CircularProgressbar from 'react-circular-progressbar';
-
-
-import { resetState } from '../../resetState'
 
 
 

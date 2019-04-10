@@ -4,7 +4,7 @@ import uuid from 'uuid'
 
 import BudgetEvent from './BudgetEvent'
 
-import { Card, Grid, Accordion } from 'semantic-ui-react'
+import { Grid, Accordion } from 'semantic-ui-react'
 
 
 

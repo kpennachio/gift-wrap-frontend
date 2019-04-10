@@ -1,11 +1,9 @@
 import React, { Component} from 'react';
 import { connect } from 'react-redux'
 
-import { Grid, Form, Button, Icon, Modal, Header, Input } from 'semantic-ui-react'
+import { Form, Button, Icon, Modal, Header, Input } from 'semantic-ui-react'
 
-import { resetState } from '../../resetState'
 
-import BudgetForm from './BudgetForm'
 
 
 

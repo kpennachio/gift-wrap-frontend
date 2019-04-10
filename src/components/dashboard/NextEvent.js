@@ -1,13 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import uuid from 'uuid'
 import { Link } from 'react-router-dom'
 
 
-import { Button, Icon, Grid } from 'semantic-ui-react'
+import { Icon, Grid } from 'semantic-ui-react'
 
 
-import { resetState } from '../../resetState'
 
 
 

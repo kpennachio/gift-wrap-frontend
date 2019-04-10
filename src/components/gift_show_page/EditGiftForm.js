@@ -22,10 +22,10 @@ class EditGiftForm extends Component {
   }
 
   editGift = () => {
-    let data = {
-      name: this.state.name,
-      notes: this.state.notes
-    }
+    // let data = {
+    //   name: this.state.name,
+    //   notes: this.state.notes
+    // }
     // fetch(`http://localhost:3000/api/v1/people/${this.props.gift.id}`, {
     //   method: "PATCH",
     //   headers: {
