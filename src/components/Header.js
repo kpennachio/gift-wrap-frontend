@@ -21,7 +21,7 @@ export default class Header extends Component {
           onClick={this.handleItemClick}
         />
         <Menu.Item
-          as={NavLink} to='./dashboard'
+          as={NavLink} to='/dashboard'
           name="planningTools"
           context="Planning Tools"
         />
@@ -29,16 +29,16 @@ export default class Header extends Component {
           <Dropdown
             item
             text='Account Settings'
-            as={Link} to='./account'
+            as={Link} to='/account'
             >
             <Dropdown.Menu>
               <Dropdown.Item
                 text='Edit Profile'
-                as={Link} to='./account'
+                as={Link} to='/account'
                 />
               <Dropdown.Item
                 text='Logout'
-                as={Link} to='./login'
+                as={Link} to='/login'
                 />
             </Dropdown.Menu>
           </Dropdown >

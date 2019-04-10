@@ -14,7 +14,7 @@ import ChecklistDetail from './event_show_page/ChecklistDetail'
 import Person from './person_show_page/Person'
 import Gift from './gift_show_page/Gift'
 import Login from './Login'
-import EditProfile from './EditProfile'
+import Profile from './Profile'
 
 
 
@@ -49,7 +49,7 @@ class App extends Component {
           <div className="planner-content">
             <Switch>
               <Route path="/login" render={ (props) => <Login {...props} /> } />
-              <Route path="/account" render={ (props) => <EditProfile {...props} /> } />
+              <Route path="/account" render={ (props) => <Profile {...props} /> } />
 
               <Route path="/checklist/:id" render={ (props) => <ChecklistDetail {...props} /> } />
               <Route path="/checklist" component={ Checklist }/>
