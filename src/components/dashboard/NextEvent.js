@@ -27,7 +27,7 @@ const NextEvent = (props) => {
   const renderNextEvent = () => {
     if (events) {
       let noGiftEvents = orderEvents().filter(event => {
-        return event.person_gift_events.every(pge => {
+        return event.person_gift_events.some(pge => {
           return pge.gift === null
         })
       })

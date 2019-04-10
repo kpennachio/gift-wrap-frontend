@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import uuid from 'uuid'
 
-import { Card } from 'semantic-ui-react'
+import { Card, Icon } from 'semantic-ui-react'
 
 import EventPersonCard from './EventPersonCard'
 import OtherGift from './OtherGift'
@@ -125,14 +125,27 @@ class EventDetail extends Component {
 
   }
 
+  check = () => {
+    if (this.missingGifts()) {
+      return "unchecked inline"
+    }
+    else return "checked inline"
+  }
+
 
   render() {
     return (
       <div>
-        <h1>{this.props.event.title}</h1>
+        <h1 className="inline margin-right">{this.props.event.title}</h1>
+        <Icon size="big" className={this.check()} name="check circle outline" />
+
         <p>{this.props.event.dateFormatted}</p>
         <p>{this.props.event.notes ? `Notes: ${this.props.event.notes}` : "Add notes"}</p>
-        {this.missingGifts() ? "Missing Gifts!" : "Gifts Complete!"}
+        {this.missingGifts() ?
+          <p>Missing Gifts!</p>
+          :
+          <p>Gifts Complete!</p>
+        }
         <Card.Group>
         {this.people()}
         </Card.Group>

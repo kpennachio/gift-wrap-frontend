@@ -10,9 +10,6 @@ import { Link } from 'react-router-dom'
 
 const Event = ({event, pge}) => {
 
-  // const renderPeople = () => {
-  //   return pge.map(pge => <p>{pge.person.name}</p>)
-  // }
 
   const renderCheck = () => {
     if (pge.some(pge => pge.gift === null)) {

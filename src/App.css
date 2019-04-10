@@ -125,6 +125,7 @@ img {
   color: rgb(4, 151, 224);
 }
 
+
 .check.circle.outline.big.icon.unchecked.inline {
   color: rgb(220, 220, 220);
 }
@@ -152,6 +153,10 @@ img {
 
 .margin {
   margin-left: 50px;
+}
+
+.margin-right {
+  margin-right: 20px;
 }
 
 /* ##########################   BUDGET PAGE   ############################ */

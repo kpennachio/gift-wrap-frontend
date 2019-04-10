@@ -29,6 +29,7 @@ const OtherGift = (props) => {
     .then(resp => resp.json())
     .then(pgi => {
       addNewPersonGiftIdea(pgi)
+      resetState(currentUser.id)
     })
   }
 
@@ -48,6 +49,8 @@ const OtherGift = (props) => {
     .then(resp => resp.json())
     .then(egi => {
       addNewEventGiftIdea(egi)
+      resetState(currentUser.id)
+
     })
   }
 
