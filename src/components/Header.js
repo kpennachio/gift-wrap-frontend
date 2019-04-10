@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
 import { Menu, Dropdown } from 'semantic-ui-react'
-import { NavLink, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 
 export default class Header extends Component {
 
-  // state = {}
-  //
-  // handleItemClick = (e, { name }) => this.setState({ activeItem: name })
-
   render() {
-    // const { activeItem } = this.state
     return (
       <div className="header">
       <Menu fixed="top" inverted size="massive">
@@ -21,7 +16,7 @@ export default class Header extends Component {
           onClick={this.handleItemClick}
         />
         <Menu.Item
-          as={NavLink} to='/dashboard'
+          as={Link} to='/dashboard'
           name="planningTools"
           context="Planning Tools"
         />
@@ -50,7 +45,3 @@ export default class Header extends Component {
   }
 
 }
-
-
-// active={activeItem === 'planningTools'}
-// onClick={this.handleItemClick}
