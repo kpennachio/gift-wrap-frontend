@@ -24,7 +24,6 @@ export default class Header extends Component {
           <Dropdown
             item
             text='Account Settings'
-            as={Link} to='/account'
             >
             <Dropdown.Menu>
               <Dropdown.Item

@@ -46,6 +46,12 @@ const BudgetStatus = ({events, year, changeYear, budget, budgets, setBudget}) =>
     else return 0
   }
 
+  const renderBudget = () => {
+    if (budget && budget.budget) {
+      return budget.budget
+    }
+  }
+
 
   return (
     <div>
@@ -60,6 +66,7 @@ const BudgetStatus = ({events, year, changeYear, budget, budgets, setBudget}) =>
           </div>
           <div>
             <p>{`Total Budgeted $${allocatedBudget()}`}</p>
+            <p>{`${year} max gift budget: $${renderBudget()}`}</p>
           </div>
         </div>
     </div>
