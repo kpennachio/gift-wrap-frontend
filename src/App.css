@@ -119,6 +119,17 @@ img {
 }
 
 
+/* ########### CHECKLIST ############## */
+
+.check.circle.outline.big.icon.checked.inline {
+  color: rgb(4, 151, 224);
+}
+
+.check.circle.outline.big.icon.unchecked.inline {
+  color: rgb(220, 220, 220);
+}
+
+
 /* ########################## DASHBOARD ################################## */
 #checklist-container {
   background-color: white;
