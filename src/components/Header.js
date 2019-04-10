@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Menu, Dropdown } from 'semantic-ui-react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 
 
 
@@ -26,12 +26,22 @@ export default class Header extends Component {
           context="Planning Tools"
         />
         <Menu.Menu position="right">
-        <Dropdown item text='Account Settings' >
-          <Dropdown.Menu>
-            <Dropdown.Item text='Edit Profile' />
-            <Dropdown.Item text='Logout' />
-          </Dropdown.Menu>
-        </Dropdown >
+          <Dropdown
+            item
+            text='Account Settings'
+            as={Link} to='./account'
+            >
+            <Dropdown.Menu>
+              <Dropdown.Item
+                text='Edit Profile'
+                as={Link} to='./account'
+                />
+              <Dropdown.Item
+                text='Logout'
+                as={Link} to='./login'
+                />
+            </Dropdown.Menu>
+          </Dropdown >
         </Menu.Menu>
 
         </Menu>

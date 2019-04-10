@@ -13,6 +13,8 @@ import Budgeter from './Budgeter'
 import ChecklistDetail from './event_show_page/ChecklistDetail'
 import Person from './person_show_page/Person'
 import Gift from './gift_show_page/Gift'
+import Login from './Login'
+import EditProfile from './EditProfile'
 
 
 
@@ -46,6 +48,9 @@ class App extends Component {
           </div>
           <div className="planner-content">
             <Switch>
+              <Route path="/login" render={ (props) => <Login {...props} /> } />
+              <Route path="/account" render={ (props) => <EditProfile {...props} /> } />
+
               <Route path="/checklist/:id" render={ (props) => <ChecklistDetail {...props} /> } />
               <Route path="/checklist" component={ Checklist }/>
               <Route path="/dashboard" component={ Dashboard }/>
