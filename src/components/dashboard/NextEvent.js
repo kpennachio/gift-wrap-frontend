@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import uuid from 'uuid'
+import { Link } from 'react-router-dom'
 
 
-import { Button } from 'semantic-ui-react'
+import { Button, Icon, Grid } from 'semantic-ui-react'
+
 
 import { resetState } from '../../resetState'
 
@@ -26,16 +28,24 @@ const NextEvent = (props) => {
     if (events) {
       let noGiftEvents = orderEvents().filter(event => {
         return event.person_gift_events.every(pge => {
-          // debugger
           return pge.gift === null
         })
       })
       if (noGiftEvents.length > 0) {
         return (
-          <div>
-            <p>{noGiftEvents[0].title}</p>
-            <p>{noGiftEvents[0].dateFormatted}</p>
+          <div >
+          <Grid>
+            <Grid.Column width="2">
+              <Icon size="big" className="unchecked inline" name="check circle outline" />
+            </Grid.Column>
+            <Grid.Column width="12" >
+            <Link to={`/checklist/${noGiftEvents[0].id}`}>
+              <p className="inline">{noGiftEvents[0].title}</p>
+              <p>{noGiftEvents[0].dateFormatted}</p>
+            </Link>
+            </Grid.Column>
 
+          </Grid>
           </div>
         )
       }
@@ -45,7 +55,8 @@ const NextEvent = (props) => {
 
   return (
     <div id="checklist-container">
-      <p>Next on your checklist</p>
+      <h2 className="inline">Next on your checklist</h2>
+      <Link to="/checklist" className="inline margin">See All</Link>
       {renderNextEvent()}
     </div>
   );

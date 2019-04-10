@@ -123,6 +123,24 @@ img {
 #checklist-container {
   background-color: white;
   width: 400px;
+  padding-left: 20px;
+  padding-top: 20px;
+}
+
+.unchecked {
+  color: rgb(220, 220, 220);
+}
+
+.inline {
+  display: inline-block;
+}
+
+#next-event {
+  padding-left: 30px;
+}
+
+.margin {
+  margin-left: 50px;
 }
 
 /* ##########################   BUDGET PAGE   ############################ */
