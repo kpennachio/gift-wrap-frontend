@@ -104,6 +104,7 @@ class App extends Component {
         <Switch>
           <Route path="/login" render={routerProps => <Login {...routerProps}  setCurrentUserInfo={this.setCurrentUserInfo} />} />
           <Route path="/create-account" render={ (props) => <CreateAccount {...props} /> } />
+          <Route path="/" render={routerProps => <Login {...routerProps}  setCurrentUserInfo={this.setCurrentUserInfo} />} />
         </Switch>
       )
     }
