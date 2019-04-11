@@ -27,20 +27,79 @@ class App extends Component {
     let year = new Date().getFullYear()
     this.props.setYear(year)
 
-    fetch(`${this.props.url}/users/${this.props.user_id}`)
-    .then(resp => resp.json())
-    .then(user => {
-      this.props.getCurrentUser(user)
-      this.props.setEvents(user.events)
-      this.props.setPeople(user.people)
-      this.props.setGifts(user.gifts)
-      this.props.setBudgets(user.budgets)
-      let budget = user.budgets.find(budget => budget.year === 2019)
-      if (budget) {
-        this.props.setBudget(budget)
-      }
+    const jwt = localStorage.getItem('jwt')
+
+		if (jwt){
+			fetch("http://localhost:3000/api/v1/auto_login", {
+				headers: {
+					"Authorization": jwt
+				}
+			})
+				.then(res => res.json())
+				.then((response) => {
+					if (response.errors) {
+						alert(response.errors)
+					} else {
+            this.setCurrentUserInfo(response.id)
+					}
+				})
+		}
+  }
+
+  setCurrentUserInfo = (userId) => {
+      fetch(`${this.props.url}/users/${userId}`)
+      .then(resp => resp.json())
+      .then(user => {
+        this.props.getCurrentUser(user)
+        this.props.setEvents(user.events)
+        this.props.setPeople(user.people)
+        this.props.setGifts(user.gifts)
+        this.props.setBudgets(user.budgets)
+        let budget = user.budgets.find(budget => budget.year === 2019)
+        if (budget) {
+          this.props.setBudget(budget)
+        }
     })
   }
+
+
+  // we need to set the current user and the token
+	setCurrentUser = (user) => {
+		localStorage.setItem("token", user.jwt)
+    this.props.getCurrentUser(user)
+    this.props.setEvents(user.events)
+    this.props.setPeople(user.people)
+    this.props.setGifts(user.gifts)
+    this.props.setBudgets(user.budgets)
+    let budget = user.budgets.find(budget => budget.year === 2019)
+    if (budget) {
+      this.props.setBudget(budget)
+    }
+	}
+
+	// this is just so all of our data is as up to date as possible now that we are
+	// just keep state at the top level of our application in order to correctly update
+	// we must have the state be updated properly
+	updateUser = (user) => {
+    this.props.getCurrentUser(user)
+    this.props.setEvents(user.events)
+    this.props.setPeople(user.people)
+    this.props.setGifts(user.gifts)
+    this.props.setBudgets(user.budgets)
+    let budget = user.budgets.find(budget => budget.year === 2019)
+    if (budget) {
+      this.props.setBudget(budget)
+    }
+	}
+
+	// we need to reset state and remove the current user and remove the token
+	logout = () => {
+		localStorage.removeItem("token")
+		this.props.history.push("/login")
+	}
+
+
+
 
 
 
@@ -54,7 +113,7 @@ class App extends Component {
           </div>
           <div className="planner-content">
             <Switch>
-              <Route path="/login" render={ (props) => <Login {...props} /> } />
+              <Route path="/login" render={routerProps => <Login {...routerProps} setCurrentUser={this.setCurrentUser} />} />
               <Route path="/account" render={ (props) => <Profile {...props} /> } />
               <Route path="/create-account" render={ (props) => <CreateAccount {...props} /> } />
               <Route path="/checklist/:id" render={ (props) => <ChecklistDetail {...props} /> } />
