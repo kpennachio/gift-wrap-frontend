@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Input, Button } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 import { connect } from 'react-redux'
 
@@ -32,6 +32,8 @@ class Login extends Component {
 			} else {
           localStorage.setItem('jwt', response.jwt)
           this.props.setCurrentUserInfo(response.user.id)
+          this.props.history.push(`/dashboard`)
+
 				}
 			})
   }
@@ -54,6 +56,10 @@ class Login extends Component {
   // }
 
   render() {
+    if (localStorage.getItem('jwt')) {
+      return <Redirect to="/dashboard" />
+    }
+
     return (
       <div>
         <h1>Login</h1>

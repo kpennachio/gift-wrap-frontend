@@ -40,7 +40,6 @@ class App extends Component {
 					if (response.errors) {
 						alert(response.errors)
 					} else {
-            localStorage.setItem("token", response.jwt)
             this.setCurrentUserInfo(response.id)
 					}
 				})
@@ -68,7 +67,7 @@ class App extends Component {
 
 
 	logout = () => {
-		localStorage.removeItem("token")
+		localStorage.removeItem("jwt")
     this.props.getCurrentUser({})
     this.props.setEvents([])
     this.props.setPeople([])

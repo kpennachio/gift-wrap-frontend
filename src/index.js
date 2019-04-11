@@ -5,7 +5,7 @@ import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 import 'semantic-ui-css/semantic.min.css'
 
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import { createStore } from 'redux'
 import reducer from './reducer'
@@ -16,7 +16,7 @@ const store = createStore(reducer)
 ReactDOM.render(
   <Provider store={store}>
     <Router >
-      <App />
+      <Route path="/" component={App}/>
     </Router>
   </Provider>,
   document.getElementById('root')
