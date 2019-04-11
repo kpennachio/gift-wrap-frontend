@@ -180,6 +180,12 @@ img {
   background-color: rgb(249, 249, 249);
 }
 
+#login-container {
+  padding-top: 90px;
+  padding-left: 15%;
+  width: 400px;
+}
+
 .border-line {
   border-style: solid;
   border-width: thin;

@@ -38,22 +38,6 @@ class Login extends Component {
 			})
   }
 
-  // setCurrentUserInfo = (userId) => {
-  //     fetch(`${this.props.url}/users/${userId}`)
-  //     .then(resp => resp.json())
-  //     .then(user => {
-  //       this.props.getCurrentUser(user)
-  //       this.props.setEvents(user.events)
-  //       this.props.setPeople(user.people)
-  //       this.props.setGifts(user.gifts)
-  //       this.props.setBudgets(user.budgets)
-  //       let budget = user.budgets.find(budget => budget.year === 2019)
-  //       if (budget) {
-  //         this.props.setBudget(budget)
-  //       }
-  //       this.props.history.push(`/dashboard`)
-  //   })
-  // }
 
   render() {
     if (localStorage.getItem('jwt')) {
@@ -61,7 +45,7 @@ class Login extends Component {
     }
 
     return (
-      <div>
+      <div id="login-container">
         <h1>Login</h1>
           <Form onSubmit={this.handleSubmit}>
             <Form.Field control={Input} value={this.state.username} name="username" label='Username' placeholder='Username' onChange={this.handleChange} />
