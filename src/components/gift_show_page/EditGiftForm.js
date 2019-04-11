@@ -9,7 +9,11 @@ class EditGiftForm extends Component {
 
   state = {
     name: this.props.gift.name,
-    notes: this.props.gift.notes
+    notes: this.props.gift.notes,
+    image: this.props.gift.image,
+    list_price: this.props.gift.list_price,
+    store: this.props.gift.store,
+    link: this.props.gift.link,
   }
 
   handleChange = (e) => {
@@ -22,22 +26,35 @@ class EditGiftForm extends Component {
   }
 
   editGift = () => {
-    // let data = {
-    //   name: this.state.name,
-    //   notes: this.state.notes
-    // }
-    // fetch(`http://localhost:3000/api/v1/people/${this.props.gift.id}`, {
-    //   method: "PATCH",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     "Accept": "application/json"
-    //   },
-    //   body: JSON.stringify(data)
-    // })
-    // .then(resp => resp.json())
-    // .then(gift => {
-    //   this.props.editGift(gift)
-    // })
+    fetch(`http://localhost:3000/api/v1/gifts/${this.props.gift.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(this.state)
+    })
+    .then(resp => resp.json())
+    .then(gift => {
+      console.log(gift);
+      this.props.editGift(gift)
+    })
+  }
+
+  seeResult = (result) => {
+    if (result.event === "success") {
+      this.setState({image: result.info.secure_url})
+    }
+  }
+
+
+  openWidget = (e) => {
+    e.preventDefault()
+    let widget = window.cloudinary.createUploadWidget({
+      cloudName: process.env.REACT_APP_CLOUD_NAME, uploadPreset: process.env.REACT_APP_UPLOAD_PRESET,
+      sources: [ 'local', 'url']},
+      (error, result) => {this.seeResult(result)});
+    widget.open();
   }
 
   render() {
@@ -45,9 +62,21 @@ class EditGiftForm extends Component {
       <div>
         <h2>Edit Gift</h2>
         <Form onSubmit={this.handleSubmit}>
-          <Form.Field control={Input} value={this.state.name} name="name" label='Name' placeholder='Name' onChange={this.handleChange} />
-          <Form.Field control={TextArea} value={this.state.notes} name="notes" label='Notes' placeholder='Notes' onChange={this.handleChange} />
-          <Button type='submit'>Edit Gift</Button>
+        <Form.Field control={Input} name="name" label='Gift' placeholder='Gift' onChange={this.handleChange} value={this.state.name} />
+
+        <Form.Field control={Input} label='Store' name="store" placeholder='Store' value={this.state.store} onChange={this.handleChange}/>
+
+        <Form.Field control={Input} type="number" step="0.01" label='List Price' name="list_price" placeholder='List Price' value={this.state.list_price} onChange={this.handleChange}/>
+
+        <Form.Field control={Input} label='Link' name="link" placeholder='Link' value={this.state.link} onChange={this.handleChange}/>
+
+        <Form.Field control={Input} name="image" label="Image" value={this.state.image} onChange={this.handleChange}/>
+
+        <Button onClick={this.openWidget} >Select Image</Button>
+
+        <Form.Field control={TextArea} label='Notes' name="notes" placeholder='Notes' onChange={this.handleChange} value={this.state.notes}/>
+
+        <Button type='submit'>Edit Gift</Button>
         </Form>
       </div>
     )

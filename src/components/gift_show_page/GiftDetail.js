@@ -42,7 +42,7 @@ const GiftDetail = (props) => {
     })
   }
 
-
+  console.log(gift);
   return (
     <div>
       <h1>{gift.name}</h1>
