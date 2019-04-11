@@ -36,7 +36,6 @@ class EditGiftForm extends Component {
     })
     .then(resp => resp.json())
     .then(gift => {
-      console.log(gift);
       this.props.editGift(gift)
     })
   }

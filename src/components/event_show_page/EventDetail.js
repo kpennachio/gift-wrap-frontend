@@ -8,6 +8,7 @@ import EventPersonCard from './EventPersonCard'
 import OtherGift from './OtherGift'
 import PersonSavedGift from './PersonSavedGift'
 import EventSavedGift from './EventSavedGift'
+import EditEventForm from './EditEventForm'
 
 
 
@@ -16,14 +17,22 @@ class EventDetail extends Component {
 
   state = {
     selectedPerson: {},
-    personGiftEvent: {}
+    personGiftEvent: {},
+    currentPeople: []
   }
 
   componentDidMount() {
     let pge = this.props.event.person_gift_events.sort(pge => pge.id)
     this.setState({
       selectedPerson: pge[0].person,
-      personGiftEvent: pge[0]
+      personGiftEvent: pge[0],
+      currentPeople: this.findPeopleIds()
+    })
+  }
+
+  findPeopleIds = () => {
+    return this.props.event.person_gift_events.map(pge => {
+      return pge.person.id
     })
   }
 
@@ -133,6 +142,7 @@ class EventDetail extends Component {
   }
 
 
+
   render() {
     return (
       <div>
@@ -155,8 +165,7 @@ class EventDetail extends Component {
         <h2>{`Saved Gift Ideas for ${this.state.selectedPerson.name}`}</h2>
         {this.renderPersonGiftIdeas()}
 
-
-
+        <EditEventForm event={this.props.event} currentPeople={this.state.currentPeople}/>
         <h2>See other gifts</h2>
         <Card.Group>
           {this.renderOtherGifts()}
