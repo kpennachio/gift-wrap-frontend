@@ -84,13 +84,13 @@ class App extends Component {
           <Route path="/account" render={ (props) => <Profile {...props} /> } />
           <Route path="/create-account" render={ (props) => <CreateAccount {...props} /> } />
           <Route path="/checklist/:id" render={ (props) => <ChecklistDetail {...props} /> } />
-          <Route path="/checklist" component={ Checklist }/>
+          <Route path="/checklist" exact component={ Checklist }/>
           <Route path="/dashboard" component={ Dashboard }/>
           <Route path="/budgeter" component={ Budgeter }/>
           <Route path="/my-people/:id" render={ (props) => <Person {...props }/> } />
-          <Route path="/my-people" component={ PeoplePage }/>
+          <Route path="/my-people" exact component={ PeoplePage }/>
           <Route path="/my-gifts/:id" render={ (props) => <Gift {...props}/> }/>
-          <Route path="/my-gifts" component={ GiftPage }/>
+          <Route path="/my-gifts" exact component={ GiftPage }/>
         </Fragment>
       )
     }

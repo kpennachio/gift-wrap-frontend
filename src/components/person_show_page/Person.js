@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 import PersonDetail from './PersonDetail'
+import SideNav from '../SideNav'
 
 
 
@@ -17,6 +18,7 @@ const Person = (props) => {
 
   return (
     <div>
+      <SideNav />
       {returnPerson()}
     </div>
   );

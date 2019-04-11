@@ -5,6 +5,7 @@ import PersonCard from './PersonCard'
 import PersonForm from './PersonForm'
 import SideNav from './SideNav'
 
+import uuid from 'uuid'
 
 
 const PeoplePage = (props) => {
@@ -12,7 +13,7 @@ const PeoplePage = (props) => {
 
   const renderAllPeople = () => {
     return props.people.map(person => {
-      return <PersonCard key={person.id} person={person} />
+      return <PersonCard key={uuid()} person={person} />
     })
   }
 
