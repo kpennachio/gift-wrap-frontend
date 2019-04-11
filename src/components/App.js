@@ -83,6 +83,7 @@ class App extends Component {
         <Header logout={this.logout}/>
         <div className="planner-content">
           <Switch>
+            <Route path="/" exact component={ Dashboard }/>
             <Route path="/login" render={routerProps => <Login {...routerProps}  setCurrentUserInfo={this.setCurrentUserInfo} />} />
             <Route path="/account" render={ (props) => <Profile {...props} /> } />
             <Route path="/checklist/:id" render={ (props) => <ChecklistDetail {...props} /> } />
