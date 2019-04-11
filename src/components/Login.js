@@ -21,19 +21,19 @@ class Login extends Component {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
-				"Accepts": "application/json",
+				"Accept": "application/json",
 			},
 			body: JSON.stringify(this.state)
 		})
 		.then(res => res.json())
-		// .then((response) => {
-		// 	if (response.errors) {
-		// 		alert(response.errors)
-		// 	} else {
-    //       localStorage.setItem('jwt', response.jwt)
-    //       this.setCurrentUserInfo(response.user.id)
-		// 		}
-		// 	})
+		.then((response) => {
+			if (response.errors) {
+				alert(response.errors)
+			} else {
+          localStorage.setItem('jwt', response.jwt)
+          this.setCurrentUserInfo(response.user.id)
+				}
+			})
   }
 
   setCurrentUserInfo = (userId) => {
@@ -71,6 +71,14 @@ class Login extends Component {
 
 }
 
+function mapStateToProps(state) {
+  return {
+    url: state.url
+
+  }
+
+}
+
 function mapDispatchToProps(dispatch) {
   return {
     getUsers: (users) => dispatch({type: "GET_USERS", payload: users}),
@@ -84,4 +92,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
