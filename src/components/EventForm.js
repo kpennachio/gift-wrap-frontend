@@ -83,7 +83,6 @@ class EventForm extends Component {
     })
     .then(resp => resp.json())
     .then(event => {
-      console.log("event", event);
       event.dateFormatted = this.state.dateFormatted
       event.person_gift_events = []
       event.event_gift_ideas = []
@@ -204,23 +203,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventForm);
-
-//
-// <Form.Field control={Input} label='Who are you getting a gift for?'
-//   control={Dropdown}
-//   placeholder='Select people...'
-//   fluid
-//   multiple
-//   search
-//   selection
-//   options={this.dropdownOptions()}
-//   onChange={this.handleDropdown}
-// />
-
-
-// <Form.Group
-//   style={{ display: (this.state.showingNewPersonInput ? 'block' : 'none') }}>
-// <Form.Field control={Input} label='Add a New Person' placeholder='Name' />
-// </Form.Group>
-//
-// <p onClick={this.showInput}>Click to add a new person</p><br/>

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import { Button, Form, Input, TextArea } from 'semantic-ui-react'
 
+import { resetState } from '../resetState'
 
 
 class GiftForm extends Component {
@@ -73,8 +74,8 @@ class GiftForm extends Component {
     })
     .then(resp => resp.json())
     .then(gift => {
-      console.log(gift);
       this.props.addGift(gift)
+      resetState(this.props.currentUser.id)
     })
   }
 

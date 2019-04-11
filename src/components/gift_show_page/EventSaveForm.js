@@ -28,7 +28,6 @@ class EventSaveForm extends Component {
   }
 
   handleSubmit = () => {
-    console.log("submitted");
     this.state.selections.forEach(eventId => this.createNewEventGiftIdea(eventId))
   }
 
@@ -50,7 +49,6 @@ class EventSaveForm extends Component {
       this.setState({selections: []})
       this.props.addNewEventGiftIdea(egi)
       resetState(this.props.currentUser.id)
-      console.log(egi);
     })
   }
 
