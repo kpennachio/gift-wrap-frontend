@@ -5,6 +5,8 @@ import uuid from 'uuid'
 import PersonSavedGift from '../person_show_page/PersonSavedGift'
 import EventCard from './EventCard'
 import EditPersonForm from './EditPersonForm'
+import SideNav from '../SideNav'
+
 
 import { Button } from 'semantic-ui-react'
 
@@ -55,6 +57,7 @@ const PersonDetail = (props) => {
 
   return (
     <div>
+      <SideNav />
       <h1>{person.name}</h1>
       <h2>Notes:</h2>
       <p>{person.notes !== null ? person.notes : "Add notes..."}</p>

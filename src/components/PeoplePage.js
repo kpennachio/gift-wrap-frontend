@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import PersonCard from './PersonCard'
 import PersonForm from './PersonForm'
+import SideNav from './SideNav'
 
 
 
@@ -17,6 +18,7 @@ const PeoplePage = (props) => {
 
   return (
     <div>
+      <SideNav />
       <h1>My People Page</h1>
       {renderAllPeople()}
       <PersonForm />

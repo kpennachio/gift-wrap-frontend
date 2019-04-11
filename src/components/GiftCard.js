@@ -14,7 +14,7 @@ const GiftCard = ({gift}) => {
   return (
 
     <Card
-      as={Link} to={`my-gifts/${gift.id}`}
+      as={Link} to={`/my-gifts/${gift.id}`}
     >
       <Card.Header>{gift.name}</Card.Header>
       <Card.Content>

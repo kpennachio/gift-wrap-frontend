@@ -4,7 +4,6 @@ import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux'
 
 import Checklist from './Checklist'
-import SideNav from './SideNav'
 import Header from './Header'
 import Dashboard from './Dashboard'
 import PeoplePage from './PeoplePage'
@@ -111,9 +110,6 @@ class App extends Component {
       <Fragment >
 
         <Header logout={this.logout}/>
-          <div className="side-nav">
-            <SideNav />
-          </div>
           <div className="planner-content">
             <Switch>
               {this.renderLoggedIn()}

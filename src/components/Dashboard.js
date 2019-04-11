@@ -3,12 +3,15 @@ import { connect } from 'react-redux'
 
 import NextEvent from './dashboard/NextEvent'
 import BudgetStatus from './dashboard/BudgetStatus'
+import SideNav from './SideNav'
+
 
 
 const Dashboard = (props) => {
 
   return (
     <div >
+      <SideNav />
       <h1>My Dashboard</h1>
       <div className="inline">
         <NextEvent />

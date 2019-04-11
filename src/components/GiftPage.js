@@ -4,6 +4,7 @@ import uuid from 'uuid'
 
 import GiftCard from './GiftCard'
 import GiftForm from './GiftForm'
+import SideNav from './SideNav'
 
 import { Card } from 'semantic-ui-react'
 
@@ -19,6 +20,7 @@ const GiftPage = (props) => {
 
   return (
     <div>
+      <SideNav />
       <h1>My Gift Page</h1>
       <GiftForm />
       <Card.Group>

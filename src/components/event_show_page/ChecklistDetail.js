@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 import EventDetail from './EventDetail'
+import SideNav from '../SideNav'
 
 
 
@@ -16,6 +17,7 @@ const ChecklistDetail = (props) => {
 
   return (
     <div>
+      <SideNav />
       {returnEvent()}
     </div>
   );
