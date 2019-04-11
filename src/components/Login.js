@@ -31,27 +31,27 @@ class Login extends Component {
 				alert(response.errors)
 			} else {
           localStorage.setItem('jwt', response.jwt)
-          this.setCurrentUserInfo(response.user.id)
+          this.props.setCurrentUserInfo(response.user.id)
 				}
 			})
   }
 
-  setCurrentUserInfo = (userId) => {
-      fetch(`${this.props.url}/users/${userId}`)
-      .then(resp => resp.json())
-      .then(user => {
-        this.props.getCurrentUser(user)
-        this.props.setEvents(user.events)
-        this.props.setPeople(user.people)
-        this.props.setGifts(user.gifts)
-        this.props.setBudgets(user.budgets)
-        let budget = user.budgets.find(budget => budget.year === 2019)
-        if (budget) {
-          this.props.setBudget(budget)
-        }
-        this.props.history.push(`/dashboard`)
-    })
-  }
+  // setCurrentUserInfo = (userId) => {
+  //     fetch(`${this.props.url}/users/${userId}`)
+  //     .then(resp => resp.json())
+  //     .then(user => {
+  //       this.props.getCurrentUser(user)
+  //       this.props.setEvents(user.events)
+  //       this.props.setPeople(user.people)
+  //       this.props.setGifts(user.gifts)
+  //       this.props.setBudgets(user.budgets)
+  //       let budget = user.budgets.find(budget => budget.year === 2019)
+  //       if (budget) {
+  //         this.props.setBudget(budget)
+  //       }
+  //       this.props.history.push(`/dashboard`)
+  //   })
+  // }
 
   render() {
     return (

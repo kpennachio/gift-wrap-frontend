@@ -40,6 +40,7 @@ class App extends Component {
 					if (response.errors) {
 						alert(response.errors)
 					} else {
+            localStorage.setItem("token", response.jwt)
             this.setCurrentUserInfo(response.id)
 					}
 				})
@@ -63,38 +64,17 @@ class App extends Component {
   }
 
 
-  // we need to set the current user and the token
-	setCurrentUser = (user) => {
-		localStorage.setItem("token", user.jwt)
-    this.props.getCurrentUser(user)
-    this.props.setEvents(user.events)
-    this.props.setPeople(user.people)
-    this.props.setGifts(user.gifts)
-    this.props.setBudgets(user.budgets)
-    let budget = user.budgets.find(budget => budget.year === 2019)
-    if (budget) {
-      this.props.setBudget(budget)
-    }
-	}
 
-	// this is just so all of our data is as up to date as possible now that we are
-	// just keep state at the top level of our application in order to correctly update
-	// we must have the state be updated properly
-	updateUser = (user) => {
-    this.props.getCurrentUser(user)
-    this.props.setEvents(user.events)
-    this.props.setPeople(user.people)
-    this.props.setGifts(user.gifts)
-    this.props.setBudgets(user.budgets)
-    let budget = user.budgets.find(budget => budget.year === 2019)
-    if (budget) {
-      this.props.setBudget(budget)
-    }
-	}
 
-	// we need to reset state and remove the current user and remove the token
+
 	logout = () => {
 		localStorage.removeItem("token")
+    this.props.getCurrentUser({})
+    this.props.setEvents([])
+    this.props.setPeople([])
+    this.props.setGifts([])
+    this.props.setBudgets([])
+    this.props.setBudget({})
 		this.props.history.push("/login")
 	}
 
@@ -107,13 +87,13 @@ class App extends Component {
     return (
       <Fragment >
 
-        <Header />
+        <Header logout={this.logout}/>
           <div className="side-nav">
-            <SideNav/>
+            <SideNav />
           </div>
           <div className="planner-content">
             <Switch>
-              <Route path="/login" render={routerProps => <Login {...routerProps} setCurrentUser={this.setCurrentUser} />} />
+              <Route path="/login" render={routerProps => <Login {...routerProps}  setCurrentUserInfo={this.setCurrentUserInfo} />} />
               <Route path="/account" render={ (props) => <Profile {...props} /> } />
               <Route path="/create-account" render={ (props) => <CreateAccount {...props} /> } />
               <Route path="/checklist/:id" render={ (props) => <ChecklistDetail {...props} /> } />

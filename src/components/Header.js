@@ -32,7 +32,7 @@ export default class Header extends Component {
                 />
               <Dropdown.Item
                 text='Logout'
-                as={Link} to='/login'
+                onClick={this.props.logout}
                 />
             </Dropdown.Menu>
           </Dropdown >
