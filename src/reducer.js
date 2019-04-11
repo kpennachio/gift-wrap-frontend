@@ -50,6 +50,12 @@ function reducer(state = defaultState, action) {
       let otherPeople = state.people.filter(person => person.id !== action.payload.id)
 
       return { ...state, people: [ ...otherPeople, person]}
+    case "EDIT_EVENT":
+      event = state.events.find(event => event.id === action.payload.id)
+      event = action.payload
+      otherEvents = state.events.filter(event => event.id !== action.payload.id)
+
+      return { ...state, events: [ ...otherEvents, event]}
     case "ADD_NEW_PERSON_GIFT_EVENT":
       let event = state.events.find(event => event.id === action.payload.event_id)
       person = state.people.find(person => person.id === action.payload.person_id)

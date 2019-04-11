@@ -53,13 +53,34 @@ class EditEventForm extends Component {
 
     let newNames = this.state.currentPeople.filter(name => typeof name === "string")
     newNames.forEach(name => this.addNewPerson(name))
+
+    // find if there were any people removed from the event and delete their person_gift_event
+    let removedPeople = this.findPeopleIds().filter(personId => {
+      return existingPeopleIds.every(oldId => {
+        return oldId !== personId
+      })
+    })
+
+    removedPeople.forEach(personId => {
+      this.deletePersonGiftEvent(personId)
+    })
+  }
+
+  deletePersonGiftEvent = (personId) => {
+    let pge = this.props.event.person_gift_events.find(pge => pge.person.id === personId)
+    fetch(`http://localhost:3000/api/v1/person_gift_events/${pge.id}`, {
+      method: "DELETE",
+    })
+    .then(resp => {
+      console.log("deleted");
+    })
   }
 
   editEvent = () => {
     let data = {
       user_id: this.props.currentUser.id,
       title: this.state.event,
-      date: this.state.day,
+      // date: this.state.day,
       registry_link: this.state.registry_link,
       notes: this.state.notes
     }
@@ -73,6 +94,8 @@ class EditEventForm extends Component {
     })
     .then(resp => resp.json())
     .then(event => {
+      event.person_gift_events = this.props.event.person_gift_events
+      event.event_gift_ideas = this.props.event.event_gift_ideas
       this.props.editEvent(event)
     })
   }
@@ -103,6 +126,9 @@ class EditEventForm extends Component {
       person.person_gift_ideas = []
       this.props.addNewPerson(person)
       this.addNewPersonGiftEvent(person.id)
+      this.setState((prevState => ({
+        currentPeople: [...prevState.currentPeople, person.id]
+      })))
     })
   }
 
@@ -125,6 +151,7 @@ class EditEventForm extends Component {
     .then(resp => resp.json())
     .then(pge => {
       this.props.addNewPersonGiftEvent(pge)
+
     })
   }
 
@@ -147,16 +174,12 @@ class EditEventForm extends Component {
   }
 
   handlePersonChange = (e, { value }) => {
-    console.log(e.target)
-
-    console.log({value});
     this.setState({ currentPeople: value })
   }
 
 
 
   render() {
-    console.log(this.state.currentPeople);
     return(
       <div>
         <h2>Edit Event</h2>
@@ -205,7 +228,9 @@ function mapDispatchToProps(dispatch) {
     editEvent: (event) => dispatch({type: "EDIT_EVENT", payload: event}),
     addNewPersonName: (personName) => dispatch({type: "ADD_NEW_PERSON_NAME", payload: personName}),
     removeNewPersonNames: () => dispatch({type: "REMOVE_NEW_PERSON_NAMES"}),
-    addNewPersonGiftEvent: (pge) => {dispatch({type: "ADD_NEW_PERSON_GIFT_EVENT", payload: {event_id: pge.event_id, person_id: pge.person_id, id: pge.id} } )}
+    addNewPersonGiftEvent: (pge) => {dispatch({type: "ADD_NEW_PERSON_GIFT_EVENT", payload: {event_id: pge.event_id, person_id: pge.person_id, id: pge.id} } )},
+    addNewPerson: (person) => dispatch({type: "ADD_NEW_PERSON", payload: person})
+
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(EditEventForm);
