@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+
 
 import { Form, Input, Button } from 'semantic-ui-react'
 
@@ -31,26 +33,32 @@ class CreateAccount extends Component {
       body: JSON.stringify(this.state)
     })
     .then(resp => resp.json())
-    .then(user => {
-      console.log(user)
-      this.props.history.push(`/login`)
-
+    .then(response => {
+      if (response.errors) {
+        alert(response.errors)
+      }
+      else {
+        this.props.history.push(`/login`)
+      }
     })
   }
 
   render() {
     return (
-      <div id="create-account-form" className="centered">
-        <h1>Create Account</h1>
-          <Form onSubmit={this.handleSubmit}>
-            <Form.Field control={Input} value={this.state.username} name="username" label='Username' placeholder='Username' onChange={this.handleChange} />
-            <Form.Field control={Input} value={this.state.password} name="password" label='Password' placeholder='Password' onChange={this.handleChange} />
-            <Form.Field control={Input} value={this.state.email} name="email" label='Email' placeholder='Email' onChange={this.handleChange} />
-            <Form.Field control={Input} value={this.state.first_name} name="first_name" label='First Name' placeholder='First Name' onChange={this.handleChange} />
-            <Form.Field control={Input} value={this.state.last_name} name="last_name" label='Last Name' placeholder='Last Name' onChange={this.handleChange} />
+      <div>
+        <Link to="/login">Return to Login Page</Link>
+        <div id="create-account-form" className="centered">
+          <h1>Create Account</h1>
+            <Form onSubmit={this.handleSubmit}>
+              <Form.Field control={Input} value={this.state.username} name="username" label='Username' placeholder='Username' onChange={this.handleChange} />
+              <Form.Field control={Input} type="Password" value={this.state.password} name="password" label='Password' placeholder='Password' onChange={this.handleChange} />
+              <Form.Field control={Input} value={this.state.email} name="email" label='Email' placeholder='Email' onChange={this.handleChange} />
+              <Form.Field control={Input} value={this.state.first_name} name="first_name" label='First Name' placeholder='First Name' onChange={this.handleChange} />
+              <Form.Field control={Input} value={this.state.last_name} name="last_name" label='Last Name' placeholder='Last Name' onChange={this.handleChange} />
 
-            <Button type='submit'>Create Account</Button>
-          </Form>
+              <Button type='submit'>Create Account</Button>
+            </Form>
+        </div>
       </div>
     )
   }

@@ -49,7 +49,7 @@ class Login extends Component {
         <h1>Login</h1>
           <Form onSubmit={this.handleSubmit}>
             <Form.Field control={Input} value={this.state.username} name="username" label='Username' placeholder='Username' onChange={this.handleChange} />
-            <Form.Field control={Input} value={this.state.password} name="password" label='Password' placeholder='Password' onChange={this.handleChange} />
+            <Form.Field control={Input} type="Password" value={this.state.password} name="password" label='Password' placeholder='Password' onChange={this.handleChange} />
             <Button type='submit'>Login</Button>
           </Form>
           <div>

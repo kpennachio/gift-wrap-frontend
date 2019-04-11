@@ -41,8 +41,11 @@ const BudgetStatus = ({events, year, changeYear, budget, budgets, setBudget}) =>
   }
 
   const renderBudget = () => {
-    if (budget && budget.budget) {
-      return budget.budget
+    if (budget) {
+      return parseInt(budget)
+    }
+    else {
+      return 0
     }
   }
 
