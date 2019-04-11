@@ -11,7 +11,7 @@ class Profile extends Component {
 
   renderForm = () => {
     if (this.props.currentUser.username) {
-      return <ProfileForm user={this.props.currentUser}/>
+      return <ProfileForm user={this.props.currentUser} logout={this.props.logout} history={this.props.history}/>
     }
   }
 

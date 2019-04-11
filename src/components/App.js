@@ -85,7 +85,7 @@ class App extends Component {
           <Switch>
             <Route path="/" exact component={ Dashboard }/>
             <Route path="/login" render={routerProps => <Login {...routerProps}  setCurrentUserInfo={this.setCurrentUserInfo} />} />
-            <Route path="/account" render={ (props) => <Profile {...props} /> } />
+            <Route path="/account" render={ (props) => <Profile {...props} logout={this.logout} /> } />
             <Route path="/checklist/:id" render={ (props) => <ChecklistDetail {...props} /> } />
             <Route path="/checklist" exact component={ Checklist }/>
             <Route path="/dashboard" component={ Dashboard }/>
