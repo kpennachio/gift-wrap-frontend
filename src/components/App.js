@@ -77,7 +77,31 @@ class App extends Component {
 		this.props.history.push("/login")
 	}
 
+  renderLoggedIn = () => {
+    if (localStorage.getItem('jwt')) {
+      return (
+        <Fragment>
+          <Route path="/login" render={routerProps => <Login {...routerProps}  setCurrentUserInfo={this.setCurrentUserInfo} />} />
+          <Route path="/account" render={ (props) => <Profile {...props} /> } />
+          <Route path="/create-account" render={ (props) => <CreateAccount {...props} /> } />
+          <Route path="/checklist/:id" render={ (props) => <ChecklistDetail {...props} /> } />
+          <Route path="/checklist" component={ Checklist }/>
+          <Route path="/dashboard" component={ Dashboard }/>
+          <Route path="/budgeter" component={ Budgeter }/>
+          <Route path="/my-people/:id" render={ (props) => <Person {...props }/> } />
+          <Route path="/my-people" component={ PeoplePage }/>
+          <Route path="/my-gifts/:id" render={ (props) => <Gift {...props}/> }/>
+          <Route path="/my-gifts" component={ GiftPage }/>
+        </Fragment>
+      )
+    }
+    else {
+      return (
+        <Route path="/login" render={routerProps => <Login {...routerProps}  setCurrentUserInfo={this.setCurrentUserInfo} />} />
 
+      )
+    }
+  }
 
 
 
@@ -92,17 +116,7 @@ class App extends Component {
           </div>
           <div className="planner-content">
             <Switch>
-              <Route path="/login" render={routerProps => <Login {...routerProps}  setCurrentUserInfo={this.setCurrentUserInfo} />} />
-              <Route path="/account" render={ (props) => <Profile {...props} /> } />
-              <Route path="/create-account" render={ (props) => <CreateAccount {...props} /> } />
-              <Route path="/checklist/:id" render={ (props) => <ChecklistDetail {...props} /> } />
-              <Route path="/checklist" component={ Checklist }/>
-              <Route path="/dashboard" component={ Dashboard }/>
-              <Route path="/budgeter" component={ Budgeter }/>
-              <Route path="/my-people/:id" render={ (props) => <Person {...props }/> } />
-              <Route path="/my-people" component={ PeoplePage }/>
-              <Route path="/my-gifts/:id" render={ (props) => <Gift {...props}/> }/>
-              <Route path="/my-gifts" component={ GiftPage }/>
+              {this.renderLoggedIn()}
             </Switch>
           </div>
       </Fragment >
