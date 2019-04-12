@@ -109,7 +109,7 @@ class EditEventForm extends Component {
       event.person_gift_events = this.props.event.person_gift_events
       event.event_gift_ideas = this.props.event.event_gift_ideas
       this.props.editEvent(event)
-      this.props.resetState(this.props.currentUser.id)
+      resetState(this.props.currentUser.id)
     })
   }
 
