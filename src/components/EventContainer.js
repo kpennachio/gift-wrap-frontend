@@ -85,7 +85,6 @@ const EventContainer = (props) => {
   return (
     <div >
 
-      <EventForm />
       {renderEvents()}
     </div>
   );

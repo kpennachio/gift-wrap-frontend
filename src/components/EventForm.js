@@ -6,7 +6,7 @@ import MomentLocaleUtils, { formatDate, parseDate } from 'react-day-picker/momen
 import 'moment/locale/it';
 
 import 'react-day-picker/lib/style.css';
-import { Button, Form, Input, Dropdown, TextArea } from 'semantic-ui-react'
+import { Button, Form, Input, Dropdown, TextArea, Sidebar } from 'semantic-ui-react'
 
 
 
@@ -154,35 +154,37 @@ class EventForm extends Component {
   render() {
     return(
       <div>
-        <h2>Add Event</h2>
-          <Form onSubmit={this.handleSubmit}>
 
-              <Form.Field control={Input} name="event" label='Event' placeholder='Event' onChange={this.handleChange} />
+          <h2>Add Event</h2>
+            <Form onSubmit={this.handleSubmit}>
 
-              <Form.Field label='Date' control={DayPickerInput} onDayChange={this.handleDayChange} formatDate={formatDate} parseDate={parseDate} placeholder={`${formatDate(new Date())}`}/>
+                <Form.Field control={Input} name="event" label='Event' placeholder='Event' onChange={this.handleChange} />
 
-              <Form.Field
-                label='Who are you getting a gift for?'
-                control={Dropdown}
-                options={this.dropdownOptions() ? this.dropdownOptions() : []}
-                placeholder='Select people...'
-                search
-                selection
-                fluid
-                multiple
-                allowAdditions
-                onAddItem={this.handlePersonAddition}
-                onChange={this.handlePersonChange}
-              />
+                <Form.Field label='Date' control={DayPickerInput} onDayChange={this.handleDayChange} formatDate={formatDate} parseDate={parseDate} placeholder={`${formatDate(new Date())}`}/>
 
-              <Form.Field control={Input} label='Registry Link' name="registry_link" placeholder='Registry Link (optional)' onChange={this.handleChange}/>
+                <Form.Field
+                  label='Who are you getting a gift for?'
+                  control={Dropdown}
+                  options={this.dropdownOptions() ? this.dropdownOptions() : []}
+                  placeholder='Select people...'
+                  search
+                  selection
+                  fluid
+                  multiple
+                  allowAdditions
+                  onAddItem={this.handlePersonAddition}
+                  onChange={this.handlePersonChange}
+                />
+
+                <Form.Field control={Input} label='Registry Link' name="registry_link" placeholder='Registry Link (optional)' onChange={this.handleChange}/>
 
 
-              <Form.Field control={TextArea} label='Notes' name="notes" placeholder='Notes
-              (optional)' onChange={this.handleChange}/>
+                <Form.Field control={TextArea} label='Notes' name="notes" placeholder='Notes
+                (optional)' onChange={this.handleChange}/>
 
-            <Button type='submit'>Add Event</Button>
-          </Form>
+              <Button type='submit'>Add Event</Button>
+            </Form>
+        
       </div>
     )
   }
