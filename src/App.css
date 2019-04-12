@@ -67,6 +67,14 @@
 
 }
 
+.ui.vertical.overlay.right.visible.sidebar.form.menu {
+  height: 100vh !important;
+}
+
+#event-list {
+  height: 100vh;
+}
+
 
 .ui.fluid.card.event {
   padding-top: 2%;

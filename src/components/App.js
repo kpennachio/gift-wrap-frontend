@@ -80,13 +80,12 @@ class App extends Component {
     if (localStorage.getItem('jwt')) {
       return (
         <Fragment>
-        <Header logout={this.logout}/>
-        <div className="planner-content">
+
           <Switch>
             <Route path="/" exact component={ Dashboard }/>
             <Route path="/login" render={routerProps => <Login {...routerProps}  setCurrentUserInfo={this.setCurrentUserInfo} />} />
             <Route path="/account" render={ (props) => <Profile {...props} logout={this.logout} /> } />
-            <Route path="/checklist/:id" render={ (props) => <ChecklistDetail {...props} /> } />
+            <Route path="/checklist/:id" render={ (props) => <ChecklistDetail {...props} logout={this.logout} /> } />
             <Route path="/checklist" exact component={ Checklist }/>
             <Route path="/dashboard" component={ Dashboard }/>
             <Route path="/budgeter" component={ Budgeter }/>
@@ -96,7 +95,7 @@ class App extends Component {
             <Route path="/my-gifts" exact component={ GiftPage }/>
             <Route component={NotFound}/>
           </Switch>
-        </div>
+
         </Fragment>
       )
     }

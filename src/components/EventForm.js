@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import MomentLocaleUtils, { formatDate, parseDate } from 'react-day-picker/moment';
 import 'moment/locale/it';
@@ -184,7 +185,7 @@ class EventForm extends Component {
 
               <Button type='submit'>Add Event</Button>
             </Form>
-        
+
       </div>
     )
   }
