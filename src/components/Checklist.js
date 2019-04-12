@@ -1,20 +1,35 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
 import EventContainer from './EventContainer'
 import SideNav from './SideNav'
 
+import { Checkbox } from 'semantic-ui-react'
 
 
-const Checklist = (props) => {
 
-  return (
-    <div>
+class Checklist extends Component {
+
+  state = {
+    showAllEvents: false
+  }
+
+  toggleEvents = () => {
+    this.setState((prevState) => ({
+      showAllEvents: !prevState.showAllEvents
+    }))
+  }
+
+  render() {
+    return (
+      <div>
       <SideNav />
       <h1>My Events</h1>
-      < EventContainer />
-    </div>
-  );
+      <Checkbox onChange={this.toggleEvents} toggle label="Show Completed Events" />
+      <EventContainer showAllEvents={this.state.showAllEvents}/>
+      </div>
+    );
+  }
 
 }
 

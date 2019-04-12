@@ -9,23 +9,32 @@ import EventForm from './EventForm'
 
 
 const EventContainer = (props) => {
-  const { events } = props
+  const { events, showAllEvents } = props
 
 
 
   const orderEvents = () => {
     if (events) {
-      return events.sort((a, b) => {
+      let allEvents = events.sort((a, b) => {
         return new Date(a.dateFormatted) - new Date(b.dateFormatted)
       })
+
+      if (showAllEvents) {
+        return allEvents
+      }
+      else {
+        return allEvents.filter(event => event.person_gift_events.every(pge => {
+          return pge.gift !== null
+        }))
+      }
     }
   }
 
-  const renderAllEvents = () => {
-    if (events) {
-      return orderEvents().map(event => <Event key={uuid()} event={event} pge={event.person_gift_events}/>)
-    }
-  }
+  // const renderAllEvents = () => {
+  //   if (events) {
+  //     return orderEvents().map(event => <Event key={uuid()} event={event} pge={event.person_gift_events}/>)
+  //   }
+  // }
 
   const eventsByMonth = () => {
     let ordered = {}
@@ -63,7 +72,7 @@ const EventContainer = (props) => {
     }
     return array.map(a => {
       if (typeof a === "string"){
-        return <p>{a}</p>
+        return <p key={uuid()}>{a}</p>
       }
       else {
         return <Event key={uuid()} event={a} pge={a.person_gift_events}/>
