@@ -83,6 +83,9 @@ class EventForm extends Component {
     })
     .then(resp => resp.json())
     .then(event => {
+      let date = new Date(event.date)
+      event.month = date.getMonth()
+      event.year = date.getFullYear()
       event.dateFormatted = this.state.dateFormatted
       event.person_gift_events = []
       event.event_gift_ideas = []
