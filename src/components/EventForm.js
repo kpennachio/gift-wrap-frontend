@@ -14,8 +14,8 @@ import { Button, Form, Input, Dropdown, TextArea, Sidebar } from 'semantic-ui-re
 class EventForm extends Component {
 
   state = {
-    event: "",
-    day: "",
+    event: false,
+    day: false,
     notes: "",
     registry_link: "",
     dateFormatted: "",
@@ -159,12 +159,13 @@ class EventForm extends Component {
           <h2>Add Event</h2>
             <Form onSubmit={this.handleSubmit}>
 
-                <Form.Field control={Input} name="event" label='Event' placeholder='Event' onChange={this.handleChange} />
+                <Form.Field required control={Input} name="event" label='Event' placeholder='Event' onChange={this.handleChange} />
 
-                <Form.Field label='Date' control={DayPickerInput} onDayChange={this.handleDayChange} formatDate={formatDate} parseDate={parseDate} placeholder={`${formatDate(new Date())}`}/>
+                <Form.Field required label='Date' control={DayPickerInput} onDayChange={this.handleDayChange} formatDate={formatDate} parseDate={parseDate} placeholder={`${formatDate(new Date())}`}/>
 
                 <Form.Field
-                  label='Who are you getting a gift for?'
+                  required
+                  label='Who are you getting a gift for? (select at least one person)'
                   control={Dropdown}
                   options={this.dropdownOptions() ? this.dropdownOptions() : []}
                   placeholder='Select people...'
@@ -183,7 +184,15 @@ class EventForm extends Component {
                 <Form.Field control={TextArea} label='Notes' name="notes" placeholder='Notes
                 (optional)' onChange={this.handleChange}/>
 
-              <Button type='submit'>Add Event</Button>
+              <Button
+                type='submit'
+                disabled={!this.state.event
+                || !this.state.day
+                || this.state.currentPeople.length === 0
+                }
+                >
+                Add Event
+              </Button>
             </Form>
 
       </div>
