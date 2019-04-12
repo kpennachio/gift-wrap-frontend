@@ -14,7 +14,7 @@ class EditEventForm extends Component {
   state = {
     event: this.props.event.title,
     notes: this.props.event.notes,
-    day: this.props.event.date,
+    day: new Date(this.props.event.date),
     registry_link: this.props.event.registry_link,
     dateFormatted: this.props.event.dateFormatted,
     currentPeople: []
@@ -30,6 +30,15 @@ class EditEventForm extends Component {
     return this.props.event.person_gift_events.map(pge => {
       return pge.person.id
     })
+  }
+
+  handleDayChange = (day) => {
+    if (day) {
+      console.log(day);
+      this.setState({
+        dateFormatted: day.toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
+      })
+    }
   }
 
   handleChange = (e) => {
@@ -80,7 +89,7 @@ class EditEventForm extends Component {
     let data = {
       user_id: this.props.currentUser.id,
       title: this.state.event,
-      // date: this.state.day,
+      date: this.state.day.toLocaleDateString().split("/").join("-"),
       registry_link: this.state.registry_link,
       notes: this.state.notes
     }
@@ -94,6 +103,7 @@ class EditEventForm extends Component {
     })
     .then(resp => resp.json())
     .then(event => {
+      event.dateFormatted = this.state.dateFormatted
       event.person_gift_events = this.props.event.person_gift_events
       event.event_gift_ideas = this.props.event.event_gift_ideas
       this.props.editEvent(event)
@@ -186,7 +196,7 @@ class EditEventForm extends Component {
         <Form onSubmit={this.handleSubmit}>
           <Form.Field control={Input} name="event" label='Event' placeholder='Event' value={this.state.event} onChange={this.handleChange} />
 
-          <Form.Field label='Date' control={DayPickerInput} onDayChange={this.handleDayChange} formatDate={formatDate} parseDate={parseDate} placeholder={`${formatDate(new Date())}`}/>
+          <Form.Field label='Date' control={DayPickerInput} onDayChange={this.handleDayChange} formatDate={formatDate} parseDate={parseDate} value={this.state.day} placeholder={`${formatDate(new Date())}`}/>
 
           <Form.Field
             label='Who are you getting a gift for?'
