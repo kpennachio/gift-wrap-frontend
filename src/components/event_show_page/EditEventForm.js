@@ -7,6 +7,8 @@ import DayPickerInput from 'react-day-picker/DayPickerInput';
 import MomentLocaleUtils, { formatDate, parseDate } from 'react-day-picker/moment';
 import 'react-day-picker/lib/style.css';
 
+import { resetState } from '../../resetState'
+
 
 
 class EditEventForm extends Component {
@@ -107,6 +109,7 @@ class EditEventForm extends Component {
       event.person_gift_events = this.props.event.person_gift_events
       event.event_gift_ideas = this.props.event.event_gift_ideas
       this.props.editEvent(event)
+      this.props.resetState(this.props.currentUser.id)
     })
   }
 
@@ -187,7 +190,15 @@ class EditEventForm extends Component {
     this.setState({ currentPeople: value })
   }
 
-
+  handleDeleteEvent = () => {
+    fetch(`http://localhost:3000/api/v1/events/${this.props.event.id}`, {
+      method: "DELETE"
+    })
+    .then(resp => {
+      resetState(this.props.currentUser.id)
+      this.props.history.push(`/checklist`)
+    })
+  }
 
   render() {
     return(
@@ -220,6 +231,9 @@ class EditEventForm extends Component {
 
         <Button type='submit'>Edit Event</Button>
         </Form>
+        <div>
+          <Button onClick={this.handleDeleteEvent}>Delete Event</Button>
+        </div>
       </div>
     )
   }

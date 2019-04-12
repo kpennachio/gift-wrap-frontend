@@ -165,7 +165,7 @@ class EventDetail extends Component {
         <h2>{`Saved Gift Ideas for ${this.state.selectedPerson.name}`}</h2>
         {this.renderPersonGiftIdeas()}
 
-        <EditEventForm event={this.props.event} currentPeople={this.state.currentPeople}/>
+        <EditEventForm event={this.props.event} currentPeople={this.state.currentPeople} history={this.props.history}/>
         <h2>See other gifts</h2>
         <Card.Group>
           {this.renderOtherGifts()}
