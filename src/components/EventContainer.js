@@ -47,20 +47,23 @@ const EventContainer = (props) => {
   }
 
   const renderEvents = () => {
+    let months = [ "January", "February", "March", "April", "May", "June",
+           "July", "August", "September", "October", "November", "December" ]
+
+
     let yearObj = eventsByMonth()
     let array = []
     for (const year in yearObj) {
       for (const month in yearObj[year]) {
-        array.push(month)
+        array.push(`${months[month]} ${year}`)
         for (const event in yearObj[year][month]) {
           array.push(yearObj[year][month][event])
         }
       }
     }
-    console.log(array);
     return array.map(a => {
       if (typeof a === "string"){
-        return <p>a</p>
+        return <p>{a}</p>
       }
       else {
         return <Event key={uuid()} event={a} pge={a.person_gift_events}/>
@@ -74,7 +77,6 @@ const EventContainer = (props) => {
     <div >
 
       <EventForm />
-      <h2>all events</h2>
       {renderEvents()}
     </div>
   );
