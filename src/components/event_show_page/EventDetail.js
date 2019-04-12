@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import uuid from 'uuid'
 
-import { Card, Icon } from 'semantic-ui-react'
+import { Card, Icon, Sidebar, Button, Menu } from 'semantic-ui-react'
 
 import EventPersonCard from './EventPersonCard'
 import OtherGift from './OtherGift'
 import PersonSavedGift from './PersonSavedGift'
 import EventSavedGift from './EventSavedGift'
 import EditEventForm from './EditEventForm'
-
+import SideNav from '../SideNav'
+import Header from '../Header'
 
 
 
@@ -18,7 +19,8 @@ class EventDetail extends Component {
   state = {
     selectedPerson: {},
     personGiftEvent: {},
-    currentPeople: []
+    currentPeople: [],
+    showForm: false
   }
 
   componentDidMount() {
@@ -141,35 +143,62 @@ class EventDetail extends Component {
     else return "checked inline"
   }
 
+  showForm = () => {
+    this.setState({showForm: true})
+  }
 
+  handleSidebarHide = () => {
+    this.setState({showForm: false})
+  }
 
   render() {
     return (
       <div>
-        <h1 className="inline margin-right">{this.props.event.title}</h1>
-        <Icon size="big" className={this.check()} name="check circle outline" />
+      <Sidebar.Pushable>
+        <Sidebar
+        as={Menu}
+        animation="overlay"
+        vertical
+        visible={this.state.showForm}
+        direction="right"
+        width="very wide"
+        className="form"
+        onHide={this.handleSidebarHide}
+        >
+          <EditEventForm event={this.props.event} currentPeople={this.state.currentPeople} history={this.props.history}/>
+        </Sidebar>
 
-        <p>{this.props.event.dateFormatted}</p>
-        <p>{this.props.event.notes ? `Notes: ${this.props.event.notes}` : "Add notes"}</p>
-        {this.missingGifts() ?
-          <p>Missing Gifts!</p>
-          :
-          <p>Gifts Complete!</p>
-        }
-        <Card.Group>
-        {this.people()}
-        </Card.Group>
+        <Sidebar.Pusher dimmed={this.state.showForm}>
+          <Header logout={this.props.logout}/>
+          <SideNav />
+          <div className="planner-content" >
+            <h1 className="inline margin-right">{this.props.event.title}</h1>
+            <Icon size="big" className={this.check()} name="check circle outline" />
+            <Button onClick={this.showForm}>Edit Event</Button>
+            <p>{this.props.event.dateFormatted}</p>
+            <p>{this.props.event.notes ? `Notes: ${this.props.event.notes}` : "Add notes"}</p>
+            {this.missingGifts() ?
+              <p>Missing Gifts!</p>
+              :
+              <p>Gifts Complete!</p>
+            }
+            <Card.Group>
+            {this.people()}
+            </Card.Group>
 
-        <h2>Saved Event Gift Ideas</h2>
-        {this.renderEventGiftIdeas()}
-        <h2>{`Saved Gift Ideas for ${this.state.selectedPerson.name}`}</h2>
-        {this.renderPersonGiftIdeas()}
+            <h2>Saved Event Gift Ideas</h2>
+            {this.renderEventGiftIdeas()}
+            <h2>{`Saved Gift Ideas for ${this.state.selectedPerson.name}`}</h2>
+            {this.renderPersonGiftIdeas()}
 
-        <EditEventForm event={this.props.event} currentPeople={this.state.currentPeople} history={this.props.history}/>
-        <h2>See other gifts</h2>
-        <Card.Group>
-          {this.renderOtherGifts()}
-        </Card.Group>
+
+            <h2>See other gifts</h2>
+            <Card.Group>
+              {this.renderOtherGifts()}
+            </Card.Group>
+          </div>
+        </Sidebar.Pusher>
+        </Sidebar.Pushable>
       </div>
     );
   }

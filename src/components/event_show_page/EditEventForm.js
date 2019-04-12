@@ -205,12 +205,13 @@ class EditEventForm extends Component {
       <div>
         <h2>Edit Event</h2>
         <Form onSubmit={this.handleSubmit}>
-          <Form.Field control={Input} name="event" label='Event' placeholder='Event' value={this.state.event} onChange={this.handleChange} />
+          <Form.Field required control={Input} name="event" label='Event' placeholder='Event' value={this.state.event} onChange={this.handleChange} />
 
-          <Form.Field label='Date' control={DayPickerInput} onDayChange={this.handleDayChange} formatDate={formatDate} parseDate={parseDate} value={this.state.day} placeholder={`${formatDate(new Date())}`}/>
+          <Form.Field required label='Date' control={DayPickerInput} onDayChange={this.handleDayChange} formatDate={formatDate} parseDate={parseDate} value={this.state.day} placeholder={`${formatDate(new Date())}`}/>
 
           <Form.Field
-            label='Who are you getting a gift for?'
+            required
+            label='Who are you getting a gift for? (select at least one person)'
             control={Dropdown}
             options={this.dropdownOptions() ? this.dropdownOptions() : []}
             value={this.state.currentPeople}
@@ -229,7 +230,15 @@ class EditEventForm extends Component {
 
           <Form.Field control={TextArea} label='Notes' name="notes" placeholder='Notes (optional)' value={this.state.notes} onChange={this.handleChange}/>
 
-        <Button type='submit'>Edit Event</Button>
+          <Button
+            type='submit'
+            disabled={this.state.event === ""
+            || this.state.day === ""
+            || this.state.currentPeople.length === 0
+            }
+            >
+            Edit Event
+          </Button>
         </Form>
         <div>
           <Button onClick={this.handleDeleteEvent}>Delete Event</Button>
