@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import EventDetail from './EventDetail'
 import SideNav from '../SideNav'
-
+import Header from '../Header'
 
 
 const ChecklistDetail = (props) => {
@@ -17,8 +17,11 @@ const ChecklistDetail = (props) => {
 
   return (
     <div>
+      <Header logout={props.logout}/>
       <SideNav />
-      {returnEvent()}
+      <div className="planner-content" >
+        {returnEvent()}
+      </div>
     </div>
   );
 

@@ -5,6 +5,7 @@ import uuid from 'uuid'
 import GiftCard from './GiftCard'
 import GiftForm from './GiftForm'
 import SideNav from './SideNav'
+import Header from './Header'
 
 import { Card } from 'semantic-ui-react'
 
@@ -20,13 +21,15 @@ const GiftPage = (props) => {
 
   return (
     <div>
+      <Header logout={props.logout}/>
       <SideNav />
-      <h1>My Gift Page</h1>
-      <GiftForm />
-      <Card.Group>
-        {renderAllGifts()}
-      </Card.Group>
-
+      <div className="planner-content">
+        <h1>My Gift Page</h1>
+        <GiftForm />
+        <Card.Group>
+          {renderAllGifts()}
+        </Card.Group>
+      </div>
     </div>
   );
 

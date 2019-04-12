@@ -82,18 +82,18 @@ class App extends Component {
         <Fragment>
 
           <Switch>
-            <Route path="/" exact component={ Dashboard }/>
+            <Route path="/" exact render={ (props) => <Dashboard {...props} logout={this.logout} /> } />
             <Route path="/login" render={routerProps => <Login {...routerProps}  setCurrentUserInfo={this.setCurrentUserInfo} />} />
             <Route path="/account" render={ (props) => <Profile {...props} logout={this.logout} /> } />
-            <Route path="/checklist/:id" render={ (props) => <ChecklistDetail {...props} logout={this.logout} /> } />
-            <Route path="/checklist" exact component={ Checklist }/>
-            <Route path="/dashboard" component={ Dashboard }/>
-            <Route path="/budgeter" component={ Budgeter }/>
-            <Route path="/my-people/:id" render={ (props) => <Person {...props }/> } />
-            <Route path="/my-people" exact component={ PeoplePage }/>
-            <Route path="/my-gifts/:id" render={ (props) => <Gift {...props}/> }/>
-            <Route path="/my-gifts" exact component={ GiftPage }/>
-            <Route component={NotFound}/>
+            <Route path="/checklist/:id" render={ (props) => <ChecklistDetail {...props}  /> } />
+            <Route path="/checklist" exact render={ (props) => <Checklist {...props} logout={this.logout} /> } />
+            <Route path="/dashboard" render={ (props) => <Dashboard {...props} logout={this.logout} /> } />
+            <Route path="/budgeter" render={ (props) => <Budgeter {...props} logout={this.logout} /> } />
+            <Route path="/my-people/:id" render={ (props) => <Person {...props } logout={this.logout}/> } />
+            <Route path="/my-people" exact render={ (props) => <PeoplePage {...props } logout={this.logout}/> } />
+            <Route path="/my-gifts/:id" render={ (props) => <Gift {...props} logout={this.logout}/> }/>
+            <Route path="/my-gifts" exact render={ (props) => <GiftPage {...props } logout={this.logout}/> } />
+            <Route render={ (props) => <NotFound {...props } logout={this.logout}/> } />/>
           </Switch>
 
         </Fragment>

@@ -34,12 +34,11 @@ class Checklist extends Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div>
 
       <Sidebar.Pushable >
-
-
         <Sidebar
         as={Menu}
         animation="overlay"
@@ -52,9 +51,9 @@ class Checklist extends Component {
         >
           <EventForm />
         </Sidebar>
+
         <Sidebar.Pusher dimmed={this.state.showForm} id="event-list">
           <Header logout={this.props.logout}/>
-
           <SideNav />
           <div className="planner-content">
             <h1>My Events</h1>

@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import PersonCard from './PersonCard'
 import PersonForm from './PersonForm'
 import SideNav from './SideNav'
+import Header from './Header'
 
 import uuid from 'uuid'
 
@@ -19,10 +20,14 @@ const PeoplePage = (props) => {
 
   return (
     <div>
+      <Header logout={props.logout}/>
+
       <SideNav />
-      <h1>My People Page</h1>
-      {renderAllPeople()}
-      <PersonForm />
+      <div className="planner-content">
+        <h1>My People Page</h1>
+        {renderAllPeople()}
+        <PersonForm />
+      </div>
     </div>
   );
 

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import GiftDetail from './GiftDetail'
 import SideNav from '../SideNav'
-
+import Header from '../Header'
 
 
 
@@ -18,8 +18,11 @@ const Gift = (props) => {
 
   return (
     <div>
+      <Header />
       <SideNav />
-      {returnGift()}
+      <div className="planner-content" >
+        {returnGift()}
+      </div>
     </div>
   );
 
