@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
 import PersonCard from './PersonCard'
@@ -6,30 +6,64 @@ import PersonForm from './PersonForm'
 import SideNav from './SideNav'
 import Header from './Header'
 
+import { Checkbox, Sidebar, Button, Segment, Menu } from 'semantic-ui-react'
+
+
 import uuid from 'uuid'
 
 
-const PeoplePage = (props) => {
+class PeoplePage extends Component {
 
+  state = {
+    showForm: false
+  }
 
-  const renderAllPeople = () => {
-    return props.people.map(person => {
+  renderAllPeople = () => {
+    return this.props.people.map(person => {
       return <PersonCard key={uuid()} person={person} />
     })
   }
 
-  return (
-    <div>
-      <Header logout={props.logout}/>
+  showForm = () => {
+    this.setState({showForm: true})
 
-      <SideNav />
-      <div className="planner-content">
+  }
+
+  handleSidebarHide = () => {
+    this.setState({showForm: false})
+  }
+
+  render() {
+    return (
+      <div>
+      <Sidebar.Pushable>
+      <Sidebar
+      as={Menu}
+      animation="overlay"
+      vertical
+      visible={this.state.showForm}
+      direction="right"
+      width="very wide"
+      className="form"
+      onHide={this.handleSidebarHide}
+      >
+      <PersonForm />
+      </Sidebar>
+
+      <Sidebar.Pusher dimmed={this.state.showForm} >
+        <Header logout={this.props.logout}/>
+        <SideNav />
+        <div className="planner-content">
         <h1>My People Page</h1>
-        {renderAllPeople()}
-        <PersonForm />
+        <Button onClick={this.showForm}>Add a Person</Button>
+        {this.renderAllPeople()}
+        </div>
+      </Sidebar.Pusher>
+      </Sidebar.Pushable>
       </div>
-    </div>
-  );
+    );
+
+  }
 
 }
 
