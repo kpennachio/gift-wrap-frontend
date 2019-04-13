@@ -83,12 +83,11 @@
 .ui.basic.segment {
   display: flex;
   flex-direction: column;
-}
+} */
 
 .pusher {
-  display: flex;
-  flex-direction: column;
-} */
+  height: 100%;
+}
 
 .pushable {
   transform: none !important;
@@ -106,7 +105,8 @@
   padding-left: 5%;
   padding-right: 5%;
   background-color: rgb(249, 249, 249);
-  /* flex-grow: 1; */
+  height: 100vh;
+
 }
 
 

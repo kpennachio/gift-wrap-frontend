@@ -2,8 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 import PersonDetail from './PersonDetail'
-import SideNav from '../SideNav'
-import Header from '../Header'
+
 
 
 
@@ -18,11 +17,7 @@ const Person = (props) => {
 
   return (
     <div>
-      <Header logout={props.logout}/>
-      <SideNav />
-      <div className="planner-content">
         {returnPerson()}
-      </div>
     </div>
   );
 

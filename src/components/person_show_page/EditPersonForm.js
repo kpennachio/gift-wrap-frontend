@@ -45,9 +45,14 @@ class EditPersonForm extends Component {
       <div>
         <h2>Edit Person</h2>
         <Form onSubmit={this.handleSubmit}>
-          <Form.Field control={Input} value={this.state.name} name="name" label='Name' placeholder='Name' onChange={this.handleChange} />
+          <Form.Field required control={Input} value={this.state.name} name="name" label='Name' placeholder='Name' onChange={this.handleChange} />
           <Form.Field control={TextArea} value={this.state.notes} name="notes" label='Notes' placeholder='Notes' onChange={this.handleChange} />
-          <Button type='submit'>Edit Person</Button>
+          <Button
+            type='submit'
+            disabled={this.state.name === ""}
+            >
+            Edit Person
+          </Button>
         </Form>
       </div>
     )
