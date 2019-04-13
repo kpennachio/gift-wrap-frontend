@@ -51,8 +51,6 @@ class GiftPage extends Component {
 
       <Sidebar.Pusher dimmed={this.state.showForm} >
 
-          <div className="container" >
-          <Segment basic >
           <Header logout={this.props.logout}/>
           <SideNav />
           <div className="planner-content" >
@@ -61,8 +59,6 @@ class GiftPage extends Component {
             <Card.Group>
             {this.renderAllGifts()}
             </Card.Group>
-          </div>
-          </Segment>
           </div>
 
       </Sidebar.Pusher>

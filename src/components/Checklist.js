@@ -51,7 +51,7 @@ class Checklist extends Component {
           <EventForm />
         </Sidebar>
 
-        <Sidebar.Pusher dimmed={this.state.showForm} id="event-list">
+        <Sidebar.Pusher dimmed={this.state.showForm} >
           <Header logout={this.props.logout}/>
           <SideNav />
           <div className="planner-content">
