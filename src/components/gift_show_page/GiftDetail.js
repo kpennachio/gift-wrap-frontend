@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import uuid from 'uuid'
 
@@ -6,22 +6,25 @@ import EditGiftForm from './EditGiftForm'
 import GiftHistoryCard from './GiftHistoryCard'
 import PersonSaveForm from './PersonSaveForm'
 import EventSaveForm from './EventSaveForm'
+import SideNav from '../SideNav'
+import Header from '../Header'
 
-import { Button } from 'semantic-ui-react'
+import { Button, Sidebar, Menu } from 'semantic-ui-react'
 
 import { resetState } from '../../resetState'
 
 
 
-const GiftDetail = (props) => {
+class GiftDetail extends Component {
 
-  const { gift, history, currentUser, deleteGift } = props
+  state = {
+    showForm: false
+  }
 
-
-  const renderGiftHistory = () => {
-    if (gift.person_gift_events.length > 0){
-      return gift.person_gift_events.map(pge => {
-        return <GiftHistoryCard key={uuid()} event={pge.event} person={pge.person} gift={gift} pge={pge}/>
+  renderGiftHistory = () => {
+    if (this.props.gift.person_gift_events.length > 0){
+      return this.props.gift.person_gift_events.map(pge => {
+        return <GiftHistoryCard key={uuid()} event={pge.event} person={pge.person} gift={this.props.gift} pge={pge}/>
       })
     }
     else {
@@ -29,38 +32,69 @@ const GiftDetail = (props) => {
     }
   }
 
-  const handleDeleteGift = () => {
-    console.log("deleting");
-    fetch(`http://localhost:3000/api/v1/gifts/${gift.id}`, {
+  handleDeleteGift = () => {
+    fetch(`http://localhost:3000/api/v1/gifts/${this.props.gift.id}`, {
       method: "DELETE"
     })
     .then(resp => {
-      resetState(currentUser.id)
-      history.push(`/my-gifts`)
-      deleteGift(gift.id)
+      resetState(this.props.currentUser.id)
+      this.props.history.push(`/my-gifts`)
+      this.props.deleteGift(this.props.gift.id)
 
     })
   }
 
-  return (
-    <div>
-      <h1>{gift.name}</h1>
-      <img src={gift.image} alt={gift.name}/>
-      <p>Store: {gift.store}</p>
-      <p>List Price: {gift.list_price}</p>
-      <a href={gift.link}>Store Link</a>
-      <p>Notes:</p>
-      <p>{gift.notes !== null ? gift.notes : "Add notes..."}</p>
-      <h2>Gift History</h2>
-      {renderGiftHistory()}
-      <h2>Save to Person</h2>
-      <PersonSaveForm gift={gift}/>
-      <h2>Save to Event</h2>
-      <EventSaveForm gift={gift}/>
-      <EditGiftForm gift={gift}/>
-      <Button onClick={handleDeleteGift}>Delete Gift</Button>
-    </div>
-  );
+  showForm = () => {
+    this.setState({showForm: true})
+  }
+
+  handleSidebarHide = () => {
+    this.setState({showForm: false})
+  }
+
+  render() {
+    const { gift } = this.props
+
+    return (
+      <Sidebar.Pushable>
+        <Sidebar
+        as={Menu}
+        animation="overlay"
+        vertical
+        visible={this.state.showForm}
+        direction="right"
+        width="very wide"
+        className="form"
+        onHide={this.handleSidebarHide}
+        >
+          <EditGiftForm gift={gift}/>
+          <Button onClick={this.handleDeleteGift}>Delete Gift</Button>
+        </Sidebar>
+
+        <Sidebar.Pusher dimmed={this.state.showForm}>
+          <Header logout={this.props.logout}/>
+          <SideNav />
+          <div className="planner-content">
+            <h1>{gift.name}</h1>
+            <Button onClick={this.showForm}>Edit Gift</Button>
+            <img src={gift.image} alt={gift.name}/>
+            <p>Store: {gift.store}</p>
+            <p>List Price: {gift.list_price}</p>
+            <a href={gift.link}>Store Link</a>
+            <p>Notes:</p>
+            <p>{gift.notes !== null ? gift.notes : "Add notes..."}</p>
+            <h2>Gift History</h2>
+            {this.renderGiftHistory()}
+            <h2>Save to Person</h2>
+            <PersonSaveForm gift={gift}/>
+            <h2>Save to Event</h2>
+            <EventSaveForm gift={gift}/>
+          </div>
+        </Sidebar.Pusher>
+      </Sidebar.Pushable>
+    );
+
+  }
 
 }
 

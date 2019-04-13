@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import { Button, Form, Input, TextArea } from 'semantic-ui-react'
 
+import { resetState } from '../../resetState'
 
 
 class EditGiftForm extends Component {
@@ -37,6 +38,7 @@ class EditGiftForm extends Component {
     .then(resp => resp.json())
     .then(gift => {
       this.props.editGift(gift)
+      resetState(this.props.currentUser.id)
     })
   }
 
@@ -61,7 +63,7 @@ class EditGiftForm extends Component {
       <div>
         <h2>Edit Gift</h2>
         <Form onSubmit={this.handleSubmit}>
-        <Form.Field control={Input} name="name" label='Gift' placeholder='Gift' onChange={this.handleChange} value={this.state.name} />
+        <Form.Field required control={Input} name="name" label='Gift' placeholder='Gift' onChange={this.handleChange} value={this.state.name} />
 
         <Form.Field control={Input} label='Store' name="store" placeholder='Store' value={this.state.store} onChange={this.handleChange}/>
 
@@ -75,7 +77,12 @@ class EditGiftForm extends Component {
 
         <Form.Field control={TextArea} label='Notes' name="notes" placeholder='Notes' onChange={this.handleChange} value={this.state.notes}/>
 
-        <Button type='submit'>Edit Gift</Button>
+        <Button
+          type='submit'
+          disabled={this.state.name === ""}
+          >
+          Edit Gift
+        </Button>
         </Form>
       </div>
     )

@@ -165,7 +165,7 @@ class EventDetail extends Component {
         className="form"
         onHide={this.handleSidebarHide}
         >
-          <EditEventForm event={this.props.event} currentPeople={this.state.currentPeople} history={this.props.history}/>
+          <EditEventForm event={this.props.event} currentPeople={this.state.currentPeople} history={this.props.history} />
         </Sidebar>
 
         <Sidebar.Pusher dimmed={this.state.showForm}>

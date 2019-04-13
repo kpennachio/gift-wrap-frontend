@@ -143,6 +143,13 @@ function reducer(state = defaultState, action) {
       return { ...state, people: newPeople }
     case "ADD_GIFT":
       return { ...state, gifts: [ ...state.gifts, action.payload ]}
+
+    case "EDIT_GIFT":
+      let oldGift = state.gifts.find(gift => gift.id === action.payload.id)
+      gift = { ...oldGift, name: action.payload.name, notes: action.payload.notes}
+      otherGifts = state.gifts.filter(gift => gift.id !== action.payload.id)
+
+      return { ...state, gifts: [ ...otherGifts, gift]}
     case "DELETE_GIFT":
       let gifts = state.gifts.filter(gift => gift.id !== action.payload)
 
