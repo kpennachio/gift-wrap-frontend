@@ -87,7 +87,7 @@ class GiftForm extends Component {
         <h2>Add a new gift</h2>
           <Form onSubmit={this.handleSubmit}>
 
-              <Form.Field control={Input} name="name" label='Gift' placeholder='Gift' onChange={this.handleChange} value={this.state.name} />
+              <Form.Field control={Input} required name="name" label='Gift' placeholder='Gift' onChange={this.handleChange} value={this.state.name} />
 
               <Form.Field control={Input} label='Store' name="store" placeholder='Store' value={this.state.store} onChange={this.handleChange}/>
 
@@ -101,7 +101,12 @@ class GiftForm extends Component {
 
               <Form.Field control={TextArea} label='Notes' name="notes" placeholder='Notes' onChange={this.handleChange} value={this.state.notes}/>
 
-            <Button type='submit'>Add Gift</Button>
+              <Button
+                type='submit'
+                disabled={this.state.name === ""}
+                >
+                Add Gift
+              </Button>
           </Form>
       </div>
     )

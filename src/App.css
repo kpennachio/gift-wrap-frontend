@@ -69,10 +69,40 @@
 
 .ui.vertical.overlay.right.visible.sidebar.form.menu {
   height: 100vh !important;
+  color: red;
 }
 
 #event-list {
   height: 100vh;
+}
+
+.ui.massive.inverted.top.fixed.menu {
+
+}
+
+/* .ui.basic.segment {
+  display: flex;
+  flex-direction: column;
+} */
+
+.pusher {
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.planner-content {
+  margin-top: 90px;
+  margin-left: 150px;
+  margin-bottom: 50px;
+  padding-left: 5%;
+  padding-right: 5%;
+  background-color: rgb(249, 249, 249);
+  flex-grow: 1;
 }
 
 
@@ -180,12 +210,7 @@ img {
 }
 
 
-.planner-content {
-  padding-top: 90px;
-  padding-left: 15%;
-  padding-right: 10%;
-  background-color: rgb(249, 249, 249);
-}
+
 
 #login-container {
   padding-top: 90px;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import uuid from 'uuid'
 
@@ -7,31 +7,69 @@ import GiftForm from './GiftForm'
 import SideNav from './SideNav'
 import Header from './Header'
 
-import { Card } from 'semantic-ui-react'
+import { Card, Sidebar, Menu, Button, Segment } from 'semantic-ui-react'
 
 
 
-const GiftPage = (props) => {
+class GiftPage extends Component {
 
-  const renderAllGifts = () => {
-    return props.gifts.map(gift => {
+  state ={
+    showForm: false
+  }
+
+  renderAllGifts = () => {
+    return this.props.gifts.map(gift => {
       return <GiftCard key={uuid()} gift={gift} />
     })
   }
 
-  return (
-    <div>
-      <Header logout={props.logout}/>
-      <SideNav />
-      <div className="planner-content">
-        <h1>My Gift Page</h1>
-        <GiftForm />
-        <Card.Group>
-          {renderAllGifts()}
-        </Card.Group>
+  showForm = () => {
+    this.setState({showForm: true})
+  }
+
+  handleSidebarHide = () => {
+    this.setState({showForm: false})
+  }
+
+  render() {
+    return (
+      <div>
+      <Sidebar.Pushable>
+      <Sidebar
+      as={Menu}
+      animation="overlay"
+      vertical
+      visible={this.state.showForm}
+      direction="right"
+      width="very wide"
+      className="form"
+      onHide={this.handleSidebarHide}
+      >
+      <GiftForm />
+      </Sidebar>
+
+
+      <Sidebar.Pusher dimmed={this.state.showForm} >
+
+          <div className="container" >
+          <Segment basic >
+          <Header logout={this.props.logout}/>
+          <SideNav />
+          <div className="planner-content" >
+            <h1>My Gift Page</h1>
+            <Button onClick={this.showForm}>Add Gift</Button>
+            <Card.Group>
+            {this.renderAllGifts()}
+            </Card.Group>
+          </div>
+          </Segment>
+          </div>
+
+      </Sidebar.Pusher>
+      </Sidebar.Pushable>
       </div>
-    </div>
-  );
+    );
+  }
 
 }
 

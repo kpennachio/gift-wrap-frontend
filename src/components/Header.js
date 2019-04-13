@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Menu, Dropdown } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
@@ -8,7 +8,7 @@ export default class Header extends Component {
 
   render() {
     return (
-      <div className="header">
+      <Fragment>
       <Menu fixed="top" inverted size="massive">
         <Menu.Item
           name="giftWrap"
@@ -39,7 +39,7 @@ export default class Header extends Component {
         </Menu.Menu>
 
         </Menu>
-      </div>
+      </Fragment>
     )
   }
 
