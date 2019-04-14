@@ -8,7 +8,7 @@ import SideNav from './SideNav'
 import Header from './Header'
 import GiftFilter from './GiftFilter'
 
-import { Card, Sidebar, Menu, Button, Segment } from 'semantic-ui-react'
+import { Card, Sidebar, Menu, Button, Segment, Dropdown, Input } from 'semantic-ui-react'
 
 
 
@@ -85,7 +85,44 @@ class GiftPage extends Component {
     this.setState({minPrice: e.target.value})
   }
 
+  clearFilters = () => {
+    this.setState({
+      age_range: "All Ages",
+      maxPrice: "",
+      minPrice: ""
+    })
+  }
+
   render() {
+
+    const ageOptions = [
+      {
+        key: 'All Ages',
+        text: 'All Ages',
+        value: 'All Ages',
+      },
+      {
+        key: 'Babies',
+        text: 'Babies',
+        value: 'Babies',
+      },
+      {
+        key: 'Kids',
+        text: 'Kids',
+        value: 'Kids',
+      },
+      {
+        key: 'Teens',
+        text: 'Teens',
+        value: 'Teens',
+      },
+      {
+        key: 'Adults',
+        text: 'Adults',
+        value: 'Adults',
+      }
+    ]
+
     return (
       <div>
       <Sidebar.Pushable>
@@ -110,7 +147,32 @@ class GiftPage extends Component {
           <div className="planner-content" >
             <h1>My Gifts</h1>
             <Button onClick={this.showForm}>Add Gift</Button>
-            <GiftFilter filterAgeRange={this.filterAgeRange} filterMaxPrice={this.filterMaxPrice} filterMinPrice={this.filterMinPrice}/>
+            <div>
+              <Dropdown
+                placeholder="Filter by Age Range"
+                selection
+                value={this.state.age_range}
+                options={ageOptions}
+                onChange={(e, {value}) => this.filterAgeRange(e, {value})}
+              />
+              <Input
+                label="$"
+                type="number"
+                min="0"
+                value={this.state.minPrice}
+                onChange={this.filterMinPrice}
+                placeholder="Price Min"
+              />
+              <Input
+                label="$"
+                type="number"
+                min="0"
+                value={this.state.maxPrice}
+                onChange={this.filterMaxPrice}
+                placeholder="Price Max"
+              />
+              <Button onClick={this.clearFilters}>Clear Filters</Button>
+            </div>
             <Card.Group>
             {this.renderAllGifts()}
             </Card.Group>
