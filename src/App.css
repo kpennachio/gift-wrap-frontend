@@ -160,6 +160,13 @@ img {
   display: inline-block;
 }
 
+/* ########### GIFT SHOW PAGE ########### */
+
+.gift-show-image {
+  max-height: 400px;
+  max-width: 600px;
+}
+
 
 /* ########### CHECKLIST ############## */
 

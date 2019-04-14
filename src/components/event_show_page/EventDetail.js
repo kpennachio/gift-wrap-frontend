@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import uuid from 'uuid'
 
-import { Card, Icon, Sidebar, Button, Menu } from 'semantic-ui-react'
+import { Card, Icon, Sidebar, Button, Menu, Segment, Sticky } from 'semantic-ui-react'
 
 import EventPersonCard from './EventPersonCard'
 import OtherGift from './OtherGift'
@@ -187,14 +187,20 @@ class EventDetail extends Component {
             </Card.Group>
 
             <h2>Saved Event Gift Ideas</h2>
-            {this.renderEventGiftIdeas()}
+
+            <Card.Group>
+              {this.renderEventGiftIdeas()}
+            </Card.Group>
+  
             <h2>{`Saved Gift Ideas for ${this.state.selectedPerson.name}`}</h2>
-            {this.renderPersonGiftIdeas()}
-
-
+            <Card.Group>
+              {this.renderPersonGiftIdeas()}
+            </Card.Group>
             <h2>See other gifts</h2>
             <Card.Group>
+
               {this.renderOtherGifts()}
+
             </Card.Group>
           </div>
         </Sidebar.Pusher>

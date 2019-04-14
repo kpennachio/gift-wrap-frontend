@@ -77,7 +77,7 @@ class GiftDetail extends Component {
           <div className="planner-content">
             <h1>{gift.name}</h1>
             <Button onClick={this.showForm}>Edit Gift</Button>
-            <img src={gift.image} alt={gift.name}/>
+            <img className="gift-show-image" src={gift.image} alt={gift.name}/>
             <p>Store: {gift.store}</p>
             <p>List Price: {gift.list_price}</p>
             <a href={gift.link}>Store Link</a>
