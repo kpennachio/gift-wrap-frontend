@@ -18,7 +18,8 @@ class GiftPage extends Component {
     showForm: false,
     age_range: "All Ages",
     maxPrice: "",
-    minPrice: ""
+    minPrice: "",
+    searchName: ""
   }
 
   renderAllGifts = () => {
@@ -35,12 +36,21 @@ class GiftPage extends Component {
     this.setState({showForm: false})
   }
 
+  searchNameGifts = () => {
+    if (this.state.searchName !== "") {
+      return this.props.gifts.filter(gift => {
+        return gift.name.toLowerCase().includes(this.state.searchName)
+      })
+    }
+    else return this.props.gifts
+  }
+
   ageRangeGifts = () => {
     if (this.state.age_range === "All Ages") {
-      return this.props.gifts
+      return this.searchNameGifts()
     }
     else {
-      return this.props.gifts.filter(gift => {
+      return this.searchNameGifts().filter(gift => {
         return gift.age_range === this.state.age_range
       })
     }
@@ -85,11 +95,16 @@ class GiftPage extends Component {
     this.setState({minPrice: e.target.value})
   }
 
+  changeSearchName = (e) => {
+    this.setState({searchName: e.target.value})
+  }
+
   clearFilters = () => {
     this.setState({
       age_range: "All Ages",
       maxPrice: "",
-      minPrice: ""
+      minPrice: "",
+      searchName: ""
     })
   }
 
@@ -170,6 +185,11 @@ class GiftPage extends Component {
                 value={this.state.maxPrice}
                 onChange={this.filterMaxPrice}
                 placeholder="Price Max"
+              />
+              <Input
+                placeholder="Search by Name"
+                value={this.state.searchName}
+                onChange={this.changeSearchName}
               />
               <Button onClick={this.clearFilters}>Clear Filters</Button>
             </div>
