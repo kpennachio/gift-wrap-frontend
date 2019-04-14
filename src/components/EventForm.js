@@ -9,6 +9,8 @@ import 'moment/locale/it';
 import 'react-day-picker/lib/style.css';
 import { Button, Form, Input, Dropdown, TextArea, Sidebar } from 'semantic-ui-react'
 
+import { resetState } from '../resetState'
+
 
 
 class EventForm extends Component {
@@ -159,6 +161,7 @@ class EventForm extends Component {
     })
     .then(resp => resp.json())
     .then(pge => {
+      resetState(this.props.currentUser.id)
       this.props.addNewPersonGiftEvent(pge)
     })
   }

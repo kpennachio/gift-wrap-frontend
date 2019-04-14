@@ -14,7 +14,8 @@ class GiftForm extends Component {
     image: "",
     list_price: "",
     store: "",
-    link: ""
+    link: "",
+    message: ""
   }
 
   handleChange = (e) => {
@@ -76,6 +77,15 @@ class GiftForm extends Component {
     .then(gift => {
       this.props.addGift(gift)
       resetState(this.props.currentUser.id)
+      this.setState({
+        name: "",
+        notes: "",
+        image: "",
+        list_price: "",
+        store: "",
+        link: "",
+        message: "Gift added!"
+      })
     })
   }
 
@@ -85,6 +95,8 @@ class GiftForm extends Component {
     return(
       <div>
         <h2>Add a new gift</h2>
+        <p>{this.state.message}</p>
+
           <Form onSubmit={this.handleSubmit}>
 
               <Form.Field control={Input} required name="name" label='Gift' placeholder='Gift' onChange={this.handleChange} value={this.state.name} />

@@ -15,6 +15,7 @@ class EditGiftForm extends Component {
     list_price: this.props.gift.list_price,
     store: this.props.gift.store,
     link: this.props.gift.link,
+    message: ""
   }
 
   handleChange = (e) => {
@@ -39,6 +40,9 @@ class EditGiftForm extends Component {
     .then(gift => {
       this.props.editGift(gift)
       resetState(this.props.currentUser.id)
+      this.setState({
+        message: "Gift updated!"
+      })
     })
   }
 
@@ -62,6 +66,8 @@ class EditGiftForm extends Component {
     return(
       <div>
         <h2>Edit Gift</h2>
+        <p>{this.state.message}</p>
+
         <Form onSubmit={this.handleSubmit}>
         <Form.Field required control={Input} name="name" label='Gift' placeholder='Gift' onChange={this.handleChange} value={this.state.name} />
 

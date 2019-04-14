@@ -19,7 +19,8 @@ class EditEventForm extends Component {
     day: new Date(this.props.event.date),
     registry_link: this.props.event.registry_link,
     dateFormatted: this.props.event.dateFormatted,
-    currentPeople: []
+    currentPeople: [],
+    message: ""
   }
 
   componentDidMount() {
@@ -110,6 +111,10 @@ class EditEventForm extends Component {
       event.event_gift_ideas = this.props.event.event_gift_ideas
       this.props.editEvent(event)
       resetState(this.props.currentUser.id)
+
+      this.setState({
+        message: "Event updated!"
+      })
     })
   }
 
@@ -204,6 +209,7 @@ class EditEventForm extends Component {
     return(
       <div>
         <h2>Edit Event</h2>
+        <p>{this.state.message}</p>
         <Form onSubmit={this.handleSubmit}>
           <Form.Field required control={Input} name="event" label='Event' placeholder='Event' value={this.state.event} onChange={this.handleChange} />
 
