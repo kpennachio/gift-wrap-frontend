@@ -114,9 +114,9 @@ class App extends Component {
 
   render() {
     return (
-      <Fragment >
+      <div id="app">
         {this.renderLoggedIn()}
-      </Fragment >
+      </div >
     );
   }
 }

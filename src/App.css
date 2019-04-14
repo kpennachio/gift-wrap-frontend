@@ -72,6 +72,11 @@
   color: red;
 }
 
+#app {
+  background-color: rgb(249, 249, 249);
+
+}
+
 #event-list {
   height: 100vh;
 }

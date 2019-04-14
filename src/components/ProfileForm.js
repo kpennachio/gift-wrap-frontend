@@ -40,35 +40,37 @@ class ProfileForm extends Component {
     return (
       <Fragment>
       <div>
-        <Header logout={this.props.logout}/>
+        <AppHeader logout={this.props.logout}/>
+        <div className="planner-content">
+          <Form>
+            <Form.Field control={Input} value={this.state.first_name} name="first_name" label='First Name' placeholder='First Name' onChange={this.handleChange} />
+            <Form.Field control={Input} value={this.state.last_name} name="last_name" label='Last Name' placeholder='Last Name' onChange={this.handleChange} />
+            <Button type='submit'>Edit Person</Button>
+          </Form>
+        </div>
+        </div>
+        <div>
+          <Modal
+            onClose={this.closeModal}
+            open={this.state.showModal}
+            trigger={<Button onClick={() => this.setState({ showModal: true })}>Delete Account</Button>}
+            size='small'>
+            <Header icon='archive' content='Delete Account' />
+            <Modal.Content>
+              <p>
+                Are you sure you would like to delete your account?
+              </p>
+            </Modal.Content>
+            <Modal.Actions>
+              <Button onClick={this.cancelDelete} color='red' inverted>
+                <Icon name='remove' /> Cancel
+              </Button>
+              <Button onClick={this.deleteAccount} color='green' inverted>
+                <Icon name='checkmark' /> Delete Account
+              </Button>
+            </Modal.Actions>
+          </Modal>
 
-        <Form>
-          <Form.Field control={Input} value={this.state.first_name} name="first_name" label='First Name' placeholder='First Name' onChange={this.handleChange} />
-          <Form.Field control={Input} value={this.state.last_name} name="last_name" label='Last Name' placeholder='Last Name' onChange={this.handleChange} />
-          <Button type='submit'>Edit Person</Button>
-        </Form>
-      </div>
-      <div>
-        <Modal
-          onClose={this.closeModal}
-          open={this.state.showModal}
-          trigger={<Button onClick={() => this.setState({ showModal: true })}>Delete Account</Button>}
-          size='small'>
-          <Header icon='archive' content='Delete Account' />
-          <Modal.Content>
-            <p>
-              Are you sure you would like to delete your account?
-            </p>
-          </Modal.Content>
-          <Modal.Actions>
-            <Button onClick={this.cancelDelete} color='red' inverted>
-              <Icon name='remove' /> Cancel
-            </Button>
-            <Button onClick={this.deleteAccount} color='green' inverted>
-              <Icon name='checkmark' /> Delete Account
-            </Button>
-          </Modal.Actions>
-        </Modal>
       </div>
       </Fragment>
     )
