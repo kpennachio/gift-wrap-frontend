@@ -15,6 +15,7 @@ class EditGiftForm extends Component {
     list_price: this.props.gift.list_price,
     store: this.props.gift.store,
     link: this.props.gift.link,
+    age_range: this.props.gift.age_range,
     message: ""
   }
 
@@ -62,7 +63,43 @@ class EditGiftForm extends Component {
     widget.open();
   }
 
+
+  setAgeRange = (e, { value }) => {
+    this.setState({age_range: value})
+  }
+
+
   render() {
+
+    const ageOptions = [
+      {
+        key: 'All Ages',
+        text: 'All Ages',
+        value: 'All Ages',
+      },
+      {
+        key: 'Baby',
+        text: 'Baby',
+        value: 'Baby',
+      },
+      {
+        key: 'Kid',
+        text: 'Kid',
+        value: 'Kid',
+      },
+      {
+        key: 'Teen',
+        text: 'Teen',
+        value: 'Teen',
+      },
+      {
+        key: 'Adult',
+        text: 'Adult',
+        value: 'Adult',
+      },
+    ]
+
+
     return(
       <div>
         <h2>Edit Gift</h2>
@@ -80,6 +117,15 @@ class EditGiftForm extends Component {
         <Form.Field control={Input} name="image" label="Image" value={this.state.image} onChange={this.handleChange}/>
 
         <Button onClick={this.openWidget} >Select Image</Button>
+
+        <Form.Dropdown
+          label="Age Range"
+          placeholder="Select Age Range"
+          fluid
+          selection
+          options={ageOptions}
+          onChange={this.setAgeRange}
+        />
 
         <Form.Field control={TextArea} label='Notes' name="notes" placeholder='Notes' onChange={this.handleChange} value={this.state.notes}/>
 

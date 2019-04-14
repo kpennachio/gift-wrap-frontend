@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { Button, Form, Input, TextArea } from 'semantic-ui-react'
+import { Button, Form, Input, TextArea, Dropdown } from 'semantic-ui-react'
 
 import { resetState } from '../resetState'
 
@@ -15,6 +15,7 @@ class GiftForm extends Component {
     list_price: "",
     store: "",
     link: "",
+    age_range: "all ages",
     message: ""
   }
 
@@ -42,7 +43,8 @@ class GiftForm extends Component {
       image: image,
       list_price: listPrice,
       store: this.state.store,
-      link: this.state.link
+      link: this.state.link,
+      age_range: this.state.age_range
     }
 
     this.addNewGift(data)
@@ -75,6 +77,7 @@ class GiftForm extends Component {
     })
     .then(resp => resp.json())
     .then(gift => {
+      console.log(gift);
       this.props.addGift(gift)
       resetState(this.props.currentUser.id)
       this.setState({
@@ -89,9 +92,42 @@ class GiftForm extends Component {
     })
   }
 
+  setAgeRange = (e, { value }) => {
+    this.setState({age_range: value})
+  }
+
 
 
   render() {
+
+    const ageOptions = [
+      {
+        key: 'All Ages',
+        text: 'All Ages',
+        value: 'All Ages',
+      },
+      {
+        key: 'Baby',
+        text: 'Baby',
+        value: 'Baby',
+      },
+      {
+        key: 'Kid',
+        text: 'Kid',
+        value: 'Kid',
+      },
+      {
+        key: 'Teen',
+        text: 'Teen',
+        value: 'Teen',
+      },
+      {
+        key: 'Adult',
+        text: 'Adult',
+        value: 'Adult',
+      },
+    ]
+
     return(
       <div>
         <h2>Add a new gift</h2>
@@ -110,6 +146,15 @@ class GiftForm extends Component {
               <Form.Field control={Input} name="image" label="Image" value={this.state.image} onChange={this.handleChange}/>
 
               <Button onClick={this.openWidget} >Select Image</Button>
+
+              <Form.Dropdown
+                label="Age Range"
+                placeholder="Select Age Range"
+                fluid
+                selection
+                options={ageOptions}
+                onChange={this.setAgeRange}
+              />
 
               <Form.Field control={TextArea} label='Notes' name="notes" placeholder='Notes' onChange={this.handleChange} value={this.state.notes}/>
 
