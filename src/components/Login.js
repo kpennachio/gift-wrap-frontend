@@ -10,6 +10,7 @@ class Login extends Component {
   state = {
     username: "",
     password:  "",
+    message: ""
   }
 
   handleChange = (e) => {
@@ -17,26 +18,34 @@ class Login extends Component {
   }
 
   handleSubmit = (e) => {
+    let data = {
+      username: this.state.username,
+      password: this.state.password
+    }
     fetch("http://localhost:3000/api/v1/login", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
 				"Accept": "application/json",
 			},
-			body: JSON.stringify(this.state)
+			body: JSON.stringify(data)
 		})
 		.then(res => res.json())
 		.then((response) => {
 			if (response.errors) {
-				alert(response.errors)
+				this.setState({
+          message: response.errors,
+          username: "",
+          password: ""
+        })
 			} else {
           localStorage.setItem('jwt', response.jwt)
           this.props.setCurrentUserInfo(response.user.id)
           this.props.history.push(`/dashboard`)
-
 				}
 			})
   }
+
 
 
   render() {
@@ -47,10 +56,16 @@ class Login extends Component {
     return (
       <div id="login-container">
         <h1>Login</h1>
+          <p>{this.state.message}</p>
           <Form onSubmit={this.handleSubmit}>
             <Form.Field control={Input} value={this.state.username} name="username" label='Username' placeholder='Username' onChange={this.handleChange} />
             <Form.Field control={Input} type="Password" value={this.state.password} name="password" label='Password' placeholder='Password' onChange={this.handleChange} />
-            <Button type='submit'>Login</Button>
+            <Button
+              type='submit'
+              disabled={this.state.username === "" || this.state.password === ""}
+              >
+              Login
+            </Button>
           </Form>
           <div>
             <Link to="/create-account">Create Account</Link>
