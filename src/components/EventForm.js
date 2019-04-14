@@ -14,12 +14,13 @@ import { Button, Form, Input, Dropdown, TextArea, Sidebar } from 'semantic-ui-re
 class EventForm extends Component {
 
   state = {
-    event: false,
-    day: false,
+    event: "",
+    day: "",
     notes: "",
     registry_link: "",
     dateFormatted: "",
-    currentPeople: []
+    currentPeople: [],
+    message: ""
   }
 
   handleChange = (e) => {
@@ -29,7 +30,7 @@ class EventForm extends Component {
   handleDayChange = (day) => {
     if (day) {
       this.setState({
-        day: day.toLocaleDateString().split("/").join("-"),
+        day: day,
         dateFormatted: day.toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
       })
     }
@@ -70,7 +71,7 @@ class EventForm extends Component {
     let data = {
       user_id: this.props.currentUser.id,
       title: this.state.event,
-      date: this.state.day,
+      date: this.state.day.toLocaleDateString().split("/").join("-"),
       registry_link: this.state.registry_link,
       notes: this.state.notes
     }
@@ -84,14 +85,26 @@ class EventForm extends Component {
     })
     .then(resp => resp.json())
     .then(event => {
-      let date = new Date(event.date)
-      event.month = date.getMonth()
-      event.year = date.getFullYear()
-      event.dateFormatted = this.state.dateFormatted
-      event.person_gift_events = []
-      event.event_gift_ideas = []
-      this.props.addNewEvent(event)
-      this.addNewPeople(event.id)
+      if (!event.errors) {
+        let date = new Date(event.date)
+        event.month = date.getMonth()
+        event.year = date.getFullYear()
+        event.dateFormatted = this.state.dateFormatted
+        event.person_gift_events = []
+        event.event_gift_ideas = []
+        this.props.addNewEvent(event)
+        this.addNewPeople(event.id)
+
+        this.setState({
+          event: "",
+          day: "",
+          notes: "",
+          registry_link: "",
+          dateFormatted: "",
+          currentPeople: [],
+          message: "Event created!"
+        })
+      }
     })
   }
 
@@ -157,14 +170,16 @@ class EventForm extends Component {
       <div>
 
           <h2>Add Event</h2>
+          <p>{this.state.message}</p>
             <Form onSubmit={this.handleSubmit}>
 
-                <Form.Field required control={Input} name="event" label='Event' placeholder='Event' onChange={this.handleChange} />
+                <Form.Field required control={Input} value={this.state.event} name="event" label='Event' placeholder='Event' onChange={this.handleChange} />
 
-                <Form.Field required label='Date' control={DayPickerInput} onDayChange={this.handleDayChange} formatDate={formatDate} parseDate={parseDate} placeholder={`${formatDate(new Date())}`}/>
+                <Form.Field required label='Date' value={this.state.day} control={DayPickerInput} onDayChange={this.handleDayChange} formatDate={formatDate} parseDate={parseDate} placeholder={`${formatDate(new Date())}`}/>
 
                 <Form.Field
                   required
+                  value={this.state.currentPeople}
                   label='Who are you getting a gift for? (select at least one person)'
                   control={Dropdown}
                   options={this.dropdownOptions() ? this.dropdownOptions() : []}
@@ -178,16 +193,16 @@ class EventForm extends Component {
                   onChange={this.handlePersonChange}
                 />
 
-                <Form.Field control={Input} label='Registry Link' name="registry_link" placeholder='Registry Link (optional)' onChange={this.handleChange}/>
+                <Form.Field control={Input} value={this.state.registry_link} label='Registry Link' name="registry_link" placeholder='Registry Link (optional)' onChange={this.handleChange}/>
 
 
-                <Form.Field control={TextArea} label='Notes' name="notes" placeholder='Notes
+                <Form.Field control={TextArea} value={this.state.notes} label='Notes' name="notes" placeholder='Notes
                 (optional)' onChange={this.handleChange}/>
 
               <Button
                 type='submit'
-                disabled={!this.state.event
-                || !this.state.day
+                disabled={this.state.event === ""
+                || this.state.day === ""
                 || this.state.currentPeople.length === 0
                 }
                 >
