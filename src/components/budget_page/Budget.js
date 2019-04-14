@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import { Form, Button, Icon, Modal, Header, Input } from 'semantic-ui-react'
 
-
+import { resetState } from '../../resetState'
 
 
 
@@ -37,6 +37,7 @@ class Budget extends Component {
     .then(budget => {
       this.props.setBudget(budget)
       this.closeModal()
+      resetState(this.props.currentUser.id)
     })
   }
 
@@ -56,6 +57,8 @@ class Budget extends Component {
     .then(budget => {
       this.props.setBudget(budget)
       this.closeModal()
+      resetState(this.props.currentUser.id)
+
     })
   }
 

@@ -50,11 +50,6 @@ class BudgetEvent extends Component {
   }
 
 
-
-  changeBudget = () => {
-
-  }
-
   eventSpending = () => {
     if (this.props.pges.length > 1) {
       let total = this.props.pges.reduce((sum, pge) => {
