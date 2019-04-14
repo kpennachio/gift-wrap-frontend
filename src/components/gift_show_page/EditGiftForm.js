@@ -78,25 +78,25 @@ class EditGiftForm extends Component {
         value: 'All Ages',
       },
       {
-        key: 'Baby',
-        text: 'Baby',
-        value: 'Baby',
+        key: 'Babies',
+        text: 'Babies',
+        value: 'Babies',
       },
       {
-        key: 'Kid',
-        text: 'Kid',
-        value: 'Kid',
+        key: 'Kids',
+        text: 'Kids',
+        value: 'Kids',
       },
       {
-        key: 'Teen',
-        text: 'Teen',
-        value: 'Teen',
+        key: 'Teens',
+        text: 'Teens',
+        value: 'Teens',
       },
       {
-        key: 'Adult',
-        text: 'Adult',
-        value: 'Adult',
-      },
+        key: 'Adults',
+        text: 'Adults',
+        value: 'Adults',
+      }
     ]
 
 
@@ -121,6 +121,7 @@ class EditGiftForm extends Component {
         <Form.Dropdown
           label="Age Range"
           placeholder="Select Age Range"
+          value={this.state.age_range}
           fluid
           selection
           options={ageOptions}

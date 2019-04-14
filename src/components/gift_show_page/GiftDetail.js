@@ -53,6 +53,7 @@ class GiftDetail extends Component {
   }
 
   render() {
+    console.log(this.props.gift);
     const { gift } = this.props
     return (
       <Sidebar.Pushable>

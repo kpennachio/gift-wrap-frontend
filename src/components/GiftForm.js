@@ -15,7 +15,7 @@ class GiftForm extends Component {
     list_price: "",
     store: "",
     link: "",
-    age_range: "all ages",
+    age_range: "All Ages",
     message: ""
   }
 
@@ -87,6 +87,7 @@ class GiftForm extends Component {
         list_price: "",
         store: "",
         link: "",
+        age_range: "All Ages",
         message: "Gift added!"
       })
     })
@@ -107,25 +108,25 @@ class GiftForm extends Component {
         value: 'All Ages',
       },
       {
-        key: 'Baby',
-        text: 'Baby',
-        value: 'Baby',
+        key: 'Babies',
+        text: 'Babies',
+        value: 'Babies',
       },
       {
-        key: 'Kid',
-        text: 'Kid',
-        value: 'Kid',
+        key: 'Kids',
+        text: 'Kids',
+        value: 'Kids',
       },
       {
-        key: 'Teen',
-        text: 'Teen',
-        value: 'Teen',
+        key: 'Teens',
+        text: 'Teens',
+        value: 'Teens',
       },
       {
-        key: 'Adult',
-        text: 'Adult',
-        value: 'Adult',
-      },
+        key: 'Adults',
+        text: 'Adults',
+        value: 'Adults',
+      }
     ]
 
     return(
@@ -150,6 +151,7 @@ class GiftForm extends Component {
               <Form.Dropdown
                 label="Age Range"
                 placeholder="Select Age Range"
+                value={this.state.age_range}
                 fluid
                 selection
                 options={ageOptions}
