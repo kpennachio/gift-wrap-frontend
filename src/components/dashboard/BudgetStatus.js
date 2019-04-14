@@ -34,7 +34,7 @@ const BudgetStatus = ({events, year, changeYear, budget, budgets, setBudget}) =>
         return 0
       }
       else {
-        return (allocatedBudget()/budget) * 100
+        return Math.round((allocatedBudget()/budget) * 100)
       }
     }
     else return 0
