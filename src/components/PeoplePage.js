@@ -19,7 +19,11 @@ class PeoplePage extends Component {
   }
 
   renderAllPeople = () => {
-    return this.props.people.map(person => {
+    let orderedPeople = this.props.people.sort((a, b) => {
+      return a.name.localeCompare(b.name)
+    })
+
+    return orderedPeople.map(person => {
       return <PersonCard key={uuid()} person={person} />
     })
   }
