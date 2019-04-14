@@ -9,7 +9,8 @@ class EditPersonForm extends Component {
 
   state = {
     name: this.props.person.name,
-    notes: this.props.person.notes
+    notes: this.props.person.notes,
+    message: ""
   }
 
   handleChange = (e) => {
@@ -36,7 +37,17 @@ class EditPersonForm extends Component {
     })
     .then(resp => resp.json())
     .then(person => {
-      this.props.editPerson(person)
+      if (person.errors) {
+        this.setState({message: person.errors[0].split('^')[1]})
+      }
+      else {
+        this.setState({
+          message: "changes made!",
+          name: "",
+          notes: ""
+        })
+        this.props.editPerson(person)
+      }
     })
   }
 
@@ -44,6 +55,7 @@ class EditPersonForm extends Component {
     return(
       <div>
         <h2>Edit Person</h2>
+        <p>{this.state.message}</p>
         <Form onSubmit={this.handleSubmit}>
           <Form.Field required control={Input} value={this.state.name} name="name" label='Name' placeholder='Name' onChange={this.handleChange} />
           <Form.Field control={TextArea} value={this.state.notes} name="notes" label='Notes' placeholder='Notes' onChange={this.handleChange} />

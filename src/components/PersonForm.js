@@ -9,7 +9,8 @@ class PersonForm extends Component {
 
   state = {
     name: "",
-    notes: ""
+    notes: "",
+    message: ""
   }
 
   handleChange = (e) => {
@@ -41,10 +42,19 @@ class PersonForm extends Component {
     })
     .then(resp => resp.json())
     .then(person => {
-      console.log(person);
-      person.person_gift_events = []
-      person.person_gift_ideas = []
-      this.props.addNewPerson(person)
+      if (person.errors) {
+        this.setState({message: person.errors[0].split('^')[1]})
+      }
+      else {
+        this.setState({
+          message: "You added a person!",
+          name: "",
+          notes: ""
+        })
+        person.person_gift_events = []
+        person.person_gift_ideas = []
+        this.props.addNewPerson(person)
+      }
     })
   }
 
@@ -52,6 +62,7 @@ class PersonForm extends Component {
     return(
       <div>
         <h2>Add a new person</h2>
+        <p>{this.state.message}</p>
         <Form onSubmit={this.handleSubmit}>
           <Form.Field required control={Input} value={this.state.name} name="name" label='Name' placeholder='Name' onChange={this.handleChange} />
           <Form.Field control={TextArea} value={this.state.notes} name="notes" label='Notes' placeholder='Notes (optional)' onChange={this.handleChange} />
