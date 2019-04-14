@@ -4,7 +4,6 @@ import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux'
 
 import Checklist from './Checklist'
-import Header from './Header'
 import Dashboard from './Dashboard'
 import PeoplePage from './PeoplePage'
 import GiftPage from './GiftPage'

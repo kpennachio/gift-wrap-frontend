@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import EventContainer from './EventContainer'
 import SideNav from './SideNav'
 import EventForm from './EventForm'
-import Header from './Header'
+import AppHeader from './AppHeader'
 
 
 import { Checkbox, Sidebar, Button, Segment, Menu } from 'semantic-ui-react'
@@ -52,7 +52,7 @@ class Checklist extends Component {
         </Sidebar>
 
         <Sidebar.Pusher dimmed={this.state.showForm} >
-          <Header logout={this.props.logout}/>
+          <AppHeader logout={this.props.logout}/>
           <SideNav />
           <div className="planner-content">
             <h1>My Events</h1>

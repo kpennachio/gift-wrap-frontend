@@ -10,7 +10,7 @@ import PersonSavedGift from './PersonSavedGift'
 import EventSavedGift from './EventSavedGift'
 import EditEventForm from './EditEventForm'
 import SideNav from '../SideNav'
-import Header from '../Header'
+import AppHeader from '../AppHeader'
 
 
 
@@ -169,7 +169,7 @@ class EventDetail extends Component {
         </Sidebar>
 
         <Sidebar.Pusher dimmed={this.state.showForm}>
-          <Header logout={this.props.logout}/>
+          <AppHeader logout={this.props.logout}/>
           <SideNav />
           <div className="planner-content" >
             <h1 className="inline margin-right">{this.props.event.title}</h1>
@@ -191,7 +191,7 @@ class EventDetail extends Component {
             <Card.Group>
               {this.renderEventGiftIdeas()}
             </Card.Group>
-  
+
             <h2>{`Saved Gift Ideas for ${this.state.selectedPerson.name}`}</h2>
             <Card.Group>
               {this.renderPersonGiftIdeas()}

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import NextEvent from './dashboard/NextEvent'
 import BudgetStatus from './dashboard/BudgetStatus'
 import SideNav from './SideNav'
-import Header from './Header'
+import AppHeader from './AppHeader'
 
 
 
@@ -12,7 +12,7 @@ const Dashboard = (props) => {
 
   return (
     <Fragment >
-      <Header logout={props.logout}/>
+      <AppHeader logout={props.logout}/>
       <SideNav />
       <div className="planner-content">
         <h1>My Dashboard</h1>

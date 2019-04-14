@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux'
+import AppHeader from './AppHeader'
+
 
 import { Form, Input, Button, Modal, Icon, Header } from 'semantic-ui-react'
 
@@ -38,6 +40,8 @@ class ProfileForm extends Component {
     return (
       <Fragment>
       <div>
+        <Header logout={this.props.logout}/>
+
         <Form>
           <Form.Field control={Input} value={this.state.first_name} name="first_name" label='First Name' placeholder='First Name' onChange={this.handleChange} />
           <Form.Field control={Input} value={this.state.last_name} name="last_name" label='Last Name' placeholder='Last Name' onChange={this.handleChange} />

@@ -7,7 +7,7 @@ import GiftHistoryCard from './GiftHistoryCard'
 import PersonSaveForm from './PersonSaveForm'
 import EventSaveForm from './EventSaveForm'
 import SideNav from '../SideNav'
-import Header from '../Header'
+import AppHeader from '../AppHeader'
 
 import { Button, Sidebar, Menu } from 'semantic-ui-react'
 
@@ -72,7 +72,7 @@ class GiftDetail extends Component {
         </Sidebar>
 
         <Sidebar.Pusher dimmed={this.state.showForm}>
-          <Header logout={this.props.logout}/>
+          <AppHeader logout={this.props.logout}/>
           <SideNav />
           <div className="planner-content">
             <h1>{gift.name}</h1>

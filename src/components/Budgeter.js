@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import BudgetContainer from './budget_page/BudgetContainer'
 import BudgetEventContainer from './budget_page/BudgetEventContainer'
 import SideNav from './SideNav'
-import Header from './Header'
+import AppHeader from './AppHeader'
 
 
 class Budgeter extends Component {
@@ -30,7 +30,7 @@ class Budgeter extends Component {
   render() {
     return (
       <div>
-      <Header logout={this.props.logout}/>
+      <AppHeader logout={this.props.logout}/>
       <SideNav />
       <div className="planner-content" >
         <h1>My Gift Budget</h1>

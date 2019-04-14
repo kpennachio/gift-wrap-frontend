@@ -6,7 +6,7 @@ import PersonSavedGift from '../person_show_page/PersonSavedGift'
 import EventCard from './EventCard'
 import EditPersonForm from './EditPersonForm'
 import SideNav from '../SideNav'
-import Header from '../Header'
+import AppHeader from '../AppHeader'
 
 import { Button, Sidebar, Menu } from 'semantic-ui-react'
 
@@ -82,7 +82,7 @@ class PersonDetail extends Component {
         </Sidebar>
 
         <Sidebar.Pusher dimmed={this.state.showForm}>
-          <Header logout={this.props.logout}/>
+          <AppHeader logout={this.props.logout}/>
           <SideNav />
           <div className="planner-content">
             <h1>{this.props.person.name}</h1>
