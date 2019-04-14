@@ -54,7 +54,6 @@ class GiftDetail extends Component {
 
   render() {
     const { gift } = this.props
-
     return (
       <Sidebar.Pushable>
         <Sidebar
@@ -79,7 +78,7 @@ class GiftDetail extends Component {
             <Button onClick={this.showForm}>Edit Gift</Button>
             <img className="gift-show-image" src={gift.image} alt={gift.name}/>
             <p>Store: {gift.store}</p>
-            <p>List Price: {gift.list_price}</p>
+            <p>List Price: ${parseFloat(gift.list_price).toFixed(2)}</p>
             <a href={gift.link}>Store Link</a>
             <p>Notes:</p>
             <p>{gift.notes !== null ? gift.notes : "Add notes..."}</p>

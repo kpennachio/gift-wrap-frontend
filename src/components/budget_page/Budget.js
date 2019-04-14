@@ -20,13 +20,11 @@ class Budget extends Component {
 
 
   addNewBudget = () => {
-
     let data = {
       user_id: this.props.currentUser.id,
       budget: this.state.budget,
       year: this.props.year
     }
-    console.log(data);
     fetch(`${this.props.url}/budgets`, {
       method: "POST",
       headers: {
@@ -37,7 +35,6 @@ class Budget extends Component {
     })
     .then(resp => resp.json())
     .then(budget => {
-      console.log(budget);
       this.props.setBudget(budget)
       this.closeModal()
     })
@@ -47,7 +44,6 @@ class Budget extends Component {
     let data = {
       budget: this.state.budget
     }
-    console.log(data);
     fetch(`${this.props.url}/budgets/${this.state.budgetId}`, {
       method: "PATCH",
       headers: {
@@ -91,7 +87,6 @@ class Budget extends Component {
         )
       }
       else if (this.props.budget.budget === null) {
-        console.log("null budget");
         return (
           <div onClick={(e) => this.setId(e, this.props.budget.id, "")}>
             <p>Add Max Budget</p>
@@ -111,12 +106,10 @@ class Budget extends Component {
   }
 
   setId = (e, id, budget) => {
-    console.log("set");
     this.setState({budgetId: id, budget: budget})
   }
 
   clearId = (e) => {
-    console.log("clear");
     this.setState({budgetId: ""})
   }
 
@@ -141,7 +134,7 @@ class Budget extends Component {
         <Modal.Content>
           <p>Set your max gift budget here:</p>
           <Form onSubmit={this.handleSubmit}>
-            <Input type="number" value={this.state.budget} onChange={this.handleChange}/>
+            <Input type="number" min="0" value={parseInt(this.state.budget)} onChange={this.handleChange}/>
             <Input type="submit"/>
           </Form>
         </Modal.Content>

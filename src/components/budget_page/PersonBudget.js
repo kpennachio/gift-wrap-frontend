@@ -15,7 +15,6 @@ class PersonBudget extends Component {
   }
 
 
-
   changeBudget = () => {
     this.setState({edit: true})
   }
@@ -53,7 +52,7 @@ class PersonBudget extends Component {
       return (
         <div className="border-line">
           <Form onSubmit={this.handleSubmit}>
-            <Form.Input size="mini" value={this.state.price_max} onChange={this.handleChange}/>
+            <Form.Input size="mini" type="number" min="0" value={this.state.price_max} onChange={this.handleChange}/>
           </Form>
         </div>
       )
