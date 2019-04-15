@@ -30,9 +30,9 @@ const Event = ({event, pge}) => {
     >
       <Card.Header>
         <Grid>
-          <Grid.Column width={5}><p>{event.dateFormatted}</p></Grid.Column>
+          <Grid.Column width={3}>{renderCheck()}</Grid.Column>
           <Grid.Column width={7}><h3>{event.title}</h3></Grid.Column>
-          <Grid.Column>{renderCheck()}</Grid.Column>
+          <Grid.Column width={5}><p>{event.dateFormatted}</p></Grid.Column>
         </Grid>
       </Card.Header>
     </Card>

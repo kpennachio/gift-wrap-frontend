@@ -54,10 +54,12 @@ class Checklist extends Component {
         <Sidebar.Pusher dimmed={this.state.showForm} >
           <AppHeader logout={this.props.logout}/>
           <SideNav />
-          <div className="planner-content">
-            <h1>My Events</h1>
+          <div id="checklist-header">
+            <h1 className="inline">Event Checklist</h1>
+            <Button id="add-event-button" onClick={this.showForm}>Add Event</Button>
+          </div>
+          <div className="checklist-content">
             <Checkbox onChange={this.toggleEvents} toggle label="Show Completed Events" />
-            <Button onClick={this.showForm}>Add Event</Button>
             <EventContainer showAllEvents={this.state.showAllEvents}/>
           </div>
         </Sidebar.Pusher>

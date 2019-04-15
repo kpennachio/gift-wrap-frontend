@@ -44,32 +44,30 @@
   }
 }
 
-.card-test {
-  /* border: solid;
-  margin-left: 200px;
-  animation: moveLeft;
-  animation-duration: 5s; */
-}
-
-.menu-wrapper {
-  /* position: relative;
-  margin-bottom: 14px; */
-}
-
-.ui.secondary.vertical.menu.vertical-menu {
-  /* height: 100%;
-  background-color: yellow; */
+.ui.massive.secondary.top.fixed.header.menu {
+  box-shadow: none;
+  border-bottom: solid;
+  border-bottom-width: medium;
+  border-bottom-color: rgb(249, 249, 249);
+  background-color: white;
+  height: 70px;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 .ui.vertical.ui.left.visible.sidebar.menu.vertical-menu {
-  margin-top: 51.42px !important;
+  margin-top: 70px !important;
   box-shadow: none;
-
+  border-top: none;
 }
 
 .ui.vertical.overlay.right.visible.sidebar.form.menu {
   height: 100vh !important;
   color: red;
+}
+
+#logo.item {
+  /* margin-left: 100px; */
 }
 
 #app {
@@ -115,16 +113,7 @@
 }
 
 
-.ui.fluid.card.event {
-  padding-top: 2%;
-  padding-bottom: 2%;
-  padding-left: 5%;
 
-}
-
-.event-card h3, p {
-  margin-top: 20px;
-}
 
 .person {
   background-color: white;
@@ -174,6 +163,49 @@ img {
 
 
 /* ########### CHECKLIST ############## */
+
+#checklist-header {
+  margin-left: 150px;
+  padding-bottom: 40px;
+  padding-top: 110px;
+  padding-left: 5%;
+  padding-right: 5%;
+  background-color: white;
+}
+
+#add-event-button {
+  float: right;
+  display: inline-block;
+}
+
+.checklist-content {
+  margin-top: 20px;
+  margin-left: 150px;
+  margin-bottom: 50px;
+  padding-left: 5%;
+  padding-right: 5%;
+  background-color: rgb(249, 249, 249);
+  min-height: 100vh;
+}
+
+#event-container {
+  margin-top: 30px;
+}
+
+.checklist-month {
+  margin-bottom: 20px;
+  margin-top: 40px;
+}
+
+/* checklist event cards */
+.ui.fluid.card.event {
+  padding-top: 2%;
+  padding-bottom: 2%;
+  padding-left: 5%;
+  color: black;
+  box-shadow: none;
+}
+
 
 .check.circle.outline.big.icon.checked.inline {
   color: rgb(4, 151, 224);

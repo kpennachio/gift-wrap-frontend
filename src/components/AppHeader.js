@@ -9,8 +9,9 @@ export default class AppHeader extends Component {
   render() {
     return (
       <Fragment>
-      <Menu fixed="top" inverted size="massive">
+      <Menu fixed="top" secondary className="header" size="massive">
         <Menu.Item
+          id="logo"
           name="giftWrap"
           context="Gift Wrap"
           onClick={this.handleItemClick}

@@ -72,7 +72,7 @@ const EventContainer = (props) => {
     }
     return array.map(a => {
       if (typeof a === "string"){
-        return <p key={uuid()}>{a}</p>
+        return <p className="checklist-month" key={uuid()}>{a}</p>
       }
       else {
         return <Event key={uuid()} event={a} pge={a.person_gift_events}/>
@@ -83,8 +83,7 @@ const EventContainer = (props) => {
 
 
   return (
-    <div >
-
+    <div id="event-container">
       {renderEvents()}
     </div>
   );
