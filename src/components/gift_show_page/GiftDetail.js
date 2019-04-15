@@ -67,7 +67,7 @@ class GiftDetail extends Component {
         className="form"
         onHide={this.handleSidebarHide}
         >
-          <EditGiftForm gift={gift}/>
+          <EditGiftForm gift={gift} handleSidebarHide={this.handleSidebarHide}/>
           <Button onClick={this.handleDeleteGift}>Delete Gift</Button>
         </Sidebar>
 
@@ -82,7 +82,7 @@ class GiftDetail extends Component {
             <div className="gift-details">
               <p>Store: {gift.store}</p>
               <p>Price: ${parseFloat(gift.list_price).toFixed(2)}</p>
-              <a href={gift.link}>Store Link</a><br/>
+              <a id="store-link" href={gift.link}>Store Link</a><br/>
               <br/>
               <p>Notes:</p>
               <p>{gift.notes !== "" ? gift.notes : <p>Add notes...</p>}</p>

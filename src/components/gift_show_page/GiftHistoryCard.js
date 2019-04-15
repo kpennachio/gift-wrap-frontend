@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom'
 const GiftDetail = (props) => {
 
   const { event, person } = props
-  console.log(event);
   return (
     <Card as={Link} to={`/checklist/${event.id}`} className="history-card">
       <p>{`You gave this gift to ${person.name}:`}</p>

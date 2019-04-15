@@ -276,6 +276,10 @@ div.ui.card.save-form {
   font-size: 20px;
 }
 
+#store-link {
+  color: #FF533D !important;
+}
+
 
 /* ########### CHECKLIST ############## */
 

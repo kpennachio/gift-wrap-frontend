@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { resetState } from '../../resetState'
 
 import { Button, Dropdown, Card, Icon } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 
 class PersonSaveForm extends Component {
@@ -68,7 +69,7 @@ class PersonSaveForm extends Component {
     return this.props.gift.person_gift_ideas.map(pgi =>{
       let person = this.props.people.find(person => person.id === pgi.person_id)
       return (
-        <Card className="save-card">
+        <Card as={Link} to={`/my-people/${person.id}`} className="save-card">
         <Card.Content className="inline">
           <p className="inline">{person.name}</p>
           <Icon size="large" name="heart" onClick={() => this.deleteSavedPerson(pgi)} />

@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { resetState } from '../../resetState'
 
 import { Button, Dropdown, Card, Icon } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 
 class EventSaveForm extends Component {
@@ -66,12 +67,11 @@ class EventSaveForm extends Component {
     return this.props.gift.event_gift_ideas.map(egi =>{
       let event = this.props.events.find(event => event.id === egi.event_id)
       return (
-        <Card className="save-card">
-        <Card.Content className="inline">
-          <p className="inline">{event.title}</p>
-          <Icon size="large" name="heart" onClick={() => this.deleteSavedEvent(egi)} />
-
-        </Card.Content>
+        <Card as={Link} to={`/checklist/${event.id}`}className="save-card">
+          <Card.Content className="inline">
+            <p className="inline">{event.title}</p>
+            <Icon size="large" name="heart" onClick={() => this.deleteSavedEvent(egi)} />
+          </Card.Content>
         </Card>
       )
     })
