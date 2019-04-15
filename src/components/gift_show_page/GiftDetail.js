@@ -9,7 +9,7 @@ import EventSaveForm from './EventSaveForm'
 import SideNav from '../SideNav'
 import AppHeader from '../AppHeader'
 
-import { Button, Sidebar, Menu } from 'semantic-ui-react'
+import { Button, Sidebar, Menu, Grid, Card } from 'semantic-ui-react'
 
 import { resetState } from '../../resetState'
 
@@ -74,21 +74,38 @@ class GiftDetail extends Component {
         <Sidebar.Pusher dimmed={this.state.showForm}>
           <AppHeader logout={this.props.logout}/>
           <SideNav />
-          <div className="planner-content">
-            <h1>{gift.name}</h1>
-            <Button onClick={this.showForm}>Edit Gift</Button>
+          <div className="gift-show-content">
+            <h1 className="inline">{gift.name}</h1>
+            <Button className="edit-gift-button" onClick={this.showForm}>Edit Gift</Button>
+            <br/>
             <img className="gift-show-image" src={gift.image} alt={gift.name}/>
-            <p>Store: {gift.store}</p>
-            <p>List Price: ${parseFloat(gift.list_price).toFixed(2)}</p>
-            <a href={gift.link}>Store Link</a>
-            <p>Notes:</p>
-            <p>{gift.notes !== null ? gift.notes : "Add notes..."}</p>
-            <h2>Gift History</h2>
-            {this.renderGiftHistory()}
-            <h2>Save to Person</h2>
-            <PersonSaveForm gift={gift}/>
-            <h2>Save to Event</h2>
-            <EventSaveForm gift={gift}/>
+            <div className="gift-details">
+              <p>Store: {gift.store}</p>
+              <p>Price: ${parseFloat(gift.list_price).toFixed(2)}</p>
+              <a href={gift.link}>Store Link</a><br/>
+              <br/>
+              <p>Notes:</p>
+              <p>{gift.notes !== "" ? gift.notes : <p>Add notes...</p>}</p>
+            </div>
+
+            <div className="save-container">
+              <Card.Group>
+                <Card className="save-form">
+                  <p className="title">Gift History</p>
+                  <div>
+                  {this.renderGiftHistory()}
+                  </div>
+                </Card>
+                <Card className="save-form">
+                  <p className="title">Save to Person</p>
+                  <PersonSaveForm gift={gift}/>
+                </Card>
+                <Card className="save-form">
+                  <p className="title">Save to Event</p>
+                  <EventSaveForm gift={gift}/>
+                </Card>
+              </Card.Group>
+            </div>
           </div>
         </Sidebar.Pusher>
       </Sidebar.Pushable>

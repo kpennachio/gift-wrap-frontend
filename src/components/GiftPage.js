@@ -23,7 +23,8 @@ class GiftPage extends Component {
   }
 
   renderAllGifts = () => {
-    return this.findGifts().map(gift => {
+    let orderedGifts = this.findGifts().sort((a, b) => b.id - a.id)
+    return orderedGifts.map(gift => {
       return <GiftCard key={uuid()} gift={gift} />
     })
   }

@@ -16,7 +16,6 @@ export default class SideNav extends Component {
   render() {
     const { activeItem } = this.state
     return (
-      <div className="menu-wrapper">
       <Sidebar as={Menu} vertical visible width="thin" className="vertical-menu" >
         <Menu.Item
           as={NavLink} to='/dashboard'
@@ -49,7 +48,6 @@ export default class SideNav extends Component {
           onClick={this.handleItemClick}
         />
         </Sidebar>
-      </div>
     )
   }
 

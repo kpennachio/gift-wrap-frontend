@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import { resetState } from '../../resetState'
 
-import { Button, Dropdown, Card } from 'semantic-ui-react'
+import { Button, Dropdown, Card, Icon } from 'semantic-ui-react'
 
 
 class PersonSaveForm extends Component {
@@ -68,9 +68,12 @@ class PersonSaveForm extends Component {
     return this.props.gift.person_gift_ideas.map(pgi =>{
       let person = this.props.people.find(person => person.id === pgi.person_id)
       return (
-        <Card>
-        {person.name}
-        <p onClick={() => this.deleteSavedPerson(pgi)}>X</p>
+        <Card className="save-card">
+        <Card.Content className="inline">
+          <p className="inline">{person.name}</p>
+          <Icon size="large" name="heart" onClick={() => this.deleteSavedPerson(pgi)} />
+
+        </Card.Content>
         </Card>
       )
     })
@@ -79,10 +82,9 @@ class PersonSaveForm extends Component {
   render() {
     return (
       <div>
-      {this.renderSavedPeople()}
+
       <Dropdown
       placeholder='Person'
-      fluid
       multiple
       search
       selection
@@ -91,6 +93,9 @@ class PersonSaveForm extends Component {
       onChange={this.handleChange}
       />
       <Button onClick={this.handleSubmit}>Save</Button>
+      <div className="saved-people">
+        {this.renderSavedPeople()}
+      </div>
       </div>
     )
   }

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
+import ScrollToTop from './components/ScrollToTop'
 import * as serviceWorker from './serviceWorker';
 import 'semantic-ui-css/semantic.min.css'
 
@@ -16,7 +17,9 @@ const store = createStore(reducer)
 ReactDOM.render(
   <Provider store={store}>
     <Router >
-      <Route path="/" component={App}/>
+      <ScrollToTop >
+        <Route path="/" component={App}/>
+      </ScrollToTop >
     </Router>
   </Provider>,
   document.getElementById('root')

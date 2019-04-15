@@ -169,7 +169,7 @@ img {
   padding-bottom: 40px;
   padding-top: 110px;
   padding-left: 5%;
-  padding-right: 5%;
+  padding-right: 10%;
   background-color: white;
 }
 
@@ -208,9 +208,72 @@ img {
 
 /* ########### GIFT SHOW PAGE ########### */
 
+.gift-show-content {
+  margin-left: 150px;
+  padding-bottom: 40px;
+  padding-top: 110px;
+  padding-left: 5%;
+  padding-right: 10%;
+}
+
+.edit-gift-button {
+  float: right;
+  display: inline-block;
+}
+
 .gift-show-image {
   max-height: 400px;
-  max-width: 600px;
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.gift-details {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 20px;
+  width: 200px;
+}
+
+.ui.card.save-card {
+  width: 300px;
+  box-shadow: none;
+  background-color: inherit;
+  color: black;
+}
+
+.ui.card.history-card {
+  width: 300px;
+  box-shadow: none;
+  background-color: inherit;
+  color: black;
+  margin-bottom: 30px;
+}
+
+.heart.large.icon {
+  color: #FF533D;
+  float: left;
+  margin-right: 10px;
+}
+
+.save-container {
+  margin-top: 20px;
+}
+
+div.ui.card.save-form {
+  box-shadow: none;
+  background-color: rgb(249, 249, 249);
+}
+
+.save-to-person {
+  display: inline-block;
+  max-width: 200px;
+
+}
+
+
+.title {
+  font-size: 20px;
 }
 
 
@@ -221,7 +284,7 @@ img {
   padding-bottom: 40px;
   padding-top: 110px;
   padding-left: 5%;
-  padding-right: 5%;
+  padding-right: 10%;
   background-color: white;
 }
 
