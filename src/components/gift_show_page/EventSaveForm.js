@@ -67,9 +67,9 @@ class EventSaveForm extends Component {
     return this.props.gift.event_gift_ideas.map(egi =>{
       let event = this.props.events.find(event => event.id === egi.event_id)
       return (
-        <Card as={Link} to={`/checklist/${event.id}`}className="save-card">
+        <Card className="save-card">
           <Card.Content className="inline">
-            <p className="inline">{event.title}</p>
+            <Link to={`/checklist/${event.id}`} className="inline">{event.title}</Link>
             <Icon size="large" name="heart" onClick={() => this.deleteSavedEvent(egi)} />
           </Card.Content>
         </Card>

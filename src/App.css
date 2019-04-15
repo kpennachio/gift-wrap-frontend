@@ -254,7 +254,17 @@ img {
   color: #FF533D;
   float: left;
   margin-right: 10px;
+  display: inline-block;
 }
+
+.heart.large.icon:hover {
+  cursor: pointer;
+}
+
+.close.large.icon.form:hover {
+  cursor: pointer;
+}
+
 
 .save-container {
   margin-top: 20px;
@@ -278,6 +288,16 @@ div.ui.card.save-form {
 
 #store-link {
   color: #FF533D !important;
+}
+
+a {
+  color: black !important;
+  font-weight: bold;
+}
+
+a:hover {
+  color: #FF533D !important;
+  font-weight: bold;
 }
 
 
@@ -415,6 +435,24 @@ div.ui.card.save-form {
 /* ##########################   BUDGET PAGE   ############################ */
 
 
+#budget-header {
+  margin-left: 150px;
+  padding-bottom: 40px;
+  padding-top: 110px;
+  padding-left: 5%;
+  padding-right: 10%;
+  background-color: white;
+}
+
+.budget-content {
+  margin-left: 150px;
+  margin-bottom: 50px;
+  padding-left: 5%;
+  padding-right: 5%;
+  background-color: rgb(249, 249, 249);
+  min-height: 100vh;
+}
+
 .border-line {
   border-style: solid;
   border-width: thin;
@@ -428,21 +466,29 @@ div.ui.card.save-form {
 }
 
 .budget-circle-container {
-  margin-top: 50px;
+  margin-top: 20px;
+  margin-bottom: 40px;
 }
 
 .budget-main-circle {
   width: 175px;
   display: inline-block;
   margin-left: 50px;
+  text-align: center;
 
+}
+
+#annual-budget {
+  display: inline-block;
+  vertical-align: top;
+  float: left;
 }
 
 .budget-spend-circle {
   width: 125px;
   display: inline-block;
   margin-left: 100px;
-
+  text-align: center;
 }
 
 /* #######  BUDGET PAGE CIRCLE PROGRESS BARS   ############################ */
@@ -463,7 +509,7 @@ div.ui.card.save-form {
 }
 
 .CircularProgressbar .CircularProgressbar-path {
-  stroke: #3e98c7;
+  stroke: #ff7e6d;
   stroke-linecap: round;
   transition: stroke-dashoffset 0.5s ease 0s;
 }
@@ -473,7 +519,7 @@ div.ui.card.save-form {
 }
 
 .CircularProgressbar .CircularProgressbar-text {
-  fill: #3e98c7;
+  fill: #ff7e6d;
   font-size: 20px;
   dominant-baseline: middle;
   text-anchor: middle;

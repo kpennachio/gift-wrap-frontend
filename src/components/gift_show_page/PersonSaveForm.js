@@ -69,11 +69,12 @@ class PersonSaveForm extends Component {
     return this.props.gift.person_gift_ideas.map(pgi =>{
       let person = this.props.people.find(person => person.id === pgi.person_id)
       return (
-        <Card as={Link} to={`/my-people/${person.id}`} className="save-card">
+        <Card  className="save-card">
         <Card.Content className="inline">
+          <Link to={`/my-people/${person.id}`}>
           <p className="inline">{person.name}</p>
+          </Link>
           <Icon size="large" name="heart" onClick={() => this.deleteSavedPerson(pgi)} />
-
         </Card.Content>
         </Card>
       )
