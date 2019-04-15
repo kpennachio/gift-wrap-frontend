@@ -48,7 +48,7 @@ class Checklist extends Component {
         className="form"
         onHide={this.handleSidebarHide}
         >
-          <EventForm />
+          <EventForm handleSidebarHide={this.handleSidebarHide}/>
         </Sidebar>
 
         <Sidebar.Pusher dimmed={this.state.showForm} >

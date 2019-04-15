@@ -151,7 +151,7 @@ class GiftPage extends Component {
       className="form"
       onHide={this.handleSidebarHide}
       >
-      <GiftForm />
+      <GiftForm handleSidebarHide={this.handleSidebarHide}/>
       </Sidebar>
 
 
@@ -159,11 +159,15 @@ class GiftPage extends Component {
 
           <AppHeader logout={this.props.logout}/>
           <SideNav />
-          <div className="planner-content" >
-            <h1>My Gifts</h1>
-            <Button onClick={this.showForm}>Add Gift</Button>
-            <div>
+
+          <div id="gifts-header">
+            <h1 className="inline">My Gifts</h1>
+            <Button id="add-gift-button" onClick={this.showForm}>Add Gift</Button>
+          </div>
+          <div className="gifts-content">
+            <div className="gift-filters">
               <Dropdown
+                className="gift-filter"
                 placeholder="Filter by Age Range"
                 selection
                 value={this.state.age_range}
@@ -171,6 +175,7 @@ class GiftPage extends Component {
                 onChange={(e, {value}) => this.filterAgeRange(e, {value})}
               />
               <Input
+                className="gift-filter"
                 label="$"
                 type="number"
                 min="0"
@@ -179,6 +184,7 @@ class GiftPage extends Component {
                 placeholder="Price Min"
               />
               <Input
+                className="gift-filter"
                 label="$"
                 type="number"
                 min="0"
@@ -187,17 +193,18 @@ class GiftPage extends Component {
                 placeholder="Price Max"
               />
               <Input
+                className="gift-filter"
+                className="gift-filter"
                 placeholder="Search by Name"
                 value={this.state.searchName}
                 onChange={this.changeSearchName}
               />
               <Button onClick={this.clearFilters}>Clear Filters</Button>
-            </div>
+              </div>
             <Card.Group>
             {this.renderAllGifts()}
             </Card.Group>
-          </div>
-
+            </div>
       </Sidebar.Pusher>
       </Sidebar.Pushable>
       </div>

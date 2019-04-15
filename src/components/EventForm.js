@@ -7,7 +7,7 @@ import MomentLocaleUtils, { formatDate, parseDate } from 'react-day-picker/momen
 import 'moment/locale/it';
 
 import 'react-day-picker/lib/style.css';
-import { Button, Form, Input, Dropdown, TextArea, Sidebar } from 'semantic-ui-react'
+import { Button, Form, Input, Dropdown, TextArea, Sidebar, Divider, Icon } from 'semantic-ui-react'
 
 import { resetState } from '../resetState'
 
@@ -170,9 +170,11 @@ class EventForm extends Component {
 
   render() {
     return(
-      <div>
+      <div className="form">
 
-          <h2>Add Event</h2>
+          <p className="form-header">Add Event</p>
+          <Icon name="close" size="large" className="form" onClick={this.props.handleSidebarHide}/>
+          <Divider />
           <p>{this.state.message}</p>
             <Form onSubmit={this.handleSubmit}>
 

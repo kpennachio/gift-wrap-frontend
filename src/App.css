@@ -46,10 +46,10 @@
 
 .ui.massive.secondary.top.fixed.header.menu {
   box-shadow: none;
-  border-bottom: solid;
+  /* border-bottom: solid;
   border-bottom-width: medium;
-  border-bottom-color: rgb(249, 249, 249);
-  background-color: white;
+  border-bottom-color: rgb(249, 249, 249); */
+  background-color: rgb(255, 239, 234);
   height: 70px;
   padding-left: 50px;
   padding-right: 50px;
@@ -63,11 +63,19 @@
 
 .ui.vertical.overlay.right.visible.sidebar.form.menu {
   height: 100vh !important;
-  color: red;
 }
 
 #logo.item {
   /* margin-left: 100px; */
+  color: #FF533D;
+}
+
+h1 {
+  color: #FF533D;
+}
+
+h3 {
+
 }
 
 #app {
@@ -154,6 +162,50 @@ img {
   display: inline-block;
 }
 
+/* ########### GIFTS PAGE ########### */
+
+#gifts-header {
+  margin-left: 150px;
+  padding-bottom: 40px;
+  padding-top: 110px;
+  padding-left: 5%;
+  padding-right: 5%;
+  background-color: white;
+}
+
+#add-gift-button {
+  float: right;
+  display: inline-block;
+}
+
+.gifts-content {
+  margin-top: 20px;
+  margin-left: 150px;
+  margin-bottom: 50px;
+  padding-left: 5%;
+  padding-right: 5%;
+  background-color: rgb(249, 249, 249);
+  min-height: 100vh;
+}
+
+.gift-filters {
+  margin-bottom: 20px;
+}
+
+.gift-filter {
+  margin-right: 10px;
+}
+
+.ui.card.gift {
+  color: black;
+  box-shadow: none !important;
+}
+
+.ui.image.gift {
+  max-height: 200px;
+}
+
+
 /* ########### GIFT SHOW PAGE ########### */
 
 .gift-show-image {
@@ -206,9 +258,23 @@ img {
   box-shadow: none;
 }
 
+.form {
+  padding: 2%
+}
+
+.form-header {
+  margin-bottom: 10px;
+  display: inline-block;
+  font-size: 20px;
+}
+
+.close.large.icon.form {
+  float: right;
+}
+
 
 .check.circle.outline.big.icon.checked.inline {
-  color: rgb(4, 151, 224);
+  color: #FF533D;
 }
 
 

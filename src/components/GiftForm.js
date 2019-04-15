@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { Button, Form, Input, TextArea, Dropdown } from 'semantic-ui-react'
+import { Button, Form, Input, TextArea, Dropdown, Divider, Icon } from 'semantic-ui-react'
 
 import { resetState } from '../resetState'
 
@@ -130,8 +130,11 @@ class GiftForm extends Component {
     ]
 
     return(
-      <div>
-        <h2>Add a new gift</h2>
+      <div className="form">
+        <p className="form-header">Add a new gift</p>
+        <Icon name="close" size="large" className="form" onClick={this.props.handleSidebarHide}/>
+        <Divider />
+
         <p>{this.state.message}</p>
 
           <Form onSubmit={this.handleSubmit}>

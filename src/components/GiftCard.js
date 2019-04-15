@@ -15,10 +15,12 @@ const GiftCard = ({gift}) => {
 
     <Card
       as={Link} to={`/my-gifts/${gift.id}`}
+      className="gift"
     >
-      <Card.Header>{gift.name}</Card.Header>
       <Card.Content>
-      <Image src={gift.image} alt={gift.name}/>
+      <Card.Header>{gift.name}</Card.Header>
+      <Card.Meta>{gift.store} ${parseInt(gift.list_price).toFixed(2)}</Card.Meta>
+      <Image src={gift.image} alt={gift.name} className="gift"/>
       </Card.Content>
 
     </Card>
