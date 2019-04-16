@@ -7,7 +7,7 @@ import MomentLocaleUtils, { formatDate, parseDate } from 'react-day-picker/momen
 import 'moment/locale/it';
 
 import 'react-day-picker/lib/style.css';
-import { Button, Form, Input, Dropdown, TextArea, Sidebar, Divider, Icon } from 'semantic-ui-react'
+import { Button, Form, Input, Dropdown, TextArea, Divider, Icon } from 'semantic-ui-react'
 
 import { resetState } from '../resetState'
 

@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import uuid from 'uuid'
 
 import Event from './Event'
-import EventForm from './EventForm'
 
 
 

@@ -84,7 +84,7 @@ class GiftDetail extends Component {
               <a id="store-link" href={gift.link}>Store Link</a><br/>
               <br/>
               <p>Notes:</p>
-              <p>{gift.notes !== "" ? gift.notes : <p>Add notes...</p>}</p>
+              <div>{gift.notes !== "" ? gift.notes : <p>Add notes...</p>}</div>
             </div>
 
             <div className="save-container">

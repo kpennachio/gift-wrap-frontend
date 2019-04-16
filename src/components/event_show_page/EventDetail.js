@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import uuid from 'uuid'
 
-import { Card, Icon, Sidebar, Button, Menu, Segment, Sticky } from 'semantic-ui-react'
+import { Card, Icon, Sidebar, Button, Menu } from 'semantic-ui-react'
 
 import EventPersonCard from './EventPersonCard'
 import OtherGift from './OtherGift'

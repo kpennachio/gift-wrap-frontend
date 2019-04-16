@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { Button, Form, Input, TextArea, Dropdown, Divider, Icon } from 'semantic-ui-react'
+import { Button, Form, Input, TextArea, Divider, Icon } from 'semantic-ui-react'
 
 import { resetState } from '../resetState'
 

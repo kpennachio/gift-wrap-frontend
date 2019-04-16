@@ -7,7 +7,7 @@ import EventForm from './EventForm'
 import AppHeader from './AppHeader'
 
 
-import { Checkbox, Sidebar, Button, Segment, Menu } from 'semantic-ui-react'
+import { Checkbox, Sidebar, Button, Menu } from 'semantic-ui-react'
 
 
 
