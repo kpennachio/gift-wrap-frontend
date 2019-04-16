@@ -73,13 +73,18 @@ class EventDetail extends Component {
   }
 
   renderOtherGifts = () => {
-    let otherGifts = this.otherGifts()
+    // let otherGifts = this.otherGifts()
+    //
+    // if (otherGifts) {
+    //   return otherGifts.map(gift => {
+    //     return <OtherGift key={uuid()} gift={gift} event={this.props.event} selectedPerson={this.state.selectedPerson} pge={this.state.personGiftEvent}/>
+    //   })
+    // }
 
-    if (otherGifts) {
-      return otherGifts.map(gift => {
+      return this.props.gifts.map(gift => {
         return <OtherGift key={uuid()} gift={gift} event={this.props.event} selectedPerson={this.state.selectedPerson} pge={this.state.personGiftEvent}/>
       })
-    }
+
   }
 
   missingGifts = () => {
