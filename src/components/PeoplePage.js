@@ -57,9 +57,11 @@ class PeoplePage extends Component {
       <Sidebar.Pusher dimmed={this.state.showForm} >
         <AppHeader logout={this.props.logout}/>
         <SideNav />
-        <div className="planner-content">
-        <h1>My People Page</h1>
-        <Button onClick={this.showForm}>Add a Person</Button>
+        <div id="people-header">
+        <h1 className="inline">My People</h1>
+        <Button id="add-person-button" onClick={this.showForm}>Add a Person</Button>
+        </div>
+        <div className="people-content">
         {this.renderAllPeople()}
         </div>
       </Sidebar.Pusher>

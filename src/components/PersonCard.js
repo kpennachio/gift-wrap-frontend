@@ -13,7 +13,7 @@ const PersonCard = ({person}) => {
 
   return (
 
-    <Card as={Link} to={`my-people/${person.id}`}>
+    <Card className="contact-person" as={Link} to={`my-people/${person.id}`}>
       <h3>{person.name}</h3>
 
     </Card>

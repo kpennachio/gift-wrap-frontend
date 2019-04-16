@@ -126,6 +126,42 @@ h3 {
 }
 
 
+/* ####### PEOPLE PAGE ############ */
+
+#people-header {
+  margin-left: 150px;
+  padding-bottom: 40px;
+  padding-top: 110px;
+  padding-left: 5%;
+  padding-right: 10%;
+  background-color: white;
+}
+
+#add-person-button {
+  float: right;
+  display: inline-block;
+}
+
+.people-content {
+  margin-top: 20px;
+  margin-left: 150px;
+  margin-bottom: 50px;
+  padding-left: 5%;
+  padding-right: 5%;
+  background-color: rgb(249, 249, 249);
+  min-height: 100vh;
+}
+
+.ui.card.contact-person {
+  text-align: center;
+  box-shadow: none;
+}
+
+/* ######### END PEOPLE PAGE ########### */
+
+
+
+
 
 
 .person {
