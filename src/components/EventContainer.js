@@ -22,7 +22,7 @@ const EventContainer = (props) => {
         return allEvents
       }
       else {
-        return allEvents.filter(event => event.person_gift_events.every(pge => {
+        return allEvents.filter(event => event.person_gift_events.some(pge => {
           return pge.gift === null
         }))
       }
