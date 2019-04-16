@@ -83,9 +83,9 @@ class Budget extends Component {
       if (this.props.budget.budget) {
 
         return (
-          <div onClick={(e) => this.setId(e, this.props.budget.id, this.props.budget.budget)}>
-            <p>{`Max $${parseInt(this.props.budget.budget)}`}</p>
-            <Icon name="pencil"/>
+          <div className="budget-edit-form" onClick={(e) => this.setId(e, this.props.budget.id, this.props.budget.budget)}>
+            <p className="budget-edit">{`Max $${parseInt(this.props.budget.budget)}`}</p>
+            <Icon className="inline" name="pencil"/>
           </div>
         )
       }
@@ -93,7 +93,7 @@ class Budget extends Component {
         return (
           <div onClick={(e) => this.setId(e, this.props.budget.id, "")}>
             <p>Add Max Budget</p>
-            <Icon name="pencil"/>
+            <Icon className="inline" name="pencil"/>
           </div>
         )
       }

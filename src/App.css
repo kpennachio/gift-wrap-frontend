@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Cherry+Swash|Nanum+Myeongjo');
+
 .App {
   text-align: center;
   background-color: rgb(249, 249, 249);
@@ -51,7 +53,7 @@
   border-bottom-color: rgb(249, 249, 249); */
   background-color: rgb(255, 239, 234);
   height: 70px;
-  padding-left: 50px;
+  /* padding-left: 50px; */
   padding-right: 50px;
 }
 
@@ -68,10 +70,13 @@
 #logo.item {
   /* margin-left: 100px; */
   color: #FF533D;
+  font-family: 'Cherry Swash', cursive;
+  font-size: 30px;
 }
 
 h1 {
   color: #FF533D;
+  /* font-family: 'Nanum Myeongjo', serif; */
 }
 
 h3 {
@@ -80,7 +85,7 @@ h3 {
 
 #app {
   background-color: rgb(249, 249, 249);
-
+  height: 100vh;
 }
 
 #event-list {
@@ -437,20 +442,42 @@ a:hover {
 
 #budget-header {
   margin-left: 150px;
-  padding-bottom: 40px;
   padding-top: 110px;
   padding-left: 5%;
   padding-right: 10%;
   background-color: white;
 }
 
-.budget-content {
+/* .budget-content {
   margin-left: 150px;
   margin-bottom: 50px;
   padding-left: 5%;
   padding-right: 5%;
   background-color: rgb(249, 249, 249);
   min-height: 100vh;
+} */
+
+#budget-progress-container {
+  background-color: white;
+  width: 100vw;
+  margin-left: 150px;
+  padding-left: 5%;
+}
+
+.budget-edit {
+  display: inline-block;
+  padding-right: 10px;
+}
+
+.budget-edit-form {
+  color: black;
+  font-size: 16px;
+  height: 25px;
+}
+
+.budget-text {
+  font-size: 16px;
+  padding-top: 20px;
 }
 
 .border-line {

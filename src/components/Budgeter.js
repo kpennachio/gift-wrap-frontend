@@ -32,7 +32,7 @@ class Budgeter extends Component {
       <div>
       <AppHeader logout={this.props.logout}/>
       <SideNav />
-      <div id="checklist-header">
+      <div id="budget-header">
         <h1>My Gift Budget</h1>
       </div>
       <div className="budget-content">

@@ -90,7 +90,7 @@ const BudgetContainer = ({events, year, changeYear, budget, budgets, setBudget})
 
 
   return (
-    <div>
+    <div id="budget-progress-container">
       <Icon className="year-arrow" onClick={yearBack} name='caret left' />
       <h2 className="year-arrow">{year}</h2>
       <Icon className="year-arrow" onClick={yearForward} name='caret right' />
@@ -98,14 +98,14 @@ const BudgetContainer = ({events, year, changeYear, budget, budgets, setBudget})
         <div id="annual-budget">
           <Budget year={year} />
         </div>
-        
+
         <div className="budget-main-circle">
           <CircularProgressbar
             percentage={budgetPercentage()}
             text={`${budgetPercentage()}%`}
           />
           <div>
-            <p>{`Total Budgeted $${allocatedBudget()}`}</p>
+            <p className="budget-text">{`Total Budgeted $${allocatedBudget()}`}</p>
           </div>
         </div>
 
@@ -114,7 +114,7 @@ const BudgetContainer = ({events, year, changeYear, budget, budgets, setBudget})
             percentage={paidPercentage()}
             text={`${paidPercentage()}%`}
           />
-          <p>{`Total Spent $${amountPaid()}`}</p>
+          <p className="budget-text">{`Total Spent $${amountPaid()}`}</p>
         </div>
       </div>
     </div>
