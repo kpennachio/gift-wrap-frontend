@@ -517,6 +517,11 @@ div.ui.card.save-form {
   position: relative;
 }
 
+.ui.button.unselect-gift {
+  background-color: rgb(255, 236, 231);
+  color: #FF533D;
+}
+
 /* ################## END EVENT PAGE ##################################### */
 
 

@@ -36,7 +36,7 @@ const OtherGift = (props) => {
       person_id: selectedPerson.id,
       gift_idea_id: gift.id
     }
-    fetch("http://localhost:3000/api/v1/person_gift_ideas", {
+    fetch(`${url}/person_gift_ideas`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -64,7 +64,7 @@ const OtherGift = (props) => {
   }
 
   const unSaveEventIdea = (id) => {
-    fetch(`http://localhost:3000/api/v1/event_gift_ideas/${id}`, {method: "DELETE"})
+    fetch(`${url}/event_gift_ideas/${id}`, {method: "DELETE"})
     .then(resp => {
       deleteEventGiftIdea(id, event.id)
       resetState(currentUser.id)
@@ -77,7 +77,7 @@ const OtherGift = (props) => {
       event_id: event.id,
       gift_idea_id: gift.id
     }
-    fetch("http://localhost:3000/api/v1/event_gift_ideas", {
+    fetch(`${url}/event_gift_ideas`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -99,7 +99,7 @@ const OtherGift = (props) => {
       gift_actual_cost: gift.list_price
     }
 
-    fetch(`http://localhost:3000/api/v1/person_gift_events/${pge.id}`, {
+    fetch(`${url}/person_gift_events/${pge.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -111,7 +111,7 @@ const OtherGift = (props) => {
     .then(pge => {
       pge.person = people.find(person => person.id === pge.person_id)
       pge.gift = gifts.find(gift => gift.id === pge.gift_id)
-      
+
       changePersonGiftEvent(pge)
       editPersonGiftEvent(pge)
       resetState(currentUser.id)
@@ -176,7 +176,7 @@ const OtherGift = (props) => {
   const renderSelectButton = () => {
     if (pge.gift) {
       if (pge.gift.id === gift.id) {
-        return <Button onClick={removeGift}>Unselect Gift!</Button>
+        return <Button className="unselect-gift" onClick={removeGift}>Unselect Gift!</Button>
       }
     }
     return <Button onClick={selectGift}>{`Select this gift for ${selectedPerson.name}`}</Button>
