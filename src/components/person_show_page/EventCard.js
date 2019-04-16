@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux'
 
-import { Card } from 'semantic-ui-react'
+import { Card, Image } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 
 
@@ -11,14 +12,14 @@ const EventCard = ({event, person, pge}) => {
 
   const renderGift = () => {
     if (pge.gift === null) {
-      return <p>{`Find a gift for ${person.name}`}</p>
+      return <Link to="/my-gifts">{`Find a gift for ${person.name}`}</Link>
     }
     else {
       return (
-        <div>
+        <Link to={`/my-gifts/${pge.gift.id}`}>
         {pge.gift.name}
-        <img src={pge.gift.image} alt={pge.gift.name} />
-        </div>
+        <Image className="gift" src={pge.gift.image} alt={pge.gift.name} />
+        </Link>
       )
     }
   }
@@ -26,11 +27,15 @@ const EventCard = ({event, person, pge}) => {
 
   return (
 
-    <Card>
-      <h3>{event.title}</h3>
-      <p>{event.date}</p>
+    <Card className="person-event">
+      <Card.Header as={Link} to={`/checklist/${event.id}`}>
+        <p>{event.title}</p>
+        <p>{event.date}</p>
+      </Card.Header>
+      <Card.Content>
 
       {renderGift()}
+      </Card.Content>
     </Card>
 
 

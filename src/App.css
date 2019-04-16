@@ -202,6 +202,23 @@ body {
   padding: 10px;
 }
 
+.ui.card.person-detail.card {
+  width: 300px;
+  box-shadow: none;
+  background-color: inherit;
+  margin-bottom: 30px;
+}
+
+.ui.card.person-event {
+  box-shadow: none;
+  padding: 10px;
+  text-align: center;
+}
+
+.person-detail-container {
+  margin-top: 50px;
+}
+
 /* ######### END GIFT SHOW PAGE ############ */
 
 .person {

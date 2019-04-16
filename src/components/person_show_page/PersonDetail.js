@@ -8,7 +8,7 @@ import EditPersonForm from './EditPersonForm'
 import SideNav from '../SideNav'
 import AppHeader from '../AppHeader'
 
-import { Button, Sidebar, Menu } from 'semantic-ui-react'
+import { Button, Sidebar, Menu, Card } from 'semantic-ui-react'
 
 import { resetState } from '../../resetState'
 
@@ -112,13 +112,22 @@ class PersonDetail extends Component {
             :
             <p className="person-add-notes" onClick={this.showForm}>Add notes...</p>}
             </div>
-            <h2>{`Need gifts for ${this.props.person.name}`}</h2>
-            {this.renderGiftsNeeded()}
-            <h2>Saved Gifts</h2>
-            {this.renderPersonGiftIdeas()}
-            <h2>Gift History</h2>
-            {this.renderPastGifts()}
-
+            <div className="person-detail-container">
+            <Card.Group>
+              <Card className="person-detail">
+                <p className="title">{`Need gifts for ${this.props.person.name}`}</p>
+                {this.renderGiftsNeeded()}
+              </Card>
+              <Card className="person-detail">
+                <p className="title">Saved Gifts</p>
+                {this.renderPersonGiftIdeas()}
+              </Card>
+              <Card className="person-detail">
+                <p className="title">Gift History</p>
+                {this.renderPastGifts()}
+              </Card>
+            </Card.Group>
+            </div>
           </div>
         </Sidebar.Pusher>
       </Sidebar.Pushable>
