@@ -30,7 +30,7 @@ class GiftForm extends Component {
     let image = this.state.image
     let listPrice = this.state.list_price
     if (image === "") {
-      image = "https://res.cloudinary.com/dum7xzjkm/image/upload/v1554660115/cpoqoqfywcjl3cm4qsnn.jpg"
+      image = "https://res.cloudinary.com/dum7xzjkm/image/upload/v1555420285/r9e7jc3weyycwrrtknah.jpg"
     }
     if (listPrice === "") {
       listPrice = 0
