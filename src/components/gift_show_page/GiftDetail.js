@@ -9,7 +9,7 @@ import EventSaveForm from './EventSaveForm'
 import SideNav from '../SideNav'
 import AppHeader from '../AppHeader'
 
-import { Button, Sidebar, Menu, Grid, Card } from 'semantic-ui-react'
+import { Button, Sidebar, Menu, Card } from 'semantic-ui-react'
 
 import { resetState } from '../../resetState'
 
@@ -33,7 +33,7 @@ class GiftDetail extends Component {
   }
 
   handleDeleteGift = () => {
-    fetch(`http://localhost:3000/api/v1/gifts/${this.props.gift.id}`, {
+    fetch(`${this.props.url}/gifts/${this.props.gift.id}`, {
       method: "DELETE"
     })
     .then(resp => {
@@ -53,7 +53,6 @@ class GiftDetail extends Component {
   }
 
   render() {
-    console.log(this.props.gift);
     const { gift } = this.props
     return (
       <Sidebar.Pushable>
@@ -120,7 +119,8 @@ function mapStateToProps(state) {
     currentUser: state.currentUser,
     people: state.people,
     gifts: state.gifts,
-    user_id: state.user_id
+    user_id: state.user_id,
+    url: state.url
   }
 }
 

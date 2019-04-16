@@ -22,7 +22,7 @@ class Login extends Component {
       username: this.state.username,
       password: this.state.password
     }
-    fetch("http://localhost:3000/api/v1/login", {
+    fetch(`${this.props.url}/login`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
