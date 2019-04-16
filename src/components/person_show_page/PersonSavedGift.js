@@ -1,17 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import { Card } from 'semantic-ui-react'
+import { Card, Image, Icon } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 import { resetState } from '../../resetState'
 
 
 
-const PersonSavedGift = ({id, gift, selectedPerson, deletePersonGiftIdea, currentUser}) => {
+const PersonSavedGift = ({id, gift, selectedPerson, deletePersonGiftIdea, currentUser, url}) => {
 
 
   const unSaveIdea = () => {
-    fetch(`http://localhost:3000/api/v1/person_gift_ideas/${id}`, {method: "DELETE"})
+    fetch(`${url}/person_gift_ideas/${id}`, {method: "DELETE"})
     .then(resp => {
       deletePersonGiftIdea(id, selectedPerson.id)
       resetState(currentUser.id)
@@ -19,9 +20,16 @@ const PersonSavedGift = ({id, gift, selectedPerson, deletePersonGiftIdea, curren
   }
 
   return (
-    <Card>
-      <h3>{gift.name}</h3>
-      <div onClick={unSaveIdea}>heart</div>
+    <Card className="person-gift">
+      <Card.Header className="inline" >
+        <Link to={`/my-gifts/${gift.id}`} className="inline">{gift.name}</Link>
+        <Icon name="heart" size="large" onClick={unSaveIdea} />
+      </Card.Header>
+      <Card.Content>
+        <Link to={`/my-gifts/${gift.id}`}>
+          <Image className="gift" src={gift.image} alt={gift.name} />
+        </Link>
+      </Card.Content>
     </Card>
   );
 
@@ -29,7 +37,8 @@ const PersonSavedGift = ({id, gift, selectedPerson, deletePersonGiftIdea, curren
 
 function mapStateToProps(state) {
   return {
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
+    url: state.url
   }
 }
 

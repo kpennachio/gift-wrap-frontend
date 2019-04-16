@@ -83,6 +83,15 @@ h3 {
 
 }
 
+a {
+  color: black !important;
+}
+
+a:hover {
+  color: #FF533D !important;
+  font-weight: bold;
+}
+
 /* #app {
   background-color: rgb(249, 249, 249);
   height: 100vh;
@@ -215,8 +224,18 @@ body {
   text-align: center;
 }
 
+.ui.card.person-gift {
+  box-shadow: none;
+  padding: 10px;
+}
+
 .person-detail-container {
   margin-top: 50px;
+}
+
+.ui.image.person-gift {
+  max-height: 200px;
+  object-fit: contain;
 }
 
 /* ######### END GIFT SHOW PAGE ############ */
@@ -390,15 +409,7 @@ div.ui.card.save-form {
   color: #FF533D !important;
 }
 
-a {
-  color: black !important;
-  font-weight: bold;
-}
 
-a:hover {
-  color: #FF533D !important;
-  font-weight: bold;
-}
 
 
 /* ########### CHECKLIST ############## */
