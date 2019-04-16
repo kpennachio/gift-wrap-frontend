@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import { Card, Button, Image } from 'semantic-ui-react'
+import { Card, Button, Image, Icon } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 import { resetState } from '../../resetState'
 
@@ -79,18 +80,40 @@ const OtherGift = (props) => {
   }
 
   return (
-    <Card>
-      <Card.Header>{gift.name}</Card.Header>
+    <Card
+      className="gift"
+    >
       <Card.Content>
-      <Image src={gift.image} alt={gift.name}/>
+      <Card.Header className="gift-name">{gift.name}</Card.Header>
+      <Card.Meta>{gift.store} ${parseInt(gift.list_price).toFixed(2)}</Card.Meta>
+      <Image src={gift.image} alt={gift.name} className="gift"/>
+        <div className="button-content">
+          <div className="heart-container">
+            <Icon name="heart outline" className="event-page" size="large" onClick={saveIdeaEvent} />Save to Event
+          </div>
+          <div className="heart-container">
+            <Icon name="heart outline" className="event-page" size="large" onClick={saveIdeaPerson} />{`Save to ${selectedPerson.name}`}
+          </div>
+          <Button onClick={selectGift}>{`Select this gift for ${selectedPerson.name}`}</Button>
+        </div>
       </Card.Content>
-        <Button onClick={saveIdeaEvent}>Save idea for event</Button>
-        <Button onClick={saveIdeaPerson}>{`Save idea for ${selectedPerson.name}`}</Button>
-        <Button onClick={selectGift}>{`Select this gift for ${selectedPerson.name}`}</Button>
+
     </Card>
+
   );
 
 }
+//
+// <Card>
+//   <Card.Header>{gift.name}</Card.Header>
+//   <Card.Content>
+//   <Image src={gift.image} alt={gift.name}/>
+//   </Card.Content>
+//     <Button onClick={saveIdeaEvent}>Save idea for event</Button>
+//     <Button onClick={saveIdeaPerson}>{`Save idea for ${selectedPerson.name}`}</Button>
+//     <Button onClick={selectGift}>{`Select this gift for ${selectedPerson.name}`}</Button>
+// </Card>
+
 
 function mapStateToProps(state) {
   return {

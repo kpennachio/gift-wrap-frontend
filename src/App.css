@@ -488,6 +488,38 @@ div.ui.card.save-form {
 }
 
 
+/* ################## EVENT PAGE ##################################### */
+.heart.outline.large.icon.event-page {
+  color: #FF533D;
+  float: none !important;
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.heart-container {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.button-content {
+  /* padding-bottom: 14px; */
+  /* position: absolute; */
+  /* bottom: 0; */
+  margin-top: 10px;
+}
+
+.heart.outline.large.icon.event-page:hover {
+  cursor: pointer;
+}
+
+.container {
+  height: 100%;
+  position: relative;
+}
+
+/* ################## END EVENT PAGE ##################################### */
+
+
 /* ########################## DASHBOARD ################################## */
 #checklist-container {
   background-color: white;
