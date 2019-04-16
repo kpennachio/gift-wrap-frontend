@@ -176,17 +176,13 @@ class EventDetail extends Component {
         <Sidebar.Pusher dimmed={this.state.showForm}>
           <AppHeader logout={this.props.logout}/>
           <SideNav />
-          <div className="planner-content" >
+          <div className="event-show-content" >
             <h1 className="inline margin-right">{this.props.event.title}</h1>
             <Icon size="big" className={this.check()} name="check circle outline" />
-            <Button onClick={this.showForm}>Edit Event</Button>
+            <Button className="edit-event-button" onClick={this.showForm}>Edit Event</Button>
             <p>{this.props.event.dateFormatted}</p>
             <p>{this.props.event.notes ? `Notes: ${this.props.event.notes}` : "Add notes"}</p>
-            {this.missingGifts() ?
-              <p>Missing Gifts!</p>
-              :
-              <p>Gifts Complete!</p>
-            }
+
             <Card.Group>
             {this.people()}
             </Card.Group>

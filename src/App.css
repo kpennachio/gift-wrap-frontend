@@ -479,7 +479,7 @@ div.ui.card.save-form {
 
 
 .check.circle.outline.big.icon.checked.inline {
-  color: #FF533D;
+  color: rgb(29, 122, 201);
 }
 
 
@@ -489,6 +489,24 @@ div.ui.card.save-form {
 
 
 /* ################## EVENT PAGE ##################################### */
+
+
+.event-show-content {
+  margin-left: 150px;
+  padding-bottom: 40px;
+  padding-top: 110px;
+  padding-left: 5%;
+  padding-right: 10%;
+  min-height: 100vh;
+
+}
+
+.edit-event-button {
+  float: right;
+  display: inline-block;
+}
+
+
 .heart.outline.large.icon.event-page {
   color: #FF533D;
   float: none !important;
