@@ -11,7 +11,7 @@ import { resetState } from '../../resetState'
 
 const OtherGift = (props) => {
 
-  const {gift, event, selectedPerson, addNewPersonGiftIdea, addNewEventGiftIdea, pge, editPersonGiftEvent, people, gifts, currentUser, url, deletePersonGiftIdea, deleteEventGiftIdea} = props
+  const {gift, event, selectedPerson, addNewPersonGiftIdea, addNewEventGiftIdea, pge, editPersonGiftEvent, people, gifts, currentUser, url, deletePersonGiftIdea, deleteEventGiftIdea, changePersonGiftEvent} = props
 
 
   const handlePersonClick = () => {
@@ -111,7 +111,31 @@ const OtherGift = (props) => {
     .then(pge => {
       pge.person = people.find(person => person.id === pge.person_id)
       pge.gift = gifts.find(gift => gift.id === pge.gift_id)
+      
+      changePersonGiftEvent(pge)
+      editPersonGiftEvent(pge)
+      resetState(currentUser.id)
+    })
+  }
 
+  const removeGift = () => {
+    let data = {
+      gift_id: null,
+      gift_actual_cost: 0
+    }
+    fetch(`${url}/person_gift_events/${pge.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+    .then(resp => resp.json())
+    .then(pge => {
+      pge.person = people.find(person => person.id === pge.person_id)
+      pge.gift = null
+      changePersonGiftEvent(pge)
       editPersonGiftEvent(pge)
       resetState(currentUser.id)
     })
@@ -149,6 +173,15 @@ const OtherGift = (props) => {
     )
   }
 
+  const renderSelectButton = () => {
+    if (pge.gift) {
+      if (pge.gift.id === gift.id) {
+        return <Button onClick={removeGift}>Unselect Gift!</Button>
+      }
+    }
+    return <Button onClick={selectGift}>{`Select this gift for ${selectedPerson.name}`}</Button>
+  }
+
   return (
     <Card
       className="gift"
@@ -160,7 +193,7 @@ const OtherGift = (props) => {
         <div className="button-content">
             {saveEventHeart()}
             {savePersonHeart()}
-          <Button onClick={selectGift}>{`Select this gift for ${selectedPerson.name}`}</Button>
+            {renderSelectButton()}
         </div>
       </Card.Content>
 
@@ -194,9 +227,10 @@ function mapDispatchToProps(dispatch) {
   return {
     addNewPersonGiftIdea: (pgi) => {dispatch({type: "ADD_NEW_PERSON_GIFT_IDEA", payload: {person_id: pgi.person_id, pgi: pgi} } )},
     addNewEventGiftIdea: (egi) => {dispatch({type: "ADD_NEW_EVENT_GIFT_IDEA", payload: {event_id: egi.event_id, egi: egi}})},
-    editPersonGiftEvent: (pge) => {dispatch({type: "EDIT_PERSON_GIFT_EVENT", payload: {event_id: pge.event_id, pge: pge}})},
     deletePersonGiftIdea: (pgi_id, person_id) => {dispatch({type: "DELETE_PERSON_GIFT_IDEA", payload: {person_id: person_id, pgi_id: pgi_id} } )},
-    deleteEventGiftIdea: (egi_id, event_id) => {dispatch({type: "DELETE_EVENT_GIFT_IDEA", payload: {event_id: event_id, egi_id: egi_id} } )}
+    deleteEventGiftIdea: (egi_id, event_id) => {dispatch({type: "DELETE_EVENT_GIFT_IDEA", payload: {event_id: event_id, egi_id: egi_id} } )},
+    editPersonGiftEvent: (pge) => {dispatch({type: "EDIT_PERSON_GIFT_EVENT", payload: pge})}
+
   }
 }
 

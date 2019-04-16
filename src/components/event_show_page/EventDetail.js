@@ -49,28 +49,28 @@ class EventDetail extends Component {
     this.setState({personGiftEvent: pge})
   }
 
-  otherGifts = () => {
-    let person = this.props.people.find(person => {
-      return person.id === this.state.selectedPerson.id
-    })
-    if (person) {
-      let pgeSelected = person.person_gift_events.filter(pge => pge.gift !== null)
-      let giftIds = pgeSelected.map(pge => pge.gift.id)
-      let person_gift_ideas = person.person_gift_ideas.map(pgi => pgi.gift_idea_id)
-      let event_gift_ideas = this.props.event.event_gift_ideas.map(egi => egi.gift_idea_id)
-      let selectedGiftIds = person_gift_ideas.concat(event_gift_ideas).concat(giftIds)
-
-      let selectedGifts = selectedGiftIds.map(id => {
-        return this.props.gifts.find(gift => gift.id === id)
-      })
-
-      return this.props.gifts.filter(gift => {
-        return selectedGifts.every(sg => {
-          return sg.id !== gift.id
-        })
-      })
-    }
-  }
+  // otherGifts = () => {
+  //   let person = this.props.people.find(person => {
+  //     return person.id === this.state.selectedPerson.id
+  //   })
+  //   if (person) {
+  //     let pgeSelected = person.person_gift_events.filter(pge => pge.gift !== null)
+  //     let giftIds = pgeSelected.map(pge => pge.gift.id)
+  //     let person_gift_ideas = person.person_gift_ideas.map(pgi => pgi.gift_idea_id)
+  //     let event_gift_ideas = this.props.event.event_gift_ideas.map(egi => egi.gift_idea_id)
+  //     let selectedGiftIds = person_gift_ideas.concat(event_gift_ideas).concat(giftIds)
+  //
+  //     let selectedGifts = selectedGiftIds.map(id => {
+  //       return this.props.gifts.find(gift => gift.id === id)
+  //     })
+  //
+  //     return this.props.gifts.filter(gift => {
+  //       return selectedGifts.every(sg => {
+  //         return sg.id !== gift.id
+  //       })
+  //     })
+  //   }
+  // }
 
   renderOtherGifts = () => {
     // let otherGifts = this.otherGifts()
@@ -82,7 +82,7 @@ class EventDetail extends Component {
     // }
 
       return this.props.gifts.map(gift => {
-        return <OtherGift key={uuid()} gift={gift} event={this.props.event} selectedPerson={this.state.selectedPerson} pge={this.state.personGiftEvent}/>
+        return <OtherGift key={uuid()} gift={gift} event={this.props.event} selectedPerson={this.state.selectedPerson} pge={this.state.personGiftEvent} changePersonGiftEvent={this.changePersonGiftEvent}/>
       })
 
   }
@@ -111,35 +111,35 @@ class EventDetail extends Component {
     return id
   }
 
-  renderPersonGiftIdeas = () => {
-    let person = this.props.people.find(person => {
-      return person.id === this.state.selectedPerson.id
-    })
+  // renderPersonGiftIdeas = () => {
+  //   let person = this.props.people.find(person => {
+  //     return person.id === this.state.selectedPerson.id
+  //   })
+  //
+  //   if (person) {
+  //     return person.person_gift_ideas.map(person_gift_idea => {
+  //       let gift = this.props.gifts.find(gift => gift.id === person_gift_idea.gift_idea_id)
+  //       if (gift && gift.id !== this.pgeId()) {
+  //         return <PersonSavedGift key={uuid()} id={person_gift_idea.id} gift={gift} selectedPerson={this.state.selectedPerson} pge={this.state.personGiftEvent} changePersonGiftEvent={this.changePersonGiftEvent}/>
+  //       }
+  //     })
+  //   }
+  // }
 
-    if (person) {
-      return person.person_gift_ideas.map(person_gift_idea => {
-        let gift = this.props.gifts.find(gift => gift.id === person_gift_idea.gift_idea_id)
-        if (gift && gift.id !== this.pgeId()) {
-          return <PersonSavedGift key={uuid()} id={person_gift_idea.id} gift={gift} selectedPerson={this.state.selectedPerson} pge={this.state.personGiftEvent} changePersonGiftEvent={this.changePersonGiftEvent}/>
-        }
-      })
-    }
-  }
-
-  renderEventGiftIdeas = () => {
-    let event = this.props.events.find(e => e.id === this.props.event.id)
-
-    if (event) {
-      return event.event_gift_ideas.map(event_gift_idea => {
-        let gift = this.props.gifts.find(gift => gift.id === event_gift_idea.gift_idea_id)
-        if (gift && gift.id !== this.pgeId()) {
-          return <EventSavedGift key={uuid()} id={event_gift_idea.id} gift={gift} event={event} selectedPerson={this.state.selectedPerson} pge={this.state.personGiftEvent} changePersonGiftEvent={this.changePersonGiftEvent}/>
-        }
-      })
-    }
-
-
-  }
+  // renderEventGiftIdeas = () => {
+  //   let event = this.props.events.find(e => e.id === this.props.event.id)
+  //
+  //   if (event) {
+  //     return event.event_gift_ideas.map(event_gift_idea => {
+  //       let gift = this.props.gifts.find(gift => gift.id === event_gift_idea.gift_idea_id)
+  //       if (gift && gift.id !== this.pgeId()) {
+  //         return <EventSavedGift key={uuid()} id={event_gift_idea.id} gift={gift} event={event} selectedPerson={this.state.selectedPerson} pge={this.state.personGiftEvent} changePersonGiftEvent={this.changePersonGiftEvent}/>
+  //       }
+  //     })
+  //   }
+  //
+  //
+  // }
 
   check = () => {
     if (this.missingGifts()) {
@@ -191,21 +191,9 @@ class EventDetail extends Component {
             {this.people()}
             </Card.Group>
 
-            <h2>Saved Event Gift Ideas</h2>
-
+            <h2>Your Gifts</h2>
             <Card.Group>
-              {this.renderEventGiftIdeas()}
-            </Card.Group>
-
-            <h2>{`Saved Gift Ideas for ${this.state.selectedPerson.name}`}</h2>
-            <Card.Group>
-              {this.renderPersonGiftIdeas()}
-            </Card.Group>
-            <h2>See other gifts</h2>
-            <Card.Group>
-
               {this.renderOtherGifts()}
-
             </Card.Group>
           </div>
         </Sidebar.Pusher>
@@ -227,3 +215,15 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps)(EventDetail);
+
+
+// <h2>Saved Event Gift Ideas</h2>
+//
+// <Card.Group>
+//   {this.renderEventGiftIdeas()}
+// </Card.Group>
+//
+// <h2>{`Saved Gift Ideas for ${this.state.selectedPerson.name}`}</h2>
+// <Card.Group>
+//   {this.renderPersonGiftIdeas()}
+// </Card.Group>
