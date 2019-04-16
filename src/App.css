@@ -83,13 +83,20 @@ h3 {
 
 }
 
-#app {
+/* #app {
   background-color: rgb(249, 249, 249);
   height: 100vh;
-}
+} */
 
 #event-list {
   height: 100vh;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(249, 249, 249) !important;
 }
 
 /* .ui.massive.inverted.top.fixed.menu {
@@ -159,10 +166,43 @@ h3 {
 
 /* ######### END PEOPLE PAGE ########### */
 
+/* ######### GIFT SHOW PAGE ############ */
 
+.person-show-content {
+  margin-left: 150px;
+  padding-bottom: 40px;
+  padding-top: 110px;
+  padding-left: 5%;
+  padding-right: 10%;
+  min-height: 100vh;
 
+}
 
+.edit-person-button {
+  float: right;
+  display: inline-block;
+}
 
+.person-add-notes:hover {
+  cursor: pointer;
+  color: #FF533D;
+
+}
+
+.person-note-container {
+  margin-top: 40px;
+}
+
+.person-notes {
+  max-width: 400px;
+  max-height: 200px;
+  overflow-y: scroll;
+  white-space: pre-wrap;
+  background-color: white;
+  padding: 10px;
+}
+
+/* ######### END GIFT SHOW PAGE ############ */
 
 .person {
   background-color: white;
@@ -255,6 +295,8 @@ img {
   padding-top: 110px;
   padding-left: 5%;
   padding-right: 10%;
+  min-height: 100vh;
+
 }
 
 .edit-gift-button {

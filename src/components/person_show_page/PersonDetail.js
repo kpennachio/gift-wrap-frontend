@@ -17,7 +17,8 @@ class PersonDetail extends Component {
 
 
   state = {
-    showForm: false
+    showForm: false,
+    formMessage: ""
   }
 
   renderPersonGiftIdeas = () => {
@@ -60,7 +61,24 @@ class PersonDetail extends Component {
   }
 
   handleSidebarHide = () => {
-    this.setState({showForm: false})
+    this.setState({
+      showForm: false,
+      formMessage: ""
+    })
+  }
+
+  changeMessage = (message) => {
+    this.setState({
+      formMessage: message
+    })
+  }
+
+  renderNotes = () => {
+    return(
+      <div className="person-notes">
+        <p>{this.props.person.notes}</p>
+      </div>
+    )
   }
 
   render() {
@@ -77,18 +95,23 @@ class PersonDetail extends Component {
         className="form"
         onHide={this.handleSidebarHide}
         >
-          <EditPersonForm person={this.props.person}/>
+          <EditPersonForm person={this.props.person} changeMessage={this.changeMessage} formMessage={this.state.formMessage}/>
           <Button onClick={this.handleDeletePerson}>Delete Person</Button>
         </Sidebar>
 
         <Sidebar.Pusher dimmed={this.state.showForm}>
           <AppHeader logout={this.props.logout}/>
           <SideNav />
-          <div className="planner-content">
-            <h1>{this.props.person.name}</h1>
-            <Button onClick={this.showForm}>Edit Person</Button>
-            <h2>Notes:</h2>
-            <p>{this.props.person.notes !== null ? this.props.person.notes : "Add notes..."}</p>
+          <div className="person-show-content">
+            <h1 className="inline">{this.props.person.name}</h1>
+            <Button className="edit-person-button" onClick={this.showForm}>Edit Person</Button>
+            <div className="person-note-container">
+            <p>Notes:</p>
+            {this.props.person.notes !== "" ?
+            this.renderNotes()
+            :
+            <p className="person-add-notes" onClick={this.showForm}>Add notes...</p>}
+            </div>
             <h2>{`Need gifts for ${this.props.person.name}`}</h2>
             {this.renderGiftsNeeded()}
             <h2>Saved Gifts</h2>
