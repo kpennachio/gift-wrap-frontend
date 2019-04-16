@@ -14,7 +14,7 @@ const PersonCard = ({person}) => {
   return (
 
     <Card className="contact-person" as={Link} to={`my-people/${person.id}`}>
-      <h3>{person.name}</h3>
+      <p>{person.name}</p>
 
     </Card>
 

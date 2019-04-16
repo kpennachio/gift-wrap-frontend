@@ -235,7 +235,6 @@ body {
 
 .ui.image.person-gift {
   max-height: 200px;
-  object-fit: contain;
 }
 
 /* ######### END GIFT SHOW PAGE ############ */
@@ -303,6 +302,10 @@ img {
   padding-right: 5%;
   background-color: rgb(249, 249, 249);
   min-height: 100vh;
+}
+
+.header.gift-name {
+  font-weight: normal !important;
 }
 
 .gift-filters {
@@ -454,6 +457,10 @@ div.ui.card.save-form {
   padding-left: 5%;
   color: black;
   box-shadow: none;
+}
+
+.event-name {
+  font-size: 18px;
 }
 
 .form {

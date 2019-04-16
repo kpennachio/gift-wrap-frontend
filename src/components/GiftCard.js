@@ -18,7 +18,7 @@ const GiftCard = ({gift}) => {
       className="gift"
     >
       <Card.Content>
-      <Card.Header>{gift.name}</Card.Header>
+      <Card.Header className="gift-name">{gift.name}</Card.Header>
       <Card.Meta>{gift.store} ${parseInt(gift.list_price).toFixed(2)}</Card.Meta>
       <Image src={gift.image} alt={gift.name} className="gift"/>
       </Card.Content>

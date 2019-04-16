@@ -41,7 +41,7 @@ class BudgetEvent extends Component {
     return(
       <Grid>
       <Grid.Column width={4}><p>{this.props.event.dateFormatted}</p></Grid.Column>
-      <Grid.Column width={5}><h3>{this.props.event.title}</h3></Grid.Column>
+      <Grid.Column width={5}><p>{this.props.event.title}</p></Grid.Column>
       <Grid.Column width={2}><p>${this.eventBudget()}</p></Grid.Column>
       <Grid.Column width={2}><p>${this.eventSpending()}</p></Grid.Column>
       <Grid.Column width={1}><Icon name='dropdown' /></Grid.Column>
