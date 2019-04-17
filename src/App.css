@@ -607,6 +607,29 @@ div.ui.card.save-form {
 
 
 /* ########################## DASHBOARD ################################## */
+
+#dashboard-header {
+  margin-left: 150px;
+  padding-top: 110px;
+  padding-left: 5%;
+  padding-right: 10%;
+  padding-bottom: 40px;
+  /* background-color: white; */
+  background-image: url("https://res.cloudinary.com/dum7xzjkm/image/upload/v1555467260/etcdycn6jtj0g8ynotxf.png");
+  background-repeat: no-repeat;
+}
+
+#dashboard-content {
+  margin-top: 20px;
+  margin-left: 150px;
+  margin-bottom: 50px;
+  padding-left: 5%;
+  padding-right: 5%;
+  background-color: rgb(249, 249, 249);
+  min-height: 100vh;
+}
+
+
 #checklist-container {
   background-color: white;
   width: 400px;
@@ -702,8 +725,12 @@ div.ui.card.save-form {
   padding-top: 110px;
   padding-left: 5%;
   padding-right: 10%;
-  background-color: white;
+  padding-bottom: 40px;
+  /* background-color: white; */
+  background-image: url("https://res.cloudinary.com/dum7xzjkm/image/upload/v1555467260/etcdycn6jtj0g8ynotxf.png");
+  background-repeat: no-repeat;
 }
+
 
 .budget-content {
   margin-left: 150px;

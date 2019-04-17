@@ -14,8 +14,10 @@ const Dashboard = (props) => {
     <Fragment >
       <AppHeader logout={props.logout}/>
       <SideNav />
-      <div className="planner-content">
+      <div id="dashboard-header" >
         <h1>My Dashboard</h1>
+      </div>
+      <div id="dashboard-content">
         <div className="inline">
           <NextEvent />
           <BudgetStatus />
