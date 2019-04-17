@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import uuid from 'uuid'
 
-import { Card, Icon, Sidebar, Button, Menu } from 'semantic-ui-react'
+import { Card, Icon, Sidebar, Button, Menu, Dropdown, Input } from 'semantic-ui-react'
 
 import EventPersonCard from './EventPersonCard'
 import OtherGift from './OtherGift'
@@ -20,7 +20,11 @@ class EventDetail extends Component {
     selectedPerson: {},
     personGiftEvent: {},
     currentPeople: [],
-    showForm: false
+    showForm: false,
+    age_range: "All Ages",
+    maxPrice: "",
+    minPrice: "",
+    searchName: ""
   }
 
   componentDidMount() {
@@ -80,8 +84,8 @@ class EventDetail extends Component {
     //     return <OtherGift key={uuid()} gift={gift} event={this.props.event} selectedPerson={this.state.selectedPerson} pge={this.state.personGiftEvent}/>
     //   })
     // }
-    let ordered = this.props.gifts.sort((a, b) => b.id - a.id)
-
+    let ordered = this.findGifts().sort((a, b) => b.id - a.id)
+    
       return ordered.map(gift => {
         return <OtherGift key={uuid()} gift={gift} event={this.props.event} selectedPerson={this.state.selectedPerson} pge={this.state.personGiftEvent} changePersonGiftEvent={this.changePersonGiftEvent}/>
       })
@@ -157,7 +161,107 @@ class EventDetail extends Component {
     this.setState({showForm: false})
   }
 
+  searchNameGifts = () => {
+    if (this.state.searchName !== "") {
+      return this.props.gifts.filter(gift => {
+        return gift.name.toLowerCase().includes(this.state.searchName)
+      })
+    }
+    else return this.props.gifts
+  }
+
+  ageRangeGifts = () => {
+    if (this.state.age_range === "All Ages") {
+      return this.searchNameGifts()
+    }
+    else {
+      return this.searchNameGifts().filter(gift => {
+        return gift.age_range === this.state.age_range
+      })
+    }
+  }
+
+  findGifts = () => {
+    if (this.state.maxPrice !== "" && this.state.minPrice !== "") {
+      return this.ageRangeGifts().filter(gift => {
+        return (
+          Math.round(gift.list_price) <= parseInt(this.state.maxPrice)
+          &&
+          Math.round(gift.list_price) >= parseInt(this.state.minPrice)
+        )
+      })
+    }
+    else if (this.state.maxPrice !== "") {
+      return this.ageRangeGifts().filter(gift => {
+        return (
+          Math.round(gift.list_price) <= parseInt(this.state.maxPrice)
+        )
+      })
+    }
+    else if (this.state.minPrice !== "") {
+      return this.ageRangeGifts().filter(gift => {
+        return (
+          Math.round(gift.list_price) >= parseInt(this.state.minPrice)
+        )
+      })
+    }
+    else return this.ageRangeGifts()
+  }
+
+  filterAgeRange = (e, {value}) => {
+    this.setState({age_range: value})
+  }
+
+  filterMaxPrice = (e) => {
+    this.setState({maxPrice: e.target.value})
+  }
+
+  filterMinPrice = (e) => {
+    this.setState({minPrice: e.target.value})
+  }
+
+  changeSearchName = (e) => {
+    this.setState({searchName: e.target.value})
+  }
+
+  clearFilters = () => {
+    this.setState({
+      age_range: "All Ages",
+      maxPrice: "",
+      minPrice: "",
+      searchName: ""
+    })
+  }
+
   render() {
+    const ageOptions = [
+      {
+        key: 'All Ages',
+        text: 'All Ages',
+        value: 'All Ages',
+      },
+      {
+        key: 'Babies',
+        text: 'Babies',
+        value: 'Babies',
+      },
+      {
+        key: 'Kids',
+        text: 'Kids',
+        value: 'Kids',
+      },
+      {
+        key: 'Teens',
+        text: 'Teens',
+        value: 'Teens',
+      },
+      {
+        key: 'Adults',
+        text: 'Adults',
+        value: 'Adults',
+      }
+    ]
+
     return (
       <div>
       <Sidebar.Pushable>
@@ -189,6 +293,42 @@ class EventDetail extends Component {
             </Card.Group>
 
             <h2>Your Gifts</h2>
+            <div className="gift-filters">
+              <Dropdown
+                className="gift-filter"
+                placeholder="Filter by Age Range"
+                selection
+                value={this.state.age_range}
+                options={ageOptions}
+                onChange={(e, {value}) => this.filterAgeRange(e, {value})}
+              />
+              <Input
+                className="gift-filter"
+                label="$"
+                type="number"
+                min="0"
+                value={this.state.minPrice}
+                onChange={this.filterMinPrice}
+                placeholder="Price Min"
+              />
+              <Input
+                className="gift-filter"
+                label="$"
+                type="number"
+                min="0"
+                value={this.state.maxPrice}
+                onChange={this.filterMaxPrice}
+                placeholder="Price Max"
+              />
+              <Input
+                className="gift-filter"
+                className="gift-filter"
+                placeholder="Search by Name"
+                value={this.state.searchName}
+                onChange={this.changeSearchName}
+              />
+              <Button onClick={this.clearFilters}>Clear Filters</Button>
+              </div>
             <Card.Group>
               {this.renderOtherGifts()}
             </Card.Group>
