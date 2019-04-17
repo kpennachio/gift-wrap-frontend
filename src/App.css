@@ -270,6 +270,8 @@ body {
 
 #remove-gift {
   display: inline-block;
+  background-color: rgb(255, 236, 231);
+  color: #FF533D;
 }
 
 
@@ -509,6 +511,23 @@ div.ui.card.save-form {
 /* ################## EVENT PAGE ##################################### */
 
 
+#find-gift-person {
+  height: 300px;
+  padding-top: 100px;
+  text-align: center;
+
+}
+
+#gift-pic {
+  max-height: 200px;
+}
+
+#event-person-name {
+  font-size: 1.4em;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
 .event-show-content {
   margin-left: 150px;
   padding-bottom: 40px;
@@ -517,6 +536,10 @@ div.ui.card.save-form {
   padding-right: 10%;
   min-height: 100vh;
 
+}
+
+.text-align-center {
+  text-align: center;
 }
 
 .edit-event-button {

@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 import { Button, Card } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
+
 
 import { resetState } from '../../resetState'
 
@@ -37,16 +39,18 @@ const EventPersonCard = (props) => {
   const displayGift = () => {
     if (pge.gift === null) {
       return (
-        <div>
-        <p>Find a gift for {person.name}!</p>
+        <div id="find-gift-person">
+          <p>Find a gift for {person.name}!</p>
         </div>
       )
     }
     else {
       return (
           <div>
-          <img className="gift" src={pge.gift.image} alt={pge.gift.name}/>
-          <Button id="remove-gift" onClick={removeGift}>X</Button>
+          <Card.Meta className="gift-name">{pge.gift.name}<br />
+          {pge.gift.store} ${parseInt(pge.gift.list_price).toFixed(2)}</Card.Meta>
+          <img id="gift-pic" src={pge.gift.image} alt={pge.gift.name}/>
+          <Button id="remove-gift" onClick={removeGift}>Unselect Gift!</Button>
           </div>
       )
     }
@@ -54,18 +58,18 @@ const EventPersonCard = (props) => {
 
   const className = () => {
     if (selectedPerson.id === person.id) {
-      return "find-gift selected-person"
+      return "find-gift selected-person text-align-center"
     }
     else {
-      return "find-gift"
+      return "find-gift text-align-center"
     }
   }
 
   return (
-    <Card className={className()} onClick={() => changeSelectedPerson(person, pge)}>
+    <Card className={className()} >
       <Card.Content>
-      <h3>{person.name}</h3>
-      <div>
+      <Link id="event-person-name" to={`/my-people/${person.id}`}>{person.name}</Link>
+      <div onClick={() => changeSelectedPerson(person, pge)}>
         {displayGift()}
       </div>
       </Card.Content>
