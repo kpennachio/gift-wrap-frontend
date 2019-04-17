@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Form, Input, Button } from 'semantic-ui-react'
 import { Link, Redirect } from 'react-router-dom'
 
@@ -54,23 +54,31 @@ class Login extends Component {
     }
 
     return (
-      <div id="login-container">
-        <h1>Login</h1>
-          <p>{this.state.message}</p>
-          <Form onSubmit={this.handleSubmit}>
-            <Form.Field control={Input} value={this.state.username} name="username" label='Username' placeholder='Username' onChange={this.handleChange} />
-            <Form.Field control={Input} type="Password" value={this.state.password} name="password" label='Password' placeholder='Password' onChange={this.handleChange} />
-            <Button
-              type='submit'
-              disabled={this.state.username === "" || this.state.password === ""}
-              >
-              Login
-            </Button>
-          </Form>
+      <Fragment>
+      <div id="login-page">
+        <div className="main-logo">Gift Wrap</div>
+        <div id="login-container" className="centered">
+          <h1>Login</h1>
           <div>
-            <Link to="/create-account">Create Account</Link>
+            <Link to="/create-account">or Create Account</Link>
           </div>
+            <p>{this.state.message}</p>
+            <Form onSubmit={this.handleSubmit}>
+              <Form.Field control={Input} value={this.state.username} name="username" label='Username' placeholder='Username' onChange={this.handleChange} />
+              <Form.Field control={Input} type="Password" value={this.state.password} name="password" label='Password' placeholder='Password' onChange={this.handleChange} />
+              <Button
+                type='submit'
+                disabled={this.state.username === "" || this.state.password === ""}
+                >
+                Login
+              </Button>
+            </Form>
+
+        </div>
+        <p id="photo-credit">Photo by Debby Hudson on Unsplash</p>
+
       </div>
+      </Fragment>
     )
   }
 

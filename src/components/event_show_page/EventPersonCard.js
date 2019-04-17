@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import { Button } from 'semantic-ui-react'
+import { Button, Card } from 'semantic-ui-react'
 
 import { resetState } from '../../resetState'
 
@@ -36,34 +36,40 @@ const EventPersonCard = (props) => {
 
   const displayGift = () => {
     if (pge.gift === null) {
-      return <p>Find a gift for {person.name}!</p>
+      return (
+        <div>
+        <p>Find a gift for {person.name}!</p>
+        </div>
+      )
     }
     else {
       return (
-        <div id="event-person-card">
-          <div className="gift-image">
-            <img src={pge.gift.image} alt={pge.gift.name}/>
-          </div>
+          <div>
+          <img className="gift" src={pge.gift.image} alt={pge.gift.name}/>
           <Button id="remove-gift" onClick={removeGift}>X</Button>
-        </div>
+          </div>
       )
     }
   }
 
   const className = () => {
     if (selectedPerson.id === person.id) {
-      return "person selected-person"
+      return "find-gift selected-person"
     }
     else {
-      return "person"
+      return "find-gift"
     }
   }
 
   return (
-    <div className={className()} onClick={() => changeSelectedPerson(person, pge)}>
+    <Card className={className()} onClick={() => changeSelectedPerson(person, pge)}>
+      <Card.Content>
       <h3>{person.name}</h3>
-      {displayGift()}
-    </div>
+      <div>
+        {displayGift()}
+      </div>
+      </Card.Content>
+    </Card>
   );
 
 }

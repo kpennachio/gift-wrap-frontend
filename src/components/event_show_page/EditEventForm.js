@@ -168,6 +168,7 @@ class EditEventForm extends Component {
     })
     .then(resp => resp.json())
     .then(pge => {
+      resetState(this.props.currentUser.id)
       this.props.addNewPersonGiftEvent(pge)
 
     })

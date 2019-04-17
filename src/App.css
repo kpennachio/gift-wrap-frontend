@@ -540,6 +540,28 @@ div.ui.card.save-form {
   color: #FF533D;
 }
 
+.ui.card.find-gift.selected-person {
+  box-shadow: none !important;
+  border: solid rgb(255, 236, 231) !important;
+}
+
+.ui.card.find-gift.selected-person:hover {
+  color: black !important;
+  box-shadow: none !important;
+  border: solid rgb(255, 236, 231) !important;
+}
+
+.ui.card.find-gift {
+  box-shadow: none !important;
+  border: solid white !important;
+}
+
+.ui.card.find-gift:hover {
+  color: black !important;
+  box-shadow: none !important;
+  border: solid white !important;
+}
+
 /* ################## END EVENT PAGE ##################################### */
 
 
@@ -587,9 +609,11 @@ div.ui.card.save-form {
 
 
 #login-container {
-  padding-top: 90px;
-  padding-left: 15%;
+  /* padding-top: 90px;
+  padding-left: 15%; */
   width: 400px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
 }
 
 #create-account-form {
@@ -604,6 +628,30 @@ div.ui.card.save-form {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.main-logo {
+  color: #FF533D;
+  font-family: 'Cherry Swash', cursive;
+  font-size: 30px;
+  padding-top: 100px;
+  padding-left: 70%;
+  font-size: 4em;
+}
+
+#login-page {
+  height: 100vh;
+  background-image: url("https://res.cloudinary.com/dum7xzjkm/image/upload/v1555465301/hytdoxzmcgpgdeou2iwu.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#photo-credit {
+  position: absolute;
+  bottom: 0;
+}
+
+
+
 
 /* ##########################   BUDGET PAGE   ############################ */
 
