@@ -682,14 +682,14 @@ div.ui.card.save-form {
   background-color: white;
 }
 
-/* .budget-content {
+.budget-content {
   margin-left: 150px;
   margin-bottom: 50px;
   padding-left: 5%;
   padding-right: 5%;
   background-color: rgb(249, 249, 249);
-  min-height: 100vh;
-} */
+  /* min-height: 100vh; */
+}
 
 #budget-progress-container {
   background-color: white;
@@ -715,7 +715,7 @@ div.ui.card.save-form {
 }
 
 .budget-text {
-  font-size: 1.4em;
+  font-size: 1.25em;
   padding-top: 20px;
 }
 
@@ -758,8 +758,27 @@ div.ui.card.save-form {
 }
 
 .budget-col {
+  padding-left: 20px;
   font-size: 1.25em;
 }
+
+#budget-headings {
+  background-color: white;
+}
+
+.budget-event-individual {
+  margin-top: 10px;
+  padding-left: 20px;
+  background-color: white;
+}
+
+#end-of-event {
+  margin-left: 0 !important;
+  height: 10px;
+  width: 100%;
+  background-color: rgb(249, 249, 249);
+}
+
 
 /* #######  BUDGET PAGE CIRCLE PROGRESS BARS   ############################ */
 /*############################################################################S

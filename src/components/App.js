@@ -84,7 +84,7 @@ class App extends Component {
             <Route path="/" exact render={ (props) => <Dashboard {...props} logout={this.logout} /> } />
             <Route path="/login" render={routerProps => <Login {...routerProps}  setCurrentUserInfo={this.setCurrentUserInfo} />} />
             <Route path="/account" render={ (props) => <Profile {...props} logout={this.logout} /> } />
-            <Route path="/checklist/:id" render={ (props) => <ChecklistDetail {...props} ogout={this.logout} /> } />
+            <Route path="/checklist/:id" render={ (props) => <ChecklistDetail {...props} logout={this.logout} /> } />
             <Route path="/checklist" exact render={ (props) => <Checklist {...props} logout={this.logout} /> } />
             <Route path="/dashboard" render={ (props) => <Dashboard {...props} logout={this.logout} /> } />
             <Route path="/budgeter" render={ (props) => <Budgeter {...props} logout={this.logout} /> } />

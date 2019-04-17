@@ -37,13 +37,14 @@ class Budgeter extends Component {
           <h1>My Gift Budget</h1>
         </div>
 
-        <div className="budget-content">
+        <div >
           <BudgetContainer year={this.state.year} changeYear={this.changeYear}/>
         </div>
 
-      </div>
+      </div >
+      <div className="budget-content">
         <BudgetEventContainer year={this.state.year}/>
-
+      </div>
 
       </div>
     );

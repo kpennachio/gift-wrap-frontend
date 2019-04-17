@@ -79,7 +79,7 @@ class BudgetEvent extends Component {
 
   render() {
     return (
-      <Fragment>
+      <div className="budget-event-individual">
       <Accordion.Title active={this.state.activeIndex === this.props.event.id} index={this.props.event.id} onClick={this.handleClick}>
         {this.renderEvents()}
       </Accordion.Title>
@@ -89,9 +89,11 @@ class BudgetEvent extends Component {
           <Grid.Column width={4}></Grid.Column>
 
           <Grid.Column width={6}><Link to={`/checklist/${this.props.event.id}`}>select/edit gifts</Link></Grid.Column>
+          <div id="end-of-event">
+          </div>
         </Grid>
       </Accordion.Content>
-      </Fragment>
+      </div>
 
 
     );
