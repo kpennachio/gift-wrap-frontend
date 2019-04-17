@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import uuid from 'uuid'
 
-import { Card, Icon, Sidebar, Button, Menu, Dropdown, Input } from 'semantic-ui-react'
+import { Card, Icon, Sidebar, Button, Menu, Dropdown, Input, Checkbox } from 'semantic-ui-react'
 
 import EventPersonCard from './EventPersonCard'
 import OtherGift from './OtherGift'
@@ -24,7 +24,9 @@ class EventDetail extends Component {
     age_range: "All Ages",
     maxPrice: "",
     minPrice: "",
-    searchName: ""
+    searchName: "",
+    personCheck: false,
+    eventCheck: false
   }
 
   componentDidMount() {
@@ -85,7 +87,7 @@ class EventDetail extends Component {
     //   })
     // }
     let ordered = this.findGifts().sort((a, b) => b.id - a.id)
-    
+
       return ordered.map(gift => {
         return <OtherGift key={uuid()} gift={gift} event={this.props.event} selectedPerson={this.state.selectedPerson} pge={this.state.personGiftEvent} changePersonGiftEvent={this.changePersonGiftEvent}/>
       })
@@ -181,9 +183,32 @@ class EventDetail extends Component {
     }
   }
 
+  savedGifts = () => {
+    if (this.state.personCheck === true && this.state.eventCheck === true) {
+      let personGifts = this.ageRangeGifts().filter(gift => {
+        return gift.person_gift_ideas.some(pgi => pgi.person_id === this.state.selectedPerson.id)
+      })
+      let eventGifts = this.ageRangeGifts().filter(gift => {
+        return gift.event_gift_ideas.some(egi => egi.event_id === this.props.event.id)
+      })
+      return personGifts.concat(eventGifts)
+    }
+    else if (this.state.personCheck === true) {
+      return this.ageRangeGifts().filter(gift => {
+        return gift.person_gift_ideas.some(pgi => pgi.person_id === this.state.selectedPerson.id)
+      })
+    }
+    else if (this.state.eventCheck === true) {
+      return this.ageRangeGifts().filter(gift => {
+        return gift.event_gift_ideas.some(egi => egi.event_id === this.props.event.id)
+      })
+    }
+    else return this.ageRangeGifts()
+  }
+
   findGifts = () => {
     if (this.state.maxPrice !== "" && this.state.minPrice !== "") {
-      return this.ageRangeGifts().filter(gift => {
+      return this.savedGifts().filter(gift => {
         return (
           Math.round(gift.list_price) <= parseInt(this.state.maxPrice)
           &&
@@ -192,20 +217,20 @@ class EventDetail extends Component {
       })
     }
     else if (this.state.maxPrice !== "") {
-      return this.ageRangeGifts().filter(gift => {
+      return this.savedGifts().filter(gift => {
         return (
           Math.round(gift.list_price) <= parseInt(this.state.maxPrice)
         )
       })
     }
     else if (this.state.minPrice !== "") {
-      return this.ageRangeGifts().filter(gift => {
+      return this.savedGifts().filter(gift => {
         return (
           Math.round(gift.list_price) >= parseInt(this.state.minPrice)
         )
       })
     }
-    else return this.ageRangeGifts()
+    else return this.savedGifts()
   }
 
   filterAgeRange = (e, {value}) => {
@@ -220,6 +245,19 @@ class EventDetail extends Component {
     this.setState({minPrice: e.target.value})
   }
 
+  filterCheckBoxes = (e, checked) => {
+    if (checked.name === "person") {
+      this.setState((prevState) => ({
+        personCheck: !prevState.personCheck
+      }))
+    }
+    else if (checked.name === "event") {
+      this.setState((prevState) => ({
+        eventCheck: !prevState.eventCheck
+      }))
+    }
+  }
+
   changeSearchName = (e) => {
     this.setState({searchName: e.target.value})
   }
@@ -229,7 +267,9 @@ class EventDetail extends Component {
       age_range: "All Ages",
       maxPrice: "",
       minPrice: "",
-      searchName: ""
+      searchName: "",
+      personCheck: false,
+      eventCheck: false
     })
   }
 
@@ -294,6 +334,10 @@ class EventDetail extends Component {
 
             <h2>Your Gifts</h2>
             <div className="gift-filters">
+              <div>
+              <Checkbox name="person" className="gift-filter" label={`Gifts saved for ${this.state.selectedPerson.name}`} checked={this.state.personCheck} onChange={this.filterCheckBoxes}/>
+              <Checkbox name="event" className="gift-filter" label="Gifts saved for event" checked={this.state.eventCheck} onChange={this.filterCheckBoxes}/>
+              </div>
               <Dropdown
                 className="gift-filter"
                 placeholder="Filter by Age Range"
