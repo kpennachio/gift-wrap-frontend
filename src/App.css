@@ -742,6 +742,11 @@ div.ui.card.save-form {
   padding-top: 20px;
 }
 
+.budget-text p {
+  margin-top: -20px;
+
+}
+
 .border-line {
   border-style: solid;
   border-width: thin;
@@ -756,7 +761,7 @@ div.ui.card.save-form {
 
 .budget-circle-container {
   margin-top: 20px;
-  margin-bottom: 40px;
+  padding-bottom: 40px;
 }
 
 .budget-main-circle {
@@ -785,8 +790,15 @@ div.ui.card.save-form {
   font-size: 1.25em;
 }
 
-#budget-headings {
+#budget-headings-container {
   background-color: white;
+  width: 100vw;
+  margin-bottom: 30px;
+}
+
+#budget-headings {
+  margin-left: 150px;
+  padding-left: 4%;
 }
 
 .budget-event-individual {
@@ -800,6 +812,10 @@ div.ui.card.save-form {
   height: 10px;
   width: 100%;
   background-color: rgb(249, 249, 249);
+}
+
+.budget-event-row {
+  font-size: 1.2em;
 }
 
 

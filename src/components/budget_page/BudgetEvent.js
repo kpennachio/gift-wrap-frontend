@@ -29,7 +29,7 @@ class BudgetEvent extends Component {
       return(
         <Grid key={uuid()}>
         <Grid.Column width={4}></Grid.Column>
-        <Grid.Column width={5}><p>{pge.person.name}</p></Grid.Column>
+        <Grid.Column width={5}><Link to={`/my-people/${pge.person.id}`}>{pge.person.name}</Link></Grid.Column>
         <PersonBudget pge={pge}/>
         <Grid.Column width={2}><p>${parseInt(pge.gift_actual_cost)}</p></Grid.Column>
         </Grid>
@@ -39,7 +39,7 @@ class BudgetEvent extends Component {
 
   renderEvents = () => {
     return(
-      <Grid>
+      <Grid className="budget-event-row">
       <Grid.Column width={4}><p>{this.props.event.dateFormatted}</p></Grid.Column>
       <Grid.Column width={5}><p>{this.props.event.title}</p></Grid.Column>
       <Grid.Column width={2}><p>${this.eventBudget()}</p></Grid.Column>

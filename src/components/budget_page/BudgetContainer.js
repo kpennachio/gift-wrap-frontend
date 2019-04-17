@@ -104,8 +104,9 @@ const BudgetContainer = ({events, year, changeYear, budget, budgets, setBudget})
             percentage={budgetPercentage()}
             text={`${budgetPercentage()}%`}
           />
-          <div>
-            <p className="budget-text">{`Total Budgeted\n $${allocatedBudget()}`}</p>
+          <div className="budget-text">
+            <p>Total Budgeted</p>
+            <p>{`$${allocatedBudget()}`}</p>
           </div>
         </div>
 
@@ -114,7 +115,10 @@ const BudgetContainer = ({events, year, changeYear, budget, budgets, setBudget})
             percentage={paidPercentage()}
             text={`${paidPercentage()}%`}
           />
-          <p className="budget-text">{`Total Spent\n$${amountPaid()}`}</p>
+          <div className="budget-text">
+            <p>Total Spent</p>
+            <p>{`$${amountPaid()}`}</p>
+          </div>
         </div>
       </div>
     </div>

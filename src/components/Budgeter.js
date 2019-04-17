@@ -42,9 +42,7 @@ class Budgeter extends Component {
         </div>
 
       </div >
-      <div className="budget-content">
         <BudgetEventContainer year={this.state.year}/>
-      </div>
 
       </div>
     );

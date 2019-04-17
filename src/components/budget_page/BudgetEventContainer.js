@@ -30,8 +30,8 @@ const BudgetEventContainer = (props) => {
 
   return (
     <Fragment>
-      <div id="budget-headings">
-      <Grid>
+      <div id="budget-headings-container">
+      <Grid id="budget-headings">
         <Grid.Column width={4}><p className="budget-col">Date</p></Grid.Column>
         <Grid.Column width={5}><p className="budget-col">Event</p></Grid.Column>
         <Grid.Column width={2}><p className="budget-col">Budget</p></Grid.Column>
@@ -42,8 +42,9 @@ const BudgetEventContainer = (props) => {
       fluid
       className="event"
       >
+      <div className="budget-content">
         {renderAllEvents()}
-
+      </div>
       </Accordion>
     </Fragment>
   );
