@@ -11,7 +11,7 @@ import { resetState } from '../../resetState'
 
 const EventPersonCard = (props) => {
 
-  const {person, pge, selectedPerson, changeSelectedPerson, changePersonGiftEvent, people, editPersonGiftEvent, currentUser, url} = props
+  const {person, pge, selectedPerson, changeSelectedPerson, changePersonGiftEvent, people, editPersonGiftEvent, currentUser, url, history} = props
 
   const removeGift = () => {
     let data = {
@@ -36,6 +36,10 @@ const EventPersonCard = (props) => {
     })
   }
 
+  const goToGiftPage = (id) => {
+    history.push(`/my-gifts/${id}`)
+  }
+
   const displayGift = () => {
     if (pge.gift === null) {
       return (
@@ -49,7 +53,7 @@ const EventPersonCard = (props) => {
           <div>
           <Card.Meta className="gift-name">{pge.gift.name}<br />
           {pge.gift.store} ${parseInt(pge.gift.list_price).toFixed(2)}</Card.Meta>
-          <img id="gift-pic" src={pge.gift.image} alt={pge.gift.name}/>
+          <img onClick={() => goToGiftPage(pge.gift.id)} id="gift-pic" src={pge.gift.image} alt={pge.gift.name}/>
           <Button id="remove-gift" onClick={removeGift}>Unselect Gift!</Button>
           </div>
       )

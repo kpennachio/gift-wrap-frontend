@@ -520,6 +520,11 @@ div.ui.card.save-form {
 
 #gift-pic {
   max-height: 200px;
+  cursor: pointer;
+}
+
+#gift-pic:hover {
+
 }
 
 #event-person-name {

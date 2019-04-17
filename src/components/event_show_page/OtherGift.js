@@ -189,7 +189,7 @@ const OtherGift = (props) => {
       <Card.Content>
       <Card.Header className="gift-name">{gift.name}</Card.Header>
       <Card.Meta>{gift.store} ${parseInt(gift.list_price).toFixed(2)}</Card.Meta>
-      <Image src={gift.image} alt={gift.name} className="gift"/>
+      <Image as={Link} to={`/my-gifts/${gift.id}`} src={gift.image} alt={gift.name} className="gift"/>
         <div className="button-content">
             {saveEventHeart()}
             {savePersonHeart()}
@@ -202,16 +202,7 @@ const OtherGift = (props) => {
   );
 
 }
-//
-// <Card>
-//   <Card.Header>{gift.name}</Card.Header>
-//   <Card.Content>
-//   <Image src={gift.image} alt={gift.name}/>
-//   </Card.Content>
-//     <Button onClick={saveIdeaEvent}>Save idea for event</Button>
-//     <Button onClick={saveIdeaPerson}>{`Save idea for ${selectedPerson.name}`}</Button>
-//     <Button onClick={selectGift}>{`Select this gift for ${selectedPerson.name}`}</Button>
-// </Card>
+
 
 
 function mapStateToProps(state) {
