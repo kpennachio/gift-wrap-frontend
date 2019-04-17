@@ -132,7 +132,9 @@ class Budget extends Component {
       <Modal
         onClose={this.closeModal}
         open={this.state.showModal}
-        trigger={<Button onClick={() => this.setState({ showModal: true })}>{this.findBudget()}</Button>} >
+        trigger={<Button onClick={() => this.setState({ showModal: true })}>{this.findBudget()}</Button>}
+        size="mini"
+        >
         <Header content={`Your ${this.props.year} Gift Budget`} />
         <Modal.Content>
           <p>Set your max gift budget here:</p>

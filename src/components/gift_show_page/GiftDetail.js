@@ -52,6 +52,14 @@ class GiftDetail extends Component {
     this.setState({showForm: false})
   }
 
+  renderNotes = () => {
+    return(
+      <div className="person-notes">
+        <p>{this.props.gift.notes}</p>
+      </div>
+    )
+  }
+
   render() {
     const { gift } = this.props
     return (
@@ -84,7 +92,10 @@ class GiftDetail extends Component {
               <a id="store-link" href={gift.link}>Store Link</a><br/>
               <br/>
               <p>Notes:</p>
-              <div>{gift.notes !== "" ? gift.notes : <p>Add notes...</p>}</div>
+              {gift.notes === "" || gift.notes === null?
+              <p className="person-add-notes" onClick={this.showForm}>Add notes...</p>
+              :
+              this.renderNotes()}
             </div>
 
             <div className="save-container">

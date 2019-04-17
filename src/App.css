@@ -754,9 +754,6 @@ div.ui.card.save-form {
 
 }
 
-#budget-image {
-  /* background-image: url("https://res.cloudinary.com/dum7xzjkm/image/upload/v1555469072/de2wrnqs0s8imtvtaabt.png"); */
-}
 
 .budget-edit {
   display: inline-block;
@@ -799,7 +796,7 @@ div.ui.card.save-form {
 .budget-main-circle {
   width: 175px;
   display: inline-block;
-  margin-left: 50px;
+  margin-left: 10%;
   text-align: center;
 
 }
@@ -813,7 +810,7 @@ div.ui.card.save-form {
 .budget-spend-circle {
   width: 125px;
   display: inline-block;
-  margin-left: 100px;
+  margin-left: 10%;
   text-align: center;
 }
 
@@ -869,7 +866,8 @@ div.ui.card.save-form {
 }
 
 .CircularProgressbar .CircularProgressbar-path {
-  stroke: #ff7e6d;
+  stroke: rgb(29, 122, 201);
+
   stroke-linecap: round;
   transition: stroke-dashoffset 0.5s ease 0s;
 }
@@ -879,7 +877,7 @@ div.ui.card.save-form {
 }
 
 .CircularProgressbar .CircularProgressbar-text {
-  fill: #ff7e6d;
+  fill: rgb(29, 122, 201);
   font-size: 20px;
   dominant-baseline: middle;
   text-anchor: middle;

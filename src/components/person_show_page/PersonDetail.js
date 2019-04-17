@@ -107,10 +107,10 @@ class PersonDetail extends Component {
             <Button className="edit-person-button" onClick={this.showForm}>Edit Person</Button>
             <div className="person-note-container">
             <p>Notes:</p>
-            {this.props.person.notes !== "" ?
-            this.renderNotes()
+            {this.props.person.notes === "" || this.props.person.notes === null?
+            <p className="person-add-notes" onClick={this.showForm}>Add notes...</p>
             :
-            <p className="person-add-notes" onClick={this.showForm}>Add notes...</p>}
+            this.renderNotes()}
             </div>
             <div className="person-detail-container">
             <Card.Group>
