@@ -54,7 +54,7 @@ class GiftDetail extends Component {
 
   renderNotes = () => {
     return(
-      <div className="person-notes">
+      <div className="notes">
         <p>{this.props.gift.notes}</p>
       </div>
     )
@@ -93,7 +93,7 @@ class GiftDetail extends Component {
               <br/>
               <p>Notes:</p>
               {gift.notes === "" || gift.notes === null?
-              <p className="person-add-notes" onClick={this.showForm}>Add notes...</p>
+              <p className="add-notes" onClick={this.showForm}>Add notes...</p>
               :
               this.renderNotes()}
             </div>

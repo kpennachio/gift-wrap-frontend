@@ -201,7 +201,7 @@ body {
   display: inline-block;
 }
 
-.person-add-notes:hover {
+.add-notes:hover {
   cursor: pointer;
   color: #FF533D;
 
@@ -211,7 +211,7 @@ body {
   margin-top: 40px;
 }
 
-.person-notes {
+.notes {
   max-width: 400px;
   max-height: 200px;
   overflow-y: scroll;
@@ -369,7 +369,6 @@ img {
   display: inline-block;
   vertical-align: middle;
   margin-left: 20px;
-  width: 200px;
 }
 
 .ui.card.save-card {
@@ -606,6 +605,10 @@ div.ui.card.save-form {
   color: black !important;
   box-shadow: none !important;
   border: solid white !important;
+}
+
+.event-notes {
+  margin-bottom: 20px;
 }
 
 /* ################## END EVENT PAGE ##################################### */

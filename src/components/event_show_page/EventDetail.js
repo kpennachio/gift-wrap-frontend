@@ -218,6 +218,14 @@ class EventDetail extends Component {
     })
   }
 
+  renderNotes = () => {
+    return(
+      <div className="notes event-notes">
+        <p>{this.props.event.notes}</p>
+      </div>
+    )
+  }
+
   render() {
     const ageOptions = [
       {
@@ -271,8 +279,11 @@ class EventDetail extends Component {
             <Icon size="big" className={this.check()} name="check circle outline" />
             <Button className="edit-event-button" onClick={this.showForm}>Edit Event</Button>
             <p>{this.props.event.dateFormatted}</p>
-            <p>{this.props.event.notes ? `Notes: ${this.props.event.notes}` : "Add notes"}</p>
-
+            <p>Notes:</p>
+            {this.props.event.notes === "" || this.props.event.notes === null?
+            <p className="add-notes" onClick={this.showForm}>Add notes...</p>
+            :
+            this.renderNotes()}
             <Card.Group>
             {this.people()}
             </Card.Group>
