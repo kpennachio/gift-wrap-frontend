@@ -80,8 +80,9 @@ class EventDetail extends Component {
     //     return <OtherGift key={uuid()} gift={gift} event={this.props.event} selectedPerson={this.state.selectedPerson} pge={this.state.personGiftEvent}/>
     //   })
     // }
+    let ordered = this.props.gifts.sort((a, b) => b.id - a.id)
 
-      return this.props.gifts.map(gift => {
+      return ordered.map(gift => {
         return <OtherGift key={uuid()} gift={gift} event={this.props.event} selectedPerson={this.state.selectedPerson} pge={this.state.personGiftEvent} changePersonGiftEvent={this.changePersonGiftEvent}/>
       })
 
