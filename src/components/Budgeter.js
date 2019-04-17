@@ -32,13 +32,19 @@ class Budgeter extends Component {
       <div>
       <AppHeader logout={this.props.logout}/>
       <SideNav />
-      <div id="budget-header">
-        <h1>My Gift Budget</h1>
-      </div>
-      <div className="budget-content">
-        <BudgetContainer year={this.state.year} changeYear={this.changeYear}/>
-        <BudgetEventContainer year={this.state.year}/>
+      <div id="budget-image">
+        <div id="budget-header">
+          <h1>My Gift Budget</h1>
         </div>
+
+        <div className="budget-content">
+          <BudgetContainer year={this.state.year} changeYear={this.changeYear}/>
+        </div>
+
+      </div>
+        <BudgetEventContainer year={this.state.year}/>
+
+
       </div>
     );
   }
