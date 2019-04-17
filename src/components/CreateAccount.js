@@ -68,6 +68,9 @@ class CreateAccount extends Component {
   render() {
     return (
       <div>
+        <div className="main-logo">Gift Wrap</div>
+
+      <div>
       {this.displayMessages()}
 
         <div style={this.state.link}>
@@ -100,6 +103,7 @@ class CreateAccount extends Component {
               </Button>
             </Form>
         </div>
+      </div>
       </div>
     )
   }
