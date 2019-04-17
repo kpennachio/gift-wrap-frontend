@@ -31,10 +31,10 @@ const BudgetEventContainer = (props) => {
   return (
     <div >
     <Grid>
-      <Grid.Column width={4}><p>Date</p></Grid.Column>
-      <Grid.Column width={5}><p>Event</p></Grid.Column>
-      <Grid.Column width={2}><p>Budget</p></Grid.Column>
-      <Grid.Column width={2}><p>Spend</p></Grid.Column>
+      <Grid.Column width={4}><p className="budget-col">Date</p></Grid.Column>
+      <Grid.Column width={5}><p className="budget-col">Event</p></Grid.Column>
+      <Grid.Column width={2}><p className="budget-col">Budget</p></Grid.Column>
+      <Grid.Column width={2}><p className="budget-col">Spend</p></Grid.Column>
     </Grid>
     <Accordion
     fluid

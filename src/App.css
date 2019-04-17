@@ -178,6 +178,10 @@ body {
   box-shadow: none;
 }
 
+.person-name {
+  font-size: 1.25em;
+}
+
 /* ######### END PEOPLE PAGE ########### */
 
 /* ######### GIFT SHOW PAGE ############ */
@@ -711,7 +715,7 @@ div.ui.card.save-form {
 }
 
 .budget-text {
-  font-size: 16px;
+  font-size: 1.4em;
   padding-top: 20px;
 }
 
@@ -751,6 +755,10 @@ div.ui.card.save-form {
   display: inline-block;
   margin-left: 100px;
   text-align: center;
+}
+
+.budget-col {
+  font-size: 1.25em;
 }
 
 /* #######  BUDGET PAGE CIRCLE PROGRESS BARS   ############################ */
