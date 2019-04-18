@@ -29,7 +29,6 @@ class PersonSaveForm extends Component {
   }
 
   handleSubmit = () => {
-    console.log("submitted");
     this.state.selections.forEach(personId => this.createNewPersonGiftIdea(personId))
   }
 

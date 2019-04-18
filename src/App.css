@@ -615,6 +615,12 @@ div.ui.card.save-form {
   margin-bottom: 10px
 }
 
+#gift-idea {
+  position: relative;
+  /* max-height: 200px; */
+  display: block;
+}
+
 /* ################## END EVENT PAGE ##################################### */
 
 
