@@ -561,14 +561,14 @@ div.ui.card.save-form {
 
 .heart-container {
   margin-bottom: 10px;
-  margin-top: 10px;
+  /* margin-top: 10px; */
 }
 
 .button-content {
   /* padding-bottom: 14px; */
   /* position: absolute; */
   /* bottom: 0; */
-  margin-top: 10px;
+  /* margin-top: 10px; */
 }
 
 .heart.outline.large.icon.event-page:hover {
@@ -615,11 +615,16 @@ div.ui.card.save-form {
   margin-bottom: 10px
 }
 
-#gift-idea {
+#gift-idea img {
   position: relative;
-  /* max-height: 200px; */
+  max-height: 250px !important;
   display: block;
+  margin-top: 10px;
 }
+
+/* .image-container {
+  max-height: 200px;
+} */
 
 /* ################## END EVENT PAGE ##################################### */
 

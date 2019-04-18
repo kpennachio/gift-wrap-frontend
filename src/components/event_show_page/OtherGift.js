@@ -189,7 +189,13 @@ const OtherGift = (props) => {
       <Card.Content>
       <Card.Header className="gift-name">{gift.name}</Card.Header>
       <Card.Meta>{gift.store} ${parseInt(gift.list_price).toFixed(2)}</Card.Meta>
-      <Image as={Link} to={`/my-gifts/${gift.id}`} src={gift.image} alt={gift.name} id="gift-idea"/>
+      <div className="image-container" >
+      <Image as={Link} to={`/my-gifts/${gift.id}`} src={gift.image}
+      alt={gift.name} id="gift-idea"/>
+      </div>
+      </Card.Content>
+
+      <Card.Content extra>
         <div className="button-content">
             {saveEventHeart()}
             {savePersonHeart()}
