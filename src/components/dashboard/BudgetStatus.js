@@ -61,7 +61,7 @@ const BudgetStatus = ({events, year, changeYear, budget, budgets, setBudget}) =>
               text={`${budgetPercentage()}%`}
             />
           </div>
-          <div>
+          <div className="inline">
             <p>{`Total Budgeted $${allocatedBudget()}`}</p>
             <p>{`${year} max gift budget: $${renderBudget()}`}</p>
           </div>

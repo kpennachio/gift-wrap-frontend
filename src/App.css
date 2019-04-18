@@ -611,6 +611,10 @@ div.ui.card.save-form {
   margin-bottom: 20px;
 }
 
+#event-page-checkbox-container {
+  margin-bottom: 10px
+}
+
 /* ################## END EVENT PAGE ##################################### */
 
 
@@ -677,7 +681,16 @@ div.ui.card.save-form {
   margin-right: 20px;
 }
 
+.event-title {
+  font-size: 1.5em;
+}
 
+.event-date {
+  margin-top: -20px;
+
+}
+
+/* ################# END DASHBOARD ############################# */
 
 
 #login-container {
@@ -687,6 +700,7 @@ div.ui.card.save-form {
   background-color: rgba(255, 255, 255, 0.8);
   padding: 20px;
 }
+
 
 #create-account-form {
   /* padding-top: 90px;

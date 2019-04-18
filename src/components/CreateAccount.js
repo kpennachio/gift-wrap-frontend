@@ -60,7 +60,6 @@ class CreateAccount extends Component {
 
   displayMessages = () => {
     return this.state.messages.map(message => {
-      debugger
       return <p>{message.split('^')[1]}</p>
     })
   }
@@ -71,10 +70,11 @@ class CreateAccount extends Component {
         <div className="main-logo">Gift Wrap</div>
 
       <div>
-      {this.displayMessages()}
-
+      <div className="centered">
+        {this.displayMessages()}
         <div style={this.state.link}>
         <Link to="/login">Go to Login</Link>
+      </div>
         </div>
         <div id="create-account-form" className="centered" style={this.state.form}>
           <Link to="/login">Return to Login</Link>

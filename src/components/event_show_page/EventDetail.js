@@ -290,7 +290,7 @@ class EventDetail extends Component {
 
             <h2>Your Gifts</h2>
             <div className="gift-filters">
-              <div>
+              <div id="event-page-checkbox-container">
               <Checkbox name="person" className="gift-filter" label={`Gifts saved for ${this.state.selectedPerson.name}`} checked={this.state.personCheck} onChange={this.filterCheckBoxes}/>
               <Checkbox name="event" className="gift-filter" label="Gifts saved for event" checked={this.state.eventCheck} onChange={this.filterCheckBoxes}/>
               </div>

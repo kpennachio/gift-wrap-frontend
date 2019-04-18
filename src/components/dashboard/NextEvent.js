@@ -38,8 +38,8 @@ const NextEvent = (props) => {
             </Grid.Column>
             <Grid.Column width="12" >
             <Link to={`/checklist/${noGiftEvents[0].id}`}>
-              <p className="inline">{noGiftEvents[0].title}</p>
-              <p>{noGiftEvents[0].dateFormatted}</p>
+              <p className="inline event-title">{noGiftEvents[0].title}</p>
+              <p className="event-date">{noGiftEvents[0].dateFormatted}</p>
             </Link>
             </Grid.Column>
 
