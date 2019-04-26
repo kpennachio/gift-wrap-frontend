@@ -83,7 +83,7 @@ class GiftForm extends Component {
         this.setState({
           name: "",
           notes: "",
-          image: "",
+          image: "https://res.cloudinary.com/dum7xzjkm/image/upload/v1555420285/r9e7jc3weyycwrrtknah.jpg",
           list_price: "",
           store: "",
           link: "",
