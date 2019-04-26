@@ -5,7 +5,8 @@ import { Button, Card } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 
-import { resetState } from '../../resetState'
+import resetState from '../../resetState'
+import slugify from '../../slug'
 
 
 
@@ -36,8 +37,8 @@ const EventPersonCard = (props) => {
     })
   }
 
-  const goToGiftPage = (id) => {
-    history.push(`/my-gifts/${id}`)
+  const goToGiftPage = (name) => {
+    history.push(`/my-gifts/${slugify(name)}`)
   }
 
   const displayGift = () => {
@@ -53,7 +54,7 @@ const EventPersonCard = (props) => {
           <div >
           <Card.Meta className="gift-name">{pge.gift.name}<br />
           {pge.gift.store} ${parseInt(pge.gift.list_price).toFixed(2)}</Card.Meta>
-          <img onClick={() => goToGiftPage(pge.gift.id)} id="gift-pic" src={pge.gift.image} alt={pge.gift.name}/>
+          <img onClick={() => goToGiftPage(pge.gift.name)} id="gift-pic" src={pge.gift.image} alt={pge.gift.name}/>
           <Button id="remove-gift" onClick={removeGift}>Unselect Gift!</Button>
           </div>
       )

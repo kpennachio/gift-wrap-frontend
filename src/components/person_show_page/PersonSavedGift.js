@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import { Card, Image, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
-import { resetState } from '../../resetState'
-
+import resetState from '../../resetState'
+import slugify from '../../slug'
 
 
 const PersonSavedGift = ({id, gift, selectedPerson, deletePersonGiftIdea, currentUser, url}) => {
@@ -22,11 +22,11 @@ const PersonSavedGift = ({id, gift, selectedPerson, deletePersonGiftIdea, curren
   return (
     <Card className="person-gift">
       <Card.Header className="inline" >
-        <Link to={`/my-gifts/${gift.id}`} className="inline">{gift.name}</Link>
+        <Link to={`/my-gifts/${slugify(gift.name)}`} className="inline">{gift.name}</Link>
         <Icon name="heart" size="large" onClick={unSaveIdea} />
       </Card.Header>
       <Card.Content>
-        <Link to={`/my-gifts/${gift.id}`}>
+        <Link to={`/my-gifts/${slugify(gift.name)}`}>
           <Image className="gift" src={gift.image} alt={gift.name} />
         </Link>
       </Card.Content>
