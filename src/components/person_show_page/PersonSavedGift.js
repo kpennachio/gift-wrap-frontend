@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import { Card, Image, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
-import resetState from '../../resetState'
-import slugify from '../../slug'
+import { resetState } from '../../resetState'
+import { slugify } from '../../slug'
 
 
 const PersonSavedGift = ({id, gift, selectedPerson, deletePersonGiftIdea, currentUser, url}) => {

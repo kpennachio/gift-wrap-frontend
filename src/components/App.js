@@ -16,7 +16,7 @@ import Profile from './Profile'
 import CreateAccount from './CreateAccount'
 import NotFound from './NotFound'
 
-import slugify from '../slug'
+import { slugify, slugEventUrl } from '../slug'
 
 class App extends Component {
 
@@ -82,7 +82,7 @@ class App extends Component {
             <Route path="/account" render={ (props) => <Profile {...props} logout={this.logout} /> } />
 
             <Route path="/checklist/:slug" render={(props) => {
-              const event = this.props.events.find(e => `${slugify(e.title)}-${e.date}` === props.match.params.slug)
+              const event = this.props.events.find(e => slugEventUrl(e) === props.match.params.slug)
               return <ChecklistDetail {...props} event={event} logout={this.logout} /> }} />
 
             <Route path="/checklist/:id" render={ (props) => <ChecklistDetail {...props} logout={this.logout} /> } />

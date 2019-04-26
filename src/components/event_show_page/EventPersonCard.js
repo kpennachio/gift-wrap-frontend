@@ -5,8 +5,8 @@ import { Button, Card } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 
-import resetState from '../../resetState'
-import slugify from '../../slug'
+import { resetState } from '../../resetState'
+import { slugify } from '../../slug'
 
 
 

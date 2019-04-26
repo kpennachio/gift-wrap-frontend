@@ -1,7 +1,7 @@
 //  https://gist.github.com/hagemann/382adfc57adbd5af078dc93feef01fe1
 //  Slugify makes a string URI-friendly
 
-export default function slugify(string) {
+export function slugify(string) {
     const a = 'àáäâãåăæçèéëêǵḧìíïîḿńǹñòóöôœṕŕßśșțùúüûǘẃẍÿź·/_,:;'
     const b = 'aaaaaaaaceeeeghiiiimnnnoooooprssstuuuuuwxyz------'
     const p = new RegExp(a.split('').join('|'), 'g')
@@ -14,4 +14,9 @@ export default function slugify(string) {
         .replace(/\-\-+/g, '-') // Replace multiple - with single -
         .replace(/^-+/, '') // Trim - from start of text
         .replace(/-+$/, '') // Trim - from end of text
+}
+
+
+export function slugEventUrl(event) {
+  return `${slugify(event.title)}-${event.date}`
 }

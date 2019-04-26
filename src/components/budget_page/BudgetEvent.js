@@ -6,6 +6,7 @@ import { Grid, Accordion, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import PersonBudget from './PersonBudget'
 
+import { slugEventUrl } from '../../slug'
 
 
 
@@ -88,7 +89,7 @@ class BudgetEvent extends Component {
         <Grid>
           <Grid.Column width={4}></Grid.Column>
 
-          <Grid.Column width={6}><Link to={`/checklist/${this.props.event.id}`}>select/edit gifts</Link></Grid.Column>
+          <Grid.Column width={6}><Link to={`/checklist/${slugEventUrl(this.props.event)}`}>select/edit gifts</Link></Grid.Column>
           <div id="end-of-event">
           </div>
         </Grid>

@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import { Card, Button, Image, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
-import resetState from '../../resetState'
-import slugify from '../../slug'
+import { resetState } from '../../resetState'
+import { slugify } from '../../slug'
 
 
 

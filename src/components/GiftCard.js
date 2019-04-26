@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Card, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
-import slugify from '../slug'
+import { slugify } from '../slug'
 
 
 

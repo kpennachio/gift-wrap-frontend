@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Card, Grid, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
-import slugify from '../slug'
+import { slugEventUrl } from '../slug'
 
 
 const Event = ({event, pge}) => {
@@ -21,16 +21,14 @@ const Event = ({event, pge}) => {
     )
   }
 
-  const slugUrl = () => {
-    return `${slugify(event.title)}-${event.date}`
-  }
+
 
   return (
 
     <Card
       fluid
       className="event"
-      as={Link} to={`checklist/${slugUrl()}`}
+      as={Link} to={`checklist/${slugEventUrl(event)}`}
     >
       <Card.Header>
         <Grid>

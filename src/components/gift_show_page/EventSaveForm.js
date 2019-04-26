@@ -4,6 +4,8 @@ import uuid from 'uuid'
 
 
 import { resetState } from '../../resetState'
+import { slugEventUrl } from '../../slug'
+
 
 import { Button, Dropdown, Card, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
@@ -71,7 +73,7 @@ class EventSaveForm extends Component {
       return (
         <Card className="save-card" key={uuid()}>
           <Card.Content className="inline">
-            <Link to={`/checklist/${event.id}`} className="inline">{event.title}</Link>
+            <Link to={`/checklist/${slugEventUrl(event)}`} className="inline">{event.title}</Link>
             <Icon size="large" name="heart" onClick={() => this.deleteSavedEvent(egi)} />
           </Card.Content>
         </Card>
