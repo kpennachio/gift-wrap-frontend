@@ -6,7 +6,7 @@ import { Grid, Accordion, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import PersonBudget from './PersonBudget'
 
-import { slugEventUrl } from '../../slug'
+import { slugEventUrl, slugify } from '../../slug'
 
 
 
@@ -30,7 +30,7 @@ class BudgetEvent extends Component {
       return(
         <Grid key={uuid()}>
         <Grid.Column width={4}></Grid.Column>
-        <Grid.Column width={5}><Link to={`/my-people/${pge.person.id}`}>{pge.person.name}</Link></Grid.Column>
+        <Grid.Column width={5}><Link to={`/my-people/${slugify(pge.person.name)}`}>{pge.person.name}</Link></Grid.Column>
         <PersonBudget pge={pge}/>
         <Grid.Column width={2}><p>${parseInt(pge.gift_actual_cost)}</p></Grid.Column>
         </Grid>

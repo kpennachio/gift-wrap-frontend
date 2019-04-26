@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Card } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
-
+import { slugify } from '../slug'
 
 
 const PersonCard = ({person}) => {
@@ -13,7 +13,7 @@ const PersonCard = ({person}) => {
 
   return (
 
-    <Card className="contact-person" as={Link} to={`my-people/${person.id}`}>
+    <Card className="contact-person" as={Link} to={`my-people/${slugify(person.name)}`}>
       <p className="person-name">{person.name}</p>
 
     </Card>

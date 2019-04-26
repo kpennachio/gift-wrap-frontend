@@ -73,7 +73,7 @@ const EventPersonCard = (props) => {
   return (
     <Card className={className()} >
       <Card.Content >
-      <Link id="event-person-name" to={`/my-people/${person.id}`}>{person.name}</Link>
+      <Link id="event-person-name" to={`/my-people/${slugify(person.name)}`}>{person.name}</Link>
       <div onClick={() => changeSelectedPerson(person, pge)}>
         {displayGift()}
       </div>

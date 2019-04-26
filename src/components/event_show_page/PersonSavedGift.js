@@ -9,10 +9,10 @@ import { resetState } from '../../resetState'
 
 const PersonSavedGift = (props) => {
 
-  const {id, gift, pge, selectedPerson, deletePersonGiftIdea, editPersonGiftEvent, people, gifts, currentUser, changePersonGiftEvent} = props
+  const {id, gift, pge, selectedPerson, deletePersonGiftIdea, editPersonGiftEvent, people, gifts, currentUser, changePersonGiftEvent, url} = props
 
   const unSaveIdea = () => {
-    fetch(`http://localhost:3000/api/v1/person_gift_ideas/${id}`, {method: "DELETE"})
+    fetch(`${url}/person_gift_ideas/${id}`, {method: "DELETE"})
     .then(resp => {
       deletePersonGiftIdea(id, selectedPerson.id)
       resetState(currentUser.id)
@@ -24,7 +24,7 @@ const PersonSavedGift = (props) => {
       gift_id: gift.id,
       gift_actual_cost: gift.list_price
     }
-    fetch(`http://localhost:3000/api/v1/person_gift_events/${pge.id}`, {
+    fetch(`${url}/person_gift_events/${pge.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -59,7 +59,8 @@ function mapStateToProps(state) {
   return {
     currentUser: state.currentUser,
     people: state.people,
-    gifts: state.gifts
+    gifts: state.gifts,
+    url: state.url
   }
 }
 

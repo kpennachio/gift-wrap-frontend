@@ -25,7 +25,7 @@ class PersonBudget extends Component {
     let data = {
       price_max: parseInt(this.state.price_max)
     }
-    fetch(`http://localhost:3000/api/v1/person_gift_events/${this.props.pge.id}`, {
+    fetch(`${this.props.url}/person_gift_events/${this.props.pge.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -38,7 +38,6 @@ class PersonBudget extends Component {
       pge.person = this.props.pge.person
       resetState(this.props.currentUser.id)
       this.props.editPersonGiftEvent(pge)
-      // this.setState({edit: false})
     })
   }
 
@@ -81,7 +80,8 @@ class PersonBudget extends Component {
 
 function mapStateToProps(state) {
   return {
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
+    url: state.url
   }
 }
 
