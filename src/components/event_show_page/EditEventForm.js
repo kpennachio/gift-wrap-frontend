@@ -106,15 +106,20 @@ class EditEventForm extends Component {
     })
     .then(resp => resp.json())
     .then(event => {
-      event.dateFormatted = this.state.dateFormatted
-      event.person_gift_events = this.props.event.person_gift_events
-      event.event_gift_ideas = this.props.event.event_gift_ideas
-      this.props.editEvent(event)
-      resetState(this.props.currentUser.id)
+      if (event.errors) {
+        this.setState({ message: event.errors[0].split('^')[1] })
+      }
+      else {
+        event.dateFormatted = this.state.dateFormatted
+        event.person_gift_events = this.props.event.person_gift_events
+        event.event_gift_ideas = this.props.event.event_gift_ideas
+        this.props.editEvent(event)
+        resetState(this.props.currentUser.id)
 
-      this.setState({
-        message: "Event updated!"
-      })
+        this.setState({
+          message: "Event updated!"
+        })
+      }
     })
   }
 
