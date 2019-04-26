@@ -31,10 +31,6 @@ function reducer(state = defaultState, action) {
       return { ...state, budget: action.payload }
     case "SET_YEAR":
       return { ...state, year: action.payload }
-    // case "ADD_BUDGET":
-    //   return { ...state, budgets: [...state.budgets, action.payload]}
-    // case "EDIT_BUDGET":
-    //   return { ...state, budgets: [...state.budgets, action.payload]}
     case "ADD_NEW_EVENT":
       return { ...state, events: [ ...state.events, action.payload ]}
     case "ADD_NEW_PERSON_NAME":
