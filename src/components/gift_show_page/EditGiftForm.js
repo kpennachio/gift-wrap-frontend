@@ -39,11 +39,16 @@ class EditGiftForm extends Component {
     })
     .then(resp => resp.json())
     .then(gift => {
-      this.props.editGift(gift)
-      resetState(this.props.currentUser.id)
-      this.setState({
-        message: "Gift updated!"
-      })
+      if (gift.errors) {
+        this.setState({ message: gift.errors[0].split('^')[1] })
+      }
+      else {
+        this.props.editGift(gift)
+        resetState(this.props.currentUser.id)
+        this.setState({
+          message: "Gift updated!"
+        })  
+      }
     })
   }
 

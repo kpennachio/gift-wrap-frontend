@@ -74,7 +74,6 @@ class GiftForm extends Component {
     .then(resp => resp.json())
     .then(gift => {
       if (gift.errors) {
-        console.log(gift.errors);
         this.setState({ message: gift.errors[0].split('^')[1] })
       }
       else {
