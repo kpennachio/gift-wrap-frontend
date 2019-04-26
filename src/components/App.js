@@ -80,6 +80,11 @@ class App extends Component {
             <Route path="/" exact render={ (props) => <Dashboard {...props} logout={this.logout} /> } />
             <Route path="/login" render={routerProps => <Login {...routerProps}  setCurrentUserInfo={this.setCurrentUserInfo} />} />
             <Route path="/account" render={ (props) => <Profile {...props} logout={this.logout} /> } />
+
+            <Route path="/checklist/:slug" render={(props) => {
+              const event = this.props.events.find(e => `${slugify(e.title)}-${e.date}` === props.match.params.slug)
+              return <ChecklistDetail {...props} event={event} logout={this.logout} /> }} />
+
             <Route path="/checklist/:id" render={ (props) => <ChecklistDetail {...props} logout={this.logout} /> } />
             <Route path="/checklist" exact render={ (props) => <Checklist {...props} logout={this.logout} /> } />
             <Route path="/dashboard" render={ (props) => <Dashboard {...props} logout={this.logout} /> } />
@@ -91,8 +96,6 @@ class App extends Component {
               const gift = this.props.gifts.find(g => slugify(g.name) === props.match.params.slug)
               return <Gift {...props} gift={gift} logout={this.logout} /> }} />
 
-
-            <Route path="/my-gifts/:id" render={ (props) => <Gift {...props} logout={this.logout}/> }/>
             <Route path="/my-gifts" exact render={ (props) => <GiftPage {...props } logout={this.logout}/> } />
             <Route render={ (props) => <NotFound {...props } logout={this.logout}/> } />/>
           </Switch>
@@ -127,7 +130,8 @@ function mapStateToProps(state) {
   return {
     user_id: state.user_id,
     url: state.url,
-    gifts: state.gifts
+    gifts: state.gifts,
+    events: state.events
   }
 }
 

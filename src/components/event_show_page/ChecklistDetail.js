@@ -9,8 +9,7 @@ const ChecklistDetail = (props) => {
 
   const returnEvent = () => {
     if (props.events.length > 0) {
-      let event = props.events.find(event => event.id === parseInt(props.match.params.id))
-      return < EventDetail event={event} history={props.history} logout={props.logout}/>
+      return < EventDetail event={props.event} history={props.history} logout={props.logout}/>
     }
   }
 
