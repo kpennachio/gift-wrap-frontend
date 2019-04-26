@@ -29,7 +29,7 @@ class EditGiftForm extends Component {
   }
 
   editGift = () => {
-    fetch(`http://localhost:3000/api/v1/gifts/${this.props.gift.id}`, {
+    fetch(`${this.props.url}/gifts/${this.props.gift.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -147,7 +147,8 @@ class EditGiftForm extends Component {
 
 function mapStateToProps(state) {
   return {
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
+    url: state.url
   }
 }
 
