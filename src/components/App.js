@@ -60,9 +60,9 @@ class App extends Component {
     })
   }
 
-
-
-
+  slug = (name) => {
+    return name.toLowerCase().split(" ").join("-")
+  }
 
 	logout = () => {
 		localStorage.removeItem("jwt")
@@ -90,6 +90,12 @@ class App extends Component {
             <Route path="/budgeter" render={ (props) => <Budgeter {...props} logout={this.logout} /> } />
             <Route path="/my-people/:id" render={ (props) => <Person {...props } logout={this.logout}/> } />
             <Route path="/my-people" exact render={ (props) => <PeoplePage {...props } logout={this.logout}/> } />
+
+            <Route path="/my-gifts/:slug" render={(props) => {
+              const gift = this.props.gifts.find(g => this.slug(g.name) === props.match.params.slug)
+              return <Gift {...props} gift={gift} logout={this.logout} /> }} />
+
+
             <Route path="/my-gifts/:id" render={ (props) => <Gift {...props} logout={this.logout}/> }/>
             <Route path="/my-gifts" exact render={ (props) => <GiftPage {...props } logout={this.logout}/> } />
             <Route render={ (props) => <NotFound {...props } logout={this.logout}/> } />/>
@@ -124,7 +130,8 @@ class App extends Component {
 function mapStateToProps(state) {
   return {
     user_id: state.user_id,
-    url: state.url
+    url: state.url,
+    gifts: state.gifts
   }
 }
 

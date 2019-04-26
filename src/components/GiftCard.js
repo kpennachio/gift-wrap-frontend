@@ -9,12 +9,14 @@ import { Link } from 'react-router-dom'
 
 const GiftCard = ({gift}) => {
 
-
+  const slug = (name) => {
+    return name.toLowerCase().split(" ").join("-")
+  }
 
   return (
 
     <Card
-      as={Link} to={`/my-gifts/${gift.id}`}
+      as={Link} to={`/my-gifts/${slug(gift.name)}`}
       className="gift"
     >
       <Card.Content>
