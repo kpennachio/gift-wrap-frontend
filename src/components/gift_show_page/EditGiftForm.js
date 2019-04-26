@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { Button, Form, Input, TextArea, Icon, Divider } from 'semantic-ui-react'
+import { Button, Form, Input, TextArea, Icon, Divider, Image } from 'semantic-ui-react'
 
 import { resetState } from '../../resetState'
 
@@ -116,9 +116,9 @@ class EditGiftForm extends Component {
 
         <Form.Field control={Input} label='Link' name="link" placeholder='Link' value={this.state.link} onChange={this.handleChange}/>
 
-        <Form.Field control={Input} name="image" label="Image" value={this.state.image} onChange={this.handleChange}/>
+        <Button onClick={this.openWidget} className="image-selection-button" >Select Image</Button>
 
-        <Button onClick={this.openWidget} >Select Image</Button>
+        <Image src={this.state.image} className="gift-form-image" alt="selected gift" />
 
         <Form.Dropdown
           label="Age Range"
