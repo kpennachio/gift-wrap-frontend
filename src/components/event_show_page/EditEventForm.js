@@ -80,7 +80,7 @@ class EditEventForm extends Component {
 
   deletePersonGiftEvent = (personId) => {
     let pge = this.props.event.person_gift_events.find(pge => pge.person.id === personId)
-    fetch(`http://localhost:3000/api/v1/person_gift_events/${pge.id}`, {
+    fetch(`${this.props.url}/person_gift_events/${pge.id}`, {
       method: "DELETE",
     })
     .then(resp => {
@@ -96,7 +96,7 @@ class EditEventForm extends Component {
       registry_link: this.state.registry_link,
       notes: this.state.notes
     }
-    fetch(`http://localhost:3000/api/v1/events/${this.props.event.id}`, {
+    fetch(`${this.props.url}/events/${this.props.event.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -135,7 +135,7 @@ class EditEventForm extends Component {
       name: personName
     }
 
-    fetch('http://localhost:3000/api/v1/people', {
+    fetch(`${this.props.url}/people`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -163,7 +163,7 @@ class EditEventForm extends Component {
       gift_actual_cost: 0
     }
 
-    fetch('http://localhost:3000/api/v1/person_gift_events', {
+    fetch(`${this.props.url}/person_gift_events`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -202,7 +202,7 @@ class EditEventForm extends Component {
   }
 
   handleDeleteEvent = () => {
-    fetch(`http://localhost:3000/api/v1/events/${this.props.event.id}`, {
+    fetch(`${this.props.url}/events/${this.props.event.id}`, {
       method: "DELETE"
     })
     .then(resp => {
@@ -264,7 +264,8 @@ class EditEventForm extends Component {
 function mapStateToProps(state) {
   return {
     currentUser: state.currentUser,
-    people: state.people
+    people: state.people,
+    url: state.url
   }
 }
 
