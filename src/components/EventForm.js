@@ -77,7 +77,7 @@ class EventForm extends Component {
       registry_link: this.state.registry_link,
       notes: this.state.notes
     }
-    fetch('http://localhost:3000/api/v1/events', {
+    fetch(`${this.props.url}/events`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -87,7 +87,10 @@ class EventForm extends Component {
     })
     .then(resp => resp.json())
     .then(event => {
-      if (!event.errors) {
+      if (event.errors) {
+        this.setState({ message: event.errors[0].split('^')[1] })
+      }
+      else {
         let date = new Date(event.date)
         event.month = date.getMonth()
         event.year = date.getFullYear()
@@ -126,7 +129,7 @@ class EventForm extends Component {
       name: personName
     }
 
-    fetch('http://localhost:3000/api/v1/people', {
+    fetch(`${this.props.url}/people`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -151,7 +154,7 @@ class EventForm extends Component {
       gift_actual_cost: 0
     }
 
-    fetch('http://localhost:3000/api/v1/person_gift_events', {
+    fetch(`${this.props.url}/person_gift_events`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -223,7 +226,8 @@ class EventForm extends Component {
 function mapStateToProps(state) {
   return {
     currentUser: state.currentUser,
-    people: state.people
+    people: state.people,
+    url: state.url
   }
 }
 
