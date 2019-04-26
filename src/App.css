@@ -341,6 +341,23 @@ img {
 }
 
 
+/* image thumbnail from cloudinary upload */
+.ui.image.gift-form-image {
+  max-height: 200px;
+  max-width: 200px;
+  display: inline-block;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+/* Select image button */
+.image-selection-button {
+  display: inline-block;
+  float: left;
+  width: auto;
+}
+
+
 /* ########### GIFT SHOW PAGE ########### */
 
 .gift-show-content {

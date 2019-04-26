@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { Button, Form, Input, TextArea, Divider, Icon } from 'semantic-ui-react'
+import { Button, Form, Input, TextArea, Divider, Icon, Image } from 'semantic-ui-react'
 
 import { resetState } from '../resetState'
 
@@ -11,7 +11,7 @@ class GiftForm extends Component {
   state = {
     name: "",
     notes: "",
-    image: "",
+    image: "https://res.cloudinary.com/dum7xzjkm/image/upload/v1555420285/r9e7jc3weyycwrrtknah.jpg",
     list_price: "",
     store: "",
     link: "",
@@ -27,11 +27,7 @@ class GiftForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
 
-    let image = this.state.image
     let listPrice = this.state.list_price
-    if (image === "") {
-      image = "https://res.cloudinary.com/dum7xzjkm/image/upload/v1555420285/r9e7jc3weyycwrrtknah.jpg"
-    }
     if (listPrice === "") {
       listPrice = 0
     }
@@ -40,7 +36,7 @@ class GiftForm extends Component {
       user_id: this.props.currentUser.id,
       name: this.state.name,
       notes: this.state.notes,
-      image: image,
+      image: this.state.image,
       list_price: listPrice,
       store: this.state.store,
       link: this.state.link,
@@ -147,9 +143,8 @@ class GiftForm extends Component {
 
               <Form.Field control={Input} label='Link' name="link" placeholder='Link' value={this.state.link} onChange={this.handleChange}/>
 
-              <Form.Field control={Input} name="image" label="Image" value={this.state.image} onChange={this.handleChange}/>
-
-              <Button onClick={this.openWidget} >Select Image</Button>
+              <Button onClick={this.openWidget} className="image-selection-button" >Select Image</Button>
+              <Image src={this.state.image} className="gift-form-image" alt="selected gift" />
 
               <Form.Dropdown
                 label="Age Range"
