@@ -88,7 +88,6 @@ const BudgetContainer = ({events, year, changeYear, budget, budgets, setBudget})
   }
 
 
-
   return (
     <div id="budget-progress-container">
       <Icon className="year-arrow" onClick={yearBack} name='caret left' />

@@ -50,7 +50,7 @@ const EventPersonCard = (props) => {
     }
     else {
       return (
-          <div>
+          <div >
           <Card.Meta className="gift-name">{pge.gift.name}<br />
           {pge.gift.store} ${parseInt(pge.gift.list_price).toFixed(2)}</Card.Meta>
           <img onClick={() => goToGiftPage(pge.gift.id)} id="gift-pic" src={pge.gift.image} alt={pge.gift.name}/>
@@ -71,7 +71,7 @@ const EventPersonCard = (props) => {
 
   return (
     <Card className={className()} >
-      <Card.Content>
+      <Card.Content >
       <Link id="event-person-name" to={`/my-people/${person.id}`}>{person.name}</Link>
       <div onClick={() => changeSelectedPerson(person, pge)}>
         {displayGift()}
