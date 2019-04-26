@@ -16,7 +16,7 @@ import Profile from './Profile'
 import CreateAccount from './CreateAccount'
 import NotFound from './NotFound'
 
-
+import slugify from '../slug'
 
 class App extends Component {
 
@@ -60,10 +60,6 @@ class App extends Component {
     })
   }
 
-  slug = (name) => {
-    return name.toLowerCase().split(" ").join("-")
-  }
-
 	logout = () => {
 		localStorage.removeItem("jwt")
     this.props.getCurrentUser({})
@@ -92,7 +88,7 @@ class App extends Component {
             <Route path="/my-people" exact render={ (props) => <PeoplePage {...props } logout={this.logout}/> } />
 
             <Route path="/my-gifts/:slug" render={(props) => {
-              const gift = this.props.gifts.find(g => this.slug(g.name) === props.match.params.slug)
+              const gift = this.props.gifts.find(g => slugify(g.name) === props.match.params.slug)
               return <Gift {...props} gift={gift} logout={this.logout} /> }} />
 
 

@@ -63,7 +63,7 @@ class GiftForm extends Component {
   }
 
   addNewGift = (data) => {
-    fetch('http://localhost:3000/api/v1/gifts', {
+    fetch(`${this.props.url}/gifts`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -73,19 +73,24 @@ class GiftForm extends Component {
     })
     .then(resp => resp.json())
     .then(gift => {
-      console.log(gift);
-      this.props.addGift(gift)
-      resetState(this.props.currentUser.id)
-      this.setState({
-        name: "",
-        notes: "",
-        image: "",
-        list_price: "",
-        store: "",
-        link: "",
-        age_range: "All Ages",
-        message: "Gift added!"
-      })
+      if (gift.errors) {
+        console.log(gift.errors);
+        this.setState({ message: gift.errors[0].split('^')[1] })
+      }
+      else {
+        this.props.addGift(gift)
+        resetState(this.props.currentUser.id)
+        this.setState({
+          name: "",
+          notes: "",
+          image: "",
+          list_price: "",
+          store: "",
+          link: "",
+          age_range: "All Ages",
+          message: "Gift added!"
+        })
+      }
     })
   }
 
@@ -173,6 +178,7 @@ class GiftForm extends Component {
 function mapStateToProps(state) {
   return {
     currentUser: state.currentUser,
+    url: state.url
   }
 }
 

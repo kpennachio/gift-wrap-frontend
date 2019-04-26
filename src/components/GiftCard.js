@@ -4,19 +4,17 @@ import { connect } from 'react-redux'
 import { Card, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
+import slugify from '../slug'
 
 
 
 const GiftCard = ({gift}) => {
 
-  const slug = (name) => {
-    return name.toLowerCase().split(" ").join("-")
-  }
 
   return (
 
     <Card
-      as={Link} to={`/my-gifts/${slug(gift.name)}`}
+      as={Link} to={`/my-gifts/${slugify(gift.name)}`}
       className="gift"
     >
       <Card.Content>
