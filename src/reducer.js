@@ -10,7 +10,8 @@ let defaultState = {
   budgets: [],
   url: "http://localhost:3000/api/v1",
   budget: {},
-  year: ""
+  year: "",
+  emailReminder: ""
 }
 
 function reducer(state = defaultState, action) {
@@ -31,6 +32,8 @@ function reducer(state = defaultState, action) {
       return { ...state, budget: action.payload }
     case "SET_YEAR":
       return { ...state, year: action.payload }
+    case "SET_EMAIL_REMINDER":
+      return { ...state, emailReminder: action.payload }
     // case "ADD_BUDGET":
     //   return { ...state, budgets: [...state.budgets, action.payload]}
     // case "EDIT_BUDGET":

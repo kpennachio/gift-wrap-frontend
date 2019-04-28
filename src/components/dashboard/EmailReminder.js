@@ -9,17 +9,29 @@ import { Form, Radio } from 'semantic-ui-react'
 
 class EmailReminder extends Component {
 
-  state = {
-    emailReminder: 14
-  }
 
   handleChange = (e, { value }) => {
-    this.setState({ emailReminder: value })
+    this.props.setEmailReminder(value)
     this.updatePreference(value)
   }
 
   updatePreference = (value) => {
     console.log(value);
+    let data = {
+      email_reminder: value
+    }
+    fetch(`${this.props.url}/users/${this.props.currentUser.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+    .then(resp => resp.json())
+    .then(user => {
+      console.log(user);
+    })
 
   }
 
@@ -34,7 +46,7 @@ class EmailReminder extends Component {
             label='Two weeks before'
             name='radioGroup'
             value={14}
-            checked={this.state.emailReminder === 14}
+            checked={this.props.emailReminder === 14}
             onChange={this.handleChange}
           />
         </Form.Field>
@@ -43,7 +55,7 @@ class EmailReminder extends Component {
             label='One week before'
             name='radioGroup'
             value={7}
-            checked={this.state.emailReminder === 7}
+            checked={this.props.emailReminder === 7}
             onChange={this.handleChange}
           />
         </Form.Field>
@@ -52,7 +64,7 @@ class EmailReminder extends Component {
             label='None'
             name='radioGroup'
             value={0}
-            checked={this.state.emailReminder === 0}
+            checked={this.props.emailReminder === 0}
             onChange={this.handleChange}
           />
         </Form.Field>
@@ -67,13 +79,14 @@ class EmailReminder extends Component {
 function mapStateToProps(state) {
   return {
     currentUser: state.currentUser,
-    url: state.url
+    url: state.url,
+    emailReminder: state.emailReminder
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    deleteGift: (giftId) => dispatch({type: "DELETE_GIFT", payload: giftId})
+    setEmailReminder: (reminder) => dispatch({type: "SET_EMAIL_REMINDER", payload: reminder})
   }
 }
 

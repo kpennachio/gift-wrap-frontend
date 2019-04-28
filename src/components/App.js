@@ -53,6 +53,7 @@ class App extends Component {
         this.props.setPeople(user.people)
         this.props.setGifts(user.gifts)
         this.props.setBudgets(user.budgets)
+        this.props.setEmailReminder(user.email_reminder)
         let budget = user.budgets.find(budget => budget.year === 2019)
         if (budget) {
           this.props.setBudget(budget)
@@ -72,6 +73,7 @@ class App extends Component {
     this.props.setGifts([])
     this.props.setBudgets([])
     this.props.setBudget({})
+    this.props.setEmailReminder("")
 		this.props.history.push("/login")
 	}
 
@@ -137,7 +139,8 @@ function mapDispatchToProps(dispatch) {
     setGifts: (gifts) => dispatch({type: "SET_GIFTS", payload: gifts}),
     setBudgets: (budgets) => dispatch({type: "SET_BUDGETS", payload: budgets}),
     setBudget: (budget) => dispatch({type: "SET_BUDGET", payload: budget}),
-    setYear: (year) => dispatch({type: "SET_YEAR", payload: year})
+    setYear: (year) => dispatch({type: "SET_YEAR", payload: year}),
+    setEmailReminder: (reminder) => dispatch({type: "SET_EMAIL_REMINDER", payload: reminder})
   }
 }
 

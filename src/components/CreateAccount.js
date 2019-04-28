@@ -32,6 +32,7 @@ class CreateAccount extends Component {
       email: this.state.email,
       first_name: this.state.first_name,
       last_name:  this.state.last_name,
+      email_reminder: 14
     }
     fetch(`${this.props.url}/users`, {
       method: "POST",
@@ -39,7 +40,7 @@ class CreateAccount extends Component {
         "Content-Type": "application/json",
         "Accept": "application/json"
       },
-      body: JSON.stringify(this.state)
+      body: JSON.stringify(data)
     })
     .then(resp => resp.json())
     .then(response => {
