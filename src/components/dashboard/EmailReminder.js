@@ -16,7 +16,6 @@ class EmailReminder extends Component {
   }
 
   updatePreference = (value) => {
-    console.log(value);
     let data = {
       email_reminder: value
     }
@@ -28,11 +27,6 @@ class EmailReminder extends Component {
       },
       body: JSON.stringify(data)
     })
-    .then(resp => resp.json())
-    .then(user => {
-      console.log(user);
-    })
-
   }
 
   render() {
