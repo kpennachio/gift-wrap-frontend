@@ -29,11 +29,6 @@ const EventContainer = (props) => {
     }
   }
 
-  // const renderAllEvents = () => {
-  //   if (events) {
-  //     return orderEvents().map(event => <Event key={uuid()} event={event} pge={event.person_gift_events}/>)
-  //   }
-  // }
 
   const eventsByMonth = () => {
     let ordered = {}

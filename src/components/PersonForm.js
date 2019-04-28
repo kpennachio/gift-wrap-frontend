@@ -32,7 +32,7 @@ class PersonForm extends Component {
       name: this.state.name,
       notes: this.state.notes
     }
-    fetch('http://localhost:3000/api/v1/people', {
+    fetch(`${this.props.url}/people`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -81,7 +81,8 @@ class PersonForm extends Component {
 
 function mapStateToProps(state) {
   return {
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
+    url: state.url
   }
 }
 

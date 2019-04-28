@@ -45,7 +45,7 @@ class PersonDetail extends Component {
   }
 
   handleDeletePerson = () => {
-    fetch(`http://localhost:3000/api/v1/people/${this.props.person.id}`, {
+    fetch(`${this.props.url}/people/${this.props.person.id}`, {
       method: "DELETE"
     })
     .then(resp => {
@@ -142,7 +142,8 @@ function mapStateToProps(state) {
     currentUser: state.currentUser,
     people: state.people,
     gifts: state.gifts,
-    user_id: state.user_id
+    user_id: state.user_id,
+    url: state.url
   }
 }
 

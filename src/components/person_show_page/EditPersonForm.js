@@ -26,7 +26,7 @@ class EditPersonForm extends Component {
       name: this.state.name,
       notes: this.state.notes
     }
-    fetch(`http://localhost:3000/api/v1/people/${this.props.person.id}`, {
+    fetch(`${this.props.url}/people/${this.props.person.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -69,7 +69,8 @@ class EditPersonForm extends Component {
 
 function mapStateToProps(state) {
   return {
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
+    url: state.url
   }
 }
 

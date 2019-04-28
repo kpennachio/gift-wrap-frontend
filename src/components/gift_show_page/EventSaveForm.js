@@ -39,7 +39,7 @@ class EventSaveForm extends Component {
       event_id: eventId,
       gift_idea_id: this.props.gift.id
     }
-    fetch("http://localhost:3000/api/v1/event_gift_ideas", {
+    fetch(`${this.props.url}/event_gift_ideas`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -56,7 +56,7 @@ class EventSaveForm extends Component {
   }
 
   deleteSavedEvent = (egi) => {
-    fetch(`http://localhost:3000/api/v1/event_gift_ideas/${egi.id}`, {
+    fetch(`${this.props.url}/event_gift_ideas/${egi.id}`, {
       method: "DELETE"
     })
     .then(resp => {
@@ -104,7 +104,8 @@ function mapStateToProps(state) {
   return{
     currentUser: state.currentUser,
     events: state.events,
-    gifts: state.gifts
+    gifts: state.gifts,
+    url: state.url
   }
 }
 

@@ -37,7 +37,7 @@ class PersonSaveForm extends Component {
       person_id: personId,
       gift_idea_id: this.props.gift.id
     }
-    fetch("http://localhost:3000/api/v1/person_gift_ideas", {
+    fetch(`${this.props.url}/api/v1/person_gift_ideas`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -50,12 +50,11 @@ class PersonSaveForm extends Component {
       this.setState({selections: []})
       this.props.addNewPersonGiftIdea(pgi)
       resetState(this.props.currentUser.id)
-      console.log(pgi);
     })
   }
 
   deleteSavedPerson = (pgi) => {
-    fetch(`http://localhost:3000/api/v1/person_gift_ideas/${pgi.id}`, {
+    fetch(`${this.props.url}/person_gift_ideas/${pgi.id}`, {
       method: "DELETE"
     })
     .then(resp => {
@@ -106,7 +105,8 @@ function mapStateToProps(state) {
   return{
     currentUser: state.currentUser,
     people: state.people,
-    gifts: state.gifts
+    gifts: state.gifts,
+    url: state.url
   }
 }
 

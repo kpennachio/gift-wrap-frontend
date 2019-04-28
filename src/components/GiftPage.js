@@ -6,7 +6,6 @@ import GiftCard from './GiftCard'
 import GiftForm from './GiftForm'
 import SideNav from './SideNav'
 import AppHeader from './AppHeader'
-import GiftFilter from './GiftFilter'
 
 import { Card, Sidebar, Menu, Button, Segment, Dropdown, Input } from 'semantic-ui-react'
 

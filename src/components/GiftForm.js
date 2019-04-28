@@ -63,7 +63,7 @@ class GiftForm extends Component {
   }
 
   addNewGift = (data) => {
-    fetch('http://localhost:3000/api/v1/gifts', {
+    fetch(`${this.props.url}/gifts`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -173,6 +173,7 @@ class GiftForm extends Component {
 function mapStateToProps(state) {
   return {
     currentUser: state.currentUser,
+    url: state.url
   }
 }
 
