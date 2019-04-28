@@ -16,7 +16,7 @@ class EditEventForm extends Component {
   state = {
     event: this.props.event.title,
     notes: this.props.event.notes,
-    day: new Date(this.props.event.date),
+    day: new Date(this.props.event.date.replace(/-/g, '\/')),
     registry_link: this.props.event.registry_link,
     dateFormatted: this.props.event.dateFormatted,
     currentPeople: [],
@@ -39,7 +39,8 @@ class EditEventForm extends Component {
     if (day) {
       console.log(day);
       this.setState({
-        dateFormatted: day.toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
+        dateFormatted: day.toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }),
+        day: day
       })
     }
   }
@@ -89,6 +90,7 @@ class EditEventForm extends Component {
   }
 
   editEvent = () => {
+    console.log(this.state.day);
     let data = {
       user_id: this.props.currentUser.id,
       title: this.state.event,
@@ -96,6 +98,7 @@ class EditEventForm extends Component {
       registry_link: this.state.registry_link,
       notes: this.state.notes
     }
+    console.log(data);
     fetch(`http://localhost:3000/api/v1/events/${this.props.event.id}`, {
       method: "PATCH",
       headers: {
