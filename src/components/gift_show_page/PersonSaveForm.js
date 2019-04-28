@@ -37,7 +37,7 @@ class PersonSaveForm extends Component {
       person_id: personId,
       gift_idea_id: this.props.gift.id
     }
-    fetch(`${this.props.url}/api/v1/person_gift_ideas`, {
+    fetch(`${this.props.url}/person_gift_ideas`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
