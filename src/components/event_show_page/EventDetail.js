@@ -6,8 +6,6 @@ import { Card, Icon, Sidebar, Button, Menu, Dropdown, Input, Checkbox } from 'se
 
 import EventPersonCard from './EventPersonCard'
 import OtherGift from './OtherGift'
-import PersonSavedGift from './PersonSavedGift'
-import EventSavedGift from './EventSavedGift'
 import EditEventForm from './EditEventForm'
 import SideNav from '../SideNav'
 import AppHeader from '../AppHeader'
