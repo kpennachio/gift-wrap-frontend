@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import NextEvent from './dashboard/NextEvent'
 import BudgetStatus from './dashboard/BudgetStatus'
+import EmailReminder from './dashboard/EmailReminder'
 import SideNav from './SideNav'
 import AppHeader from './AppHeader'
 
@@ -20,7 +21,9 @@ const Dashboard = (props) => {
       <div id="dashboard-content">
         <div className="inline">
           <NextEvent />
+          <EmailReminder />
           <BudgetStatus />
+
         </div>
       </div>
     </Fragment>
