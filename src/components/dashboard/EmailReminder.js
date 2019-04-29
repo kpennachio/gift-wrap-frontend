@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 import { Form, Radio } from 'semantic-ui-react'
 
-
+// Dashboard page: Email reminders
 
 class EmailReminder extends Component {
 
@@ -15,6 +15,7 @@ class EmailReminder extends Component {
     this.updatePreference(value)
   }
 
+  // change email reminder preference
   updatePreference = (value) => {
     let data = {
       email_reminder: value

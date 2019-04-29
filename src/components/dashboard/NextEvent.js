@@ -7,13 +7,11 @@ import { Icon, Grid } from 'semantic-ui-react'
 
 
 
-
-
 const NextEvent = (props) => {
 
   const { events } = props
 
-
+  // Order event by earliest date
   const orderEvents = () => {
     if (events) {
       return events.sort((a, b) => {
@@ -22,6 +20,7 @@ const NextEvent = (props) => {
     }
   }
 
+  // Render earliest event missing one or more gifts
   const renderNextEvent = () => {
     if (events) {
       let noGiftEvents = orderEvents().filter(event => {
