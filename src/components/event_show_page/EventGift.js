@@ -9,7 +9,7 @@ import { resetState } from '../../resetState'
 
 
 
-const OtherGift = (props) => {
+const EventGift = (props) => {
 
   const {gift, event, selectedPerson, addNewPersonGiftIdea, addNewEventGiftIdea, pge, editPersonGiftEvent, people, gifts, currentUser, url, deletePersonGiftIdea, deleteEventGiftIdea, changePersonGiftEvent} = props
 
@@ -231,4 +231,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(OtherGift);
+export default connect(mapStateToProps, mapDispatchToProps)(EventGift);

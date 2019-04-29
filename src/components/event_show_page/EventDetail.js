@@ -5,7 +5,7 @@ import uuid from 'uuid'
 import { Card, Icon, Sidebar, Button, Menu, Dropdown, Input, Checkbox } from 'semantic-ui-react'
 
 import EventPersonCard from './EventPersonCard'
-import OtherGift from './OtherGift'
+import EventGift from './EventGift'
 import EditEventForm from './EditEventForm'
 import SideNav from '../SideNav'
 import AppHeader from '../AppHeader'
@@ -36,12 +36,15 @@ class EventDetail extends Component {
     })
   }
 
+
+  // Finds ids of people associated with the event to pass down to edit event form
   findPeopleIds = () => {
     return this.props.event.person_gift_events.map(pge => {
       return pge.person.id
     })
   }
 
+  // if there are multiple people for an event, this will change the selected person
   changeSelectedPerson = (person, pge) => {
     this.setState({
       selectedPerson: person,
@@ -49,27 +52,12 @@ class EventDetail extends Component {
     })
   }
 
+  // changes person gift event used by EventGift
   changePersonGiftEvent = (pge) => {
     this.setState({personGiftEvent: pge})
   }
 
-
-
-  renderOtherGifts = () => {
-    let ordered = this.findGifts().sort((a, b) => b.id - a.id)
-
-      return ordered.map(gift => {
-        return <OtherGift key={uuid()} gift={gift} event={this.props.event} selectedPerson={this.state.selectedPerson} pge={this.state.personGiftEvent} changePersonGiftEvent={this.changePersonGiftEvent}/>
-      })
-
-  }
-
-  missingGifts = () => {
-    return this.props.event.person_gift_events.some(pge => {
-      return pge.gift === null
-    })
-  }
-
+  // For this event, show the associated people
   people = () => {
     let pge = this.props.event.person_gift_events.sort((a, b) => a.id - b.id)
     return pge.map(pge => {
@@ -79,18 +67,8 @@ class EventDetail extends Component {
     })
   }
 
-  pgeId = () => {
-    let id
-    if (this.state.personGiftEvent.gift) {
-      id = this.state.personGiftEvent.gift.id
-    }
-    else {
-      id = null
-    }
-    return id
-  }
 
-
+  // check next to event title if event has all gifts complete
   check = () => {
     if (this.missingGifts()) {
       return "unchecked inline"
@@ -98,83 +76,34 @@ class EventDetail extends Component {
     else return "checked inline"
   }
 
+  missingGifts = () => {
+    return this.props.event.person_gift_events.some(pge => {
+      return pge.gift === null
+    })
+  }
+
+  // render any notes on the event
+  renderNotes = () => {
+    return(
+      <div className="notes event-notes">
+        <p>{this.props.event.notes}</p>
+      </div>
+    )
+  }
+
+  // show edit event form
   showForm = () => {
     this.setState({showForm: true})
   }
 
+  //  hide edit event form
   handleSidebarHide = () => {
     this.setState({showForm: false})
   }
 
-  searchNameGifts = () => {
-    if (this.state.searchName !== "") {
-      return this.props.gifts.filter(gift => {
-        return gift.name.toLowerCase().includes(this.state.searchName)
-      })
-    }
-    else return this.props.gifts
-  }
+  // ######################## Gift filters ###################################
 
-  ageRangeGifts = () => {
-    if (this.state.age_range === "All Ages") {
-      return this.searchNameGifts()
-    }
-    else {
-      return this.searchNameGifts().filter(gift => {
-        return gift.age_range === this.state.age_range
-      })
-    }
-  }
-
-  savedGifts = () => {
-    if (this.state.personCheck === true && this.state.eventCheck === true) {
-      let personGifts = this.ageRangeGifts().filter(gift => {
-        return gift.person_gift_ideas.some(pgi => pgi.person_id === this.state.selectedPerson.id)
-      })
-      let eventGifts = this.ageRangeGifts().filter(gift => {
-        return gift.event_gift_ideas.some(egi => egi.event_id === this.props.event.id)
-      })
-      return personGifts.concat(eventGifts)
-    }
-    else if (this.state.personCheck === true) {
-      return this.ageRangeGifts().filter(gift => {
-        return gift.person_gift_ideas.some(pgi => pgi.person_id === this.state.selectedPerson.id)
-      })
-    }
-    else if (this.state.eventCheck === true) {
-      return this.ageRangeGifts().filter(gift => {
-        return gift.event_gift_ideas.some(egi => egi.event_id === this.props.event.id)
-      })
-    }
-    else return this.ageRangeGifts()
-  }
-
-  findGifts = () => {
-    if (this.state.maxPrice !== "" && this.state.minPrice !== "") {
-      return this.savedGifts().filter(gift => {
-        return (
-          Math.round(gift.list_price) <= parseInt(this.state.maxPrice)
-          &&
-          Math.round(gift.list_price) >= parseInt(this.state.minPrice)
-        )
-      })
-    }
-    else if (this.state.maxPrice !== "") {
-      return this.savedGifts().filter(gift => {
-        return (
-          Math.round(gift.list_price) <= parseInt(this.state.maxPrice)
-        )
-      })
-    }
-    else if (this.state.minPrice !== "") {
-      return this.savedGifts().filter(gift => {
-        return (
-          Math.round(gift.list_price) >= parseInt(this.state.minPrice)
-        )
-      })
-    }
-    else return this.savedGifts()
-  }
+  // Changing state
 
   filterAgeRange = (e, {value}) => {
     this.setState({age_range: value})
@@ -205,6 +134,8 @@ class EventDetail extends Component {
     this.setState({searchName: e.target.value})
   }
 
+  // Clear filters on button click
+
   clearFilters = () => {
     this.setState({
       age_range: "All Ages",
@@ -216,15 +147,97 @@ class EventDetail extends Component {
     })
   }
 
-  renderNotes = () => {
-    return(
-      <div className="notes event-notes">
-        <p>{this.props.event.notes}</p>
-      </div>
-    )
+  // ##### Start of selecting gifts based on filters ########################
+  // this.props.gifts -> if there is a search term, filter by name
+  searchNameGifts = () => {
+    if (this.state.searchName !== "") {
+      return this.props.gifts.filter(gift => {
+        return gift.name.toLowerCase().includes(this.state.searchName)
+      })
+    }
+    else return this.props.gifts
   }
 
+  // then filter gifts by age range
+  ageRangeGifts = () => {
+    if (this.state.age_range === "All Ages") {
+      return this.searchNameGifts()
+    }
+    else {
+      return this.searchNameGifts().filter(gift => {
+        return gift.age_range === this.state.age_range
+      })
+    }
+  }
+
+  // then filter by checkboxes for saved gifts
+  savedGifts = () => {
+    if (this.state.personCheck === true && this.state.eventCheck === true) {
+      let personGifts = this.ageRangeGifts().filter(gift => {
+        return gift.person_gift_ideas.some(pgi => pgi.person_id === this.state.selectedPerson.id)
+      })
+      let eventGifts = this.ageRangeGifts().filter(gift => {
+        return gift.event_gift_ideas.some(egi => egi.event_id === this.props.event.id)
+      })
+      return personGifts.concat(eventGifts)
+    }
+    else if (this.state.personCheck === true) {
+      return this.ageRangeGifts().filter(gift => {
+        return gift.person_gift_ideas.some(pgi => pgi.person_id === this.state.selectedPerson.id)
+      })
+    }
+    else if (this.state.eventCheck === true) {
+      return this.ageRangeGifts().filter(gift => {
+        return gift.event_gift_ideas.some(egi => egi.event_id === this.props.event.id)
+      })
+    }
+    else return this.ageRangeGifts()
+  }
+
+  // then filter by price min and price max
+  findGifts = () => {
+    if (this.state.maxPrice !== "" && this.state.minPrice !== "") {
+      return this.savedGifts().filter(gift => {
+        return (
+          Math.round(gift.list_price) <= parseInt(this.state.maxPrice)
+          &&
+          Math.round(gift.list_price) >= parseInt(this.state.minPrice)
+        )
+      })
+    }
+    else if (this.state.maxPrice !== "") {
+      return this.savedGifts().filter(gift => {
+        return (
+          Math.round(gift.list_price) <= parseInt(this.state.maxPrice)
+        )
+      })
+    }
+    else if (this.state.minPrice !== "") {
+      return this.savedGifts().filter(gift => {
+        return (
+          Math.round(gift.list_price) >= parseInt(this.state.minPrice)
+        )
+      })
+    }
+    else return this.savedGifts()
+  }
+
+
+  // Finally render the gifts!
+  renderEventGifts = () => {
+    let ordered = this.findGifts().sort((a, b) => b.id - a.id)
+
+      return ordered.map(gift => {
+        return <EventGift key={uuid()} gift={gift} event={this.props.event} selectedPerson={this.state.selectedPerson} pge={this.state.personGiftEvent} changePersonGiftEvent={this.changePersonGiftEvent}/>
+      })
+
+  }
+
+
+
   render() {
+
+    // gift filter by age range dropdown options
     const ageOptions = [
       {
         key: 'All Ages',
@@ -328,7 +341,7 @@ class EventDetail extends Component {
               <Button onClick={this.clearFilters}>Clear Filters</Button>
               </div>
             <Card.Group>
-              {this.renderOtherGifts()}
+              {this.renderEventGifts()}
             </Card.Group>
           </div>
         </Sidebar.Pusher>

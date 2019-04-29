@@ -7,13 +7,12 @@ import { Link } from 'react-router-dom'
 import PersonBudget from './PersonBudget'
 
 
-
+// Budgeter page: each event accordion under the budget event container
 
 class BudgetEvent extends Component {
 
   state = {
     activeIndex: 0,
-
   }
 
   handleClick = (e, titleProps) => {

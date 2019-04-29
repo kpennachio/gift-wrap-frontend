@@ -6,6 +6,8 @@ import { Form, Button, Icon, Modal, Header, Input } from 'semantic-ui-react'
 import { resetState } from '../../resetState'
 
 
+// Budgeter page: annual budget
+// Button to add/edit annual budget
 
 class Budget extends Component {
 
@@ -16,8 +18,6 @@ class Budget extends Component {
     budget: "",
     showModal: false
   }
-
-
 
   addNewBudget = () => {
     let data = {
@@ -74,7 +74,6 @@ class Budget extends Component {
       this.editBudget()
     }
   }
-
 
 
   findBudget = () => {

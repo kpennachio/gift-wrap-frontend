@@ -7,6 +7,7 @@ import BudgetEvent from './BudgetEvent'
 import { Grid, Accordion } from 'semantic-ui-react'
 
 
+// Budgeter page: container for events breaking down budget
 
 const BudgetEventContainer = (props) => {
   const { events, year } = props

@@ -6,6 +6,7 @@ import { Grid, Form } from 'semantic-ui-react'
 import { resetState } from '../../resetState'
 
 
+// Budgeter page: form to change budget per person under each event
 
 class PersonBudget extends Component {
 

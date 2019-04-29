@@ -26,8 +26,6 @@ const BudgetStatus = ({events, year, changeYear, budget, budgets, setBudget}) =>
   }
 
 
-
-
   const budgetPercentage = () => {
     if (budget) {
       if (parseInt(budget) === 0) {

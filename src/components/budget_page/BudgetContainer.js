@@ -8,6 +8,8 @@ import CircularProgressbar from 'react-circular-progressbar';
 import { Icon } from 'semantic-ui-react'
 
 
+// Budgeter page: container for budget and circular progressbars
+
 const BudgetContainer = ({events, year, changeYear, budget, budgets, setBudget}) => {
 
   const allocatedBudget = () => {
