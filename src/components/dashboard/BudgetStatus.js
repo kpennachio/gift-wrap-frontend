@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom'
 
 import CircularProgressbar from 'react-circular-progressbar';
 
-
+// Dashboard page: budget status
 
 const BudgetStatus = ({events, year, changeYear, budget, budgets, setBudget}) => {
 
+  // For current year, find total budget allocated to events
   const allocatedBudget = () => {
     let selectedEvents = events.filter(event => event.year === year)
       let subtotal = selectedEvents.map(event => {
@@ -25,7 +26,7 @@ const BudgetStatus = ({events, year, changeYear, budget, budgets, setBudget}) =>
       else return 0
   }
 
-
+  // Percentage allocated budget over total annual budget
   const budgetPercentage = () => {
     if (budget) {
       if (parseInt(budget) === 0) {
@@ -38,6 +39,7 @@ const BudgetStatus = ({events, year, changeYear, budget, budgets, setBudget}) =>
     else return 0
   }
 
+  // Render annual budget
   const renderBudget = () => {
     if (budget) {
       return parseInt(budget)
