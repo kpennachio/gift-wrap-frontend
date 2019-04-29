@@ -5,6 +5,7 @@ import { Button, Form, Input, TextArea, Icon, Divider, Image } from 'semantic-ui
 
 import { resetState } from '../../resetState'
 
+// Gift show page: edit gift form
 
 class EditGiftForm extends Component {
 

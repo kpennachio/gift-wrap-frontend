@@ -9,12 +9,15 @@ import { Button, Dropdown, Card, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 
+// Gift show page: save gift to events
+
 class EventSaveForm extends Component {
 
   state = {
     selections: []
   }
 
+  // Populate dropdown form with events not already saved to gift
   eventOptions = () => {
     let events = this.props.events.filter(event => {
       return this.props.gift.event_gift_ideas.every(egi => {
@@ -26,10 +29,13 @@ class EventSaveForm extends Component {
     })
   }
 
+  // Add selected events to state
   handleChange = (e, { value }) => {
     this.setState({ selections: value })
   }
 
+  // On submit, save gift as idea for events
+  // Create new EventGiftIdea (join class for event and gift)
   handleSubmit = () => {
     this.state.selections.forEach(eventId => this.createNewEventGiftIdea(eventId))
   }
@@ -55,6 +61,8 @@ class EventSaveForm extends Component {
     })
   }
 
+  // On click of heart, remove gift idea from event
+  // Delete EventGiftIdea
   deleteSavedEvent = (egi) => {
     fetch(`${this.props.url}/event_gift_ideas/${egi.id}`, {
       method: "DELETE"
@@ -65,6 +73,7 @@ class EventSaveForm extends Component {
     })
   }
 
+  // Show all events that have this gift saved
   renderSavedEvents = () => {
     return this.props.gift.event_gift_ideas.map(egi =>{
       let event = this.props.events.find(event => event.id === egi.event_id)
