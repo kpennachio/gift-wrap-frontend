@@ -9,7 +9,7 @@ import 'react-day-picker/lib/style.css';
 
 import { resetState } from '../../resetState'
 
-
+// Event show page: edit event form
 
 class EditEventForm extends Component {
 
@@ -35,9 +35,9 @@ class EditEventForm extends Component {
     })
   }
 
+  // handle form change for date with React Daypicker
   handleDayChange = (day) => {
     if (day) {
-      console.log(day);
       this.setState({
         dateFormatted: day.toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }),
         day: day
@@ -45,25 +45,62 @@ class EditEventForm extends Component {
     }
   }
 
+  // handle form change for event title, notes, registry_link, message
   handleChange = (e) => {
     this.setState({[e.target.name]: e.target.value})
   }
 
+  // ############# Form Person Changes ###########################################
+
+  // Event form add/remove people dropdown options
+  // Dropdown menu shows existing people
+  // If a new person is typed in and pressed enter, their name is added to the dropdown list
+  dropdownOptions = () => {
+    if (this.props.people) {
+      return this.props.people.map(person => {
+        if (person.id !== null) {
+          return {key: person.id, text: person.name, value: person.id}
+        }
+        else {
+          return {key: person.name, text: person.name, value: person.name}
+        }
+      })
+    }
+  }
+
+  // If a new person is written in input, add them to people in state so name will be in dropdown options
   handlePersonAddition = (e, { value }) => {
     this.props.addNewPersonName(value)
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault()
-    this.editEvent()
-    this.props.removeNewPersonNames()
-    this.addNewPeople(this.props.event.id)
+  // If changes made to people, change in state
+  handlePersonChange = (e, { value }) => {
+    this.setState({ currentPeople: value })
   }
 
-  addNewPeople = (eventId) => {
+  // ################## On Form Submit #####################################
+
+  // Submit form
+  handleSubmit = (e) => {
+    e.preventDefault()
+
+    // db changes for event attributes: title, date, registry_link, notes
+    this.editEvent()
+
+    // if new people names were added via dropdown input, remove them from state so there will not be duplicates once new people added to db
+    this.props.removeNewPersonNames()
+    // add people and/or remove people from event
+    this.handlePeopleChange(this.props.event.id)
+  }
+
+  // add people and/or remove people from event
+  // take all people from event form input and sort actions
+  handlePeopleChange = (eventId) => {
+    // if person exists in db (passed as id number), check to see if they were already associated with the event
     let existingPeopleIds = this.state.currentPeople.filter(id => typeof id === "number")
     existingPeopleIds.forEach(personId => this.comparePersonId(personId))
 
+    // if person does not exist in db (passed as name string), add the new person and associate them with the event
     let newNames = this.state.currentPeople.filter(name => typeof name === "string")
     newNames.forEach(name => this.addNewPerson(name))
 
@@ -79,6 +116,14 @@ class EditEventForm extends Component {
     })
   }
 
+  // If existing person was not already associated with event, add them to the event
+  comparePersonId = (id) => {
+    if (!this.findPeopleIds().includes(id)) {
+      this.addNewPersonGiftEvent(id)
+    }
+  }
+
+  // If person removed from event, need to delete PersonGiftEvent from db
   deletePersonGiftEvent = (personId) => {
     let pge = this.props.event.person_gift_events.find(pge => pge.person.id === personId)
     fetch(`${this.props.url}/person_gift_events/${pge.id}`, {
@@ -89,6 +134,7 @@ class EditEventForm extends Component {
     })
   }
 
+  // Edit event in db
   editEvent = () => {
     let data = {
       user_id: this.props.currentUser.id,
@@ -119,12 +165,8 @@ class EditEventForm extends Component {
     })
   }
 
-  comparePersonId = (id) => {
-    if (!this.findPeopleIds().includes(id)) {
-      this.addNewPersonGiftEvent(id)
-    }
-  }
 
+  // Create new person in db
   addNewPerson = (personName) => {
     let data = {
       user_id: this.props.currentUser.id,
@@ -151,6 +193,7 @@ class EditEventForm extends Component {
     })
   }
 
+  // Create new person/event association (PersonGiftEvent) in db
   addNewPersonGiftEvent = (person_id) => {
     let data = {
       person_id: person_id,
@@ -176,27 +219,7 @@ class EditEventForm extends Component {
   }
 
 
-  dropdownOptions = () => {
-    if (this.props.people) {
-      return this.props.people.map(person => {
-        if (person.id !== null) {
-          return {key: person.id, text: person.name, value: person.id}
-        }
-        else {
-          return {key: person.name, text: person.name, value: person.name}
-        }
-      })
-    }
-  }
-
-  handlePersonAddition = (e, { value }) => {
-    this.props.addNewPersonName(value)
-  }
-
-  handlePersonChange = (e, { value }) => {
-    this.setState({ currentPeople: value })
-  }
-
+  // Delete event on delete event button click
   handleDeleteEvent = () => {
     fetch(`${this.props.url}/events/${this.props.event.id}`, {
       method: "DELETE"
