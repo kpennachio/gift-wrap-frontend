@@ -66,6 +66,7 @@ class Budget extends Component {
     this.setState({budget: e.target.value})
   }
 
+  // on submit, add or edit budget depending on if budget id exists
   handleSubmit = () => {
     if (this.state.budgetId === ""){
       this.addNewBudget()
@@ -75,12 +76,12 @@ class Budget extends Component {
     }
   }
 
-
+  // conditionally render add or edit to budget button
+  // also set budget id in state
   findBudget = () => {
     if (this.props.budget) {
-
       if (this.props.budget.budget) {
-
+        // if there is an annual budget, onclick store ID and show edit form
         return (
           <div className="budget-edit-form" onClick={(e) => this.setId(e, this.props.budget.id, this.props.budget.budget)}>
             <p className="budget-edit">{`Max $${parseInt(this.props.budget.budget)}`}</p>
@@ -89,6 +90,7 @@ class Budget extends Component {
         )
       }
       else if (this.props.budget.budget === null) {
+        // if budget for year exists in db, but budget amount is null
         return (
           <div onClick={(e) => this.setId(e, this.props.budget.id, "")}>
             <p>Add Max Budget</p>
@@ -97,6 +99,7 @@ class Budget extends Component {
         )
       }
       else {
+        // if there is no budget in db for year
         return (
           <div onClick={this.clearId}>
             <p>Add Max Budget</p>
@@ -114,6 +117,8 @@ class Budget extends Component {
   clearId = (e) => {
     this.setState({budgetId: ""})
   }
+
+  // open / close budget form modal
 
   closeModal = () => {
     this.setState({ showModal: false })
