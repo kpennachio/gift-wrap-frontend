@@ -31,7 +31,7 @@ class EmailReminder extends Component {
 
   render() {
     return (
-      <div id="checklist-container">
+      <div id="email-container">
       <h2 className="inline">Email Reminders</h2>
       <p>If you are missing a gift for an event, get an email reminder:</p>
       <Form>

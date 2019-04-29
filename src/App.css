@@ -676,13 +676,27 @@ div.ui.card.save-form {
 
 
 #checklist-container {
+  float: left;
+  height: 216.38px;
   background-color: white;
   width: 400px;
   padding: 20px;
   display: inline-block;
 }
 
+#email-container {
+  float: left;
+  background-color: white;
+  width: 400px;
+  padding: 20px;
+  margin-left: 30px;
+  display: inline-block;
+}
+
 #budget-status-container {
+
+  float: left;
+
   background-color: white;
   width: 400px;
   padding: 20px;
