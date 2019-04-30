@@ -5,11 +5,13 @@ import { Card, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 
-
+// Person show page: Event under "Need Gifts for [Person]" or event under "Gift History"
 
 const EventCard = ({event, person, pge}) => {
 
 
+  // if event has a gift, show gift with link to gift show page
+  // if event does not have a gift, link to all gifts page
   const renderGift = () => {
     if (pge.gift === null) {
       return <Link to="/my-gifts">{`Find a gift for ${person.name}`}</Link>
@@ -24,7 +26,7 @@ const EventCard = ({event, person, pge}) => {
     }
   }
 
-
+  // link card to event show page
   return (
 
     <Card className="person-event">

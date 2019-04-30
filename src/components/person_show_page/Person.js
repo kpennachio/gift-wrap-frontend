@@ -4,10 +4,11 @@ import { connect } from 'react-redux'
 import PersonDetail from './PersonDetail'
 
 
-
+// Person show page: PersonDetail Component
 
 const Person = (props) => {
 
+  // find person from url
   const returnPerson = () => {
     if (props.people.length > 0) {
       let person = props.people.find(person => person.id === parseInt(props.match.params.id))

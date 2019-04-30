@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import { Button, Form, Input, TextArea } from 'semantic-ui-react'
 
-
+// Person show page: edit person form
 
 class EditPersonForm extends Component {
 
@@ -12,10 +12,12 @@ class EditPersonForm extends Component {
     notes: this.props.person.notes,
   }
 
+  // on change update name or notes in state
   handleChange = (e) => {
     this.setState({[e.target.name]: e.target.value})
   }
 
+  // on submit, edit person in db
   handleSubmit = (e) => {
     e.preventDefault()
     this.editPerson()
