@@ -4,10 +4,11 @@ import { connect } from 'react-redux'
 import GiftDetail from './GiftDetail'
 
 
-// Gift show page
+// Gift show page - renders GiftDetail
 
 const Gift = (props) => {
 
+// find gift from url
   const returnGift = () => {
     if (props.gifts.length > 0) {
       let gift = props.gifts.find(gift => gift.id === parseInt(props.match.params.id))
