@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import GiftDetail from './GiftDetail'
 
 
-
+// Gift show page
 
 const Gift = (props) => {
 

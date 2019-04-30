@@ -5,7 +5,9 @@ import { Card } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 
-const GiftDetail = (props) => {
+// Gift show page: each event under Gift History (list of events where you gave this gift previously)
+
+const GiftHistoryCard = (props) => {
 
   const { event, person } = props
   return (
@@ -33,4 +35,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(GiftDetail);
+export default connect(mapStateToProps, mapDispatchToProps)(GiftHistoryCard);
