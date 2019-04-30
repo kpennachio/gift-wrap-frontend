@@ -22,11 +22,13 @@ class App extends Component {
 
 
   componentDidMount() {
+    // find current year and set in state
     let year = new Date().getFullYear()
     this.props.setYear(year)
 
     const jwt = localStorage.getItem('jwt')
 
+    // auto login for app if jwt exists
 		if (jwt){
 			fetch(`${this.props.url}/auto_login`, {
 				headers: {
@@ -44,6 +46,7 @@ class App extends Component {
 		}
   }
 
+  // for current user, set events, people, gifts, budgets, email reminder in state
   setCurrentUserInfo = (userId) => {
       fetch(`${this.props.url}/users/${userId}`)
       .then(resp => resp.json())
@@ -61,10 +64,7 @@ class App extends Component {
     })
   }
 
-
-
-
-
+  // on logout button click, remove jwt and clear state, redirect to login page
 	logout = () => {
 		localStorage.removeItem("jwt")
     this.props.getCurrentUser({})
@@ -77,6 +77,8 @@ class App extends Component {
 		this.props.history.push("/login")
 	}
 
+  // route options depending on if there is a logged in user
+  // if not logged in, can only visit login or create account routes
   renderLoggedIn = () => {
     if (localStorage.getItem('jwt')) {
       return (
@@ -110,8 +112,6 @@ class App extends Component {
       )
     }
   }
-
-
 
 
   render() {
