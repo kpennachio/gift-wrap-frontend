@@ -3,10 +3,11 @@ import { connect } from 'react-redux'
 
 import EventDetail from './EventDetail'
 
-
+// Event show page - renders EventDetail
 
 const ChecklistDetail = (props) => {
 
+// find event from url
   const returnEvent = () => {
     if (props.events.length > 0) {
       let event = props.events.find(event => event.id === parseInt(props.match.params.id))
