@@ -13,6 +13,7 @@ const BudgetEventContainer = (props) => {
   const { events, year } = props
 
 
+  // orders events by date
   const orderEvents = () => {
     if (events) {
       let selectedEvents = events.filter(event => event.year === year)
@@ -22,9 +23,9 @@ const BudgetEventContainer = (props) => {
     }
   }
 
+  // renders each event as BudgetEvent component
   const renderAllEvents = () => {
     if (events) {
-
       return orderEvents().map(event => <BudgetEvent key={uuid()} event={event} pges={event.person_gift_events}/>)
     }
   }
