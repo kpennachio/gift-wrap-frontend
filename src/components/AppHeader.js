@@ -2,7 +2,8 @@ import React, { Component, Fragment } from 'react';
 import { Menu, Dropdown } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
-
+// Nav bar with planning tools and account settings
+// Includes logout button 
 
 export default class AppHeader extends Component {
 
