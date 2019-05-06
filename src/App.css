@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Cherry+Swash|Nanum+Myeongjo');
 
-.App {
+/* .App {
   text-align: center;
   background-color: rgb(249, 249, 249);
 
-}
+} */
 
-.App-logo {
+/* .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
   pointer-events: none;
@@ -21,8 +21,8 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
-
+} */
+/*
 .App-link {
   color: #61dafb;
 }
@@ -44,7 +44,7 @@
   100% {
     margin-left: 200px;
   }
-}
+} */
 
 .ui.massive.secondary.top.fixed.header.menu {
   box-shadow: none;
@@ -93,10 +93,6 @@ a:hover {
   font-weight: bold;
 }
 
-/* #app {
-  background-color: rgb(249, 249, 249);
-  height: 100vh;
-} */
 
 #event-list {
   height: 100vh;
@@ -109,14 +105,6 @@ body {
   background-color: rgb(249, 249, 249) !important;
 }
 
-/* .ui.massive.inverted.top.fixed.menu {
-
-}
-
-.ui.basic.segment {
-  display: flex;
-  flex-direction: column;
-} */
 
 .pusher {
   height: 100%;
@@ -125,11 +113,6 @@ body {
 .pushable {
   transform: none !important;
 }
-
-/* .container {
-  display: flex;
-  flex-direction: column;
-} */
 
 .planner-content {
   margin-top: 90px;
