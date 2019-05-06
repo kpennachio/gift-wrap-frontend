@@ -21,21 +21,19 @@ class GiftPage extends Component {
     searchName: ""
   }
 
-  renderAllGifts = () => {
-    let orderedGifts = this.findGifts().sort((a, b) => b.id - a.id)
-    return orderedGifts.map(gift => {
-      return <GiftCard key={uuid()} gift={gift} />
-    })
-  }
-
+  // Show add gift form
   showForm = () => {
     this.setState({showForm: true})
   }
 
+  // Hide add gift form
   handleSidebarHide = () => {
     this.setState({showForm: false})
   }
 
+  // ###################### Render gifts ######################################
+
+  // Take all gifts, and apply search by name filter if enabled
   searchNameGifts = () => {
     if (this.state.searchName !== "") {
       return this.props.gifts.filter(gift => {
@@ -45,6 +43,7 @@ class GiftPage extends Component {
     else return this.props.gifts
   }
 
+  // Then apply age range filter if enabled
   ageRangeGifts = () => {
     if (this.state.age_range === "All Ages") {
       return this.searchNameGifts()
@@ -56,6 +55,7 @@ class GiftPage extends Component {
     }
   }
 
+  // Then apply price filters if enabled
   findGifts = () => {
     if (this.state.maxPrice !== "" && this.state.minPrice !== "") {
       return this.ageRangeGifts().filter(gift => {
@@ -83,6 +83,17 @@ class GiftPage extends Component {
     else return this.ageRangeGifts()
   }
 
+  // Then render remaining gifts as GiftCard components
+  renderAllGifts = () => {
+    let orderedGifts = this.findGifts().sort((a, b) => b.id - a.id)
+    return orderedGifts.map(gift => {
+      return <GiftCard key={uuid()} gift={gift} />
+    })
+  }
+
+
+  // ################# Gift Filters ########################################
+
   filterAgeRange = (e, {value}) => {
     this.setState({age_range: value})
   }
@@ -99,6 +110,7 @@ class GiftPage extends Component {
     this.setState({searchName: e.target.value})
   }
 
+  // Reset filters
   clearFilters = () => {
     this.setState({
       age_range: "All Ages",
