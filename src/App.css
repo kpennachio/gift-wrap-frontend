@@ -1,59 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Cherry+Swash|Nanum+Myeongjo');
 
-/* .App {
-  text-align: center;
-  background-color: rgb(249, 249, 249);
-
-} */
-
-/* .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-} */
-/*
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-
-@keyframes moveLeft {
-  0% {
-    margin-left: 0px;
-  }
-  100% {
-    margin-left: 200px;
-  }
-} */
 
 .ui.massive.secondary.top.fixed.header.menu {
   box-shadow: none;
-  /* border-bottom: solid;
-  border-bottom-width: medium;
-  border-bottom-color: rgb(249, 249, 249); */
   background-color: rgb(255, 239, 234);
   height: 70px;
-  /* padding-left: 50px; */
   padding-right: 50px;
 
 }
@@ -69,7 +20,6 @@
 }
 
 #logo.item {
-  /* margin-left: 100px; */
   color: #FF533D;
   font-family: 'Cherry Swash', cursive;
   font-size: 30px;
@@ -78,10 +28,6 @@
 h1 {
   color: #FF533D;
   /* font-family: 'Nanum Myeongjo', serif; */
-}
-
-h3 {
-
 }
 
 a {
