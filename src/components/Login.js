@@ -4,6 +4,7 @@ import { Link, Redirect } from 'react-router-dom'
 
 import { connect } from 'react-redux'
 
+// Login page
 
 class Login extends Component {
 
@@ -17,6 +18,7 @@ class Login extends Component {
     this.setState({[e.target.name]: e.target.value})
   }
 
+  // On submit, check username and password on the backend
   handleSubmit = (e) => {
     let data = {
       username: this.state.username,
@@ -32,6 +34,7 @@ class Login extends Component {
 		})
 		.then(res => res.json())
 		.then((response) => {
+      // display any errors
 			if (response.errors) {
 				this.setState({
           message: response.errors,
@@ -39,6 +42,8 @@ class Login extends Component {
           password: ""
         })
 			} else {
+        // or set jwt token in local storage and current user info in state
+        // redirect to dashboard page
           localStorage.setItem('jwt', response.jwt)
           this.props.setCurrentUserInfo(response.user.id)
           this.props.history.push(`/dashboard`)
@@ -46,8 +51,7 @@ class Login extends Component {
 			})
   }
 
-
-
+  // If user goes to "/login" and is already logged in, redirect to dashboard
   render() {
     if (localStorage.getItem('jwt')) {
       return <Redirect to="/dashboard" />
