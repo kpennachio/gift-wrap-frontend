@@ -5,7 +5,8 @@ import { Card, Grid, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 
-
+// Event detail on Checklist page
+// Event title with date and checkmark showing if gifts are complete
 
 const Event = ({event, pge}) => {
 
