@@ -45,7 +45,7 @@ class EditEventForm extends Component {
     }
   }
 
-  // handle form change for event title, notes, registry_link, message
+  // handle form change for event title, notes, registry_link
   handleChange = (e) => {
     this.setState({[e.target.name]: e.target.value})
   }
@@ -73,7 +73,7 @@ class EditEventForm extends Component {
     this.props.addNewPersonName(value)
   }
 
-  // If changes made to people, change in state
+  // If changes made to people in form, change in state
   handlePersonChange = (e, { value }) => {
     this.setState({ currentPeople: value })
   }
