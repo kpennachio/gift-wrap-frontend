@@ -9,7 +9,7 @@ import AppHeader from './AppHeader'
 
 import { Checkbox, Sidebar, Button, Menu } from 'semantic-ui-react'
 
-// Checklist main page
+// Checklist main page - events index page
 
 class Checklist extends Component {
 

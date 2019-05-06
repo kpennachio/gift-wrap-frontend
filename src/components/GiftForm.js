@@ -5,6 +5,7 @@ import { Button, Form, Input, TextArea, Divider, Icon, Image } from 'semantic-ui
 
 import { resetState } from '../resetState'
 
+// New gift form - on My Gifts page
 
 class GiftForm extends Component {
 
@@ -19,11 +20,36 @@ class GiftForm extends Component {
     message: ""
   }
 
+  // form changes for gift name, notes, list_price, store, link
   handleChange = (e) => {
     this.setState({[e.target.name]: e.target.value})
   }
 
+  // form changes for age_range
+  setAgeRange = (e, { value }) => {
+    this.setState({age_range: value})
+  }
 
+  // ############### Cloudinary widget for image upload ###################
+  // form changes for image
+  seeResult = (result) => {
+    if (result.event === "success") {
+      this.setState({image: result.info.secure_url})
+    }
+  }
+
+
+  openWidget = (e) => {
+    e.preventDefault()
+    let widget = window.cloudinary.createUploadWidget({
+      cloudName: process.env.REACT_APP_CLOUD_NAME, uploadPreset: process.env.REACT_APP_UPLOAD_PRESET,
+      sources: [ 'local', 'url']},
+      (error, result) => {this.seeResult(result)});
+    widget.open();
+  }
+
+
+  // ############### On Submit #############################################
   handleSubmit = (e) => {
     e.preventDefault()
 
@@ -46,22 +72,7 @@ class GiftForm extends Component {
     this.addNewGift(data)
   }
 
-  seeResult = (result) => {
-    if (result.event === "success") {
-      this.setState({image: result.info.secure_url})
-    }
-  }
-
-
-  openWidget = (e) => {
-    e.preventDefault()
-    let widget = window.cloudinary.createUploadWidget({
-      cloudName: process.env.REACT_APP_CLOUD_NAME, uploadPreset: process.env.REACT_APP_UPLOAD_PRESET,
-      sources: [ 'local', 'url']},
-      (error, result) => {this.seeResult(result)});
-    widget.open();
-  }
-
+  // Add gift in db
   addNewGift = (data) => {
     fetch(`${this.props.url}/gifts`, {
       method: "POST",
@@ -89,9 +100,6 @@ class GiftForm extends Component {
     })
   }
 
-  setAgeRange = (e, { value }) => {
-    this.setState({age_range: value})
-  }
 
 
 

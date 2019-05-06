@@ -5,10 +5,9 @@ import { Card, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 
-
+// Gift card (Semantic UI card) on My Gifts page
 
 const GiftCard = ({gift}) => {
-
 
 
   return (

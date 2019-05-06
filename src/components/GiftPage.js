@@ -9,7 +9,7 @@ import AppHeader from './AppHeader'
 
 import { Card, Sidebar, Menu, Button, Segment, Dropdown, Input } from 'semantic-ui-react'
 
-
+// My Gifts  - Gifts index page
 
 class GiftPage extends Component {
 
