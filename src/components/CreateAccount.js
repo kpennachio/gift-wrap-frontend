@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 import { Form, Input, Button } from 'semantic-ui-react'
 
-
+// Create account EventForm
 
 class CreateAccount extends Component {
 
@@ -24,6 +24,7 @@ class CreateAccount extends Component {
     this.setState({[e.target.name]: e.target.value})
   }
 
+  // Create new user in db
   handleSubmit = (e) => {
     e.preventDefault()
     let data = {
@@ -59,6 +60,7 @@ class CreateAccount extends Component {
     })
   }
 
+  // Display error messages or success message
   displayMessages = () => {
     return this.state.messages.map(message => {
       return <p>{message.split('^')[1]}</p>

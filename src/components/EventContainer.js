@@ -5,13 +5,13 @@ import uuid from 'uuid'
 import Event from './Event'
 
 
-
+// Checklist page - container for event components
 
 const EventContainer = (props) => {
   const { events, showAllEvents } = props
 
 
-
+  // order events by date and filter by events without gifts
   const orderEvents = () => {
     if (events) {
       let allEvents = events.sort((a, b) => {
@@ -30,6 +30,8 @@ const EventContainer = (props) => {
   }
 
 
+  // ############ Take ordered events and add in month headings #############
+  // First create object with year and month keys to organize events
   const eventsByMonth = () => {
     let ordered = {}
     orderEvents().forEach(event => {
@@ -49,11 +51,14 @@ const EventContainer = (props) => {
     return ordered
   }
 
+  // Then render event objects separated by month headings
+  // Iterated through eventsByMonth() returned object
   const renderEvents = () => {
     let months = [ "", "January", "February", "March", "April", "May", "June",
            "July", "August", "September", "October", "November", "December" ]
 
-
+    // Flatten object into array
+    // At every change in month, insert a string with "Month Year"
     let yearObj = eventsByMonth()
     let array = []
     for (const year in yearObj) {
@@ -64,6 +69,8 @@ const EventContainer = (props) => {
         }
       }
     }
+    // Map over array to either return "Month Year" or event component
+    // Event components will be separated by month headings
     return array.map(a => {
       if (typeof a === "string"){
         return <p className="checklist-month" key={uuid()}>{a}</p>

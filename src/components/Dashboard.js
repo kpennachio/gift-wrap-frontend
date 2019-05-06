@@ -8,6 +8,8 @@ import SideNav from './SideNav'
 import AppHeader from './AppHeader'
 
 
+// Dashboard main page
+// Sections for Checklist, Budget, Email Reminders
 
 const Dashboard = (props) => {
 
