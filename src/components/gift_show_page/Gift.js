@@ -8,10 +8,11 @@ import GiftDetail from './GiftDetail'
 
 const Gift = (props) => {
 
-// find gift from url
+  // find gift from url
   const returnGift = () => {
     if (props.gifts.length > 0) {
-      return < GiftDetail gift={props.gift} history={props.history} logout={props.logout}/>
+      let gift = props.gifts.find(gift => gift.id === parseInt(props.match.params.id))
+      return < GiftDetail gift={gift} history={props.history} logout={props.logout}/>
     }
   }
 
