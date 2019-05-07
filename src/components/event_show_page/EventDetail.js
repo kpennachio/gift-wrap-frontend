@@ -333,7 +333,6 @@ class EventDetail extends Component {
               />
               <Input
                 className="gift-filter"
-                className="gift-filter"
                 placeholder="Search by Name"
                 value={this.state.searchName}
                 onChange={this.changeSearchName}

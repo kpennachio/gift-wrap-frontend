@@ -7,7 +7,7 @@ import GiftForm from './GiftForm'
 import SideNav from './SideNav'
 import AppHeader from './AppHeader'
 
-import { Card, Sidebar, Menu, Button, Segment, Dropdown, Input } from 'semantic-ui-react'
+import { Card, Sidebar, Menu, Button, Dropdown, Input } from 'semantic-ui-react'
 
 // My Gifts  - Gifts index page
 
@@ -205,7 +205,6 @@ class GiftPage extends Component {
                 placeholder="Price Max"
               />
               <Input
-                className="gift-filter"
                 className="gift-filter"
                 placeholder="Search by Name"
                 value={this.state.searchName}
