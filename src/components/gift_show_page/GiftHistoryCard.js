@@ -4,8 +4,6 @@ import { connect } from 'react-redux'
 import { Card } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
-import { slugEventUrl } from '../../slug'
-
 
 
 // Gift show page: each event under Gift History (list of events where you gave this gift previously)
@@ -14,7 +12,7 @@ const GiftHistoryCard = (props) => {
 
   const { event, person } = props
   return (
-    <Card as={Link} to={`/checklist/${slugEventUrl(event)}`} className="history-card">
+    <Card as={Link} to={`/checklist/${event.id}`} className="history-card">
       <p>{`You gave this gift to ${person.name}:`}</p>
       <p>{event.title}</p>
       <p>{event.date}</p>

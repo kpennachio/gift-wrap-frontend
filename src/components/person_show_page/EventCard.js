@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { Card, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
-import { slugify, slugEventUrl } from '../../slug'
 
 // Person show page: Event under "Need Gifts for [Person]" or event under "Gift History"
 
@@ -19,7 +18,7 @@ const EventCard = ({event, person, pge}) => {
     }
     else {
       return (
-        <Link to={`/my-gifts/${slugify(pge.gift.name)}`}>
+        <Link to={`/my-gifts/${pge.gift.id}`}>
         {pge.gift.name}
         <Image className="gift" src={pge.gift.image} alt={pge.gift.name} />
         </Link>

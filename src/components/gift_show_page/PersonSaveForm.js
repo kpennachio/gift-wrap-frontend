@@ -6,8 +6,6 @@ import { resetState } from '../../resetState'
 import { Button, Dropdown, Card, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
-import { slugify } from '../../slug'
-
 
 // Gift show page: save gift to people
 
@@ -81,7 +79,7 @@ class PersonSaveForm extends Component {
       return (
         <Card  className="save-card">
         <Card.Content className="inline">
-          <Link to={`/my-people/${slugify(person.name)}`}>
+          <Link to={`/my-people/${person.id}`}>
           <p className="inline">{person.name}</p>
           </Link>
           <Icon size="large" name="heart" onClick={() => this.deleteSavedPerson(pgi)} />

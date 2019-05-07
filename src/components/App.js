@@ -87,24 +87,13 @@ class App extends Component {
             <Route path="/" exact render={ (props) => <Dashboard {...props} logout={this.logout} /> } />
             <Route path="/login" render={routerProps => <Login {...routerProps}  setCurrentUserInfo={this.setCurrentUserInfo} />} />
             <Route path="/account" render={ (props) => <Profile {...props} logout={this.logout} /> } />
-            <Route path="/checklist/:slug" render={(props) => {
-              const event = this.props.events.find(e => slugEventUrl(e) === props.match.params.slug)
-              return <ChecklistDetail {...props} event={event} logout={this.logout} /> }} />
+            <Route path="/checklist/:id" render={ (props) => <ChecklistDetail {...props} logout={this.logout} /> } />
             <Route path="/checklist" exact render={ (props) => <Checklist {...props} logout={this.logout} /> } />
             <Route path="/dashboard" render={ (props) => <Dashboard {...props} logout={this.logout} /> } />
             <Route path="/budgeter" render={ (props) => <Budgeter {...props} logout={this.logout} /> } />
-
-
-            <Route path="/my-people/:slug" render={(props) => {
-              const person = this.props.people.find(p => slugify(p.name) === props.match.params.slug)
-              return <Person {...props} person={person} logout={this.logout} /> }} />
-
-                <Route path="/my-people/:id" render={ (props) => <Person {...props } logout={this.logout}/> } />
-
+            <Route path="/my-people/:id" render={ (props) => <Person {...props } logout={this.logout}/> } />
             <Route path="/my-people" exact render={ (props) => <PeoplePage {...props } logout={this.logout}/> } />
-            <Route path="/my-gifts/:slug" render={(props) => {
-              const gift = this.props.gifts.find(g => slugify(g.name) === props.match.params.slug)
-              return <Gift {...props} gift={gift} logout={this.logout} /> }} />
+            <Route path="/my-gifts/:id" render={ (props) => <Gift {...props} logout={this.logout}/> }/>
             <Route path="/my-gifts" exact render={ (props) => <GiftPage {...props } logout={this.logout}/> } />
             <Route render={ (props) => <NotFound {...props } logout={this.logout}/> } />/>
           </Switch>

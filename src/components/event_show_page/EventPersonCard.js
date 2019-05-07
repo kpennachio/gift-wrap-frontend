@@ -4,9 +4,7 @@ import { connect } from 'react-redux'
 import { Button, Card } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
-
 import { resetState } from '../../resetState'
-import { slugify } from '../../slug'
 
 // Event show page: individual person associated with event (styled as Semantic card)
 
@@ -44,7 +42,7 @@ const EventPersonCard = (props) => {
   }
 
   // Display selected gift
-  // Or display "Find a gift for [Person]" 
+  // Or display "Find a gift for [Person]"
   const displayGift = () => {
     if (pge.gift === null) {
       return (
