@@ -5,12 +5,12 @@ import { Card, Image, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 import { resetState } from '../../resetState'
-import { slugify } from '../../slug'
 
+// Person show page: render saved gifts for person
 
 const PersonSavedGift = ({id, gift, selectedPerson, deletePersonGiftIdea, currentUser, url}) => {
 
-
+  // if heart is clicked, unsave gift in db
   const unSaveIdea = () => {
     fetch(`${url}/person_gift_ideas/${id}`, {method: "DELETE"})
     .then(resp => {

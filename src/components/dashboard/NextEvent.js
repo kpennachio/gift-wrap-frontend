@@ -8,13 +8,11 @@ import { Icon, Grid } from 'semantic-ui-react'
 import { slugEventUrl } from '../../slug'
 
 
-
-
 const NextEvent = (props) => {
 
   const { events } = props
 
-
+  // Order event by earliest date
   const orderEvents = () => {
     if (events) {
       return events.sort((a, b) => {
@@ -23,6 +21,7 @@ const NextEvent = (props) => {
     }
   }
 
+  // Render earliest event missing one or more gifts
   const renderNextEvent = () => {
     if (events) {
       let noGiftEvents = orderEvents().filter(event => {
@@ -48,7 +47,12 @@ const NextEvent = (props) => {
           </div>
         )
       }
-      else return <p>Nothing on your checklist!</p>
+      else return (
+        <div>
+        <p>There's nothing on your checklist</p>
+        <Link to="/checklist">Add a new event!</Link>
+        </div>
+      )
     }
   }
 

@@ -11,6 +11,7 @@ import { Checkbox, Sidebar, Button, Segment, Menu } from 'semantic-ui-react'
 
 import uuid from 'uuid'
 
+// My people page - people index
 
 class PeoplePage extends Component {
 
@@ -18,6 +19,7 @@ class PeoplePage extends Component {
     showForm: false
   }
 
+  // order people alphabetically and render PersonCard for each
   renderAllPeople = () => {
     let orderedPeople = this.props.people.sort((a, b) => {
       return a.name.localeCompare(b.name)
@@ -28,11 +30,13 @@ class PeoplePage extends Component {
     })
   }
 
+  // Show new person form
   showForm = () => {
     this.setState({showForm: true})
 
   }
 
+  // Hide new person form
   handleSidebarHide = () => {
     this.setState({showForm: false})
   }

@@ -8,12 +8,14 @@ import { Link } from 'react-router-dom'
 import { resetState } from '../../resetState'
 import { slugify } from '../../slug'
 
-
+// Event show page: individual person associated with event (styled as Semantic card)
 
 const EventPersonCard = (props) => {
 
   const {person, pge, selectedPerson, changeSelectedPerson, changePersonGiftEvent, people, editPersonGiftEvent, currentUser, url, history} = props
 
+
+// Remove selected gift from person
   const removeGift = () => {
     let data = {
       gift_id: null,
@@ -41,6 +43,8 @@ const EventPersonCard = (props) => {
     history.push(`/my-gifts/${slugify(name)}`)
   }
 
+  // Display selected gift
+  // Or display "Find a gift for [Person]" 
   const displayGift = () => {
     if (pge.gift === null) {
       return (

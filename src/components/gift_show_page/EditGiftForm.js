@@ -5,6 +5,7 @@ import { Button, Form, Input, TextArea, Icon, Divider, Image } from 'semantic-ui
 
 import { resetState } from '../../resetState'
 
+// Gift show page: edit gift form
 
 class EditGiftForm extends Component {
 
@@ -19,10 +20,35 @@ class EditGiftForm extends Component {
     message: ""
   }
 
+  // form changes for gift name, notes, list_price, store, link
   handleChange = (e) => {
     this.setState({[e.target.name]: e.target.value})
   }
 
+  // form changes for age_range
+  setAgeRange = (e, { value }) => {
+    this.setState({age_range: value})
+  }
+
+  // ############### Cloudinary widget for image upload ###################
+  // form changes for image
+  seeResult = (result) => {
+    if (result.event === "success") {
+      this.setState({image: result.info.secure_url})
+    }
+  }
+
+  openWidget = (e) => {
+    e.preventDefault()
+    let widget = window.cloudinary.createUploadWidget({
+      cloudName: process.env.REACT_APP_CLOUD_NAME, uploadPreset: process.env.REACT_APP_UPLOAD_PRESET,
+      sources: [ 'local', 'url']},
+      (error, result) => {this.seeResult(result)});
+    widget.open();
+  }
+
+
+  // ############### On Submit #############################################
   handleSubmit = (e) => {
     e.preventDefault()
     this.editGift()
@@ -51,28 +77,6 @@ class EditGiftForm extends Component {
       }
     })
   }
-
-  seeResult = (result) => {
-    if (result.event === "success") {
-      this.setState({image: result.info.secure_url})
-    }
-  }
-
-
-  openWidget = (e) => {
-    e.preventDefault()
-    let widget = window.cloudinary.createUploadWidget({
-      cloudName: process.env.REACT_APP_CLOUD_NAME, uploadPreset: process.env.REACT_APP_UPLOAD_PRESET,
-      sources: [ 'local', 'url']},
-      (error, result) => {this.seeResult(result)});
-    widget.open();
-  }
-
-
-  setAgeRange = (e, { value }) => {
-    this.setState({age_range: value})
-  }
-
 
   render() {
 

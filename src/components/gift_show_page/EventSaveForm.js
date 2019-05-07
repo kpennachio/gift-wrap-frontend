@@ -11,12 +11,15 @@ import { Button, Dropdown, Card, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 
+// Gift show page: save gift to events
+
 class EventSaveForm extends Component {
 
   state = {
     selections: []
   }
 
+  // Populate dropdown form with events not already saved to gift
   eventOptions = () => {
     let events = this.props.events.filter(event => {
       return this.props.gift.event_gift_ideas.every(egi => {
@@ -28,10 +31,13 @@ class EventSaveForm extends Component {
     })
   }
 
+  // Add selected events to state
   handleChange = (e, { value }) => {
     this.setState({ selections: value })
   }
 
+  // On submit, save gift as idea for events
+  // Create new EventGiftIdea (join class for event and gift)
   handleSubmit = () => {
     this.state.selections.forEach(eventId => this.createNewEventGiftIdea(eventId))
   }
@@ -41,7 +47,7 @@ class EventSaveForm extends Component {
       event_id: eventId,
       gift_idea_id: this.props.gift.id
     }
-    fetch("http://localhost:3000/api/v1/event_gift_ideas", {
+    fetch(`${this.props.url}/event_gift_ideas`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -57,8 +63,10 @@ class EventSaveForm extends Component {
     })
   }
 
+  // On click of heart, remove gift idea from event
+  // Delete EventGiftIdea
   deleteSavedEvent = (egi) => {
-    fetch(`http://localhost:3000/api/v1/event_gift_ideas/${egi.id}`, {
+    fetch(`${this.props.url}/event_gift_ideas/${egi.id}`, {
       method: "DELETE"
     })
     .then(resp => {
@@ -67,6 +75,7 @@ class EventSaveForm extends Component {
     })
   }
 
+  // Show all events that have this gift saved
   renderSavedEvents = () => {
     return this.props.gift.event_gift_ideas.map(egi =>{
       let event = this.props.events.find(event => event.id === egi.event_id)
@@ -106,7 +115,8 @@ function mapStateToProps(state) {
   return{
     currentUser: state.currentUser,
     events: state.events,
-    gifts: state.gifts
+    gifts: state.gifts,
+    url: state.url
   }
 }
 

@@ -7,12 +7,14 @@ import { Link } from 'react-router-dom'
 import { resetState } from '../../resetState'
 import { slugify } from '../../slug'
 
+// Event Show Page: one gift (styled as Semantic card)
 
-
-const OtherGift = (props) => {
+const EventGift = (props) => {
 
   const {gift, event, selectedPerson, addNewPersonGiftIdea, addNewEventGiftIdea, pge, editPersonGiftEvent, people, gifts, currentUser, url, deletePersonGiftIdea, deleteEventGiftIdea, changePersonGiftEvent} = props
 
+
+  // ############# Saving and Unsaving a Gift Idea for a Person ##################
 
   const handlePersonClick = () => {
     if (gift.person_gift_ideas.find(pgi => pgi.person_id === selectedPerson.id)) {
@@ -20,7 +22,6 @@ const OtherGift = (props) => {
       unSavePersonIdea(pgi.id)
     }
     else saveIdeaPerson()
-
   }
 
   const unSavePersonIdea = (id) => {
@@ -52,7 +53,7 @@ const OtherGift = (props) => {
   }
 
 
-
+// ############# Saving and Unsaving a Gift Idea for Event ##################
 
   const handleEventClick = () => {
     if (gift.event_gift_ideas.find(egi => egi.event_id === event.id)) {
@@ -92,6 +93,9 @@ const OtherGift = (props) => {
 
     })
   }
+
+
+  //########### Selecting and Unselecting gift for a person ###############
 
   const selectGift = () => {
     let data = {
@@ -141,6 +145,10 @@ const OtherGift = (props) => {
     })
   }
 
+
+  // ############# Buttons on Gift Card #####################################
+
+  // Determines if gift will have "Saved to [Person]" heart
   const savePersonHeart = () => {
     // does gift have person_gift_ideas?
     // does the person_gift_idea match the person_id of the selected person?
@@ -157,6 +165,7 @@ const OtherGift = (props) => {
     )
   }
 
+  // Determines if gift will have "Saved to Event" heart
   const saveEventHeart = () => {
     // does gift have event_gift_ideas?
     // does the event_gift_idea match the event_id of the event?
@@ -173,6 +182,7 @@ const OtherGift = (props) => {
     )
   }
 
+  // Determines if gift button will say select or unselect gift for a person
   const renderSelectButton = () => {
     if (pge.gift) {
       if (pge.gift.id === gift.id) {
@@ -231,4 +241,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(OtherGift);
+export default connect(mapStateToProps, mapDispatchToProps)(EventGift);

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import { Button, Form, Input, TextArea } from 'semantic-ui-react'
 
-
+// Person show page: edit person form
 
 class EditPersonForm extends Component {
 
@@ -12,10 +12,12 @@ class EditPersonForm extends Component {
     notes: this.props.person.notes,
   }
 
+  // on change update name or notes in state
   handleChange = (e) => {
     this.setState({[e.target.name]: e.target.value})
   }
 
+  // on submit, edit person in db
   handleSubmit = (e) => {
     e.preventDefault()
     this.editPerson()
@@ -26,7 +28,7 @@ class EditPersonForm extends Component {
       name: this.state.name,
       notes: this.state.notes
     }
-    fetch(`http://localhost:3000/api/v1/people/${this.props.person.id}`, {
+    fetch(`${this.props.url}/people/${this.props.person.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -69,7 +71,8 @@ class EditPersonForm extends Component {
 
 function mapStateToProps(state) {
   return {
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
+    url: state.url
   }
 }
 

@@ -13,7 +13,7 @@ import { Button, Sidebar, Menu, Card } from 'semantic-ui-react'
 
 import { resetState } from '../../resetState'
 
-
+// Gift Show Page: Gift details
 
 class GiftDetail extends Component {
 
@@ -21,6 +21,7 @@ class GiftDetail extends Component {
     showForm: false
   }
 
+  // All events where this gift was given
   renderGiftHistory = () => {
     if (this.props.gift.person_gift_events.length > 0){
       return this.props.gift.person_gift_events.map(pge => {
@@ -32,6 +33,7 @@ class GiftDetail extends Component {
     }
   }
 
+  // Delete Gift - callback passed to button in sidebar with edit form
   handleDeleteGift = () => {
     fetch(`${this.props.url}/gifts/${this.props.gift.id}`, {
       method: "DELETE"
@@ -44,14 +46,17 @@ class GiftDetail extends Component {
     })
   }
 
+  // show sidebar with edit form
   showForm = () => {
     this.setState({showForm: true})
   }
 
+  // hide sidebar with edit form
   handleSidebarHide = () => {
     this.setState({showForm: false})
   }
 
+  // render notes on gift if they exist
   renderNotes = () => {
     return(
       <div className="notes">

@@ -9,12 +9,15 @@ import { Link } from 'react-router-dom'
 import { slugify } from '../../slug'
 
 
+// Gift show page: save gift to people
+
 class PersonSaveForm extends Component {
 
   state = {
     selections: []
   }
 
+  // Populate dropdown form with people not already saved to gift
   personOptions = () => {
     let people = this.props.people.filter(person => {
       return this.props.gift.person_gift_ideas.every(pgi => {
@@ -26,10 +29,14 @@ class PersonSaveForm extends Component {
     })
   }
 
+  // Add selected people to state
   handleChange = (e, { value }) => {
     this.setState({ selections: value })
   }
 
+
+  // On submit, save gift as idea for people
+  // Create new PersonGiftIdea (join class for person and gift)
   handleSubmit = () => {
     this.state.selections.forEach(personId => this.createNewPersonGiftIdea(personId))
   }
@@ -55,6 +62,8 @@ class PersonSaveForm extends Component {
     })
   }
 
+  // On click of heart, remove gift idea from person
+  // Delete PersonGiftIdea
   deleteSavedPerson = (pgi) => {
     fetch(`${this.props.url}/person_gift_ideas/${pgi.id}`, {
       method: "DELETE"
@@ -65,6 +74,7 @@ class PersonSaveForm extends Component {
     })
   }
 
+  // Show all people that have this gift saved
   renderSavedPeople = () => {
     return this.props.gift.person_gift_ideas.map(pgi =>{
       let person = this.props.people.find(person => person.id === pgi.person_id)

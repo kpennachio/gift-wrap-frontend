@@ -4,20 +4,18 @@ import { connect } from 'react-redux'
 import { Card } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
-import { slugify } from '../slug'
 
+// Person card (Semantic UI card) - people index page
 
 const PersonCard = ({person}) => {
 
-
-
+  // Person name and link to their show page
   return (
 
     <Card className="contact-person" as={Link} to={`my-people/${slugify(person.name)}`}>
       <p className="person-name">{person.name}</p>
 
     </Card>
-
 
   );
 

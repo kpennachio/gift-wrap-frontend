@@ -6,6 +6,7 @@ import BudgetEventContainer from './budget_page/BudgetEventContainer'
 import SideNav from './SideNav'
 import AppHeader from './AppHeader'
 
+// Budgeter Page
 
 class Budgeter extends Component {
 
@@ -18,11 +19,13 @@ class Budgeter extends Component {
     this.setState({year})
   }
 
+  // Finds current year
   currentYear = () => {
     let d = new Date()
     return d.getFullYear()
   }
 
+  // year for budget displayed in BudgetContainer and BudgetEventContainer
   changeYear = (year) => {
     this.setState({year})
   }

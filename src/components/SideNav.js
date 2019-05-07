@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Sidebar, Menu } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom'
 
+// Sidebar navigation
 
 export default class SideNav extends Component {
 

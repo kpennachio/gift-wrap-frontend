@@ -4,8 +4,9 @@ import { connect } from 'react-redux'
 import { Card, Grid, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
-import { slugEventUrl } from '../slug'
 
+// Event detail on Checklist page
+// Event title with date and checkmark showing if gifts are complete
 
 const Event = ({event, pge}) => {
 

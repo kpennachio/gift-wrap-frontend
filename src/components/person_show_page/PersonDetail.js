@@ -13,6 +13,8 @@ import { Button, Sidebar, Menu, Card } from 'semantic-ui-react'
 import { resetState } from '../../resetState'
 
 
+// Person show page main component
+
 class PersonDetail extends Component {
 
 
@@ -21,6 +23,7 @@ class PersonDetail extends Component {
     formMessage: ""
   }
 
+  // render gift ideas for person 
   renderPersonGiftIdeas = () => {
       return this.props.person.person_gift_ideas.map(person_gift_idea => {
         let gift = this.props.gifts.find(gift => gift.id === person_gift_idea.gift_idea_id)
@@ -30,6 +33,7 @@ class PersonDetail extends Component {
       })
   }
 
+  // if there are gifts needed for person, render EventCard(s)
   renderGiftsNeeded = () => {
     let pges = this.props.person.person_gift_events.filter(pge => pge.gift === null)
     return pges.map(pge => {
@@ -37,6 +41,7 @@ class PersonDetail extends Component {
     })
   }
 
+  // if person was given gifts in the past, render EventCard(s)
   renderPastGifts = () => {
     let pges = this.props.person.person_gift_events.filter(pge => pge.gift !== null)
     return pges.map(pge => {
@@ -44,8 +49,9 @@ class PersonDetail extends Component {
     })
   }
 
+  // on click of delete button in sidebar, delete person in db
   handleDeletePerson = () => {
-    fetch(`http://localhost:3000/api/v1/people/${this.props.person.id}`, {
+    fetch(`${this.props.url}/people/${this.props.person.id}`, {
       method: "DELETE"
     })
     .then(resp => {
@@ -56,10 +62,12 @@ class PersonDetail extends Component {
     })
   }
 
+  // show sidebar with edit form
   showForm = () => {
     this.setState({showForm: true})
   }
 
+  // hide sidebar with edit form
   handleSidebarHide = () => {
     this.setState({
       showForm: false,
@@ -67,12 +75,14 @@ class PersonDetail extends Component {
     })
   }
 
+  // edit form message
   changeMessage = (message) => {
     this.setState({
       formMessage: message
     })
   }
 
+  // render notes about person
   renderNotes = () => {
     return(
       <div className="notes">
@@ -142,7 +152,8 @@ function mapStateToProps(state) {
     currentUser: state.currentUser,
     people: state.people,
     gifts: state.gifts,
-    user_id: state.user_id
+    user_id: state.user_id,
+    url: state.url
   }
 }
 

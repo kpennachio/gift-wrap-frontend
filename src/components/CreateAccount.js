@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 import { Form, Input, Button } from 'semantic-ui-react'
 
-
+// Create account EventForm
 
 class CreateAccount extends Component {
 
@@ -24,6 +24,7 @@ class CreateAccount extends Component {
     this.setState({[e.target.name]: e.target.value})
   }
 
+  // Create new user in db
   handleSubmit = (e) => {
     e.preventDefault()
     let data = {
@@ -32,6 +33,7 @@ class CreateAccount extends Component {
       email: this.state.email,
       first_name: this.state.first_name,
       last_name:  this.state.last_name,
+      email_reminder: 14
     }
     fetch(`${this.props.url}/users`, {
       method: "POST",
@@ -39,7 +41,7 @@ class CreateAccount extends Component {
         "Content-Type": "application/json",
         "Accept": "application/json"
       },
-      body: JSON.stringify(this.state)
+      body: JSON.stringify(data)
     })
     .then(resp => resp.json())
     .then(response => {
@@ -58,6 +60,7 @@ class CreateAccount extends Component {
     })
   }
 
+  // Display error messages or success message
   displayMessages = () => {
     return this.state.messages.map(message => {
       return <p>{message.split('^')[1]}</p>

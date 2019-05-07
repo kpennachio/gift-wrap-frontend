@@ -8,8 +8,12 @@ import CircularProgressbar from 'react-circular-progressbar';
 import { Icon } from 'semantic-ui-react'
 
 
+// Budgeter page: container for budget and circular progressbars
+
 const BudgetContainer = ({events, year, changeYear, budget, budgets, setBudget}) => {
 
+
+  // add all budgets for each person in each event for given year to get total allocated budget
   const allocatedBudget = () => {
     let selectedEvents = events.filter(event => event.year === year)
       let subtotal = selectedEvents.map(event => {
@@ -27,6 +31,7 @@ const BudgetContainer = ({events, year, changeYear, budget, budgets, setBudget})
       else return 0
   }
 
+  // add all gift costs for each person in each event for given year to get total amount paid
   const amountPaid = () => {
     let selectedEvents = events.filter(event => event.year === year)
       let subtotal = selectedEvents.map(event => {
@@ -45,6 +50,7 @@ const BudgetContainer = ({events, year, changeYear, budget, budgets, setBudget})
   }
 
 
+  // callbacks for arrows on click - change year back or forward
   const yearBack = () => {
     changeYear(--year)
     changeBudget()
@@ -55,6 +61,7 @@ const BudgetContainer = ({events, year, changeYear, budget, budgets, setBudget})
     changeBudget()
   }
 
+  // on year change, find budget for that year and change in state
   const changeBudget = () => {
     let budgetObj = budgets.find(budget => budget.year === year)
     if (budgetObj) {
@@ -66,8 +73,11 @@ const BudgetContainer = ({events, year, changeYear, budget, budgets, setBudget})
     }
   }
 
+  // percentage of gift budget spent
+  // if nothing has been budgeted, return 0%
+  // else divide (amount spent)/(allocated budget) * 100 for percent
   const paidPercentage = () => {
-    if (amountPaid() === 0) {
+    if (allocatedBudget() === 0) {
       return 0
     }
     else {
@@ -75,6 +85,9 @@ const BudgetContainer = ({events, year, changeYear, budget, budgets, setBudget})
     }
   }
 
+  // percentage of gift budget spent
+  // if nothing has been spent, return 0%
+  // else divide (amount spent)/(allocated budget) * 100 for percent
   const budgetPercentage = () => {
     if (budget) {
       if (parseInt(budget) === 0) {

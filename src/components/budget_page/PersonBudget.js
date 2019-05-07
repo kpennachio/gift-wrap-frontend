@@ -6,6 +6,7 @@ import { Grid, Form } from 'semantic-ui-react'
 import { resetState } from '../../resetState'
 
 
+// Budgeter page: form to change budget per person under each event
 
 class PersonBudget extends Component {
 
@@ -14,11 +15,12 @@ class PersonBudget extends Component {
     price_max: this.props.pge.price_max
   }
 
-
+  // on click makes input field
   changeBudget = () => {
     this.setState({edit: true})
   }
 
+  // on enter, updates budget in db
   handleSubmit = (e) => {
     e.stopPropagation()
 
@@ -41,11 +43,12 @@ class PersonBudget extends Component {
     })
   }
 
+  // on change in input field, update state
   handleChange = (e) => {
     this.setState({price_max: e.target.value})
   }
 
-
+  // renders edit form or text for budget
   renderBudget = () => {
     if (this.state.edit) {
       return (

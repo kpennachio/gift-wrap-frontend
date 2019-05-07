@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Button, Form, Input, TextArea } from 'semantic-ui-react'
 
 
+// New person form - on my people page
 
 class PersonForm extends Component {
 
@@ -13,6 +14,7 @@ class PersonForm extends Component {
     message: ""
   }
 
+  // Handle change for name, notes and message
   handleChange = (e) => {
     this.setState({[e.target.name]: e.target.value})
   }
@@ -26,13 +28,14 @@ class PersonForm extends Component {
     })
   }
 
+  // Create new person in db
   createNewPerson = () => {
     let data = {
       user_id: this.props.currentUser.id,
       name: this.state.name,
       notes: this.state.notes
     }
-    fetch('http://localhost:3000/api/v1/people', {
+    fetch(`${this.props.url}/people`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -81,7 +84,8 @@ class PersonForm extends Component {
 
 function mapStateToProps(state) {
   return {
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
+    url: state.url
   }
 }
 

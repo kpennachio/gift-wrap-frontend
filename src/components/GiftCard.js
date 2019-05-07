@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 import { slugify } from '../slug'
 
-
+// Gift card (Semantic UI card) on My Gifts page
 
 const GiftCard = ({gift}) => {
 

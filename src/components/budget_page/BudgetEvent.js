@@ -8,15 +8,15 @@ import PersonBudget from './PersonBudget'
 
 import { slugEventUrl, slugify } from '../../slug'
 
-
+// Budgeter page: each event accordion under the budget event container
 
 class BudgetEvent extends Component {
 
   state = {
     activeIndex: 0,
-
   }
 
+  // on click of the event (accordion title), accordion opens if it is closed, or closes if it is open
   handleClick = (e, titleProps) => {
     const { index } = titleProps
     const { activeIndex } = this.state
@@ -25,6 +25,7 @@ class BudgetEvent extends Component {
     this.setState({ activeIndex: newIndex })
   }
 
+  // renders all the people associated with the event and their budget and gift cost
   renderPeople = () => {
     return this.props.pges.map(pge => {
       return(
@@ -38,6 +39,7 @@ class BudgetEvent extends Component {
     })
   }
 
+  // renders event row (accordion title)
   renderEvents = () => {
     return(
       <Grid className="budget-event-row">
@@ -50,7 +52,7 @@ class BudgetEvent extends Component {
     )
   }
 
-
+  // adds all gift costs (one gift cost per person) for the event total
   eventSpending = () => {
     if (this.props.pges.length > 1) {
       let total = this.props.pges.reduce((sum, pge) => {
@@ -64,6 +66,7 @@ class BudgetEvent extends Component {
     else return 0
   }
 
+  // adds all gift budgets (one gift budget per person) for the event total
   eventBudget = () => {
     if (this.props.pges.length > 1) {
       let total = this.props.pges.reduce((sum, pge) => {
