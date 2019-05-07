@@ -46,7 +46,12 @@ const NextEvent = (props) => {
           </div>
         )
       }
-      else return <p>Nothing on your checklist!</p>
+      else return (
+        <div>
+        <p>There's nothing on your checklist</p>
+        <Link to="/checklist">Add a new event!</Link>
+        </div>
+      )
     }
   }
 
