@@ -11,7 +11,8 @@ const Person = (props) => {
   // find person from url
   const returnPerson = () => {
     if (props.people.length > 0) {
-      return < PersonDetail person={props.person} history={props.history} />
+      let person = props.people.find(person => person.id === parseInt(props.match.params.id))
+      return < PersonDetail person={person} history={props.history} />
     }
   }
 
