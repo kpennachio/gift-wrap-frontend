@@ -5,8 +5,7 @@ import { Link } from 'react-router-dom'
 
 import { Icon, Grid } from 'semantic-ui-react'
 
-import { slugEventUrl } from '../../slug'
-
+// Dashboard Page: Next event on checklist
 
 const NextEvent = (props) => {
 
@@ -37,7 +36,7 @@ const NextEvent = (props) => {
               <Icon size="big" className="unchecked inline" name="check circle outline" />
             </Grid.Column>
             <Grid.Column width="12" >
-            <Link to={`/checklist/${slugEventUrl(noGiftEvents[0])}`}>
+            <Link to={`/checklist/${noGiftEvents[0].id}`}>
               <p className="inline event-title">{noGiftEvents[0].title}</p>
               <p className="event-date">{noGiftEvents[0].dateFormatted}</p>
             </Link>

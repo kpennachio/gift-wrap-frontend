@@ -30,7 +30,7 @@ const EventCard = ({event, person, pge}) => {
   return (
 
     <Card className="person-event">
-      <Card.Header as={Link} to={`/checklist/${slugEventUrl(event)}`}>
+      <Card.Header as={Link} to={`/checklist/${event.id}`}>
         <p>{event.title}</p>
         <p>{event.date}</p>
       </Card.Header>

@@ -5,7 +5,6 @@ import { Card, Button, Image, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 import { resetState } from '../../resetState'
-import { slugify } from '../../slug'
 
 // Event Show Page: one gift (styled as Semantic card)
 
@@ -200,7 +199,7 @@ const EventGift = (props) => {
       <Card.Header className="gift-name">{gift.name}</Card.Header>
       <Card.Meta>{gift.store} ${parseInt(gift.list_price).toFixed(2)}</Card.Meta>
       <div className="image-container" >
-      <Image as={Link} to={`/my-gifts/${slugify(gift.name)}`} src={gift.image}
+      <Image as={Link} to={`/my-gifts/${gift.id}`} src={gift.image}
       alt={gift.name} id="gift-idea"/>
       </div>
       </Card.Content>

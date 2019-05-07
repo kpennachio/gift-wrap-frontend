@@ -37,8 +37,8 @@ const EventPersonCard = (props) => {
     })
   }
 
-  const goToGiftPage = (name) => {
-    history.push(`/my-gifts/${slugify(name)}`)
+  const goToGiftPage = (id) => {
+    history.push(`/my-gifts/${id}`)
   }
 
   // Display selected gift
@@ -56,7 +56,7 @@ const EventPersonCard = (props) => {
           <div >
           <Card.Meta className="gift-name">{pge.gift.name}<br />
           {pge.gift.store} ${parseInt(pge.gift.list_price).toFixed(2)}</Card.Meta>
-          <img onClick={() => goToGiftPage(pge.gift.name)} id="gift-pic" src={pge.gift.image} alt={pge.gift.name}/>
+          <img onClick={() => goToGiftPage(pge.gift.id)} id="gift-pic" src={pge.gift.image} alt={pge.gift.name}/>
           <Button id="remove-gift" onClick={removeGift}>Unselect Gift!</Button>
           </div>
       )
@@ -75,7 +75,7 @@ const EventPersonCard = (props) => {
   return (
     <Card className={className()} >
       <Card.Content >
-      <Link id="event-person-name" to={`/my-people/${slugify(person.name)}`}>{person.name}</Link>
+      <Link id="event-person-name" to={`/my-people/${person.id}`}>{person.name}</Link>
       <div onClick={() => changeSelectedPerson(person, pge)}>
         {displayGift()}
       </div>
