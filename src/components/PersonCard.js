@@ -12,7 +12,7 @@ const PersonCard = ({person}) => {
   // Person name and link to their show page
   return (
 
-    <Card className="contact-person" as={Link} to={`my-people/${slugify(person.name)}`}>
+    <Card className="contact-person" as={Link} to={`my-people/${person.id}`}>
       <p className="person-name">{person.name}</p>
 
     </Card>

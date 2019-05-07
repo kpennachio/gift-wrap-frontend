@@ -4,8 +4,6 @@ import { connect } from 'react-redux'
 import { Card, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
-import { slugify } from '../slug'
-
 // Gift card (Semantic UI card) on My Gifts page
 
 const GiftCard = ({gift}) => {
@@ -14,7 +12,7 @@ const GiftCard = ({gift}) => {
   return (
 
     <Card
-      as={Link} to={`/my-gifts/${slugify(gift.name)}`}
+      as={Link} to={`/my-gifts/${gift.id}`}
       className="gift"
     >
       <Card.Content>

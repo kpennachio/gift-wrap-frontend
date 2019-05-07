@@ -29,7 +29,7 @@ const Event = ({event, pge}) => {
     <Card
       fluid
       className="event"
-      as={Link} to={`checklist/${slugEventUrl(event)}`}
+      as={Link} to={`checklist/${event.id}`}
     >
       <Card.Header>
         <Grid>

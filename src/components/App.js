@@ -16,7 +16,6 @@ import Profile from './Profile'
 import CreateAccount from './CreateAccount'
 import NotFound from './NotFound'
 
-import { slugify, slugEventUrl } from '../slug'
 
 class App extends Component {
 
