@@ -7,10 +7,11 @@ import EventDetail from './EventDetail'
 
 const ChecklistDetail = (props) => {
 
-// find event from url
+  // find event from url
   const returnEvent = () => {
     if (props.events.length > 0) {
-      return < EventDetail event={props.event} history={props.history} logout={props.logout}/>
+      let event = props.events.find(event => event.id === parseInt(props.match.params.id))
+      return < EventDetail event={event} history={props.history} logout={props.logout}/>
     }
   }
 
