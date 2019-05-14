@@ -1,68 +1,52 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Gift Wrap
+Created by Katie Pennachio
 
-## Available Scripts
+This was my final, solo project for the Flatiron School 15-week immersive software engineering program.
 
-In the project directory, you can run:
+## Repositories
+This is the React frontend for Gift Wrap.
 
-### `npm start`
+Visit the Rails backend here: https://github.com/kpennachio/gift-wrap-backend
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Technologies
+* React
+* Redux
+* Ruby on Rails
+* Rails Action Mailer
+* Cloudinary
+* ReactJS Datepicker
+* React Circular Progressbar
+* Semantic UI React and Custom CSS
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Description
+Gift Wrap is a personal organization app for gift planning. Add upcoming events such as birthdays and holidays where you would like to give a gift to someone. Use the app to plan gift ideas and check off completed events. With the budgeter tool, you can set a gift budget for each event and an annual gift budget for each year. Elect to receive email reminders one or two weeks before an event if you are still missing a gift.
 
-### `npm test`
+Additional features include: Add multiple people to an event, i.e. for Christmas plan gifts for more than one person. Save gift ideas to a person or event. See gift history for each person, so you don’t get your dad the same thing every year for Father’s Day. Filter all of your gifts by name, price range, and/or age range. Add notes to events, people and gifts.
+## Video Demo
+[![Gift Wrap Demo Video](https://res.cloudinary.com/dum7xzjkm/image/upload/v1557848210/pgv9gf7wmpa0bqa6edly.png)](https://youtu.be/yzPcjlUtXes)
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Live
+Check out [Gift Wrap on Heroku!](https://gift-wrap.herokuapp.com "Gift Wrap")
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+You can create an account or login with the following:  
+Username: demo  
+Password: 123
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+Emails from Rails Backend and Heroku Scheduler
+* Welcome email sent upon account creation using Rails Action Mailer.
+* Email reminders using custom Rails rake task, Rails Action Mailer and Heroku scheduler - sends email one or two weeks before an event if you are still missing a gift.
+* Users can change email preferences or opt out of email reminders on the dashboard page.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Screenshots
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![](https://res.cloudinary.com/dum7xzjkm/image/upload/v1557849037/qiajecuvprly7f3uqdum.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![](https://res.cloudinary.com/dum7xzjkm/image/upload/v1557848788/gaunjegbwqhxjy46egul.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![](https://res.cloudinary.com/dum7xzjkm/image/upload/v1557848798/rymbwncfdjgir8gk22jv.png)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![](https://res.cloudinary.com/dum7xzjkm/image/upload/v1557848775/efk3gfqbjumxfay6gwhm.png)
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+![](https://res.cloudinary.com/dum7xzjkm/image/upload/v1557848765/zxgcbfycg577adloggxk.png)
