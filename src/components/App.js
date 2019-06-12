@@ -47,6 +47,9 @@ class App extends Component {
 
   // for current user, set events, people, gifts, budgets, email reminder in state
   setCurrentUserInfo = (userId) => {
+    let d = new Date();
+    let n = d.getFullYear();
+
       fetch(`${this.props.url}/users/${userId}`)
       .then(resp => resp.json())
       .then(user => {
@@ -56,7 +59,7 @@ class App extends Component {
         this.props.setGifts(user.gifts)
         this.props.setBudgets(user.budgets)
         this.props.setEmailReminder(user.email_reminder)
-        let budget = user.budgets.find(budget => budget.year === 2019)
+        let budget = user.budgets.find(budget => budget.year === n)
         if (budget) {
           this.props.setBudget(budget)
         }
