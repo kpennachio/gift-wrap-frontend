@@ -2,7 +2,7 @@
 
 let defaultState = {
   users: [],
-  user_id: 1,
+  user_id: "",
   currentUser: {},
   events: [],
   people: [],
@@ -34,10 +34,6 @@ function reducer(state = defaultState, action) {
       return { ...state, year: action.payload }
     case "SET_EMAIL_REMINDER":
       return { ...state, emailReminder: action.payload }
-    // case "ADD_BUDGET":
-    //   return { ...state, budgets: [...state.budgets, action.payload]}
-    // case "EDIT_BUDGET":
-    //   return { ...state, budgets: [...state.budgets, action.payload]}
     case "ADD_NEW_EVENT":
       return { ...state, events: [ ...state.events, action.payload ]}
     case "ADD_NEW_PERSON_NAME":

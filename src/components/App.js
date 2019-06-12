@@ -40,6 +40,7 @@ class App extends Component {
 						alert(response.errors)
 					} else {
             this.setCurrentUserInfo(response.id)
+            console.log(response);
 					}
 				})
 		}
